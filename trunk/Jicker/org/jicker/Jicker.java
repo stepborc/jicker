@@ -7,6 +7,7 @@ import org.jicker.gui.Application;
 public class Jicker {
 
 	/**
+	 * Startup no paramet accept
 	 * @param args
 	 */
 	public static void main(String[] args) {
