@@ -6,7 +6,7 @@ import java.awt.FlowLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-public class Application extends JFrame {
+public class JickerApp extends JFrame {
 
 	/**
 	 * 
@@ -14,7 +14,8 @@ public class Application extends JFrame {
 	private static final long serialVersionUID = 1L;
 	Container c;
 	JLabel beschriftung;
-	public Application() {
+	public JickerApp(String appName, String prefName) {
+		super(appName);
 		c = getContentPane();
 		c.setLayout(new FlowLayout());
 		beschriftung = new JLabel("Test Text");

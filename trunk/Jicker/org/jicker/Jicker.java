@@ -1,10 +1,12 @@
 package org.jicker;
 
-import org.jicker.gui.Application;
+import org.jicker.gui.JickerApp;
 
-
-
-public class Jicker {
+public class Jicker extends JickerApp {
+	//Konstruktor
+	public Jicker()  {
+		super("Jicker", "Jicker");
+	}	
 
 	/**
 	 * Startup no paramet accept
@@ -18,7 +20,7 @@ public class Jicker {
 
 	            javax.swing.SwingUtilities.invokeLater(new Runnable() {
 	                public void run() {
-	                    //jicker.setVisible(true);
+	                    jicker.setVisible(true);
 	                }
 	            });
 	        }
