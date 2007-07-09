@@ -1,11 +1,13 @@
 package org.jicker;
 
 import org.jicker.gui.JickerApp;
+import org.jicker.gui.MainWindow;
 
 public class Jicker extends JickerApp {
 	//Konstruktor
 	public Jicker()  {
 		super("Jicker", "Jicker");
+		MainWindow aMainWindow = new MainWindow();
 	}
 
 	/**
@@ -13,15 +15,13 @@ public class Jicker extends JickerApp {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		//Application jicker = new Application();
-		//jicker.setVisible(true);
+
 	     try {
 	            final Jicker jicker = new Jicker();
 
 	            javax.swing.SwingUtilities.invokeLater(new Runnable() {
 	                public void run() {
-	                	jicker.setSize(400, 400);
-	                    jicker.setVisible(true);
+	                	jicker.setVisible(true);
 	                }
 	            });
 	        }
