@@ -8,6 +8,7 @@ public class Jicker extends JickerApp {
 	public Jicker()  {
 		super("Jicker", "Jicker");
 		MainWindow aMainWindow = new MainWindow();
+		restore(aMainWindow);
 	}
 
 	/**
