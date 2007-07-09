@@ -10,13 +10,13 @@ public class MainWindow extends BaseWindow{
         JSplitPane aSplitPanel = new JSplitPane();
         LeftPanel aLeftPanel = new LeftPanel();
         JTabbedPane aCenterPanel = new JTabbedPane();
-        StatusBar aStatusBar = new StatusBar();
+        //StatusBar aStatusBar = new StatusBar();
 
         setLayout(new BorderLayout());
         aSplitPanel.setLeftComponent(aLeftPanel);
         aSplitPanel.setRightComponent(aCenterPanel);
         add(aSplitPanel, BorderLayout.CENTER);
-        add(aStatusBar, BorderLayout.SOUTH);
+        //add(aStatusBar, BorderLayout.SOUTH);
 	}
 
 }
