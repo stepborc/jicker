@@ -6,7 +6,7 @@ public class Jicker extends JickerApp {
 	//Konstruktor
 	public Jicker()  {
 		super("Jicker", "Jicker");
-	}	
+	}
 
 	/**
 	 * Startup no paramet accept
@@ -20,6 +20,7 @@ public class Jicker extends JickerApp {
 
 	            javax.swing.SwingUtilities.invokeLater(new Runnable() {
 	                public void run() {
+	                	jicker.setSize(400, 400);
 	                    jicker.setVisible(true);
 	                }
 	            });
