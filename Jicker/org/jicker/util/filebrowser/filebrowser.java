@@ -18,7 +18,7 @@ public class filebrowser {
 			if (entries[i].isDirectory()){
 				traverse(entries[i], visitor);
 			}else{
-				visitor.visitFile(entries[i]);
+				//visitor.visitFile(entries[i]);
 			}
 		}
 		visitor.leaveDirectory(dir);
@@ -32,11 +32,11 @@ public class filebrowser {
 		// Consolenausgabe
 		traverse(file, new DirectoryPrintVisitor());
 		// Verzeichnisgroesse
-		DirectorySizeVisitor visitor = new DirectorySizeVisitor();
-		traverse(file, visitor);
-		System.out.println("Vereichnisse: " + visitor.getDirs());
-		System.out.println("Dateien     : " + visitor.getFiles());
-		System.out.println("Groesse     : " + visitor.getSize());
+		//DirectorySizeVisitor visitor = new DirectorySizeVisitor();
+		//traverse(file, visitor);
+		//System.out.println("Vereichnisse: " + visitor.getDirs());
+		//System.out.println("Dateien     : " + visitor.getFiles());
+		//System.out.println("Groesse     : " + visitor.getSize());
 	}
 
 }
