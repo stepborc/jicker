@@ -18,7 +18,7 @@ public class SysInfo extends JFrame {
 		Properties sysprops = System.getProperties();
 		Enumeration propnames = sysprops.propertyNames();
 		Container cp = getContentPane();
-		cp.setLayout(new FlowLayout(FlowLayout.LEFT));
+		cp.setLayout(new GridLayout(sysprops.size(),1));
 
 		String iProper;
 		while(propnames.hasMoreElements()){
