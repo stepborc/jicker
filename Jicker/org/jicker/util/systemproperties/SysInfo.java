@@ -36,7 +36,7 @@ public class SysInfo extends JFrame {
 	public static void main(String[] args) {
 		SysInfo sysinfo = new SysInfo();
 		sysinfo.setLocation(100, 100);
-		sysinfo.setSize(300,200);
+		sysinfo.setSize(1024,768);
 		sysinfo.setVisible(true);
 	}
 
