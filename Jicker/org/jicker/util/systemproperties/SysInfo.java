@@ -1,8 +1,6 @@
 package org.jicker.util.systemproperties;
 
-import java.awt.BorderLayout;
 import java.awt.Container;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.util.Enumeration;
 import java.util.Properties;
@@ -38,6 +36,7 @@ public class SysInfo extends JFrame {
 		sysinfo.setLocation(100, 100);
 		sysinfo.setSize(1024,768);
 		sysinfo.setVisible(true);
+		
 	}
 
 }
