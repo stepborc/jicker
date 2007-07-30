@@ -12,7 +12,7 @@ import java.util.List;
 public class JFileBrowser {
 
 	private File root;
-	private List<File> fileList;
+	private List<File> fileList = new ArrayList<File>();
 	protected boolean stop = false;
 	private FileFilter filter = new FileFilter() {
 
@@ -30,7 +30,7 @@ public class JFileBrowser {
 	};
 
 	public List<File> JFileBrowser(File root) {
-		fileList = new ArrayList<File>();
+		//fileList = new ArrayList<File>();
 		//root = new File("e:/bilder/s45-bilder/");
 		//treeWalk(root);
 		//System.out.println(fileList);
@@ -39,10 +39,12 @@ public class JFileBrowser {
 
 	//frei nach der dclj FAQ (www.dclj.de)
 	public List<File> treeWalk(File root) {
-
+		//fileList = new ArrayList<File>();
 		File[] files = root.listFiles(filter);
-		if (files == null || files.length < 1)
-			return fileList;
+		if (files == null || files.length < 1){
+			//return fileList;
+		}else{
+			
 		for (int i = 0; i < files.length; i++) {
 			if (files[i].isDirectory()) {
 				treeWalk(files[i]);
@@ -50,13 +52,14 @@ public class JFileBrowser {
 				//System.out.println(files[i].getName());
 				fileList.add(files[i]);
 			}
-		}
+		}}
 		return fileList;
 	}
 
 	public static void main(String[] args) {
 		JFileBrowser files = new JFileBrowser();
 		files.treeWalk(new File("e:/bilder/s45-bilder/"));
-		
+		System.out.println(files.fileList);
+		System.out.println(files.fileList.size());
 	}
 }
