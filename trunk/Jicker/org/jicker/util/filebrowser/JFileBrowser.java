@@ -12,7 +12,7 @@ import java.util.List;
 public class JFileBrowser {
 
 	private File root;
-	private List fileList;
+	private List<File> fileList;
 	protected boolean stop = false;
 	private FileFilter filter = new FileFilter() {
 
@@ -21,27 +21,28 @@ public class JFileBrowser {
 				return true;
 
 			String name = file.getName();
-			if (name.endsWith(".bmp"))
+			if (name.endsWith(".jpg"))
 				return true;
-			if (name.endsWith(".png"))
+			if (name.endsWith(".JPG"))
 				return true;
 			return false;
 		}
 	};
 
-	public JFileBrowser() {
-		fileList = new ArrayList();
-		root = new File("c:/windows");
-		treeWalk(root);
-		System.out.println(fileList);
+	public List<File> JFileBrowser(File root) {
+		fileList = new ArrayList<File>();
+		//root = new File("e:/bilder/s45-bilder/");
+		//treeWalk(root);
+		//System.out.println(fileList);
+		return fileList;
 	}
 
 	//frei nach der dclj FAQ (www.dclj.de)
-	public final void treeWalk(File root) {
+	public List<File> treeWalk(File root) {
 
 		File[] files = root.listFiles(filter);
 		if (files == null || files.length < 1)
-			return;
+			return fileList;
 		for (int i = 0; i < files.length; i++) {
 			if (files[i].isDirectory()) {
 				treeWalk(files[i]);
@@ -50,9 +51,12 @@ public class JFileBrowser {
 				fileList.add(files[i]);
 			}
 		}
+		return fileList;
 	}
 
 	public static void main(String[] args) {
-		new JFileBrowser();
+		JFileBrowser files = new JFileBrowser();
+		files.treeWalk(new File("e:/bilder/s45-bilder/"));
+		
 	}
 }
