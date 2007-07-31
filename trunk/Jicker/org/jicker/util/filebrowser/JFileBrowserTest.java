@@ -10,7 +10,7 @@ public class JFileBrowserTest extends JFileBrowser {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		List<File> fileResult= new ArrayList();
+		List<File> fileResult= new ArrayList<File>();
 		String name = "e:/bilder/Alte Bilder";
 		File root = new File(name);
 		JFileBrowser fileList = new JFileBrowser();
