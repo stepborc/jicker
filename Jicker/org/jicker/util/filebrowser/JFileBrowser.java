@@ -35,7 +35,7 @@ public class JFileBrowser {
 		} //else {
 			//Was ist zu tun, wenn ich hier lande?
 			//Dann sollte das letzte Verzeichnis leer gewesen sein!
-			System.out.println("Leeres Verzeichnis");
+			//System.out.println("Leeres Verzeichnis");
 		//}
 		return fileList;
 	}
