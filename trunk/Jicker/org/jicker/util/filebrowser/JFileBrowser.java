@@ -4,62 +4,39 @@ import java.io.File;
 import java.io.FileFilter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 /**
- * The Class JFileBrowser.
- * Ehemals JDirectoryScanner
+ * The Class JFileBrowser. Ehemals JDirectoryScanner
  */
 public class JFileBrowser {
 
-	private File root;
 	private List<File> fileList = new ArrayList<File>();
-	protected boolean stop = false;
+
 	private FileFilter filter = new FileFilter() {
-
+		final Pattern p = Pattern.compile( "(.*\\.gif$)|(.*\\.jpg$)|(.*\\.ico$)", Pattern.CASE_INSENSITIVE );
 		public boolean accept(File file) {
-			if (file.isDirectory())
-				return true;
-
-			String name = file.getName();
-			if (name.endsWith(".jpg"))
-				return true;
-			if (name.endsWith(".JPG"))
+			if (file.isDirectory() | p.matcher(file.getName()).matches())
 				return true;
 			return false;
 		}
 	};
 
-	public List<File> JFileBrowser(File root) {
-		//fileList = new ArrayList<File>();
-		//root = new File("e:/bilder/s45-bilder/");
-		//treeWalk(root);
-		//System.out.println(fileList);
-		return fileList;
-	}
-
-	//frei nach der dclj FAQ (www.dclj.de)
-	public List<File> treeWalk(File root) {
-		//fileList = new ArrayList<File>();
-		File[] files = root.listFiles(filter);
-		if (files == null || files.length < 1){
-			//return fileList;
-		}else{
-			
-		for (int i = 0; i < files.length; i++) {
-			if (files[i].isDirectory()) {
-				treeWalk(files[i]);
-			} else {
-				//System.out.println(files[i].getName());
-				fileList.add(files[i]);
+	public List<File> dirWalk(File start) {
+		File[] files = start.listFiles(filter);
+		if (!(files == null || files.length < 1)) {
+			for (int i = 0; i < files.length; i++) {
+				if (files[i].isDirectory()) {
+					dirWalk(files[i]);
+				} else {
+					fileList.add(files[i]);
+				}
 			}
-		}}
+		} //else {
+			//Was ist zu tun, wenn ich hier lande?
+			//Dann sollte das letzte Verzeichnis leer gewesen sein!
+			System.out.println("Leeres Verzeichnis");
+		//}
 		return fileList;
-	}
-
-	public static void main(String[] args) {
-		JFileBrowser files = new JFileBrowser();
-		files.treeWalk(new File("e:/bilder/s45-bilder/"));
-		System.out.println(files.fileList);
-		System.out.println(files.fileList.size());
 	}
 }
