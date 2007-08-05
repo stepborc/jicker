@@ -10,18 +10,43 @@ import java.util.regex.Pattern;
  * The Class JFileBrowser. Ehemals JDirectoryScanner
  */
 public class JFileBrowser {
-
+	//JFileBrowserFilter f = new JFileBrowserFilter();
 	private List<File> fileList = new ArrayList<File>();
+	private String filterValueCopy; 
+	public JFileBrowser(){
+		
+	}
+	public JFileBrowser(String filterValue){
+		filterValueCopy = filterValue;
+	}
 
+//	public void setFilterValue(String value){
+//		filterValue = value;
+//	}
+	
 	private FileFilter filter = new FileFilter() {
-		final Pattern p = Pattern.compile( "(.*\\.gif$)|(.*\\.jpg$)|(.*\\.ico$)", Pattern.CASE_INSENSITIVE );
+		final Pattern p = Pattern
+//				.compile("(.*\\.gif$)|(.*\\.jpg$)",
+//						Pattern.CASE_INSENSITIVE);
+		.compile(filterValueCopy, Pattern.CASE_INSENSITIVE);
+
 		public boolean accept(File file) {
+			
 			if (file.isDirectory() | p.matcher(file.getName()).matches())
 				return true;
 			return false;
 		}
 	};
+//	private FileFilter filterAlt = new FileFilter(){
+//		
+//		public boolean accept(File file){
+//			if (file.isDirectory() | filterValue.matches(file.getName()))
+//				return true;
+//			return false;
+//		}
+//	};
 
+	
 	public List<File> dirWalk(File start) {
 		File[] files = start.listFiles(filter);
 		if (!(files == null || files.length < 1)) {
@@ -32,11 +57,7 @@ public class JFileBrowser {
 					fileList.add(files[i]);
 				}
 			}
-		} //else {
-			//Was ist zu tun, wenn ich hier lande?
-			//Dann sollte das letzte Verzeichnis leer gewesen sein!
-			//System.out.println("Leeres Verzeichnis");
-		//}
+		}
 		return fileList;
 	}
 }
