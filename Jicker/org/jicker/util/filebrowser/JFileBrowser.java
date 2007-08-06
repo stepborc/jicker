@@ -48,6 +48,7 @@ public class JFileBrowser {
 
 	
 	public List<File> dirWalk(File start) {
+		JFileBrowserFilter filter = new JFileBrowserFilter();
 		File[] files = start.listFiles(filter);
 		if (!(files == null || files.length < 1)) {
 			for (int i = 0; i < files.length; i++) {
