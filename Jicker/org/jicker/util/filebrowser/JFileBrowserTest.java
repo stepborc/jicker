@@ -16,7 +16,7 @@ public class JFileBrowserTest extends JFileBrowser {
 		List<File> fileResult= new ArrayList<File>();
 		String name = "e:/bilder/Alte Bilder";
 		File root = new File(name);
-		JFileBrowser fileList = new JFileBrowser("(.*\\.gif$)|(.*\\.jpg$)");
+		JFileBrowser fileList = new JFileBrowser();
 		//fileList.setFilterValue("(.*\\.gif$)|(.*\\.jpg$)");
 		fileResult = fileList.dirWalk(root);
 		System.out.println(fileResult);

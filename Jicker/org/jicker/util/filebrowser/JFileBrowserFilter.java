@@ -5,12 +5,17 @@ import java.io.FileFilter;
 import java.util.regex.Pattern;
 
 public class JFileBrowserFilter implements FileFilter {
-	String filterValue;
+	public String filterValue;
 	public JFileBrowserFilter(String filter){
 		filterValue = filter;
 	}
-
-	final Pattern p = Pattern.compile(filterValue, Pattern.CASE_INSENSITIVE);
+	
+	private String getFilterValue(){
+		return this.filterValue;
+	}
+	
+	//final Pattern p = Pattern.compile(filterValue, Pattern.CASE_INSENSITIVE);
+	final Pattern p = Pattern.compile(this.getFilterValue(), Pattern.CASE_INSENSITIVE);
 	public boolean accept(File file) {
 		if (file.isDirectory() | p.matcher(file.getName()).matches())
 			return true;
