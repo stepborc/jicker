@@ -14,7 +14,7 @@ public class JFileBrowser {
 	private List<File> fileList = new ArrayList<File>();
 	private String filterValueCopy; 
 	public JFileBrowser(){
-		
+		filterValueCopy = "(.*\\.gif$)|(.*\\.jpg$)";	
 	}
 	public JFileBrowser(String filterValue){
 		//filterValueCopy = filterValue;
@@ -48,7 +48,8 @@ public class JFileBrowser {
 //	};
 
 	
-	public List<File> dirWalk(File start) {
+	
+	public List<File> dirWalk(File start, FileFilter filter) {
 		//JFileBrowserFilter filterTest = new JFileBrowserFilter("(.*\\.gif$)|(.*\\.jpg$)");
 		File[] files = start.listFiles(filter);
 		if (!(files == null || files.length < 1)) {
