@@ -10,10 +10,12 @@ public class FileFinderTest {
 	 */
 	public static void main(String[] args) {
 		FileFinder ff = new FileFinder();
-		String startpath = new File( "e:/bilder/s45-bilder" ).getPath();
+		//String startpath = new File( "e:/bilder/s45-bilder" ).getPath();
+		String startpath = new File( "z:/cd" ).getPath();
 		String extensionPattern = "(.*\\.gif$)|(.*\\.jpg$)";
 		List<File> files = ff.find(startpath, extensionPattern);
 		System.out.println(files);
+		System.out.println(files.size());
 	}
 
 }
