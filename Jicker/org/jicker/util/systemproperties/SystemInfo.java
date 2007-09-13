@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.util.Enumeration;
 import java.util.Properties;
 
+@SuppressWarnings("serial")
 public class SystemInfo extends Applet {
 public void paint(Graphics g){
 	showStatus("Hello Vera");

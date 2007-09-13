@@ -8,6 +8,7 @@ import java.util.Properties;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+@SuppressWarnings("serial")
 public class SysInfo extends JFrame {
 
 	public SysInfo(){
@@ -36,7 +37,7 @@ public class SysInfo extends JFrame {
 		sysinfo.setLocation(100, 100);
 		sysinfo.setSize(1024,768);
 		sysinfo.setVisible(true);
-		
+
 	}
 
 }
