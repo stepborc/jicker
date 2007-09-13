@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.io.filefilter.FileFilterUtils;
@@ -17,7 +18,7 @@ public class TestDirBrowser {
 	 */
 	public static void main(String[] args) {
 
-		File dir = new File("Z:/" + "CD");
+		File dir = new File("E:/" + "Bilder");
 
 		// Erstelle Filter für sichtbare Verzeichnisse
 		IOFileFilter JickerDirFilter = FileFilterUtils
@@ -25,10 +26,20 @@ public class TestDirBrowser {
 						HiddenFileFilter.VISIBLE);
 
 		// Erstelle Filter für Dateien miot der Endung ".mp3"
-		IOFileFilter JickerFileFilter = FileFilterUtils.andFileFilter(
-				FileFilterUtils.fileFileFilter(), FileFilterUtils
-						.suffixFileFilter(".mp3"));
+		String suffix = ".jpg";
+		
+		String[] suffixFilter = new String[2];
+		suffixFilter[0]=suffix.toLowerCase();
+		suffixFilter[1]=suffix.toUpperCase();
+		
+		//IOFileFilter JickerFileFilter = FileFilterUtils.andFileFilter(
+		//		FileFilterUtils.fileFileFilter(), FileFilterUtils
+		//				.suffixFileFilter(".JPG"));
 
+		IOFileFilter JickerFileFilter = FileFilterUtils.andFileFilter(
+				FileFilterUtils.fileFileFilter(), FileFilterUtils.suffixFileFilter(arg0));
+		
+		
 		// Verbinde die Filter mit dem or-Filter
 		java.io.FileFilter JickerFilter = FileFilterUtils.orFileFilter(
 				JickerDirFilter, JickerFileFilter);
