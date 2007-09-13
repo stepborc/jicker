@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 /**
  * The Class BaseWindow.
  */
+@SuppressWarnings("serial")
 public class BaseWindow extends JPanel {
 
 /**

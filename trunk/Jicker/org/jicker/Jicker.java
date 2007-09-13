@@ -3,6 +3,7 @@ package org.jicker;
 import org.jicker.gui.JickerApp;
 import org.jicker.gui.MainWindow;
 
+@SuppressWarnings("serial")
 public class Jicker extends JickerApp {
 	//Konstruktor
 	public Jicker()  {
