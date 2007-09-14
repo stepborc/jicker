@@ -1,0 +1,1 @@
+Aufgrund der Verwendung der Jakarta Commons Libraries habe ich die Lizenz von GPL auf Apache geändert.
