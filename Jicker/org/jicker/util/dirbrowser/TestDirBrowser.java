@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,6 +85,12 @@ public class TestDirBrowser {
 					fw.close();
 				} catch (IOException e) {
 				}
+		}
+		try {
+			Connection c = DriverManager.getConnection("jdbc:hsqldb:file:testdb", "sa", "");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
