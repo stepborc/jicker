@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +12,7 @@ import org.apache.commons.io.filefilter.FileFilterUtils;
 import org.apache.commons.io.filefilter.HiddenFileFilter;
 import org.apache.commons.io.filefilter.IOFileFilter;
 import org.apache.commons.io.filefilter.SuffixFileFilter;
+import org.jicker.util.db.Database;
 
 public class TestDirBrowser {
 
@@ -21,8 +20,32 @@ public class TestDirBrowser {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		@SuppressWarnings("unused")
+		Database db = null;
+		try {
+			db = new Database("jicker");
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
 
-		File dir = new File("E:/" + "Bilder");
+	    try {
+
+	        // erstellen einer leeren Tabelle
+	        // durch deklarieren der ID Spalte
+	        // hsql     try {
+	        db.update(
+	            "CREATE TABLE main ( id INTEGER IDENTITY, str_col VARCHAR(256), num_col INTEGER)");
+	    } catch (SQLException ex2) {
+
+	        //ignore
+	        //ex2.printStackTrace();  // second time we run program
+	        //  should throw execption since table
+	        // already there
+	        //
+	        // this will have no effect on the db
+	    }
+
+		File dir = new File("D:/" + "Allgemein/download");
 
 		// Erstelle Filter für sichtbare Verzeichnisse
 		IOFileFilter JickerDirFilter = FileFilterUtils
@@ -70,6 +93,21 @@ public class TestDirBrowser {
 			System.out.println(n + "\t" + results.get(n));
 		}
 
+		for (int n = 0; n < results.size(); n++){
+			try {
+				db.update("INSERT INTO main (str_col,num_col) VALUES('" + results.get(n) + "'," + n + ")");
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		try {
+			db.shutdown();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
 		// Daten als Datei sichern
 		Writer fw = null;
 
@@ -85,12 +123,6 @@ public class TestDirBrowser {
 					fw.close();
 				} catch (IOException e) {
 				}
-		}
-		try {
-			Connection c = DriverManager.getConnection("jdbc:hsqldb:file:testdb", "sa", "");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 	}
 
