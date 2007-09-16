@@ -7,7 +7,9 @@ import java.io.Writer;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.zip.CRC32;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.FileFilterUtils;
 import org.apache.commons.io.filefilter.HiddenFileFilter;
 import org.apache.commons.io.filefilter.IOFileFilter;
@@ -18,8 +20,9 @@ public class TestDirBrowser {
 
 	/**
 	 * @param args
+	 * @throws IOException 
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		@SuppressWarnings("unused")
 		Database db = null;
 		try {
@@ -34,7 +37,7 @@ public class TestDirBrowser {
 	        // durch deklarieren der ID Spalte
 	        // hsql     try {
 	        db.update(
-	            "CREATE TABLE main ( id INTEGER IDENTITY, str_col VARCHAR(256), num_col INTEGER)");
+	            "CREATE TABLE main ( id INTEGER IDENTITY, str_col VARCHAR(256), num_col INTEGER, crc BIGINT)");
 	    } catch (SQLException ex2) {
 
 	        //ignore
@@ -45,7 +48,7 @@ public class TestDirBrowser {
 	        // this will have no effect on the db
 	    }
 
-		File dir = new File("D:/" + "Allgemein/download");
+		File dir = new File("e:/" + "Bilder/S45-Bilder");
 
 		// Erstelle Filter für sichtbare Verzeichnisse
 		IOFileFilter JickerDirFilter = FileFilterUtils
@@ -90,12 +93,24 @@ public class TestDirBrowser {
 		// Erstelle eine Liste
 		List results = new DirBrowser(JickerFilter, -1).find(dir);
 		for (int n = 0; n < results.size(); n++) {
-			System.out.println(n + "\t" + results.get(n));
+			System.out.print(n + "\t" + results.get(n));
+			if (((File)results.get(n)).isFile()){
+				long csum = FileUtils.checksum((File)results.get(n), new CRC32()).getValue();
+				System.out.print( "\t" + csum + "\n");
+			} else {
+				System.out.println();
+			}
 		}
 
 		for (int n = 0; n < results.size(); n++){
 			try {
-				db.update("INSERT INTO main (str_col,num_col) VALUES('" + results.get(n) + "'," + n + ")");
+				if (((File)results.get(n)).isFile()){
+					long csum = FileUtils.checksum((File)results.get(n), new CRC32()).getValue();
+					db.update("INSERT INTO main (str_col,num_col,crc) VALUES('" + results.get(n) + "'," + n + "," + csum + ")");
+				}else{
+					db.update("INSERT INTO main (str_col,num_col,crc) VALUES('" + results.get(n) + "'," + n + ", 0 )");
+				}
+				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -114,7 +129,7 @@ public class TestDirBrowser {
 		try {
 			fw = new FileWriter("test.lst");
 			for (int n = 0; n < results.size(); n++)
-				fw.write(results.get(n).toString() + "\n");
+				fw.write( n + "\t"+ results.get(n).toString() + "\n");
 		} catch (IOException e) {
 			System.err.println("Konnte Datei nicht erstellen");
 		} finally {
