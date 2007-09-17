@@ -20,7 +20,7 @@ public class Database {
 	       // db_file_name_prefix wird benutzt um die DB zu öffnen oder zu erstellen
 	       // db_file_name_prefix can Verzeichnamen relativ zum aktuellen Verzeichnis It can contain directory names beinhalten
 	       conn = DriverManager.getConnection("jdbc:hsqldb:"
-	                                          + db_file_name_prefix,    // Dateiname
+	                                          + "org/jicker/util/db/" + db_file_name_prefix,    // Dateiname
 	                                          "sa",                     // Username
 	                                          "");                      // Pas
 	   }
