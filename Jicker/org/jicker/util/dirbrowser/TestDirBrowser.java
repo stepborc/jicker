@@ -4,9 +4,11 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.zip.CRC32;
 
 import org.apache.commons.io.FileUtils;
@@ -14,22 +16,24 @@ import org.apache.commons.io.filefilter.FileFilterUtils;
 import org.apache.commons.io.filefilter.HiddenFileFilter;
 import org.apache.commons.io.filefilter.IOFileFilter;
 import org.apache.commons.io.filefilter.SuffixFileFilter;
-import org.jicker.util.db.Database;
 import org.jicker.util.db.RunDatabase;
 
 public class TestDirBrowser {
 
-	/**
-	 * @param args
-	 * @throws IOException
-	 */
+	//FileHandler handler = new FileHandler("my.log");
+	static Logger logger = Logger.getLogger("org.jicker");
+
+
 	public static void main(String[] args) throws IOException {
 
-		// Datenbank starten
+		// Datenbankobject initialiseren
 		RunDatabase runDb = new RunDatabase();
 
+		//Datenbank starten
 		if (runDb.start()) {
+			//Wenn erfolgreich gestartet Tabelle löschen ...
 			runDb.dropTable();
+			// ..Tabelel erstellen
 			runDb.createTable();
 
 			// File dir = new File("e:/" + "Bilder/S45-Bilder");
@@ -120,6 +124,7 @@ public class TestDirBrowser {
 					}
 			}
 		} else {
+			logger.log(Level.SEVERE, "Programmstart abgebrochen");
 			System.out.println("Start abgebrochen.");
 		}
 	}
