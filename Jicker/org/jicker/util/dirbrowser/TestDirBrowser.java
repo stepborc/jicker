@@ -29,6 +29,7 @@ public class TestDirBrowser {
 		RunDatabase runDb = new RunDatabase();
 
 		if (runDb.start() ) {
+			runDb.createTable();
 
 			// File dir = new File("e:/" + "Bilder/S45-Bilder");
 			File dir = new File(args[0] + args[1]);
@@ -117,7 +118,7 @@ public class TestDirBrowser {
 					}
 			}
 		} else {
-			System.out.println("Start abgeborchen.");
+			System.out.println("Start abgebrochen.");
 		}
 	}
 

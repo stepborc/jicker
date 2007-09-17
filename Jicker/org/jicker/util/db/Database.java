@@ -9,30 +9,30 @@ import java.sql.Statement;
 
 public class Database {
 	Connection conn;
-	public Database(String db_file_name_prefix) {    // note more general exception
+	public Database(String db_file_name_prefix) throws Exception{    // note more general exception
 
 	       // Laden des HSQL Database Engine JDBC Treibers
 	       // hsqldb.jar sollte im Classpath sein, oder Teil der aktuellen Jar
-	       try {
+	       //try {
 			Class.forName("org.hsqldb.jdbcDriver");
-		} catch (ClassNotFoundException e) {
+		//} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			//e.printStackTrace();
+		//}
 
 	       // Verbinden zur Datenbank. Damit werden die Datenbankdateiten geladen und
 	       // die Datenbank startet, falls Sie noch nicht läuft.
 	       // db_file_name_prefix wird benutzt um die DB zu öffnen oder zu erstellen
 	       // db_file_name_prefix kann Verzeichnamen relativ zum aktuellen Verzeichnis beinhalten
-	       try {
+	       //try {
 			conn = DriverManager.getConnection("jdbc:hsqldb:"
 			                                      + "org/jicker/util/db/" + db_file_name_prefix, // Dateiname der DB
 			                                      "sa", // Username
 												  "");	//Passwort
-		} catch (SQLException e) {
+		//} catch (SQLException e) {
 			//e.printStackTrace();
-			System.out.println("Jicker kann nicht gestartet werden, weil Datenbank bereits verwendet wird.");
-		}
+			//System.out.println("Jicker kann nicht gestartet werden, weil Datenbank bereits verwendet wird.");
+		//}
 	   }
 	  public void shutdown() throws SQLException {
 
