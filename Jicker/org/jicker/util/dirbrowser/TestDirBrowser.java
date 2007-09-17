@@ -28,7 +28,8 @@ public class TestDirBrowser {
 		// Datenbank starten
 		RunDatabase runDb = new RunDatabase();
 
-		if (runDb.start() ) {
+		if (runDb.start()) {
+			runDb.dropTable();
 			runDb.createTable();
 
 			// File dir = new File("e:/" + "Bilder/S45-Bilder");
@@ -71,19 +72,16 @@ public class TestDirBrowser {
 			java.io.FileFilter JickerFilter = FileFilterUtils.orFileFilter(
 					JickerDirFilter, sf);
 
-			// Erstelle eine Liste
+			// Erstelle eine Verzeichnisliste
 			List results = new DirBrowser(JickerFilter, -1).find(dir);
-			for (int n = 0; n < results.size(); n++) {
-				System.out.print(n + "\t" + results.get(n));
-				if (((File) results.get(n)).isFile()) {
-					long csum = FileUtils.checksum((File) results.get(n),
-							new CRC32()).getValue();
-					System.out.print("\t" + csum + "\n");
-				} else {
-					System.out.println();
-				}
-			}
-
+			/*
+			 * Nur zu Testzwecken for (int n = 0; n < results.size(); n++) {
+			 * System.out.print(n + "\t" + results.get(n)); if (((File)
+			 * results.get(n)).isFile()) { long csum = FileUtils.checksum((File)
+			 * results.get(n), new CRC32()).getValue(); System.out.print("\t" +
+			 * csum + "\n"); } else { System.out.println(); } }
+			 */
+			// Kopieren in die Datenbank
 			for (int n = 0; n < results.size(); n++) {
 				if (((File) results.get(n)).isFile()) {
 					long csum = FileUtils.checksum((File) results.get(n),
@@ -99,6 +97,10 @@ public class TestDirBrowser {
 											"''") + "'," + n + ", 0 )");
 				}
 			}
+
+			runDb.showTable();
+
+			// Datenbank schliessen
 			runDb.shutdown();
 
 			// Daten als Datei sichern
