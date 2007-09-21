@@ -26,8 +26,7 @@ public class RunDatabase {
 			// erstellen einer leeren Tabelle
 			// durch deklarieren der ID Spalte
 			// hsql try {
-			db
-					.update("CREATE TABLE main ( id INTEGER IDENTITY, str_col VARCHAR(256), num_col INTEGER, crc BIGINT)");
+			db.update("CREATE TABLE main ( id INTEGER IDENTITY, str_col VARCHAR(256), num_col INTEGER, crc BIGINT)");
 		} catch (SQLException ex2) {
 			// ignore
 			System.out.println("Tabelle bestand bereits: " + ex2.toString());
