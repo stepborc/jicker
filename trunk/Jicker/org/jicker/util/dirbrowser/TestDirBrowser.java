@@ -22,6 +22,8 @@ public class TestDirBrowser {
 
 	//FileHandler handler = new FileHandler("my.log");
 	static Logger logger = Logger.getLogger("org.jicker");
+	
+	
 
 
 	public static void main(String[] args) throws IOException {
@@ -31,9 +33,10 @@ public class TestDirBrowser {
 
 		//Datenbank starten
 		if (runDb.start()) {
+			logger.log(Level.ALL, "Datenbank gestartet.");
 			//Wenn erfolgreich gestartet Tabelle löschen ...
 			runDb.dropTable();
-			// ..Tabelel erstellen
+			// ..Tabelle erstellen
 			runDb.createTable();
 
 			// File dir = new File("e:/" + "Bilder/S45-Bilder");
@@ -102,11 +105,11 @@ public class TestDirBrowser {
 				}
 			}
 
-			runDb.showTable();
+			//runDb.showTable();
 
 			// Datenbank schliessen
 			runDb.shutdown();
-
+			/* Nur zu Testzwecken
 			// Daten als Datei sichern
 			Writer fw = null;
 
@@ -123,6 +126,7 @@ public class TestDirBrowser {
 					} catch (IOException e) {
 					}
 			}
+			*/
 		} else {
 			logger.log(Level.SEVERE, "Programmstart abgebrochen");
 			System.out.println("Start abgebrochen.");
