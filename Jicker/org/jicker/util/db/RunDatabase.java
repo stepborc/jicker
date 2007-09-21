@@ -23,6 +23,12 @@ public class RunDatabase {
 	public boolean createTable() {
 		boolean dbCreate = true;
 		try {
+			db.checkTable();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
 			// erstellen einer leeren Tabelle
 			// durch deklarieren der ID Spalte
 			// hsql try {

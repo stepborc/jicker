@@ -1,6 +1,7 @@
 package org.jicker.util.db;
 
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -10,9 +11,7 @@ import java.sql.Statement;
 public class Database {
 	Connection conn;
 
-	public Database(String db_file_name_prefix) throws Exception { // note more
-																	// general
-																	// exception
+	public Database(String db_file_name_prefix) throws Exception { 
 
 		// Laden des HSQL Database Engine JDBC Treibers
 		// hsqldb.jar sollte im Classpath sein, oder Teil der aktuellen Jar
@@ -24,10 +23,8 @@ public class Database {
 		// }
 
 		// Verbinden zur Datenbank. Damit werden die Datenbankdateiten geladen
-		// und
-		// die Datenbank startet, falls Sie noch nicht läuft.
-		// db_file_name_prefix wird benutzt um die DB zu öffnen oder zu
-		// erstellen
+		// und die Datenbank startet, falls Sie noch nicht läuft.
+		// db_file_name_prefix wird benutzt um die DB zu öffnen oder zu erstellen
 		// db_file_name_prefix kann Verzeichnamen relativ zum aktuellen
 		// Verzeichnis beinhalten
 		// try {
@@ -134,5 +131,32 @@ public class Database {
 
 		st.close();
 
+	}
+	public void checkTable() throws SQLException{
+		Statement st = null;
+		ResultSet rs = null;
+		st = conn.createStatement(); // statement objects can be reused with
+	    DatabaseMetaData md = conn.getMetaData();
+	    String schema = "PUBLIC";
+	    //String[] usertables = {
+        //        "TABLE", "GLOBAL TEMPORARY", "VIEW"
+        //    };
+
+	    String[] usertables = {
+	    		"TABLE", "VIEW", "SYSTEM TABLE", "GLOBAL TEMPORARY", "LOCAL TEMPORARY", "ALIAS", "SYNONYM" 
+            };
+
+	    //rs = md.getSchemas();
+	    rs = md.getTableTypes();
+	    rs = md.getTables(null, null ,null, usertables);
+	    int n = 0;
+	    //rs.first();
+	    //System.out.println(++n + " -> " + rs.getString(1)+ " - " + rs.getString(2)+ " - " + rs.getString(3));
+	    while (rs.next()) {
+	      //System.out.println(++n + " -> " + rs.getString(1)+ " - " + rs.getString(2)+" - " + rs.getString(3)+ " - "+ rs.getString(4)+ " - "+ rs.getString(5)+ " - "+ rs.getString(6)+ " - "+ rs.getString(7)+ " - "+ rs.getString(8)+ " - "+ rs.getString(9)+ " - "+ rs.getString(10)+ " - ");
+	    	System.out.println(++n + " -> " + rs.getString(1)+ " - " + rs.getString(1)+ " - " + rs.getString(1));	      
+	    }
+	    rs.close();
+		st.close();
 	}
 }
