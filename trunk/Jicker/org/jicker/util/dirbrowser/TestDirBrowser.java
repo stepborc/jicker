@@ -1,15 +1,10 @@
 package org.jicker.util.dirbrowser;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.Writer;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.FileHandler;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.zip.CRC32;
 
 import org.apache.commons.io.FileUtils;
@@ -17,31 +12,37 @@ import org.apache.commons.io.filefilter.FileFilterUtils;
 import org.apache.commons.io.filefilter.HiddenFileFilter;
 import org.apache.commons.io.filefilter.IOFileFilter;
 import org.apache.commons.io.filefilter.SuffixFileFilter;
+import org.apache.log4j.ConsoleAppender;
+import org.apache.log4j.FileAppender;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+import org.apache.log4j.SimpleLayout;
 import org.jicker.util.db.RunDatabase;
 
 public class TestDirBrowser {
 
-	//FileHandler handler = new FileHandler("my.log");
-	static Logger logger = Logger.getLogger("org.jicker");
-	
-	
-
+	// FileHandler handler = new FileHandler("my.log");
+	static Logger logger = Logger.getLogger(TestDirBrowser.class);
 
 	public static void main(String[] args) throws IOException, SQLException {
-
+		SimpleLayout layout = new SimpleLayout();
+		ConsoleAppender consoleAppender = new ConsoleAppender(layout);
+	      FileAppender fileAppender = new FileAppender( layout, "MeineLogDatei.log", false );
+	      logger.addAppender( fileAppender );
+		logger.addAppender(consoleAppender);
 		// Datenbankobject initialiseren
 		RunDatabase runDb = new RunDatabase();
 
-		//Datenbank starten
+		// Datenbank starten
 		if (runDb.start()) {
-			logger.log(Level.ALL, "Datenbank gestartet.");
-			//Wenn erfolgreich gestartet Tabelle löschen ...
-			if (runDb.checkTable("MAIN")){
+			logger.info("Datenbank gestartet...");
+			// Wenn erfolgreich gestartet Tabelle löschen ...
+			if (runDb.checkTable("MAIN")) {
 				runDb.dropTable();
 				runDb.createTable();
-			}else{
-			// ..Tabelle erstellen
-			runDb.createTable();
+			} else {
+				// ..Tabelle erstellen
+				runDb.createTable();
 			}
 			// File dir = new File("e:/" + "Bilder/S45-Bilder");
 			File dir = new File(args[0] + args[1]);
@@ -54,15 +55,15 @@ public class TestDirBrowser {
 			/*
 			 * Alte Variante, neue verwendet SuffixFileFilter // Erstelle Filter
 			 * für Dateien miot der Endung ".mp3" String suffix = ".jpg";
-			 *
+			 * 
 			 * String[] suffixFilter = new String[2];
 			 * suffixFilter[0]=suffix.toLowerCase();
 			 * suffixFilter[1]=suffix.toUpperCase();
-			 *
+			 * 
 			 * //IOFileFilter JickerFileFilter = FileFilterUtils.andFileFilter( //
 			 * FileFilterUtils.fileFileFilter(), FileFilterUtils //
 			 * .suffixFileFilter(".JPG"));
-			 *
+			 * 
 			 * IOFileFilter JickerFileFilter = FileFilterUtils.andFileFilter(
 			 * FileFilterUtils.fileFileFilter(), FileFilterUtils
 			 * .suffixFileFilter(".mp3"));
@@ -102,8 +103,8 @@ public class TestDirBrowser {
 									+ results.get(n).toString().replace("'",
 											"''") + "'," + n + "," + csum + ")");
 				} else {
-					logger.log(Level.ALL, "Untersuche Verzeichnis " + results.get(n));
-					System.out.println(results.get(n));
+					logger.info("Untersuche Verzeichnis " + results.get(n));
+					// System.out.println(results.get(n));
 					runDb
 							.update("INSERT INTO main (str_col,num_col,crc) VALUES('"
 									+ results.get(n).toString().replace("'",
@@ -111,30 +112,21 @@ public class TestDirBrowser {
 				}
 			}
 
-			//runDb.showTable();
+			// runDb.showTable();
 
 			// Datenbank schliessen
 			runDb.shutdown();
-			/* Nur zu Testzwecken
-			// Daten als Datei sichern
-			Writer fw = null;
-
-			try {
-				fw = new FileWriter("test.lst");
-				for (int n = 0; n < results.size(); n++)
-					fw.write(n + "\t" + results.get(n).toString() + "\n");
-			} catch (IOException e) {
-				System.err.println("Konnte Datei nicht erstellen");
-			} finally {
-				if (fw != null)
-					try {
-						fw.close();
-					} catch (IOException e) {
-					}
-			}
-			*/
+			/*
+			 * Nur zu Testzwecken // Daten als Datei sichern Writer fw = null;
+			 * 
+			 * try { fw = new FileWriter("test.lst"); for (int n = 0; n <
+			 * results.size(); n++) fw.write(n + "\t" +
+			 * results.get(n).toString() + "\n"); } catch (IOException e) {
+			 * System.err.println("Konnte Datei nicht erstellen"); } finally {
+			 * if (fw != null) try { fw.close(); } catch (IOException e) { } }
+			 */
 		} else {
-			logger.log(Level.SEVERE, "Programmstart abgebrochen");
+			logger.log(Level.ALL, "Programmstart abgebrochen");
 			System.out.println("Start abgebrochen.");
 		}
 	}
