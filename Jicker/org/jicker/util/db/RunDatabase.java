@@ -19,11 +19,14 @@ public class RunDatabase {
 		}
 		return dbStart;
 	}
-
+	public boolean checkTable(String tableName) throws SQLException{
+		return db.checkTable(tableName);
+	}
+	
 	public boolean createTable() {
 		boolean dbCreate = true;
 		try {
-			db.checkTable();
+			db.checkTable("MAIN");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

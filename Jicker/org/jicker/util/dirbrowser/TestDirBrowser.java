@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.FileHandler;
@@ -26,7 +27,7 @@ public class TestDirBrowser {
 	
 
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, SQLException {
 
 		// Datenbankobject initialiseren
 		RunDatabase runDb = new RunDatabase();
@@ -35,10 +36,13 @@ public class TestDirBrowser {
 		if (runDb.start()) {
 			logger.log(Level.ALL, "Datenbank gestartet.");
 			//Wenn erfolgreich gestartet Tabelle löschen ...
-			runDb.dropTable();
+			if (runDb.checkTable("MAIN")){
+				runDb.dropTable();
+				runDb.createTable();
+			}else{
 			// ..Tabelle erstellen
 			runDb.createTable();
-
+			}
 			// File dir = new File("e:/" + "Bilder/S45-Bilder");
 			File dir = new File(args[0] + args[1]);
 
@@ -98,6 +102,8 @@ public class TestDirBrowser {
 									+ results.get(n).toString().replace("'",
 											"''") + "'," + n + "," + csum + ")");
 				} else {
+					logger.log(Level.ALL, "Untersuche Verzeichnis " + results.get(n));
+					System.out.println(results.get(n));
 					runDb
 							.update("INSERT INTO main (str_col,num_col,crc) VALUES('"
 									+ results.get(n).toString().replace("'",
