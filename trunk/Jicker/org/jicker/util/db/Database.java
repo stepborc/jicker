@@ -8,19 +8,25 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.apache.log4j.Level;
+import org.jicker.util.log.Log;
+
 public class Database {
 	Connection conn;
+	private static Log logger = Log.getInstance();
 
-	public Database(String db_file_name_prefix) throws Exception {
+	public Database(String db_file_name_prefix) {
 
 		// Laden des HSQL Database Engine JDBC Treibers
 		// hsqldb.jar sollte im Classpath sein, oder Teil der aktuellen Jar
-		// try {
-		Class.forName("org.hsqldb.jdbcDriver");
-		// } catch (ClassNotFoundException e) {
-		// TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
+		try {
+			Class.forName("org.hsqldb.jdbcDriver");
+		} catch (ClassNotFoundException e) {
+			logger
+					.log(Level.FATAL, this, "E001",
+							new String[] { e.toString() });
+			// e.printStackTrace();
+		}
 
 		// Verbinden zur Datenbank. Damit werden die Datenbankdateiten geladen
 		// und die Datenbank startet, falls Sie noch nicht l‰uft.
@@ -28,29 +34,43 @@ public class Database {
 		// erstellen
 		// db_file_name_prefix kann Verzeichnamen relativ zum aktuellen
 		// Verzeichnis beinhalten
-		// try {
-		conn = DriverManager.getConnection("jdbc:hsqldb:"
-				+ "org/jicker/util/db/" + db_file_name_prefix, // Dateiname der
-				// DB
-				"sa", // Username
-				""); // Passwort
-		// } catch (SQLException e) {
-		// e.printStackTrace();
-		// System.out.println("Jicker kann nicht gestartet werden, weil
-		// Datenbank bereits verwendet wird.");
-		// }
+		try {
+			conn = DriverManager.getConnection("jdbc:hsqldb:"
+					+ "org/jicker/util/db/" + db_file_name_prefix, "sa", "");
+		} catch (SQLException e) {
+			logger.log(Level.FATAL, this, "E003", new String[] {
+					"Datenbank wird bereits verwendet wird.", e.toString() });
+		}
 	}
 
-	public void shutdown() throws SQLException {
+	public void shutdown() {
 
-		Statement st = conn.createStatement();
+		Statement st;
+		try {
+			st = conn.createStatement();
+			st.execute("SHUTDOWN");
+			conn.close();
+		} catch (SQLException e) {
+			logger.log(Level.FATAL, this, "E004", new String[] {
+					"Fehler beim Stoppen der Datenbank.", e.toString() });
+		}
 
-		// db writes out to files and performs clean shuts down
+/*		// db writes out to files and performs clean shuts down
 		// otherwise there will be an unclean shutdown
 		// when program ends
-		st.execute("SHUTDOWN");
-		conn.close(); // if there are no other open connection
-	}
+		try {
+			st.execute("SHUTDOWN");
+		} catch (SQLException e) {
+			logger.log(Level.FATAL, this, "E004", new String[] {
+					"Fehler beim Stoppen der Datenbank.", e.toString() });
+		}
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			logger.log(Level.FATAL, this, "E004", new String[] {
+					"Fehler beim schlieﬂen der Connection.", e.toString() });
+		} // if there are no other open connection
+*/	}
 
 	// use for SQL command SELECT
 	public synchronized void query(String expression) throws SQLException {
@@ -125,7 +145,7 @@ public class Database {
 		st = conn.createStatement(); // statements
 
 		int i = st.executeUpdate("DROP TABLE main"); // run the query
-		
+
 		if (i == -1) {
 			System.out.println("db error : " + "");
 		}
@@ -138,12 +158,12 @@ public class Database {
 		Statement st = null;
 		ResultSet rs = null;
 		boolean tableCheck = false;
-		st = conn.createStatement(); // statement objects can be reused with
+		st = conn.createStatement();
 		DatabaseMetaData md = conn.getMetaData();
 		String schema = "PUBLIC";
-		rs = md.getTables(null, schema , "%", null);
+		rs = md.getTables(null, schema, "%", null);
 		while (rs.next()) {
-			if (rs.getString(3).equals("MAIN")){
+			if (rs.getString(3).equals("MAIN")) {
 				tableCheck = true;
 				break;
 			}

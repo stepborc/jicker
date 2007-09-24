@@ -2,17 +2,22 @@ package org.jicker.util.db;
 
 import java.sql.SQLException;
 
+import org.apache.log4j.Level;
+import org.jicker.util.log.Log;
+
 public class RunDatabase {
+	private static Log logger = Log.getInstance();
 	Database db = null;
 
-	public RunDatabase() {
-
-	}
+//	public RunDatabase() {
+//	}
 
 	public boolean start() {
+		
 		boolean dbStart = true;
 		try {
 			db = new Database("jicker");
+			logger.log(Level.INFO, this, "E005", new String[]{"Datenbank erfolgreich gestartet."});
 		} catch (Exception e1) {
 			// e1.printStackTrace();
 			dbStart = false;
@@ -59,12 +64,8 @@ public class RunDatabase {
 	}
 
 	public void shutdown() {
-		try {
-			db.shutdown();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		db.shutdown()
+		;
 	}
 
 	public void showTable() {
