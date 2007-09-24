@@ -42,7 +42,7 @@ public class Log
     return meinLogger;
   }
 
-  public synchronized void log( Level level, Object caller, String id, String[] parms ) 
+  public synchronized static void log( Level level, Object caller, String id, String[] parms ) 
   {
     MDC.put( "clss", caller.getClass().getName() );
     MDC.put( "id", id );

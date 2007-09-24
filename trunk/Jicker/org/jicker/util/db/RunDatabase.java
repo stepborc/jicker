@@ -6,7 +6,7 @@ import org.apache.log4j.Level;
 import org.jicker.util.log.Log;
 
 public class RunDatabase {
-	private static Log logger = Log.getInstance();
+	//private static Log logger = Log.getInstance();
 	Database db = null;
 
 //	public RunDatabase() {
@@ -17,7 +17,7 @@ public class RunDatabase {
 		boolean dbStart = true;
 		try {
 			db = new Database("jicker");
-			logger.log(Level.INFO, this, "E005", new String[]{"Datenbank erfolgreich gestartet."});
+			Log.log(Level.INFO, this, "E005", new String[]{"Datenbank erfolgreich gestartet."});
 		} catch (Exception e1) {
 			// e1.printStackTrace();
 			dbStart = false;
