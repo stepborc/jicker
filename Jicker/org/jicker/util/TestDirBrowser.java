@@ -1,4 +1,4 @@
-package org.jicker.util.dirbrowser;
+package org.jicker.util;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,6 +18,7 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.apache.log4j.SimpleLayout;
 import org.jicker.util.db.RunDatabase;
+import org.jicker.util.dirbrowser.DirBrowser;
 
 public class TestDirBrowser {
 
@@ -35,7 +36,7 @@ public class TestDirBrowser {
 
 		// Datenbank starten
 		if (runDb.start()) {
-			logger.info("Datenbank gestartet...");
+			//logger.info("Datenbank gestartet...");
 			// Wenn erfolgreich gestartet Tabelle löschen ...
 			if (runDb.checkTable("MAIN")) {
 				runDb.dropTable();
@@ -103,7 +104,7 @@ public class TestDirBrowser {
 									+ results.get(n).toString().replace("'",
 											"''") + "'," + n + "," + csum + ")");
 				} else {
-					logger.info("Untersuche Verzeichnis " + results.get(n));
+					//logger.info("Untersuche Verzeichnis " + results.get(n));
 					// System.out.println(results.get(n));
 					runDb
 							.update("INSERT INTO main (str_col,num_col,crc) VALUES('"

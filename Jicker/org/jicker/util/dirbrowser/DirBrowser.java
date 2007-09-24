@@ -9,9 +9,12 @@ import java.util.List;
 
 import org.apache.commons.io.DirectoryWalker;
 import org.apache.commons.io.filefilter.IOFileFilter;
+import org.apache.log4j.Level;
+import org.jicker.util.log.Log;
 
 public class DirBrowser extends DirectoryWalker {
-    protected DirBrowser(FileFilter filter, int depthLimit) {
+	private static Log logger = Log.getInstance();
+    public DirBrowser(FileFilter filter, int depthLimit) {
         super(filter, depthLimit);
     }
 
@@ -20,12 +23,13 @@ public class DirBrowser extends DirectoryWalker {
     }
 
     /** find files. */
-    protected List find(File startDirectory) {
+    public List find(File startDirectory) {
        List results = new ArrayList();
        try {
            walk(startDirectory, results);
        } catch(IOException ex) {
-           ex.printStackTrace();
+    	   logger.log(Level.FATAL, this, "E000", new String[]{ex.toString()});
+           //ex.printStackTrace();
        }
        return results;
     }
