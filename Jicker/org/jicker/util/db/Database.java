@@ -13,7 +13,7 @@ import org.jicker.util.log.Log;
 
 public class Database {
 	Connection conn;
-	private static Log logger = Log.getInstance();
+	//private static Log logger = Log.getInstance();
 
 	public Database(String db_file_name_prefix) {
 
@@ -21,11 +21,9 @@ public class Database {
 		// hsqldb.jar sollte im Classpath sein, oder Teil der aktuellen Jar
 		try {
 			Class.forName("org.hsqldb.jdbcDriver");
+			Log.log(Level.INFO, this, "E005", new String[]{"Treiber geladen"});
 		} catch (ClassNotFoundException e) {
-			logger
-					.log(Level.FATAL, this, "E001",
-							new String[] { e.toString() });
-			// e.printStackTrace();
+			Log.log(Level.FATAL, this, "E001",new String[] { e.toString() });
 		}
 
 		// Verbinden zur Datenbank. Damit werden die Datenbankdateiten geladen
@@ -37,8 +35,9 @@ public class Database {
 		try {
 			conn = DriverManager.getConnection("jdbc:hsqldb:"
 					+ "org/jicker/util/db/" + db_file_name_prefix, "sa", "");
+			Log.log(Level.INFO, this, "E005", new String[]{"Verbindung hergestellt"});
 		} catch (SQLException e) {
-			logger.log(Level.FATAL, this, "E003", new String[] {
+			Log.log(Level.FATAL, this, "E003", new String[] {
 					"Datenbank wird bereits verwendet wird.", e.toString() });
 		}
 	}
@@ -50,9 +49,9 @@ public class Database {
 			st = conn.createStatement();
 			st.execute("SHUTDOWN");
 			conn.close();
+			Log.log(Level.INFO, this, "E005", new String[]{"herunter gefahren"});
 		} catch (SQLException e) {
-			logger.log(Level.FATAL, this, "E004", new String[] {
-					"Fehler beim Stoppen der Datenbank.", e.toString() });
+			Log.log(Level.FATAL, this, "E004", new String[] {"Fehler beim Stoppen der Datenbank.", e.toString() });
 		}
 
 /*		// db writes out to files and performs clean shuts down
@@ -139,37 +138,43 @@ public class Database {
 		}
 	} // void dump( ResultSet rs )
 
-	public synchronized void dropTable() throws SQLException {
+	public synchronized void dropTable() {
 		Statement st = null;
 
-		st = conn.createStatement(); // statements
-
-		int i = st.executeUpdate("DROP TABLE main"); // run the query
-
-		if (i == -1) {
-			System.out.println("db error : " + "");
-		}
-
-		st.close();
+		try {
+			st = conn.createStatement();
+			int i = st.executeUpdate("DROP TABLE main"); // run the query
+			if (i == -1) {
+				System.out.println("db error : " + "");
+			}
+			st.close();
+		} catch (SQLException e) {
+			Log.log(Level.FATAL, this, "E004", new String[] {"Fehler beim Löschen der Tabelle.", e.toString() });
+		} 		
 
 	}
 
-	public boolean checkTable(String tableName) throws SQLException {
+	public boolean checkTable(String tableName) {
 		Statement st = null;
 		ResultSet rs = null;
 		boolean tableCheck = false;
-		st = conn.createStatement();
-		DatabaseMetaData md = conn.getMetaData();
-		String schema = "PUBLIC";
-		rs = md.getTables(null, schema, "%", null);
-		while (rs.next()) {
-			if (rs.getString(3).equals("MAIN")) {
-				tableCheck = true;
-				break;
+		try {
+			st = conn.createStatement();
+			DatabaseMetaData md = conn.getMetaData();
+			String schema = "PUBLIC";
+			rs = md.getTables(null, schema, "%", null);
+			while (rs.next()) {
+				if (rs.getString(3).equals("MAIN")) {
+					tableCheck = true;
+					break;
+				}
 			}
+			rs.close();
+			st.close();
+		} catch (SQLException e) {
+			Log.log(Level.FATAL, this, "E004", new String[] {"Fehler beim prüfen der Tabelle.", e.toString() });
 		}
-		rs.close();
-		st.close();
+
 		return tableCheck;
 	}
 }

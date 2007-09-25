@@ -6,49 +6,37 @@ import org.apache.log4j.Level;
 import org.jicker.util.log.Log;
 
 public class RunDatabase {
-	//private static Log logger = Log.getInstance();
 	Database db = null;
 
-//	public RunDatabase() {
-//	}
-
 	public boolean start() {
-		
+
 		boolean dbStart = true;
 		try {
 			db = new Database("jicker");
-			Log.log(Level.INFO, this, "E005", new String[]{"Datenbank erfolgreich gestartet."});
+			Log.log(Level.INFO, this, "E005",
+					new String[] { "Datenbank erfolgreich gestartet." });
 		} catch (Exception e1) {
-			// e1.printStackTrace();
+			Log.log(Level.FATAL, this, "E004", new String[] {
+					"Fehler beim Starten der Datenbank.", e1.toString() });
 			dbStart = false;
 		}
 		return dbStart;
 	}
-	public boolean checkTable(String tableName) throws SQLException{
+
+	public boolean checkTable(String tableName) throws SQLException {
 		return db.checkTable(tableName);
 	}
-	
+
 	public boolean createTable() {
 		boolean dbCreate = true;
-		try {
-			db.checkTable("MAIN");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		db.checkTable("MAIN");
 		try {
 			// erstellen einer leeren Tabelle
-			// durch deklarieren der ID Spalte
-			// hsql try {
-			db.update("CREATE TABLE main ( id INTEGER IDENTITY, str_col VARCHAR(256), num_col INTEGER, crc BIGINT)");
+			db
+					.update("CREATE TABLE main ( id INTEGER IDENTITY, str_col VARCHAR(256), num_col INTEGER, crc BIGINT)");
 		} catch (SQLException ex2) {
-			// ignore
-			System.out.println("Tabelle bestand bereits: " + ex2.toString());
-			// second time we run program
-			// should throw execption since table
-			// already there
-			//
-			// this will have no effect on the db
+			Log.log(Level.INFO, this, "E004", new String[] {
+					"Tabelle besteht bereits.", ex2.toString() });
 			dbCreate = false;
 		}
 		return dbCreate;
@@ -58,33 +46,37 @@ public class RunDatabase {
 		try {
 			db.update(update);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Log.log(Level.FATAL, this, "E004",
+					new String[] {
+							"Fehler beim Ausführen der UPDATE Anweisung.",
+							e.toString() });
 		}
 	}
 
 	public void shutdown() {
-		db.shutdown()
-		;
+		db.shutdown();
 	}
 
 	public void showTable() {
 		try {
 			db.query("SELECT * FROM main");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Log.log(Level.FATAL, this, "E004",
+					new String[] {
+							"Fehler beim Ausführen der SELECT Anweisung.",
+							e.toString() });
+
 		}
 
 	}
 
 	public void dropTable() {
-		try {
+//		try {
 			db.dropTable();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		} catch (SQLException e) {
+//			Log.log(Level.FATAL, this, "E004", new String[] {
+//					"Fehler beim Löschen der Tabelle.", e.toString() });
+//		}
 	}
 
 }
