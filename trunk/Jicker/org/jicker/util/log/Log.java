@@ -8,7 +8,7 @@ import org.apache.log4j.xml.DOMConfigurator;
 
 public class Log
 {
-  private static final String LOG4J_CONFIG_FILE  = "log4j.xml";
+  private static final String LOG4J_CONFIG_FILE  = "org/jicker/util/log/log4j.xml";
   private static final String MEIN_LOGGER_NAME   = "Log";
   private static final String MESSAGES_RESBUNDLE = "org/jicker/util/log/messages";
   private static ResourceBundle messagesResBundle;
