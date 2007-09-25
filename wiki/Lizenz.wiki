@@ -1,1 +1,5 @@
-Aufgrund der Verwendung der Jakarta Commons Libraries habe ich die Lizenz von GPL auf Apache geändert.
+Nach langem hin und her habe ich mich zum Thema Lizenz zur folgenden Vorgehensweise entschlossen:
+
+Ich werde die von mir erstellten Teile des Programms unter GPL veröffentlichen und separat auf die Lizenzeinschränkungen der verwendeten Libraries hinweise. 
+
+Diese Vorgehensweise habe ich im Projekt Jajuk (http://jajuk.info) gesehen.
