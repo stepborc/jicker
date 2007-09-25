@@ -1,6 +1,6 @@
 Folgende Libraries verwende ich im Projekt:
 
   || *Library       * || *Lizenz* ||
-  ||Apache Commons IO || Apache ||
-  ||HSQLDB            || Apache ||
-  ||Log4J             || Apache ||
+  || Apache Commons IO || Apache ||
+  || HSQLDB            || Apache ||
+  || Log4J             || Apache ||
