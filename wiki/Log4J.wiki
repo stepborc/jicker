@@ -1,0 +1,9 @@
+Nach erhebliche Schwierigkeiten Log4J ans laufen zu bekommen, habe ich es doch noch geschafft.
+
+Folgende Meldung habe ich erhalten:
+
+log4j:WARN No appenders could be found for logger (Log).
+log4j:WARN Please initialize the log4j system properly.
+
+
+Das Problem lag an der der classpath Definition. classpath muss unbedingt den Pfad zur Properties-Datei beinhalten.
