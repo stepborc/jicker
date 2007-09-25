@@ -3,19 +3,35 @@
 
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
 
-  <appender name="MeinStandardAppender" class="org.apache.log4j.DailyRollingFileAppender">
-    <param name="datePattern" value="'.'yyyy-MM-dd" />
-    <param name="file" value="jicker.log" />
-    <param name="Append" value="true" />
-    <layout class="org.apache.log4j.PatternLayout">
-      <param name="ConversionPattern"
-             value="%d{ISO8601} %-5p %X{id} [%t] %X{clss}: %m%n" />
-    </layout>
-  </appender>
+	<appender name="MeinConsoleAppender"
+		class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+		<param name="ConversionPattern"
+				value="%d{ISO8601} %-5p %X{id} [%t] %X{clss}: %m%n" />
+		</layout>
+	</appender>
+	
+	<appender name="MeinFileAppender"
+		class="org.apache.log4j.FileAppender">
+		<param name="file" value="jicker.log" />
+		<param name="Append" value="true" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d{ISO8601} %-5p %X{id} [%t] %X{clss}: %m%n" />
+		</layout>
+	</appender>
+	
+<logger name="MeinFileLogger">
+    <level value="trace" />
+    <appender-ref ref="MeinFileAppender" />
+  </logger>
 
-  <root>
-    <priority value="INFO" />
-    <appender-ref ref="MeinStandardAppender" />
-  </root>
+  
+	<root>
+		<priority value="INFO" />
+		<appender-ref ref="MeinFileAppender" />
+		<appender-ref ref="MeinConsoleAppender" />
+	</root>
+
 
 </log4j:configuration>
