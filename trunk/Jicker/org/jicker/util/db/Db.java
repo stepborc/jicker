@@ -17,7 +17,7 @@ import org.jicker.util.log.Log;
 public class Db {
 	Connection conn;
 
-	public boolean startDb() {
+	public synchronized boolean startDb() {
 		boolean start = false;
 		try {
 			Class.forName("org.hsqldb.jdbcDriver");
@@ -47,7 +47,7 @@ public class Db {
 		return start;
 	}
 
-	public boolean stopDb() {
+	public synchronized boolean stopDb() {
 		boolean stop = false;
 		Statement st = null;
 		try {
@@ -65,7 +65,7 @@ public class Db {
 		return stop;
 	}
 
-	public boolean checkTable(String tableName) {
+	public synchronized boolean checkTable(String tableName) {
 		Statement st = null;
 		ResultSet rs = null;
 		boolean tableCheck = false;
@@ -90,7 +90,7 @@ public class Db {
 		return tableCheck;
 	}
 
-	public boolean update(String update) {
+	public synchronized boolean update(String update) {
 		boolean success = false;
 		try {
 			Statement st = null;
@@ -105,7 +105,7 @@ public class Db {
 		return success;
 	}
 
-	public void dropTable() {
+	public synchronized void dropTable() {
 		this.update("DROP TABLE MAIN");
 		Log.log(Level.INFO, this, "DBtabledrop", null);
 	}
