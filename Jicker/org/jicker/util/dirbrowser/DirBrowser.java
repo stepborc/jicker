@@ -8,12 +8,15 @@ import java.util.Collection;
 import java.util.List;
 
 import org.apache.commons.io.DirectoryWalker;
+import org.apache.commons.io.filefilter.FileFilterUtils;
+import org.apache.commons.io.filefilter.HiddenFileFilter;
 import org.apache.commons.io.filefilter.IOFileFilter;
+import org.apache.commons.io.filefilter.SuffixFileFilter;
 import org.apache.log4j.Level;
 import org.jicker.util.log.Log;
 
 public class DirBrowser extends DirectoryWalker {
-	private static Log logger = Log.getInstance();
+
     public DirBrowser(FileFilter filter, int depthLimit) {
         super(filter, depthLimit);
     }
@@ -28,7 +31,7 @@ public class DirBrowser extends DirectoryWalker {
        try {
            walk(startDirectory, results);
        } catch(IOException ex) {
-    	   logger.log(Level.FATAL, this, "E000", new String[]{ex.toString()});
+    	   Log.log(Level.FATAL, this, "FILEerror", new String[]{ex.toString()});
            //ex.printStackTrace();
        }
        return results;

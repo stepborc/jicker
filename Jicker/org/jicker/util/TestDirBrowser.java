@@ -19,18 +19,20 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.SimpleLayout;
 import org.jicker.util.db.RunDatabase;
 import org.jicker.util.dirbrowser.DirBrowser;
+import org.jicker.util.log.Log;
 
 public class TestDirBrowser {
 
 	// FileHandler handler = new FileHandler("my.log");
-	static Logger logger = Logger.getLogger(TestDirBrowser.class);
+	//static Logger logger = Logger.getLogger(TestDirBrowser.class);
+	private static Log logger = Log.getInstance();
 
 	public static void main(String[] args) throws IOException, SQLException {
-		SimpleLayout layout = new SimpleLayout();
-		ConsoleAppender consoleAppender = new ConsoleAppender(layout);
-	      FileAppender fileAppender = new FileAppender( layout, "MeineLogDatei.log", false );
-	      logger.addAppender( fileAppender );
-		logger.addAppender(consoleAppender);
+		//SimpleLayout layout = new SimpleLayout();
+		//ConsoleAppender consoleAppender = new ConsoleAppender(layout);
+	    //  FileAppender fileAppender = new FileAppender( layout, "MeineLogDatei.log", false );
+	    //  logger.addAppender( fileAppender );
+		//logger.addAppender(consoleAppender);
 		// Datenbankobject initialiseren
 		RunDatabase runDb = new RunDatabase();
 
@@ -127,7 +129,7 @@ public class TestDirBrowser {
 			 * if (fw != null) try { fw.close(); } catch (IOException e) { } }
 			 */
 		} else {
-			logger.log(Level.ALL, "Programmstart abgebrochen");
+			//logger.log(Level.ALL, "Programmstart abgebrochen");
 			System.out.println("Start abgebrochen.");
 		}
 	}
