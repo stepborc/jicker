@@ -20,15 +20,9 @@
 				value="%d{ISO8601} %-5p %X{id} [%t] %X{clss}: %m%n" />
 		</layout>
 	</appender>
-	
-<logger name="MeinFileLogger">
-    <level value="trace" />
-    <appender-ref ref="MeinFileAppender" />
-  </logger>
 
-  
 	<root>
-		<priority value="INFO" />
+		<priority value="ALL" />
 		<appender-ref ref="MeinFileAppender" />
 		<appender-ref ref="MeinConsoleAppender" />
 	</root>

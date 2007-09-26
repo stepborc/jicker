@@ -37,8 +37,7 @@ public class Database {
 					+ "org/jicker/util/db/" + db_file_name_prefix, "sa", "");
 			Log.log(Level.INFO, this, "E005", new String[]{"Verbindung hergestellt"});
 		} catch (SQLException e) {
-			Log.log(Level.FATAL, this, "E003", new String[] {
-					"Datenbank wird bereits verwendet wird.", e.toString() });
+			Log.log(Level.FATAL, this, "E003", new String[] {e.toString() });
 		}
 	}
 
