@@ -11,6 +11,14 @@ import org.apache.commons.io.filefilter.SuffixFileFilter;
 
 public class JickerFilter {
 	
+	/**
+	 * Liefert ein FileFilter zurück.<p> 
+	 * Der Filter wird erstellt aus den übergebenen Dateiendungen (suffix), 
+	 * welche in Groß- und Kleinschreibung konvertiert werden.
+	 * 
+	 * @param suffix - Dateiendung inklusive . (z.B. .jpg)
+	 * @return         FileFilter bestehed aus den Dateiendungen in Groß- und Kleinschreibung
+	 */
 	public FileFilter createFilter(String[] suffix){
 		
 	IOFileFilter JickerDirFilter = FileFilterUtils.andFileFilter(
@@ -19,7 +27,7 @@ public class JickerFilter {
 
 	/*
 	 * Alte Variante, neue verwendet SuffixFileFilter // Erstelle Filter
-	 * für Dateien miot der Endung ".mp3" String suffix = ".jpg";
+	 * für Dateien mit der Endung ".mp3" String suffix = ".jpg";
 	 * 
 	 * String[] suffixFilter = new String[2];
 	 * suffixFilter[0]=suffix.toLowerCase();
