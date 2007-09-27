@@ -25,6 +25,8 @@ public class testDb {
 		if (testdb.startDb()){
 			File dir = new File("z:/CD");
 			JickerFilter filter = new JickerFilter();
+			//Aufruf des DirBrowser mit Angabe des Verzeichnisses und den Dateiendungen
+			//Mehrfachnennungen sind erlaubt.
 			List browse = new DirBrowser(filter.createFilter(new String[]{".jpg"}),-1).find(dir);
 			for(int n = 0;n<browse.size();n++){
 				if (((File) browse.get(n)).isFile()) {
