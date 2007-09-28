@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -109,30 +110,44 @@ public class Db {
 		this.update("DROP TABLE MAIN");
 		Log.log(Level.INFO, this, "DBtabledrop", null);
 	}
-	public synchronized void query(String expression) throws SQLException {
+	public synchronized List query(String expression) throws SQLException {
 
 		Statement st = null;
 		ResultSet rs = null;
+		ResultSetMetaData meta = null;
+		List<String> wantedColumnNames = new ArrayList<String>();
+		
+		
+			st = conn.createStatement();
+			// statement objects can be reused with
 
-		st = conn.createStatement(); // statement objects can be reused with
+			// repeated calls to execute but we
+			// choose to make a new one each time
+			rs = st.executeQuery(expression); // run the query
+			
 
-		// repeated calls to execute but we
-		// choose to make a new one each time
-		rs = st.executeQuery(expression); // run the query
+			// closed too
+			// so you should copy the contents to some other object.
+			// the result set is invalidated also if you recycle an Statement
+			// and try to execute some other query before the result set has been
+			// completely examined.
+			//return toList(rs, wantedColumnNames)
 
+		
+			// TODO Auto-generated catch block
+		for (int n = 1; n < meta.getColumnCount();n++){
+			wantedColumnNames.add(meta.getColumnName(n).toString());
+		}
+		
 		// do something with the result set.
+		
 		//dump(rs);
 		st.close(); // NOTE!! if you close a statement the associated ResultSet
 		// is
+		return this.toList(rs, wantedColumnNames);
 
-		// closed too
-		// so you should copy the contents to some other object.
-		// the result set is invalidated also if you recycle an Statement
-		// and try to execute some other query before the result set has been
-		// completely examined.
-		//return toList(rs, wantedColumnNames)
 	}
-    public static final List toList(ResultSet rs, List wantedColumnNames) throws SQLException
+    public final List toList(ResultSet rs, List wantedColumnNames) throws SQLException
     {
         List rows = new ArrayList();
  

@@ -2,6 +2,7 @@ package org.jicker.util;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.zip.CRC32;
 
@@ -45,6 +46,12 @@ public class testDb {
 											"''") + "'," + n + ", 0 )");
 				}
 				
+			}
+			try {
+				testdb.query("SELECT * FROM main");
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 			//testdb.dropTable();
 			testdb.stopDb();
