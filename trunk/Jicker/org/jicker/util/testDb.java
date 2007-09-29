@@ -3,6 +3,7 @@ package org.jicker.util;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Iterator;
 import java.util.List;
 import java.util.zip.CRC32;
 
@@ -24,7 +25,7 @@ public class testDb {
 		
 		Db testdb = new Db();
 		if (testdb.startDb()){
-			File dir = new File("z:/CD");
+			File dir = new File("e:/bilder/tmp");
 			JickerFilter filter = new JickerFilter();
 			//Aufruf des DirBrowser mit Angabe des Verzeichnisses und den Dateiendungen
 			//Mehrfachnennungen sind erlaubt.
@@ -47,12 +48,18 @@ public class testDb {
 				}
 				
 			}
-			try {
-				testdb.query("SELECT * FROM main");
+/*			try {
+				List i = testdb.query("SELECT * FROM main");
+				Iterator a = i.iterator();
+				int n = 1;
+				while (a.hasNext()){
+					System.out.println(i.get(n));
+					n++;
+				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			}*/
 			//testdb.dropTable();
 			testdb.stopDb();
 		}
