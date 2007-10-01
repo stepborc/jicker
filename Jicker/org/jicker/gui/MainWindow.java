@@ -5,6 +5,7 @@ import java.awt.BorderLayout;
 import javax.swing.JList;
 import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
+import javax.swing.UIManager;
 
 public class MainWindow extends BaseWindow{
 	public MainWindow(){
@@ -15,6 +16,8 @@ public class MainWindow extends BaseWindow{
         JList list = new JList(test);
         //StatusBar aStatusBar = new StatusBar();
 
+ 
+         
         setLayout(new BorderLayout());
         //aSplitPanel.setLeftComponent(aLeftPanel);
         aSplitPanel.setLeftComponent(list);
