@@ -17,7 +17,9 @@ import org.jicker.util.Pref;
 
 public class JickerApp extends JFrame {
 	public static final String LOOKFEEL = "lookfeel";
-    public static final String LOOKFEEL_CLASSNAME = "com.jgoodies.looks.plastic.PlasticXPLookAndFeel";
+    //public static final String LOOKFEEL_CLASSNAME = "com.jgoodies.looks.plastic.PlasticXPLookAndFeel";
+    public static final String LOOKFEEL_CLASSNAME = "com.jgoodies.looks.windows.WindowsLookAndFeel";
+    
     public static final String CODEPAGE = "codepage";
 
 	private JPanel aMainPanel = null;
@@ -42,7 +44,10 @@ public class JickerApp extends JFrame {
 		aAppName = appName;
 
 		new Pref(prefName);
-		setLookAndFeel(false);
+	       try {
+	            UIManager.setLookAndFeel("com.jgoodies.looks.windows.WindowsLookAndFeel");
+	         } catch (Exception e) {setLookAndFeel(false);}
+		
 	}
 	   public void setLookAndFeel(boolean appIsRunning) {
 	        boolean lf = false;
