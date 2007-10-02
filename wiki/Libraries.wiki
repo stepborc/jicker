@@ -4,3 +4,4 @@ Folgende Libraries verwende ich im Projekt:
 || Apache Commons IO || 1.3.2 || The Apache Software License, Version 2.0 ||
 || HSQLDB            || 1.8.0.8 || Licenses of HSQLDB and Hypersonic SQL ||
 || Log4J             || 1.2.15 || The Apache Software License, Version 2.0 ||
+|| JGoodies Looks    || 2.1.4  || BSD License ||
