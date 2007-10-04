@@ -29,7 +29,8 @@ public class testDb {
 			JickerFilter filter = new JickerFilter();
 			//Aufruf des DirBrowser mit Angabe des Verzeichnisses und den Dateiendungen
 			//Mehrfachnennungen sind erlaubt.
-			List browse = new DirBrowser(filter.createFilter(new String[]{".jpg"}),-1).find(dir);
+			List browse = new DirBrowser(filter.createFilter(new String[]{".jpg"}),1).find(dir);
+			browse.remove(browse.size()-1);
 			for(int n = 0;n<browse.size();n++){
 				if (((File) browse.get(n)).isFile()) {
 					long csum = FileUtils.checksum((File) browse.get(n),
