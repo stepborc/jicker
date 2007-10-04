@@ -9,9 +9,10 @@ import org.apache.commons.io.FileUtils;
 import org.jicker.util.db.Db;
 import org.jicker.util.dirbrowser.DirBrowser;
 import org.jicker.util.dirbrowser.JickerFilter;
+import org.jicker.util.log.Log;
 
 public class RecursivDemo {
-
+	private static Log logger = Log.getInstance();
 	/**
 	 * Test der rekursiven Verwendung der Db Klasse
 	 * 
@@ -35,6 +36,7 @@ public class RecursivDemo {
 			}
 			
 		}
+		test.stopDb();
 	}
 
 }
