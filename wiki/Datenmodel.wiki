@@ -8,7 +8,7 @@ root+c:+bilder+20070901+test.jpg
     |                  |
     |                  +test2.jpg
     |
-    +d:+bilder1+urlaub+melediven+gan+manta.jpg
+    +d:+bilder1+urlaub+malediven+gan+manta.jpg
                                     |
                                     +damm.jpg
 }}}
@@ -17,8 +17,15 @@ Aufbau der DB-Tabelle(n):
 
 
 || *ID* || *Kind von* || *Name* || *Typ* || *CRC32* ||
-||1   ||-1         ||c:      ||dir   ||0||
-||2   ||1          ||bilder  ||dir   ||0|| 
-||3   ||2          ||20070901||dir   ||0||
-||4   ||3          ||test.jpg||file  ||123456789||
-||5   ||3          ||test2.jpg||file ||243563838||
+||1   ||-1         ||c:       ||dir   ||0||
+||2   ||1          ||bilder   ||dir   ||0|| 
+||3   ||2          ||20070901 ||dir   ||0||
+||4   ||3          ||test.jpg ||file  ||123456789||
+||5   ||3          ||test2.jpg||file  ||243563838||
+||6   ||-1         ||d:       ||dir   ||0||
+||7   ||6          ||bilder   ||dir   ||0||
+||8   ||7          ||urlaub   ||dir   ||0||
+||9   ||8          ||malediven||dir   ||0||
+||10  ||9          ||gan      ||dir   ||0||
+||11  ||10         ||manta.jpg||file  ||123456789||
+||12  ||10         ||damm.jpg ||file  ||123456789||
