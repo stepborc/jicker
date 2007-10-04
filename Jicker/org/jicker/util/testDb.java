@@ -25,7 +25,7 @@ public class testDb {
 		
 		Db testdb = new Db();
 		if (testdb.startDb()){
-			File dir = new File("e:/bilder/tmp");
+			File dir = new File("e:/bilder/");
 			JickerFilter filter = new JickerFilter();
 			//Aufruf des DirBrowser mit Angabe des Verzeichnisses und den Dateiendungen
 			//Mehrfachnennungen sind erlaubt.
@@ -34,17 +34,9 @@ public class testDb {
 				if (((File) browse.get(n)).isFile()) {
 					long csum = FileUtils.checksum((File) browse.get(n),
 							new CRC32()).getValue();
-					testdb
-							.update("INSERT INTO main (str_col,num_col,crc) VALUES('"
-									+ browse.get(n).toString().replace("'",
-											"''") + "'," + n + "," + csum + ")");
+					testdb.update("insert into main (kid,name,dir,crc) VALUES(" + n + ",'" + browse.get(n).toString().replace("'","''") + "'," + ((File)(browse.get(n))).isDirectory() + "," + csum + ")");
 				} else {
-					//logger.info("Untersuche Verzeichnis " + browse.get(n));
-					// System.out.println(browse.get(n));
-					testdb
-							.update("INSERT INTO main (str_col,num_col,crc) VALUES('"
-									+ browse.get(n).toString().replace("'",
-											"''") + "'," + n + ", 0 )");
+					testdb.update("insert into main (kid,name,dir,crc) VALUES(" + n + ",'" + browse.get(n).toString().replace("'","''") + "'," + ((File)(browse.get(n))).isDirectory() + ",0 )");
 				}
 				
 			}
