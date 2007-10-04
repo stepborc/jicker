@@ -1,1 +1,3 @@
 Folgende Schritte in der Realisierung sind geplant:
+
+  * Datenmodell der Verzeichnisstruktur entwerfen
