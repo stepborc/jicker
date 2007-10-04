@@ -27,8 +27,9 @@ public class Db {
 			start = true;
 			Log.log(Level.INFO, this, "DBstart", null);
 			if (!this.checkTable("MAIN")) {
-				this
-						.update("CREATE TABLE main ( id INTEGER IDENTITY, str_col VARCHAR(256), num_col INTEGER, crc BIGINT)");
+				/*this
+						.update("CREATE TABLE main ( id INTEGER IDENTITY, str_col VARCHAR(256), num_col INTEGER, crc BIGINT)");*/
+				this.createTable();
 				Log.log(Level.INFO, this, "DBtablecreate", null);
 				start = true;
 			}
@@ -200,4 +201,15 @@ public class Db {
 			System.out.println(" ");
 		}
 	} // void dump( ResultSet rs )
+	
+	public boolean createTable() {
+		boolean dbCreate = true;
+		if (!this.checkTable("MAIN")){
+			// erstellen einer leeren Tabelle
+			// durch deklarieren der ID Spalte
+			// hsql try {
+			this.update("CREATE TABLE main ( id BIGINT IDENTITY, kid BIGINT, name VARCHAR(256),dir BOOLEAN, crc BIGINT)");
+		}
+		return dbCreate;
+	}
 }

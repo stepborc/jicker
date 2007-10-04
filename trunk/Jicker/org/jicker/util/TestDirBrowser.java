@@ -88,7 +88,7 @@ public class TestDirBrowser {
 					JickerDirFilter, sf);
 
 			// Erstelle eine Verzeichnisliste
-			List results = new DirBrowser(JickerFilter, -1).find(dir);
+			List results = new DirBrowser(JickerFilter, 1).find(dir);
 			/*
 			 * Nur zu Testzwecken for (int n = 0; n < results.size(); n++) {
 			 * System.out.print(n + "\t" + results.get(n)); if (((File)
