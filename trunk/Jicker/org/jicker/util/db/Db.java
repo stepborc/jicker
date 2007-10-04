@@ -1,5 +1,6 @@
 package org.jicker.util.db;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
@@ -211,5 +212,20 @@ public class Db {
 			this.update("CREATE TABLE main ( id BIGINT IDENTITY, kid BIGINT, name VARCHAR(256),dir BOOLEAN, crc BIGINT)");
 		}
 		return dbCreate;
+	}
+	public synchronized boolean saveData(int n,List browse, int csum) {
+		boolean success = false;
+		String update = "insert into main (kid,name,dir,crc) VALUES(" + n + ",'" + browse.get(n).toString().replace("'","''") + "'," + ((File)(browse.get(n))).isDirectory() + "," + csum + ")";
+		try {
+			Statement st = null;
+			st = conn.createStatement();
+			st.executeUpdate(update); // run the query
+			st.close();
+		} catch (Exception s) {
+			success = false;
+			Log.log(Level.ERROR, this, "DBupdate", new String[] { update,
+					s.toString() });
+		}
+		return success;
 	}
 }
