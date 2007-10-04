@@ -1,0 +1,14 @@
+Annahme: Unter Windows wird das Laufwerk als Verzeichnis behandelt.
+
+root+verzeichnis+verzeichnis+verzeichnis...+file
+
+Beispielsweise könnte das so aussehen:
+{{{
+root+c:+bilder+20070901+test.jpg
+    |                  |
+    |                  +test2.jpg
+    |
+    +d:+bilder1+urlaub+melediven+gan+manta.jpg
+                                    |
+                                    +damm.jpg
+}}}
