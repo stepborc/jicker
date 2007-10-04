@@ -1,0 +1,40 @@
+package org.jicker.util;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+import java.util.zip.CRC32;
+
+import org.apache.commons.io.FileUtils;
+import org.jicker.util.db.Db;
+import org.jicker.util.dirbrowser.DirBrowser;
+import org.jicker.util.dirbrowser.JickerFilter;
+
+public class RecursivDemo {
+
+	/**
+	 * Test der rekursiven Verwendung der Db Klasse
+	 * 
+	 * @param args
+	 * @throws IOException 
+	 */
+	public static void main(String[] args) throws IOException {
+		Db test = new Db();
+		test.startDb();
+		File dir = new File("e:/bilder/");
+		JickerFilter filter = new JickerFilter();
+		List browse = new DirBrowser(filter.createFilter(new String[]{".jpg"}),1).find(dir);
+		browse.remove(browse.size()-1);
+		for(int n = 0;n<browse.size();n++){
+			if (((File) browse.get(n)).isFile()) {
+				long csum = FileUtils.checksum((File) browse.get(n),
+						new CRC32()).getValue();
+				test.update("insert into main (kid,name,dir,crc) VALUES(" + n + ",'" + browse.get(n).toString().replace("'","''") + "'," + ((File)(browse.get(n))).isDirectory() + "," + csum + ")");
+			} else {
+				test.update("insert into main (kid,name,dir,crc) VALUES(" + n + ",'" + browse.get(n).toString().replace("'","''") + "'," + ((File)(browse.get(n))).isDirectory() + ",0 )");
+			}
+			
+		}
+	}
+
+}
