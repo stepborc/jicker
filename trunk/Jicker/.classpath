@@ -7,5 +7,6 @@
 	<classpathentry kind="lib" path="lib/log4j-1.2.15.jar"/>
 	<classpathentry kind="lib" path="lib"/>
 	<classpathentry kind="lib" path="lib/looks-2.1.4.jar"/>
+	<classpathentry kind="lib" path="/TestDb4o/lib/db4o-6.3-java5.jar"/>
 	<classpathentry kind="output" path=""/>
 </classpath>
