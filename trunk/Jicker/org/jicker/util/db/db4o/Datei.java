@@ -14,6 +14,8 @@ public class Datei {
 
 	public Datei(String dateiName, Verzeichnis verzeichnisName)
 			throws IOException {
+		String slash = "\\\\";
+		
 		//this.dateiName = dateiName;
 		//CRC32 wird nur beim Speichern eines neuen Eintrag benötigt.
 		//Bei der Formulierung einer Suche mit dem Ziel alle Dateiobjekte 
@@ -21,6 +23,7 @@ public class Datei {
 		//stört die Umwandlung nach File und die entsprechende Generierung 
 		//der CRC32 Summe
 		if (dateiName != null) {
+			dateiName = dateiName.replaceAll(slash, "/");
 			this.dateiName = dateiName.substring(dateiName.lastIndexOf("/")+1);
 			this.verzName = dateiName.substring(0, dateiName.lastIndexOf("/")+1);
 			this.fullName = dateiName;
