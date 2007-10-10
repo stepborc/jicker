@@ -4,6 +4,7 @@ public class Verzeichnis {
 	private int tiefe;
 
 	public Verzeichnis(String verzeichnisName) {
+		verzeichnisName = verzeichnisName.replaceAll("\\\\", "/");
 		this.verzeichnisName = verzeichnisName;
 		String tmp = verzeichnisName;
 		int tiefe = 0;
