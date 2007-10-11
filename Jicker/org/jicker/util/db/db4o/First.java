@@ -79,7 +79,7 @@ public class First {
 			 * System.out.println("---");
 			 */
 			Verzeichnis verzeichnisProto = new Verzeichnis(
-					"E:/bilder/test/test3/");
+					"e:/bilder/test/test3/");
 			Datei dateiProto = new Datei(null, verzeichnisProto);
 			dateiProto.setVerzeichnis(verzeichnisProto);
 			ObjectSet<Object> result3 = db.get(dateiProto);
