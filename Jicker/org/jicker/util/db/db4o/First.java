@@ -42,13 +42,13 @@ public class First {
 			List browse = new DirBrowser(filter
 					.createFilter(new String[] { ".jpg" }), -1).find(dir);
 			browse.remove(browse.size() - 1);
+			Verzeichnis currentVerzeichnis = new Verzeichnis(dir.toString());
 			for (int n = 0; n < browse.size(); n++) {
 				if (((File) browse.get(n)).isFile()) {
-					Datei datei = new Datei(browse.get(n).toString(), null);
+					Datei datei = new Datei(browse.get(n).toString(), currentVerzeichnis);
 					db.set(datei);
 				} else {
-					Verzeichnis verzeichnis = new Verzeichnis(browse.get(n)
-							.toString());
+					Verzeichnis verzeichnis = new Verzeichnis(browse.get(n).toString());
 					db.set(verzeichnis);
 				}
 
@@ -63,28 +63,29 @@ public class First {
 			 * ".jpg").lastIndexOf("/")+1)); } }
 			 */
 			// Suche nach allen Dateien
-			/*
-			 * ObjectSet<Datei> result = db.get(Datei.class);
-			 * System.out.println(result.size()); while (result.hasNext()) {
-			 * System.out.println(result.next()); } System.out.println("---");
-			 */
+			ObjectSet<Datei> result = db.get(Datei.class);
+			System.out.println(result.size() + " Datei(en)");
+			while (result.hasNext()) {
+				System.out.println(result.next());
+			}
+			System.out.println("---");
+
 			// Suche nach allen Verzeichnissen
-			/*
-			 * ObjectSet<Verzeichnis> resultVerzeichnis = db
-			 * .get(Verzeichnis.class);
-			 * 
-			 * System.out.println(resultVerzeichnis.size()); while
-			 * (resultVerzeichnis.hasNext()) {
-			 * System.out.println(resultVerzeichnis.next()); }
-			 * System.out.println("---");
-			 */
-			Verzeichnis verzeichnisProto = new Verzeichnis(
-					"e:/bilder/test/test3/");
+			ObjectSet resultVerzeichnis = db.get(Verzeichnis.class);
+
+			System.out.println(resultVerzeichnis.size() + " Verzeichniss(e)");
+			while (resultVerzeichnis.hasNext()) {
+				System.out.println(resultVerzeichnis.next());
+			}
+			System.out.println("---");
+			// Suche nach allen Einträgen für ein bestimmtes Verzeichnis
+			String tmpVerz = "e:/bilder/test/";
+			Verzeichnis verzeichnisProto = new Verzeichnis(tmpVerz);
 			Datei dateiProto = new Datei(null, verzeichnisProto);
 			dateiProto.setVerzeichnis(verzeichnisProto);
-			ObjectSet<Object> result3 = db.get(dateiProto);
+			ObjectSet result3 = db.get(dateiProto);
 
-			System.out.println(result3.size());
+			System.out.println(result3.size() + " Datei(en) im Verzeichnis " + tmpVerz);
 			while (result3.hasNext()) {
 				System.out.println(result3.next());
 			}
