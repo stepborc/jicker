@@ -10,7 +10,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 public class MainWindow extends BaseWindow{
 	public MainWindow(){
         JSplitPane aSplitPanel = new JSplitPane();
-        LeftPanel aLeftPanel = new LeftPanel();
+        //LeftPanel aLeftPanel = new LeftPanel();
         JTabbedPane aCenterPanel = new JTabbedPane();
         //String[] test = {"a","b","c"};
         //JList list = new JList(test);

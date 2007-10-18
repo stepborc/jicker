@@ -79,10 +79,10 @@ public class First {
 			}
 			System.out.println("---");
 			// Suche nach allen Einträgen für ein bestimmtes Verzeichnis
-			String tmpVerz = "e:/bilder/test/";
+			String tmpVerz = "e:/bilder/test";
 			Verzeichnis verzeichnisProto = new Verzeichnis(tmpVerz);
 			Datei dateiProto = new Datei(null, verzeichnisProto);
-			dateiProto.setVerzeichnis(verzeichnisProto);
+			//dateiProto.setVerzeichnis(verzeichnisProto);
 			ObjectSet result3 = db.get(dateiProto);
 
 			System.out.println(result3.size() + " Datei(en) im Verzeichnis " + tmpVerz);
