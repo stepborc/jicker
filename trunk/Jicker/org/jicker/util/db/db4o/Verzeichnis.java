@@ -5,7 +5,11 @@ public class Verzeichnis {
 
 	public Verzeichnis(String verzeichnisName) {
 		verzeichnisName = verzeichnisName.replaceAll("\\\\", "/");
-		this.verzeichnisName = verzeichnisName + "/";
+		if (verzeichnisName.lastIndexOf("/") != verzeichnisName.length() - 1){
+			this.verzeichnisName = verzeichnisName + "/";
+		}else{
+			this.verzeichnisName = verzeichnisName;
+		}
 		String tmp = verzeichnisName ;
 		int tiefe = 0;
 		int counter = tmp.indexOf("/");

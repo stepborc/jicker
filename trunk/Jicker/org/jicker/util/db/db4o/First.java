@@ -42,9 +42,11 @@ public class First {
 			List browse = new DirBrowser(filter
 					.createFilter(new String[] { ".jpg" }), -1).find(dir);
 			browse.remove(browse.size() - 1);
-			Verzeichnis currentVerzeichnis = new Verzeichnis(dir.toString());
+			Verzeichnis currentVerzeichnis;
 			for (int n = 0; n < browse.size(); n++) {
+				System.out.println(browse.get(n));
 				if (((File) browse.get(n)).isFile()) {
+					currentVerzeichnis = new Verzeichnis(browse.get(n).toString().substring(0, browse.get(n).toString().lastIndexOf("\\")));
 					Datei datei = new Datei(browse.get(n).toString(), currentVerzeichnis);
 					db.set(datei);
 				} else {
@@ -79,7 +81,7 @@ public class First {
 			}
 			System.out.println("---");
 			// Suche nach allen Einträgen für ein bestimmtes Verzeichnis
-			String tmpVerz = "e:/bilder/test";
+			String tmpVerz = "e:/bilder/test/test1/";
 			Verzeichnis verzeichnisProto = new Verzeichnis(tmpVerz);
 			Datei dateiProto = new Datei(null, verzeichnisProto);
 			//dateiProto.setVerzeichnis(verzeichnisProto);
