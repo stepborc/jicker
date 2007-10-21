@@ -42,15 +42,23 @@ public class First {
 			List browse = new DirBrowser(filter
 					.createFilter(new String[] { ".jpg" }), -1).find(dir);
 			browse.remove(browse.size() - 1);
-			Verzeichnis currentVerzeichnis;
+/*<<<<<<< .mine
+			Verzeichnis verzeichnis = new Verzeichnis(dir.toString());
+=======*/
+			Verzeichnis verzeichnis;
+/*>>>>>>> .r105*/
 			for (int n = 0; n < browse.size(); n++) {
 				System.out.println(browse.get(n));
 				if (((File) browse.get(n)).isFile()) {
-					currentVerzeichnis = new Verzeichnis(browse.get(n).toString().substring(0, browse.get(n).toString().lastIndexOf("\\")));
-					Datei datei = new Datei(browse.get(n).toString(), currentVerzeichnis);
+/*<<<<<<< .mine
+					Datei datei = new Datei(browse.get(n).toString(), verzeichnis);
+=======*/
+					verzeichnis = new Verzeichnis(browse.get(n).toString().substring(0, browse.get(n).toString().lastIndexOf("\\")));
+					Datei datei = new Datei(browse.get(n).toString(), verzeichnis);
+/*>>>>>>> .r105*/
 					db.set(datei);
 				} else {
-					Verzeichnis verzeichnis = new Verzeichnis(browse.get(n).toString());
+					verzeichnis = new Verzeichnis(browse.get(n).toString());
 					db.set(verzeichnis);
 				}
 
@@ -81,7 +89,8 @@ public class First {
 			}
 			System.out.println("---");
 			// Suche nach allen Einträgen für ein bestimmtes Verzeichnis
-			String tmpVerz = "e:/bilder/test/test1/";
+			String tmpVerz = "e:/bilder/test/test1";
+
 			Verzeichnis verzeichnisProto = new Verzeichnis(tmpVerz);
 			Datei dateiProto = new Datei(null, verzeichnisProto);
 			//dateiProto.setVerzeichnis(verzeichnisProto);
