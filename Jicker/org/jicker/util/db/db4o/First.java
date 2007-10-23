@@ -42,20 +42,12 @@ public class First {
 			List browse = new DirBrowser(filter
 					.createFilter(new String[] { ".jpg" }), -1).find(dir);
 			browse.remove(browse.size() - 1);
-/*<<<<<<< .mine
-			Verzeichnis verzeichnis = new Verzeichnis(dir.toString());
-=======*/
 			Verzeichnis verzeichnis;
-/*>>>>>>> .r105*/
 			for (int n = 0; n < browse.size(); n++) {
 				System.out.println(browse.get(n));
 				if (((File) browse.get(n)).isFile()) {
-/*<<<<<<< .mine
-					Datei datei = new Datei(browse.get(n).toString(), verzeichnis);
-=======*/
 					verzeichnis = new Verzeichnis(browse.get(n).toString().substring(0, browse.get(n).toString().lastIndexOf("\\")));
 					Datei datei = new Datei(browse.get(n).toString(), verzeichnis);
-/*>>>>>>> .r105*/
 					db.set(datei);
 				} else {
 					verzeichnis = new Verzeichnis(browse.get(n).toString());
