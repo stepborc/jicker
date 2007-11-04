@@ -35,8 +35,7 @@ import com.aetrion.flickr.RequestContext;
 import com.aetrion.flickr.auth.Auth;
 import com.aetrion.flickr.auth.AuthInterface;
 import com.aetrion.flickr.auth.Permission;
-import com.aetrion.flickr.uploader.UploadMetaData;
-import com.aetrion.flickr.uploader.Uploader;
+import com.aetrion.flickr.photosets.Photosets;
 
 
 /**
@@ -131,7 +130,7 @@ public class FlickrHelpr {
 						+ e.getClass().toString() + " " + e.getMessage());
 			}
 
-			UploadMetaData umeta = new UploadMetaData();
+			/*UploadMetaData umeta = new UploadMetaData();
 			umeta.setDescription(description);
 			umeta.setFamilyFlag(familyFlag);
 			umeta.setFriendFlag(friendFlag);
@@ -147,8 +146,16 @@ public class FlickrHelpr {
 				System.out.println("Error on upload: "
 						+ e.getClass().toString() + e.getMessage());
 				break;
-			}
+			}*/
+			
+			
+			
 
+		}
+		Photosets psets = new Photosets();
+		Collection psList = psets.getPhotosets();			
+		for (int n = 0; n < psets.getPhotosets().size();n++){
+			System.out.println(psets.getPhotosets().size());
 		}
 		System.out.println("Exiting.");
 		System.exit(EXIT_SUCCESS);
