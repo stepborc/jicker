@@ -69,7 +69,7 @@ public class FlickrHelpr {
 		// iterate over each arg (file to upload) and upload.
 		// if cant get file, throw usage message
 
-		System.out.println("Startet...");
+		System.out.println("Starting...");
 		RequestContext rc = RequestContext.getRequestContext();
 
 		rc.setSharedSecret(sharedSecret);
