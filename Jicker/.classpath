@@ -8,7 +8,7 @@
 	<classpathentry kind="lib" path="lib/log4j-1.2.15.jar"/>
 	<classpathentry kind="lib" path="lib/looks-2.1.4.jar"/>
 	<classpathentry kind="lib" path="lib/ostermillerutils_1_06_01.jar"/>
-	<classpathentry kind="lib" path="lib/flickrapi-1.0b5.jar"/>
 	<classpathentry kind="lib" path="lib/quickr-0.8.jar"/>
+	<classpathentry kind="lib" path="lib/flickrapi-1.0.jar"/>
 	<classpathentry kind="output" path=""/>
 </classpath>
