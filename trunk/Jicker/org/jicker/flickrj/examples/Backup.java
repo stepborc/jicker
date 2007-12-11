@@ -1,3 +1,5 @@
+package org.jicker.flickrj.examples;
+
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
