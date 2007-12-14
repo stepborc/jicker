@@ -42,7 +42,7 @@ import com.aetrion.flickr.photosets.Photosets;
  * @author Abram Catalano
  *
  */
-public class 
+public class FlickrHelpr
  {
 
 	//private static String title; //bla
