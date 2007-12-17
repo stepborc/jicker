@@ -121,9 +121,10 @@ public class Backup {
 				String url = p.getOriginalUrl();
 				URL u = new URL(url);
 				String filename = u.getFile();
-				filename = filename.substring(1);
+				filename = filename.substring(filename.lastIndexOf("/") + 1 , filename.length());
+				//filename = filename.substring(1);
 				System.out.println("Now writing " + filename + " to " + setDirectory.getCanonicalPath());
-				BufferedInputStream inStream = new BufferedInputStream(photoInt.getImageAsStream(p, Size.ORIGINAL));
+				/*BufferedInputStream inStream = new BufferedInputStream(photoInt.getImageAsStream(p, Size.ORIGINAL));
 				File newFile = new File(setDirectory, filename);
 				
 				FileOutputStream fos = new FileOutputStream(newFile);
@@ -135,7 +136,7 @@ public class Backup {
 				}
 				fos.flush();
 				fos.close();
-				inStream.close();
+				inStream.close();*/
 			}
 		}
 		
