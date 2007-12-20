@@ -4,6 +4,7 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -68,7 +69,7 @@ public class Backup {
 		System.out.println("Thanks.  You probably will not have to do this every time.  Now starting backup.");
 	}
 	
-	public void doBackup(File directory) throws Exception {
+	public void doBackup(File directory) {
 		if (!directory.exists()) directory.mkdir();
 		
 		RequestContext rc = RequestContext.getRequestContext();
@@ -76,7 +77,19 @@ public class Backup {
 		
 		if (this.authStore != null) {
 			Auth auth = this.authStore.retrieve(this.nsid);
-			if (auth == null) this.authorize();
+			if (auth == null)
+				try {
+					this.authorize();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SAXException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (FlickrException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			else rc.setAuth(auth);
 		}
 		
@@ -85,18 +98,54 @@ public class Backup {
 		PhotosInterface photoInt = flickr.getPhotosInterface();
 		Map allPhotos = new HashMap();
 		
-		Iterator sets = pi.getList(this.nsid).getPhotosets().iterator();
+		Iterator sets=null;
+		try {
+			sets = pi.getList(this.nsid).getPhotosets().iterator();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SAXException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (FlickrException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		while (sets.hasNext()) {
 			Photoset set = (Photoset)sets.next();
-			PhotoList photos = pi.getPhotos(set.getId(), 500, 1);
+			PhotoList photos=null;
+			try {
+				photos = pi.getPhotos(set.getId(), 500, 1);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SAXException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (FlickrException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			allPhotos.put(set.getTitle(), photos);
 		}
 		
 		int notInSetPage = 1;
 		Collection notInASet = new ArrayList();
 		while (true) {
-			Collection nis = photoInt.getNotInSet(50, notInSetPage);
+			Collection nis=null;
+			try {
+				nis = photoInt.getNotInSet(50, notInSetPage);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SAXException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (FlickrException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			notInASet.addAll(nis);
 			if (nis.size() < 50) break;
 			notInSetPage++;
@@ -118,12 +167,29 @@ public class Backup {
 			while (setIterator.hasNext()) {
 			
 				Photo p = (Photo)setIterator.next();
-				String url = p.getOriginalUrl();
-				URL u = new URL(url);
+				String url=null;
+				try {
+					url = p.getOriginalUrl();
+				} catch (FlickrException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				URL u=null;
+				try {
+					u = new URL(url);
+				} catch (MalformedURLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				String filename = u.getFile();
 				filename = filename.substring(filename.lastIndexOf("/") + 1 , filename.length());
 				//filename = filename.substring(1);
-				System.out.println("Now writing " + filename + " to " + setDirectory.getCanonicalPath());
+				try {
+					System.out.println("Now writing " + filename + " to " + setDirectory.getCanonicalPath());
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				/*BufferedInputStream inStream = new BufferedInputStream(photoInt.getImageAsStream(p, Size.ORIGINAL));
 				File newFile = new File(setDirectory, filename);
 				
@@ -143,15 +209,17 @@ public class Backup {
 	}
 
 	private String makeSafeFilename(String input) {
-		byte[] fname = input.getBytes();
+		input.replace("/", "_");
+		input.replace("\\", "_");
+		/*byte[] fname = input.getBytes();
 		byte[] bad = new byte[]{'\\', '/'};
 		byte replace = '_';
 		for (int i = 0; i < fname.length; i++) {
 			for (int j = 0; j < bad.length; j++) {
 				if (fname[i] == bad[j]) fname[i] = replace;
 			}
-		}
-		return new String(fname);
+		}*/
+		return new String(input);
 	}
 	
 	
