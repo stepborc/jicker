@@ -159,6 +159,7 @@ public class Backup {
 		
 		while (allIter.hasNext()) {
 			String setTitle = makeSafeFilename((String)allIter.next());
+			setTitle = makeSafeFilename(setTitle);
 			
 			Collection currentSet = (Collection)allPhotos.get(setTitle);
 			Iterator setIterator = currentSet.iterator();
@@ -209,17 +210,20 @@ public class Backup {
 	}
 
 	private String makeSafeFilename(String input) {
+		/*String replacepattern = "\\\\";
+		input.replace("\\", "+");
 		input.replace("/", "_");
-		input.replace("\\", "_");
-		/*byte[] fname = input.getBytes();
+		input.replace(replacepattern , "_");
+		*/
+		byte[] fname = input.getBytes();
 		byte[] bad = new byte[]{'\\', '/'};
 		byte replace = '_';
 		for (int i = 0; i < fname.length; i++) {
 			for (int j = 0; j < bad.length; j++) {
 				if (fname[i] == bad[j]) fname[i] = replace;
 			}
-		}*/
-		return new String(input);
+		}
+		return new String(fname);
 	}
 	
 	
