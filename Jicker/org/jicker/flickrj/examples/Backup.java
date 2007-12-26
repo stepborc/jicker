@@ -158,12 +158,15 @@ public class Backup {
 		
 		
 		while (allIter.hasNext()) {
-			String setTitle = makeSafeFilename((String)allIter.next());
-			setTitle = makeSafeFilename(setTitle);
+			//String setTitle = makeSafeFilename((String)allIter.next());
+			String setTitle = (String)allIter.next();
+			String setDirectoryName = setTitle;
+			setDirectoryName = makeSafeFilename(setDirectoryName);
 			
 			Collection currentSet = (Collection)allPhotos.get(setTitle);
 			Iterator setIterator = currentSet.iterator();
-			File setDirectory = new File(directory, setTitle);
+			//File setDirectory = new File(directory, setTitle);
+			File setDirectory = new File(directory, setDirectoryName);
 			setDirectory.mkdir();
 			while (setIterator.hasNext()) {
 			
