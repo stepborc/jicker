@@ -24,15 +24,19 @@ public class FBackup {
 	private static String apiKey;
 	private Flickr flickr = null;
 	private FileAuthStore authStore;
-	private Object authsDir = new File(System.getProperty("user.home") + File.separatorChar + ".flickrAuth");
+	private Object authsDir = new File(System.getProperty("user.home")
+			+ File.separatorChar + ".flickrAuth");
 
 	public FBackup() throws IOException, SAXException, FlickrException {
 		this.flickr = new Flickr(apiKey);
 		if (this.authsDir != null) {
 			try {
-				this.authStore = new FileAuthStore(new File(System.getProperty("user.home") + File.separatorChar + ".flickrAuth"));
+				this.authStore = new FileAuthStore(new File(System
+						.getProperty("user.home")
+						+ File.separatorChar + ".flickrAuth"));
 				System.out.print("Verzeichnis ");
-				System.out.print(new File(System.getProperty("user.home") + File.separatorChar + ".flickrAuth"));
+				System.out.print(new File(System.getProperty("user.home")
+						+ File.separatorChar + ".flickrAuth"));
 				System.out.println(" wird angelegt!");
 			} catch (IOException e) {
 				System.out.println("Userhome konnte nicht ermittelt werden.");
@@ -41,7 +45,7 @@ public class FBackup {
 		}
 		RequestContext rc = RequestContext.getRequestContext();
 		rc.setSharedSecret(this.sharedSecret);
-		
+
 		if (this.authStore != null) {
 			Auth auth = this.authStore.retrieve(this.nsid);
 			if (auth == null)
@@ -51,49 +55,54 @@ public class FBackup {
 					System.out.println("Fehler beim Lesen oder Schreiben.");
 					e.printStackTrace();
 				} catch (SAXException e) {
-					System.out.println("Fehler beim verarbeiten der XML-Daten.");
+					System.out
+							.println("Fehler beim verarbeiten der XML-Daten.");
 					e.printStackTrace();
 				} catch (FlickrException e) {
 					System.out.println("Flickr Fehler.");
 					e.printStackTrace();
 				}
-			else rc.setAuth(auth);
+			else
+				rc.setAuth(auth);
 		}
-		
+
 		// Photosets lesen
 		PhotosetsInterface pi = flickr.getPhotosetsInterface();
-		Iterator sets=null;
+		Iterator sets = null;
 		sets = pi.getList(this.nsid).getPhotosets().iterator();
-		int n =1;
-		while(sets.hasNext()){
-			
-			Photoset set = (Photoset)sets.next();
+		int n = 1;
+		while (sets.hasNext()) {
+			Photoset set = (Photoset) sets.next();
 			System.out.println(n + ". " + set.getTitle().toString());
-			sets.next();
 			n++;
 		}
 	}
+
 	private void authorize() throws IOException, SAXException, FlickrException {
 		String frob = this.flickr.getAuthInterface().getFrob();
-		
-		URL authUrl = this.flickr.getAuthInterface().buildAuthenticationUrl(Permission.READ, frob);
-		System.out.println("Öffne: " + authUrl.toExternalForm() + " und bestätige mit ENTER.");
-				
+
+		URL authUrl = this.flickr.getAuthInterface().buildAuthenticationUrl(
+				Permission.READ, frob);
+		System.out.println("Öffne: " + authUrl.toExternalForm()
+				+ " und bestätige mit ENTER.");
+
 		System.in.read();
 
 		Auth token = this.flickr.getAuthInterface().getToken(frob);
 		RequestContext.getRequestContext().setAuth(token);
 		this.authStore.store(token);
-		System.out.println("Thanks.  You probably will not have to do this every time.  Now starting backup.");
+		System.out
+				.println("Thanks.  You probably will not have to do this every time.  Now starting backup.");
 	}
 
 	/**
 	 * @param args
-	 * @throws FlickrException 
-	 * @throws SAXException 
-	 * @throws IOException 
+	 * @throws FlickrException
+	 * @throws SAXException
+	 * @throws IOException
 	 */
-	public static void main(String[] args) throws IOException, SAXException, FlickrException {
+	public static void main(String[] args) throws IOException, SAXException,
+			FlickrException {
 
 		apiKey = "6fe409e0413a2a5e03d54c30ca6a27c4";
 		nsid = "37931219@N00";
