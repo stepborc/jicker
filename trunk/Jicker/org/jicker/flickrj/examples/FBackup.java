@@ -2,8 +2,15 @@ package org.jicker.flickrj.examples;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
+
+import org.xml.sax.SAXException;
 
 import com.aetrion.flickr.Flickr;
+import com.aetrion.flickr.FlickrException;
+import com.aetrion.flickr.RequestContext;
+import com.aetrion.flickr.auth.Auth;
+import com.aetrion.flickr.auth.Permission;
 import com.aetrion.flickr.util.FileAuthStore;
 
 public class FBackup {
@@ -29,6 +36,39 @@ public class FBackup {
 				e.printStackTrace();
 			}
 		}
+		RequestContext rc = RequestContext.getRequestContext();
+		rc.setSharedSecret(this.sharedSecret);
+		
+		if (this.authStore != null) {
+			Auth auth = this.authStore.retrieve(this.nsid);
+			if (auth == null)
+				try {
+					this.authorize();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SAXException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (FlickrException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			else rc.setAuth(auth);
+		}
+	}
+	private void authorize() throws IOException, SAXException, FlickrException {
+		String frob = this.flickr.getAuthInterface().getFrob();
+		
+		URL authUrl = this.flickr.getAuthInterface().buildAuthenticationUrl(Permission.READ, frob);
+		System.out.println("Please visit: " + authUrl.toExternalForm() + " then, hit enter.");
+				
+		System.in.read();
+
+		Auth token = this.flickr.getAuthInterface().getToken(frob);
+		RequestContext.getRequestContext().setAuth(token);
+		this.authStore.store(token);
+		System.out.println("Thanks.  You probably will not have to do this every time.  Now starting backup.");
 	}
 
 	/**
