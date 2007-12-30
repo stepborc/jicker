@@ -21,6 +21,7 @@ public class FBackup {
 		if (this.authsDir != null) {
 			try {
 				this.authStore = new FileAuthStore(new File(System.getProperty("user.home") + File.separatorChar + ".flickrAuth"));
+				System.out.println(new File(System.getProperty("user.home") + File.separatorChar + ".flickrAuth"));
 			} catch (IOException e) {
 				System.out.println("Userhome konnte nicht ermittelt werden.");
 				e.printStackTrace();
