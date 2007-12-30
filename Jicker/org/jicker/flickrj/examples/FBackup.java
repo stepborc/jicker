@@ -3,6 +3,7 @@ package org.jicker.flickrj.examples;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Iterator;
 
 import org.xml.sax.SAXException;
 
@@ -11,6 +12,8 @@ import com.aetrion.flickr.FlickrException;
 import com.aetrion.flickr.RequestContext;
 import com.aetrion.flickr.auth.Auth;
 import com.aetrion.flickr.auth.Permission;
+import com.aetrion.flickr.photosets.Photoset;
+import com.aetrion.flickr.photosets.PhotosetsInterface;
 import com.aetrion.flickr.util.FileAuthStore;
 
 public class FBackup {
@@ -23,7 +26,7 @@ public class FBackup {
 	private FileAuthStore authStore;
 	private Object authsDir = new File(System.getProperty("user.home") + File.separatorChar + ".flickrAuth");
 
-	public FBackup() {
+	public FBackup() throws IOException, SAXException, FlickrException {
 		this.flickr = new Flickr(apiKey);
 		if (this.authsDir != null) {
 			try {
@@ -45,23 +48,36 @@ public class FBackup {
 				try {
 					this.authorize();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
+					System.out.println("Fehler beim Lesen oder Schreiben.");
 					e.printStackTrace();
 				} catch (SAXException e) {
-					// TODO Auto-generated catch block
+					System.out.println("Fehler beim verarbeiten der XML-Daten.");
 					e.printStackTrace();
 				} catch (FlickrException e) {
-					// TODO Auto-generated catch block
+					System.out.println("Flickr Fehler.");
 					e.printStackTrace();
 				}
 			else rc.setAuth(auth);
+		}
+		
+		// Photosets lesen
+		PhotosetsInterface pi = flickr.getPhotosetsInterface();
+		Iterator sets=null;
+		sets = pi.getList(this.nsid).getPhotosets().iterator();
+		int n =1;
+		while(sets.hasNext()){
+			
+			Photoset set = (Photoset)sets.next();
+			System.out.println(n + ". " + set.getTitle().toString());
+			sets.next();
+			n++;
 		}
 	}
 	private void authorize() throws IOException, SAXException, FlickrException {
 		String frob = this.flickr.getAuthInterface().getFrob();
 		
 		URL authUrl = this.flickr.getAuthInterface().buildAuthenticationUrl(Permission.READ, frob);
-		System.out.println("Please visit: " + authUrl.toExternalForm() + " then, hit enter.");
+		System.out.println("Öffne: " + authUrl.toExternalForm() + " und bestätige mit ENTER.");
 				
 		System.in.read();
 
@@ -73,8 +89,11 @@ public class FBackup {
 
 	/**
 	 * @param args
+	 * @throws FlickrException 
+	 * @throws SAXException 
+	 * @throws IOException 
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException, SAXException, FlickrException {
 
 		apiKey = "6fe409e0413a2a5e03d54c30ca6a27c4";
 		nsid = "37931219@N00";
