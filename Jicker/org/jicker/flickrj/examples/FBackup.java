@@ -12,6 +12,7 @@ import com.aetrion.flickr.FlickrException;
 import com.aetrion.flickr.RequestContext;
 import com.aetrion.flickr.auth.Auth;
 import com.aetrion.flickr.auth.Permission;
+import com.aetrion.flickr.photos.PhotoList;
 import com.aetrion.flickr.photosets.Photoset;
 import com.aetrion.flickr.photosets.PhotosetsInterface;
 import com.aetrion.flickr.util.FileAuthStore;
@@ -68,12 +69,17 @@ public class FBackup {
 
 		// Photosets lesen
 		PhotosetsInterface pi = flickr.getPhotosetsInterface();
-		Iterator sets = null;
-		sets = pi.getList(this.nsid).getPhotosets().iterator();
+		//Iterator über Photoset bilden
+		Iterator sets = pi.getList(this.nsid).getPhotosets().iterator();
 		int n = 1;
 		while (sets.hasNext()) {
+			//aktuelles Objekt der Photosets Liste einem Photoset zuordnen
 			Photoset set = (Photoset) sets.next();
+			//Namen des Photosets ausgeben
 			System.out.println(n + ". " + set.getTitle().toString());
+			
+			PhotoList photos = pi.getPhotos(set.getId(), 10000, 1);
+			System.out.println(pi.getInfo(set.getId()).getPhotoCount());
 			n++;
 		}
 	}
