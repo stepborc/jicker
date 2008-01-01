@@ -12,6 +12,7 @@ import com.aetrion.flickr.FlickrException;
 import com.aetrion.flickr.RequestContext;
 import com.aetrion.flickr.auth.Auth;
 import com.aetrion.flickr.auth.Permission;
+import com.aetrion.flickr.photos.Photo;
 import com.aetrion.flickr.photos.PhotoList;
 import com.aetrion.flickr.photosets.Photoset;
 import com.aetrion.flickr.photosets.PhotosetsInterface;
@@ -76,12 +77,17 @@ public class FBackup {
 			//aktuelles Objekt der Photosets Liste einem Photoset zuordnen
 			Photoset set = (Photoset) sets.next();
 			//Namen des Photosets ausgeben
-			System.out.println(n + ". " + set.getTitle().toString());
-			
-			PhotoList photos = pi.getPhotos(set.getId(), 10000, 1);
-			System.out.println(pi.getInfo(set.getId()).getPhotoCount());
+			System.out.print(n + ". " + set.getTitle().toString());
+			int countPhotos = pi.getInfo(set.getId()).getPhotoCount();
+			System.out.println("\t" + countPhotos);
+			Iterator photos = pi.getPhotos(set.getId(), countPhotos, 1).iterator();
+			while (photos.hasNext()){
+				Photo photo = (Photo) photos.next();
+				System.out.println("\t" +photo.getId());
+			}
 			n++;
 		}
+		System.out.println("Setliste komplett");
 	}
 
 	private void authorize() throws IOException, SAXException, FlickrException {
