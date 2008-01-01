@@ -13,7 +13,7 @@ import com.aetrion.flickr.RequestContext;
 import com.aetrion.flickr.auth.Auth;
 import com.aetrion.flickr.auth.Permission;
 import com.aetrion.flickr.photos.Photo;
-import com.aetrion.flickr.photos.PhotoList;
+import com.aetrion.flickr.photos.PhotosInterface;
 import com.aetrion.flickr.photosets.Photoset;
 import com.aetrion.flickr.photosets.PhotosetsInterface;
 import com.aetrion.flickr.util.FileAuthStore;
@@ -86,6 +86,13 @@ public class FBackup {
 				System.out.println("\t" +photo.getId());
 			}
 			n++;
+		}
+		PhotosInterface pin = flickr.getPhotosInterface();
+		Iterator nis = pin.getNotInSet(10000, 1).iterator();
+		System.out.println("Fotos die in keinem Set sind.");
+		while (nis.hasNext()){
+			Photo nisPhoto = (Photo) nis.next();
+			System.out.println("\t" + nisPhoto.getId());
 		}
 		System.out.println("Setliste komplett");
 	}
