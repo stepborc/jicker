@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Iterator;
 
+import org.jicker.flickrj.db4o.Sets;
 import org.xml.sax.SAXException;
 
 import com.aetrion.flickr.Flickr;
@@ -17,6 +18,8 @@ import com.aetrion.flickr.photos.PhotosInterface;
 import com.aetrion.flickr.photosets.Photoset;
 import com.aetrion.flickr.photosets.PhotosetsInterface;
 import com.aetrion.flickr.util.FileAuthStore;
+import com.db4o.Db4o;
+import com.db4o.ObjectContainer;
 
 public class FBackup {
 
@@ -72,14 +75,19 @@ public class FBackup {
 		PhotosetsInterface pi = flickr.getPhotosetsInterface();
 		//Iterator über Photoset bilden
 		//nsid gegen eine andere austauschen
-		//Iterator sets = pi.getList(this.nsid).getPhotosets().iterator();
-		Iterator sets = pi.getList("14267014@N03").getPhotosets().iterator();
+		Iterator sets = pi.getList(this.nsid).getPhotosets().iterator();
+		//Iterator sets = pi.getList("14267014@N03").getPhotosets().iterator();
 		int n = 1;
+		new File("flickrDb.db4o").delete();
+		ObjectContainer db = Db4o.openFile("flickrDb.db4o");
+		Sets s = null;
 		while (sets.hasNext()) {
 			//aktuelles Objekt der Photosets Liste einem Photoset zuordnen
 			Photoset set = (Photoset) sets.next();
 			//Namen des Photosets ausgeben
 			System.out.print(n + ". " + set.getTitle().toString());
+			s = new Sets(set.getTitle().toString());
+			db.set(s);
 			int countPhotos = pi.getInfo(set.getId()).getPhotoCount();
 			System.out.println("\t" + countPhotos);
 			Iterator photos = pi.getPhotos(set.getId(), countPhotos, 1).iterator();
@@ -89,6 +97,7 @@ public class FBackup {
 			}
 			n++;
 		}
+
 		PhotosInterface pin = flickr.getPhotosInterface();
 		Iterator nis = pin.getNotInSet(10000, 1).iterator();
 		System.out.println("Fotos die in keinem Set sind.");
@@ -97,6 +106,7 @@ public class FBackup {
 			System.out.println("\t" + nisPhoto.getId());
 		}
 		System.out.println("Setliste komplett");
+		db.close();
 	}
 
 	private void authorize() throws IOException, SAXException, FlickrException {
