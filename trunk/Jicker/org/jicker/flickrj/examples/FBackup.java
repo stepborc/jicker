@@ -71,7 +71,9 @@ public class FBackup {
 		// Photosets lesen
 		PhotosetsInterface pi = flickr.getPhotosetsInterface();
 		//Iterator über Photoset bilden
-		Iterator sets = pi.getList(this.nsid).getPhotosets().iterator();
+		//nsid gegen eine andere austauschen
+		//Iterator sets = pi.getList(this.nsid).getPhotosets().iterator();
+		Iterator sets = pi.getList("14267014@N03").getPhotosets().iterator();
 		int n = 1;
 		while (sets.hasNext()) {
 			//aktuelles Objekt der Photosets Liste einem Photoset zuordnen
