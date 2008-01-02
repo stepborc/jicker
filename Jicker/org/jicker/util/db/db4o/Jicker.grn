@@ -1,0 +1,39 @@
+<uml>
+   <greenVersion="30000"/>
+   <type>
+      <name="=Jicker/<org.jicker.util.db.db4o{First.java[First"/>
+      <height="-1"/>
+      <width="-1"/>
+      <x="35"/>
+      <y="90"/>
+   </type>
+   <type>
+      <name="=Jicker/<org.jicker.util.db.db4o{Datei.java[Datei"/>
+      <height="-1"/>
+      <width="-1"/>
+      <x="219"/>
+      <y="59"/>
+   </type>
+   <type>
+      <name="=Jicker/<org.jicker.util.db.db4o{Verzeichnis.java[Verzeichnis"/>
+      <height="172"/>
+      <width="203"/>
+      <x="546"/>
+      <y="134"/>
+   </type>
+   <relationship>
+      <class="edu.buffalo.cse.green.relationship.dependency.DependencyLPart"/>
+      <sourceType="=Jicker/<org.jicker.util.db.db4o{First.java[First"/>
+      <targetType="=Jicker/<org.jicker.util.db.db4o{Datei.java[Datei"/>
+      <bendpoints>
+      </bendpoints>
+   </relationship>
+   <relationship>
+      <class="edu.buffalo.cse.green.relationship.dependency.DependencyLPart"/>
+      <sourceType="=Jicker/<org.jicker.util.db.db4o{First.java[First"/>
+      <targetType="=Jicker/<org.jicker.util.db.db4o{Verzeichnis.java[Verzeichnis"/>
+      <bendpoints>
+      </bendpoints>
+   </relationship>
+</uml>
+
