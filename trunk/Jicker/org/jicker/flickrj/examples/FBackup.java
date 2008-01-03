@@ -86,7 +86,7 @@ public class FBackup {
 			Photoset set = (Photoset) sets.next();
 			//Namen des Photosets ausgeben
 			System.out.print(n + ". " + set.getTitle().toString());
-			s = new Sets(set.getTitle().toString());
+			s = new Sets(set);
 			db.set(s);
 			int countPhotos = pi.getInfo(set.getId()).getPhotoCount();
 			System.out.println("\t" + countPhotos);
@@ -110,17 +110,20 @@ public class FBackup {
 	}
 
 	private void authorize() throws IOException, SAXException, FlickrException {
+		//Einen frob anfordern 
 		String frob = this.flickr.getAuthInterface().getFrob();
-
+		//Aus frob und angeforderten Rechten die Authentification Url generieren 
 		URL authUrl = this.flickr.getAuthInterface().buildAuthenticationUrl(
 				Permission.READ, frob);
+		//Die generierte Url ausgeben
 		System.out.println("Öffne: " + authUrl.toExternalForm()
 				+ " und bestätige mit ENTER.");
-
+		//Auf Eingabe warten
 		System.in.read();
-
+		//Nach der Eingabe die Authentifizierung überprüfen 
 		Auth token = this.flickr.getAuthInterface().getToken(frob);
 		RequestContext.getRequestContext().setAuth(token);
+		//Den token in das AuthStor im Userhome schreiben
 		this.authStore.store(token);
 		System.out
 				.println("Thanks.  You probably will not have to do this every time.  Now starting backup.");
