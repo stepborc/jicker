@@ -1,0 +1,446 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="generator" content="Roller Weblogger 4.0-dev">
+               <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://blogs.sun.com/CoreJavaTechTips/rsd">
+        
+            <link rel="alternate" type="application/atom+xml" title="Recent Entries (Atom)" href="http://blogs.sun.com/CoreJavaTechTips/feed/entries/atom">
+    <link rel="alternate" type="application/rss+xml" title="Recent Entries (RSS)" href="http://blogs.sun.com/CoreJavaTechTips/feed/entries/rss">
+    <link rel="alternate" type="application/atom+xml" title="Recent Comments (Atom)" href="http://blogs.sun.com/CoreJavaTechTips/feed/comments/atom">
+    <link rel="alternate" type="application/rss+xml" title="Recent Comments (RSS)" href="http://blogs.sun.com/CoreJavaTechTips/feed/comments/rss"><title>Placing Components on Tabs : Core Java Technologies Tech Tips</title>
+
+    
+        
+    <script type="text/javascript" language="JavaScript">
+    <!-- //
+    if (!((navigator.appVersion.indexOf('MSIE')!=-1) || (parseInt(navigator.appVersion)!=4)))
+    {
+        document.write("<STYLE TYPE=\"text/css\">");
+        document.write("BODY { margin-top: -8px; margin-left: -8px; }");
+        document.write("<\/style>");s
+    };
+    // -->
+    </script>
+    <link rel="stylesheet" type="text/css" media="all" href="placing_components_on_tabs2-Dateien/sunpacifico-custom.css"></head><body>
+<br>
+
+<!-- BEGIN A2 COMPONENT V.7 -->
+<div class="a2" id="a2v7">
+<div class="cornerTL"><div class="cornerTR"><div class="cornerBL"><div class="cornerBR"><div id="image1" class="image1"><br>
+    <span class="descrip">Tips for using core Java SE APIs</span><br>
+    <span class="titlehead">Core Java Technologies Tech Tips</span></div>
+</div></div></div></div></div>
+<!-- END A2 COMPONENT V.7 -->
+
+<!-- BEGIN CONTENT -->
+<div class="container">
+
+           <!-- BEGIN RIGHT NAV -->
+<div class="rightnav">
+
+<div class="banners">
+
+<script language="JavaScript" type="text/javascript">
+<!--
+   if (!document.phpAds_used) document.phpAds_used = ',';
+   phpAds_random = new String (Math.random()); phpAds_random = phpAds_random.substring(2,11);
+   
+   document.write ("<" + "script language='JavaScript' type='text/javascript' src='");
+   document.write ("http://ads.sun.com/ads/adjs.php?n=" + phpAds_random);
+   document.write ("&amp;what=zone:44");
+   document.write ("&amp;exclude=" + document.phpAds_used);
+   if (document.referer)
+      document.write ("&amp;referer=" + escape(document.referer));
+   document.write ("'><" + "/script>");
+//-->
+</script><script language="JavaScript" type="text/javascript" src="placing_components_on_tabs2-Dateien/adjs.js"></script><!-- BEGIN E9 COMPONENT V.0 -->
+<!-- BEGIN 071002-5427189 SUN AND INTEL ROADSHOW -->
+<div class="e9"><div class="e9v0">
+<div class="cornerTL"><div class="cornerTR"></div></div>
+
+<div class="title">Sun and Intel Roadshow </div>
+<div class="copy">Explore the combined solution. Register and join us for an event near you.  </div>
+<div class="copy"><a target="_top" href="http://ads.sun.com/ads/adclick.php?bannerid=2307&amp;zoneid=44&amp;source=&amp;dest=http%3A%2F%2Fwww.sun.com%2Fevents%2Fsun_intel_roadshow%2F&amp;ismap=" class="morelink">»&nbsp;Register Now</a></div>
+
+<div class="cornerBL"><div class="cornerBR"></div></div>
+</div></div>
+<!-- END 071002-5427189 SUN AND INTEL ROADSHOW -->
+<!-- END E9 COMPONENT V.0 -->
+
+
+
+<div id="beacon_2307" style="position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="placing_components_on_tabs2-Dateien/adlog.gif" alt="" style="width: 0px; height: 0px;" height="0" width="0"></div><noscript><a
+href='http://ads.sun.com/ads/adclick.php?n=ad99629f'
+target='_blank'><img
+src='http://ads.sun.com/ads/adview.php?what=zone:44&amp;n=ad99629f'
+border='0' alt=''></a></noscript>
+
+</div>
+
+<div class="rightnavcol">
+<div class="sidebarhead">Archives</div>
+<div class="hCalendarTable"><table summary="Blog Archive Calendar" class="hCalendarTable" border="0" cellspacing="0"><tbody><tr><td colspan="7" class="hCalendarMonthYearRow" align="center"><a href="http://blogs.sun.com/CoreJavaTechTips/date/200712" title="Prev" class="hCalendarNavBar">«</a> January 2008</td></tr><tr><th class="hCalendarDayNameRow" align="center">Sun</th><th class="hCalendarDayNameRow" align="center">Mon</th><th class="hCalendarDayNameRow" align="center">Tue</th><th class="hCalendarDayNameRow" align="center">Wed</th><th class="hCalendarDayNameRow" align="center">Thu</th><th class="hCalendarDayNameRow" align="center">Fri</th><th class="hCalendarDayNameRow" align="center">Sat</th></tr><tr><td class="hCalendarDayNotInMonth">&nbsp;</td><td class="hCalendarDayNotInMonth">&nbsp;</td><td class="hCalendarDay"><div class="hCalendarDayTitle">1</div></td><td class="hCalendarDayLinked"><div class="hCalendarDayTitle"><a href="http://blogs.sun.com/CoreJavaTechTips/date/20080102">2</a></div></td><td class="hCalendarDayCurrent"><div class="hCalendarDayTitle">3</div></td><td class="hCalendarDay"><div class="hCalendarDayTitle">4</div></td><td class="hCalendarDay"><div class="hCalendarDayTitle">5</div></td></tr><tr><td class="hCalendarDay"><div class="hCalendarDayTitle">6</div></td><td class="hCalendarDay"><div class="hCalendarDayTitle">7</div></td><td class="hCalendarDay"><div class="hCalendarDayTitle">8</div></td><td class="hCalendarDay"><div class="hCalendarDayTitle">9</div></td><td class="hCalendarDay"><div class="hCalendarDayTitle">10</div></td><td class="hCalendarDay"><div class="hCalendarDayTitle">11</div></td><td class="hCalendarDay"><div class="hCalendarDayTitle">12</div></td></tr><tr><td class="hCalendarDay"><div class="hCalendarDayTitle">13</div></td><td class="hCalendarDay"><div class="hCalendarDayTitle">14</div></td><td class="hCalendarDay"><div class="hCalendarDayTitle">15</div></td><td class="hCalendarDay"><div class="hCalendarDayTitle">16</div></td><td class="hCalendarDay"><div class="hCalendarDayTitle">17</div></td><td class="hCalendarDay"><div class="hCalendarDayTitle">18</div></td><td class="hCalendarDay"><div class="hCalendarDayTitle">19</div></td></tr><tr><td class="hCalendarDay"><div class="hCalendarDayTitle">20</div></td><td class="hCalendarDay"><div class="hCalendarDayTitle">21</div></td><td class="hCalendarDay"><div class="hCalendarDayTitle">22</div></td><td class="hCalendarDay"><div class="hCalendarDayTitle">23</div></td><td class="hCalendarDay"><div class="hCalendarDayTitle">24</div></td><td class="hCalendarDay"><div class="hCalendarDayTitle">25</div></td><td class="hCalendarDay"><div class="hCalendarDayTitle">26</div></td></tr><tr><td class="hCalendarDay"><div class="hCalendarDayTitle">27</div></td><td class="hCalendarDay"><div class="hCalendarDayTitle">28</div></td><td class="hCalendarDay"><div class="hCalendarDayTitle">29</div></td><td class="hCalendarDay"><div class="hCalendarDayTitle">30</div></td><td class="hCalendarDay"><div class="hCalendarDayTitle">31</div></td><td class="hCalendarDayNotInMonth">&nbsp;</td><td class="hCalendarDayNotInMonth">&nbsp;</td></tr><tr><td class="hCalendarDayNotInMonth">&nbsp;</td><td class="hCalendarDayNotInMonth">&nbsp;</td><td class="hCalendarDayNotInMonth">&nbsp;</td><td class="hCalendarDayNotInMonth">&nbsp;</td><td class="hCalendarDayNotInMonth">&nbsp;</td><td class="hCalendarDayNotInMonth">&nbsp;</td><td class="hCalendarDayNotInMonth">&nbsp;</td></tr><tr class="hCalendarNextPrev"><td colspan="7" align="center"><a href="http://blogs.sun.com/CoreJavaTechTips/" class="hCalendarNavBar">Today</a></td></tr></tbody></table>
+</div>
+    <a href="http://feeds.feedburner.com/corejavatechtips"><img class="rssbadge" src="placing_components_on_tabs2-Dateien/feed-icon-12x12.gif" alt="Click me to subscribe"></a>
+<div class="sidebarhead">Search</div>
+    <form id="searchForm" method="get" action="http://onesearch.sun.com/search/blog/index.jsp" style="margin: 0pt; padding: 0pt;">
+	<input name="col" value="blog" type="hidden">
+	<input name="charset" value="utf-8" type="hidden">
+        <input name="weblog" value="CoreJavaTechTips" type="hidden">
+        <p>
+          <input name="qt" size="10" maxlength="255" type="text">
+          <input value="Search" type="submit">
+        </p>
+    </form>
+     <div class="sidebarhead">Links</div>
+     <div class="rNavigationBar">
+        <div class="sp8">&nbsp;</div>
+                <ul class="rFolder">
+                    <li class="rFolderItem">
+                                <a href="http://java.sun.com/developer/JDCTechTips/index.html" title="" class="rBookmark0">Core Java Tech Tips Archive</a>
+                </li>
+            <li class="rFolderItem">
+                                <a href="http://blogs.sun.com/enterprisetechtips/feed/entries/atom"><img class="smrssbadge" src="placing_components_on_tabs2-Dateien/smrssbadge.gif" alt="URL of site''s RSS feed"></a>
+                        <a href="http://blogs.sun.com/enterprisetechtips/" title="" class="rBookmark0">Enterprise Tech Tips</a>
+                </li>
+            <li class="rFolderItem">
+                                <a href="http://blogs.sun.com/JavaFundamentals/feed/entries/atom"><img class="smrssbadge" src="placing_components_on_tabs2-Dateien/smrssbadge.gif" alt="URL of site''s RSS feed"></a>
+                        <a href="http://blogs.sun.com/JavaFundamentals/" title="" class="rBookmark0">Java Technology Fundamentals</a>
+                </li>
+            <li class="rFolderItem">
+                                <a href="http://blogs.sun.com/SDNProgramNews/feed/entries/atom"><img class="smrssbadge" src="placing_components_on_tabs2-Dateien/smrssbadge.gif" alt="URL of site''s RSS feed"></a>
+                        <a href="http://blogs.sun.com/SDNProgramNews/" title="" class="rBookmark0">SDN Program News</a>
+                </li>
+            <li class="rFolderItem">
+                                <a href="http://blogs.sun.com/" title="" class="rBookmark0">blogs.sun.com</a>
+                </li>
+            <li class="rFolderItem">
+                                <a href="http://java.com/" title="" class="rBookmark0">java.com</a>
+                </li>
+            <li class="rFolderItem">
+                                <a href="http://java.net/" title="" class="rBookmark0">java.net</a>
+                </li>
+            <li class="rFolderItem">
+                                <a href="http://www.opensolaris.org/" title="" class="rBookmark0">opensolaris.org</a>
+                </li>
+                    </ul>
+<br>
+            <ul class="rNavigationBar">
+        <li class="rNavItem">
+            <a href="http://blogs.sun.com/"><span>blogs.sun.com</span></a>
+        </li>
+        <li class="rNavItem">
+            <a href="http://blogs.sun.com/CoreJavaTechTips/"><span>Weblog</span></a>
+        </li>
+<li class="rNavItem">
+                    <a href="http://blogs.sun.com/roller-ui/login-redirect.rol"><span>Login</span></a>
+                </li>
+                        </ul>
+<br>
+          
+    
+     </div>
+
+<div class="sp5">&nbsp;</div>
+    
+   <!-- START AFFINITY -->
+   <div class="affinity"></div>
+   <!-- END AFFINITY -->
+   
+   <div class="rFolderitem">
+            <p>Today's Page Hits: 667</p>
+   </div>
+  </div></div>
+<!-- END RIGHT NAV -->
+    
+<div class="rWeblogCategoryChooser">
+                                <ul class="rCategory">
+                   <li class="selected">All</li>
+                                            <li><a href="http://blogs.sun.com/CoreJavaTechTips/category/News">News</a></li>
+                                                <li><a href="http://blogs.sun.com/CoreJavaTechTips/category/Sun">Sun</a></li>
+                                                <li><a href="http://blogs.sun.com/CoreJavaTechTips/category/TechTip">TechTip</a></li>
+                            </ul>
+    </div>
+
+                <div class="next-previous">
+                                        « <a href="http://blogs.sun.com/CoreJavaTechTips/entry/tech_days_comes_back_to">Tech Days Comes Back...</a> |  
+                <a href="http://blogs.sun.com/CoreJavaTechTips/">Main</a>
+                </div>
+
+                
+                <div class="entry">
+       <img src="placing_components_on_tabs2-Dateien/permalink.gif">
+       Wednesday Jan 02, 2008
+</div>
+
+<a name="placing_components_on_tabs2" id="placing_components_on_tabs2"></a>
+   <span class="entrytitle">Placing Components on Tabs</span><br>
+   <div class="body">
+                    <br>by John Zukowski
+
+<p>The <code>JTabbedPane</code> component is a special Swing
+container that accepts components to be placed within a panel for
+each tab. Select a tab to see that tab's components. Technically
+speaking, one component is associated with each tab. However, that
+component is typically a panel that contains others. Identification
+for each tab is done with title text and an icon, settable per tab.
+The first Core Java Technologies Tech Tip to discuss the
+<code>JTabbedPane</code> component was published in July 2001, with
+a <a href="http://java.sun.com/developer/JDCTechTips/2001/tt0712.html#tip1" target="_blank">simple introductory tip</a>. </p>
+
+<p>The methods of <code>JTabbedPane</code> to support the use of
+components on tabs are as follows: </p>
+
+<ul>
+<li><code>public void setTabComponentAt(int index, Component component)</code>
+</li><li><code>public Component getTabComponentAt(int index)</code>
+</li><li><code>public int indexOfTabComponent(Component tabComponent)</code>
+</li></ul>
+
+<p>The first method associates the component with a tab; the second
+gets it back; and the last one tells you which tab is associated
+with the component, if any. Typically, you use only the first
+method, but the others are available. </p>
+
+<p>To get started with the task at hand, it is helpful to have an
+Icon implementation that draws a little x on it. You could just use
+the letter x as the button label, but you should avoid that option.
+Typically, when a user sees an x in a box, this
+signals a command to close a window, so it serves as a good
+indicator for closing a tab. </p>
+
+<pre>class CloseIcon implements Icon {
+  public void paintIcon(Component c, Graphics g, int x, int y) {
+    g.setColor(Color.RED);
+    g.drawLine(6, 6, getIconWidth() - 7, getIconHeight() - 7);
+    g.drawLine(getIconWidth() - 7, 6, 6, getIconHeight() - 7);
+  }
+  public int getIconWidth() {
+    return 17;
+  }
+  public int getIconHeight() {
+    return 17;
+  }
+}
+</pre>
+
+<p>Before creating the special tab component, let's put together the
+program's framework, one that creates a frame with a
+<code>JTabbedPane</code> on it and adds a number of tabs:</p>
+
+<pre>import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+public class CloseTabs {
+  public static void main(String args[]) {
+    Runnable runner = new Runnable() {
+      public void run() {
+        JFrame frame = new JFrame("JTabbedPane");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JTabbedPane jtp = new JTabbedPane();
+        frame.add(jtp, BorderLayout.CENTER);
+        for (int i=0; i&lt;5; i++) {
+          JButton button = new JButton("Card " + i);
+          jtp.add("Btn " + i, button);
+          // new CloseTabButton(jtp, i);
+        }
+        frame.setSize(400, 200);
+        frame.setVisible(true);
+      }
+    };
+    EventQueue.invokeLater(runner);
+  }
+}
+</pre>
+
+<p> This program creates five tabs, each with a <code>JButton</code>
+on it. The tab title is "Btn" followed by the tab position.  </p>
+
+<p></p><center>
+<img src="placing_components_on_tabs2-Dateien/original.png">
+</center><p></p>
+
+<p>The program will run fine without doing anything else, but it
+doesn't have the close button on each tab. To add a close button to
+the tab, you need to retain the tab's title text and icon, while
+adding a button with the <code>CloseIcon</code> previously shown.
+(The
+example does not use the tab's icon, but the class definition
+includes one so that it can be reused beyond this example.) As the
+final part of the definition, you need an
+<code>ActionListener</code> for the button to handle when it is
+pressed, so that when the user presses the button, the tab is
+removed from the pane. </p>
+
+<pre>class CloseTabButton extends JPanel implements ActionListener {
+  private JTabbedPane pane;
+  public CloseTabButton(JTabbedPane pane, int index) {
+    this.pane = pane;
+    setOpaque(false);
+    add(new JLabel(
+        pane.getTitleAt(index),
+        pane.getIconAt(index),
+        JLabel.LEFT));
+    Icon closeIcon = new CloseIcon();
+    JButton btClose = new JButton(closeIcon);
+    btClose.setPreferredSize(new Dimension(
+        closeIcon.getIconWidth(), closeIcon.getIconHeight()));
+    add(btClose);
+    btClose.addActionListener(this);
+    pane.setTabComponentAt(index, this);
+  }
+  public void actionPerformed(ActionEvent e) {
+    int i = pane.indexOfTabComponent(this);
+    if (i != -1) {
+      pane.remove(i);
+    }
+  }
+}
+</pre>
+
+<p>You can now reuse the <code>CloseTabButton</code> in your own
+tabbed panes. </p>
+<p>
+</p><center>
+<img src="placing_components_on_tabs2-Dateien/close.png">
+</center><p></p>
+
+<p>
+For more information on the use of tabbed panes, see the <a href="http://java.sun.com/tutorial/uiswing/components/tabbedpane.html" target="_blank">How to Use Tabbed
+Panes</a> lesson in The Java Tutorial.
+</p>
+
+           </div>
+   <div class="entryfooter">
+            Posted at <a href="http://blogs.sun.com/CoreJavaTechTips/entry/placing_components_on_tabs2">11:36AM Jan 02, 2008</a>
+            by dananourie in <span class="category">TechTip</span> &nbsp;|&nbsp;
+                                        <a href="http://blogs.sun.com/CoreJavaTechTips/entry/placing_components_on_tabs2#comments" class="commentsLink">Comments[0]</a>
+               </div>
+<br>
+    
+        <!-- Begin SiteCatalyst code version: G.5. -->
+<script type="text/javascript" language="JavaScript">
+<!--
+if(typeof s_channel=='undefined'){var s_channel="CoreJavaTechTips";}
+//--></script>
+<script type="text/javascript" language="JavaScript" src="placing_components_on_tabs2-Dateien/s_code_remote.js"></script><img src="placing_components_on_tabs2-Dateien/s29940829494441.gif" name="s_i_sunglobal" alt="" border="0" height="1" width="1">
+<!-- End SiteCatalyst code version: G.5. -->
+
+                          <a name="comments"></a>
+    <div class="comments" id="comments">
+
+            <div class="comments-head">Comments:</div>
+            
+    <br>
+        </div>
+           
+    <div class="comments-form">
+    <div class="comments-head">Post a Comment:</div>
+    <a name="comment-form"></a>
+
+
+    
+    <form method="post" action="http://blogs.sun.com/CoreJavaTechTips/entry/placing_components_on_tabs2" focus="name" name="commentForm" onsubmit="fixURL(this); return validateComments(this)">    
+        <input name="method" value="post" type="hidden">
+
+        <ul>
+            <li>
+                <label class="desc">Name:</label>
+                <input name="name" class="text large" value="" size="50" maxlength="255" type="text">
+            </li>
+
+            <li><label class="desc">E-Mail:</label>
+                <input name="email" class="text large" value="" size="50" maxlength="255" type="text">
+            </li>
+
+            <li><label class="desc">URL:</label>
+                <input name="url" class="text large" value="" size="50" maxlength="255" type="text">
+            </li>
+
+                    <li><input class="checkbox" id="notify" name="notify" type="checkbox">
+                <label for="notify" class="choice">Notify me by email of new comments</label>
+            </li>
+                    <li>
+                <input class="checkbox" id="rememberInfo" name="rememberInfo" type="checkbox">
+                <label for="rememberInfo" class="choice">Remember Information?</label>
+            </li>
+            <li>
+                <label class="desc">Your Comment:</label>
+             
+            <textarea name="content" class="textarea large" cols="40" rows="10"></textarea>
+
+            </li>
+            <li class="info">
+                <span class="comments-syntax-indicator">
+                HTML Syntax:
+                                    <span class="disabled">NOT allowed</span>
+                                </span>
+            </li>
+            <li class="info">
+               <script type="text/javascript" src="placing_components_on_tabs2-Dateien/clientSideInclude.js"></script>
+               <div id="commentAuthenticator"><p>Please answer this simple math question</p><p>1 + 45 = <input name="answer" value=""></p>
+</div>
+            </li>
+            <li>
+               <input class="button" name="post" value="&nbsp;Preview&nbsp;" onclick="this.form.method.value='preview';this.form.submit()" type="button">
+               <input class="button" name="post" value="&nbsp;Post&nbsp;" type="submit">
+            </li>
+        </ul>
+
+    </form>
+
+    <script type="text/javascript" src="placing_components_on_tabs2-Dateien/roller.js"></script>
+    <script type="text/javascript">
+    clientSideInclude('commentAuthenticator', '/CommentAuthenticatorServlet');
+
+    var author = getCookie("commentAuthor");
+    var email = getCookie("commentEmail");
+    var url = getCookie("commentUrl");
+    // check each field - IE will render "null"
+    if (author) {
+        document.forms['commentForm'].name.value = author;
+    }
+    if (email) {
+        document.forms['commentForm'].email.value = email;
+    }
+    if (url) {
+        document.forms['commentForm'].url.value = url;
+    }
+
+    if (author || email || url) {
+        document.forms['commentForm'].rememberInfo.checked = true;
+    }
+
+    function fixURL(theForm) {
+        if (theForm.url.value != "" &&
+            theForm.url.value.indexOf("http://") == -1) { //prepend http://
+            theForm.url.value = "http://"+theForm.url.value;
+        }
+        saveUserInformation(theForm);
+    }
+
+    function saveUserInformation(theForm) {
+        if (theForm.rememberInfo.checked) {
+            rememberUser(theForm);
+        } else {
+            forgetUser(theForm);
+        }
+    }
+
+    function validateComments(theForm) {
+        if (theForm.content.value == "") {
+            alert("Please enter a comment.");
+            theForm.content.focus();
+            return false;
+        }
+    }
+    </script>
+
+
+    </div>
+
+</div></body></html>
