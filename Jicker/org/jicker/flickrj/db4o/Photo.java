@@ -6,42 +6,42 @@ import com.aetrion.flickr.photos.Permissions;
 
 public class Photo {
 
-	private int Comments;
-	private java.util.Date DateAdded;
-	private java.util.Date DatePosted;
-	private java.util.Date DateTaken;
-	private java.lang.String Description;
-	private Editability Editability;
-	private java.lang.String Farm;
-	private GeoData GeoData;
-	private java.lang.String IconFarm;
-	private java.lang.String IconServer;
-	private java.lang.String Id;
+	private int comments;
+	private java.util.Date dateAdded;
+	private java.util.Date datePosted;
+	private java.util.Date dateTaken;
+	private java.lang.String description;
+	private Editability editability;
+	private java.lang.String farm;
+	private GeoData geoData;
+	private java.lang.String iconFarm;
+	private java.lang.String iconServer;
+	private java.lang.String id;
 	// Deprecated
-	private java.io.InputStream LargeAsStream;
+	private java.io.InputStream largeAsStream;
 	// Deprecated
-	private java.awt.image.BufferedImage LargeImage;
-	private java.lang.String LargeUrl;
-	private java.util.Date LastUpdate;
-	private java.lang.String License;
+	private java.awt.image.BufferedImage largeImage;
+	private java.lang.String largeUrl;
+	private java.util.Date lastUpdate;
+	private java.lang.String license;
 	// Deprecated
-	private java.io.InputStream MediumAsStream;
+	private java.io.InputStream mediumAsStream;
 	// Deprecated.
-	private java.awt.image.BufferedImage MediumImage;
-	private java.lang.String MediumUrl;
-	private java.util.Collection Notes;
+	private java.awt.image.BufferedImage mediumImage;
+	private java.lang.String mediumUrl;
+	private java.util.Collection notes;
 	// Deprecated
-	private java.io.InputStream OriginalAsStream;
-	private java.lang.String OriginalFormat;
+	private java.io.InputStream originalAsStream;
+	private java.lang.String originalFormat;
 	// Deprecated
-	private java.awt.image.BufferedImage OriginalImage;
-	private java.lang.String OriginalSecret;
-	private java.lang.String OriginalUrl;
-	private User Owner;
-	private Permissions Permissions;
-	private int Rotation;
-	private java.lang.String Secret;
-	private java.lang.String Server;
+	private java.awt.image.BufferedImage originalImage;
+	private java.lang.String originalSecret;
+	private java.lang.String originalUrl;
+	private User owner;
+	private Permissions permissions;
+	private int rotation;
+	private java.lang.String secret;
+	private java.lang.String server;
 	// Deprecated
 	// private java.io.InputStream SmallAsInputStream;
 	// Deprecated
@@ -50,19 +50,19 @@ public class Photo {
 	// private java.io.InputStream SmallSquareAsInputStream;
 	// Deprecated
 	// private java.awt.image.BufferedImage SmallSquareImage;
-	private java.lang.String SmallSquareUrl;
-	private java.lang.String SmallUrl;
-	private java.util.Collection Tags;
-	private java.lang.String TakenGranularity;
+	private java.lang.String smallSquareUrl;
+	private java.lang.String smallUrl;
+	private java.util.Collection tags;
+	private java.lang.String takenGranularity;
 	// Deprecated
 	// private java.io.InputStream ThumbnailAsInputStream;
 	// Deprecated
 	// private java.awt.image.BufferedImage ThumbnailImage;
-	private java.lang.String ThumbnailUrl;
-	private java.lang.String Title;
-	private java.lang.String Url;
-	private java.util.Collection Urls;
-	private int Views;
+	private java.lang.String thumbnailUrl;
+	private java.lang.String title;
+	private java.lang.String url;
+	private java.util.Collection urls;
+	private int views;
 	private boolean hasGeoData;
 	private boolean isFamilyFlag;
 	private boolean isFavorite;
@@ -71,168 +71,173 @@ public class Photo {
 	private boolean isPublicFlag;
 
 	public Photo(Photo p) {
-		this.Comments = p.getComments();
-		this.DateAdded = p.getDateAdded();
-		this.DatePosted = p.getDatePosted();
-		this.DateTaken = p.getDateTaken();
-		this.Description = p.getDescription();
-
+		this.comments = p.getComments();
+		this.dateAdded = p.getDateAdded();
+		this.datePosted = p.getDatePosted();
+		this.dateTaken = p.getDateTaken();
+		this.description = p.getDescription();
+		this.editability = p.getEditability();
+		this.farm = p.getFarm();
+		this.geoData = p.getGeoData();
+		this.hasGeoData = p.hasGeoData;
+		this.iconFarm = p.getIconFarm();
+		this.iconServer = p.getIconServer();
 	}
 
 	public int getComments() {
-		return Comments;
+		return comments;
 	}
 
 	public java.util.Date getDateAdded() {
-		return DateAdded;
+		return dateAdded;
 	}
 
 	public java.util.Date getDatePosted() {
-		return DatePosted;
+		return datePosted;
 	}
 
 	public java.util.Date getDateTaken() {
-		return DateTaken;
+		return dateTaken;
 	}
 
 	public java.lang.String getDescription() {
-		return Description;
+		return description;
 	}
 
 	public Editability getEditability() {
-		return Editability;
+		return editability;
 	}
 
 	public java.lang.String getFarm() {
-		return Farm;
+		return farm;
 	}
 
 	public GeoData getGeoData() {
-		return GeoData;
+		return geoData;
 	}
 
 	public java.lang.String getIconFarm() {
-		return IconFarm;
+		return iconFarm;
 	}
 
 	public java.lang.String getIconServer() {
-		return IconServer;
+		return iconServer;
 	}
 
 	public java.lang.String getId() {
-		return Id;
+		return id;
 	}
 
 	public java.io.InputStream getLargeAsStream() {
-		return LargeAsStream;
+		return largeAsStream;
 	}
 
 	public java.awt.image.BufferedImage getLargeImage() {
-		return LargeImage;
+		return largeImage;
 	}
 
 	public java.lang.String getLargeUrl() {
-		return LargeUrl;
+		return largeUrl;
 	}
 
 	public java.util.Date getLastUpdate() {
-		return LastUpdate;
+		return lastUpdate;
 	}
 
 	public java.lang.String getLicense() {
-		return License;
+		return license;
 	}
 
 	public java.io.InputStream getMediumAsStream() {
-		return MediumAsStream;
+		return mediumAsStream;
 	}
 
 	public java.awt.image.BufferedImage getMediumImage() {
-		return MediumImage;
+		return mediumImage;
 	}
 
 	public java.lang.String getMediumUrl() {
-		return MediumUrl;
+		return mediumUrl;
 	}
 
 	public java.util.Collection getNotes() {
-		return Notes;
+		return notes;
 	}
 
 	public java.io.InputStream getOriginalAsStream() {
-		return OriginalAsStream;
+		return originalAsStream;
 	}
 
 	public java.lang.String getOriginalFormat() {
-		return OriginalFormat;
+		return originalFormat;
 	}
 
 	public java.awt.image.BufferedImage getOriginalImage() {
-		return OriginalImage;
+		return originalImage;
 	}
 
 	public java.lang.String getOriginalSecret() {
-		return OriginalSecret;
+		return originalSecret;
 	}
 
 	public java.lang.String getOriginalUrl() {
-		return OriginalUrl;
+		return originalUrl;
 	}
 
 	public User getOwner() {
-		return Owner;
+		return owner;
 	}
 
 	public Permissions getPermissions() {
-		return Permissions;
+		return permissions;
 	}
 
 	public int getRotation() {
-		return Rotation;
+		return rotation;
 	}
 
 	public java.lang.String getSecret() {
-		return Secret;
+		return secret;
 	}
 
 	public java.lang.String getServer() {
-		return Server;
+		return server;
 	}
 
 	public java.lang.String getSmallSquareUrl() {
-		return SmallSquareUrl;
+		return smallSquareUrl;
 	}
 
 	public java.lang.String getSmallUrl() {
-		return SmallUrl;
+		return smallUrl;
 	}
 
 	public java.util.Collection getTags() {
-		return Tags;
+		return tags;
 	}
 
 	public java.lang.String getTakenGranularity() {
-		return TakenGranularity;
+		return takenGranularity;
 	}
 
 	public java.lang.String getThumbnailUrl() {
-		return ThumbnailUrl;
+		return thumbnailUrl;
 	}
 
 	public java.lang.String getTitle() {
-		return Title;
+		return title;
 	}
 
 	public java.lang.String getUrl() {
-		return Url;
+		return url;
 	}
 
 	public java.util.Collection getUrls() {
-		return Urls;
+		return urls;
 	}
 
 	public int getViews() {
-		return Views;
+		return views;
 	}
 
 	public boolean isHasGeoData() {
