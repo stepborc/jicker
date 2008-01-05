@@ -1,12 +1,10 @@
-package org.jicker.flickrj.examples;
+package org.jicker.flickrj;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Iterator;
 
-import org.jicker.flickrj.PhotoBrowse;
-import org.jicker.flickrj.SetBrowse;
 import org.jicker.flickrj.db4o.Sets;
 import org.xml.sax.SAXException;
 
