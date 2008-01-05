@@ -22,6 +22,6 @@ public class Verzeichnis {
 	}
 	
 	public String toString(){
-		return verzeichnisName;
-	}
+	return verzeichnisName;
+}
 }
