@@ -1,0 +1,39 @@
+<uml>
+   <greenVersion="30000"/>
+   <type>
+      <name="=Jicker/<org.jicker.flickrj{SetBrowse.java[SetBrowse"/>
+      <height="-1"/>
+      <width="-1"/>
+      <x="0"/>
+      <y="0"/>
+   </type>
+   <type>
+      <name="=Jicker/<org.jicker.flickrj{FBackup.java[FBackup"/>
+      <height="-1"/>
+      <width="-1"/>
+      <x="263"/>
+      <y="251"/>
+   </type>
+   <type>
+      <name="=Jicker/<org.jicker.flickrj{PhotoBrowse.java[PhotoBrowse"/>
+      <height="-1"/>
+      <width="-1"/>
+      <x="400"/>
+      <y="0"/>
+   </type>
+   <relationship>
+      <class="edu.buffalo.cse.green.relationship.dependency.DependencyLPart"/>
+      <sourceType="=Jicker/<org.jicker.flickrj{FBackup.java[FBackup"/>
+      <targetType="=Jicker/<org.jicker.flickrj{PhotoBrowse.java[PhotoBrowse"/>
+      <bendpoints>
+      </bendpoints>
+   </relationship>
+   <relationship>
+      <class="edu.buffalo.cse.green.relationship.dependency.DependencyLPart"/>
+      <sourceType="=Jicker/<org.jicker.flickrj{FBackup.java[FBackup"/>
+      <targetType="=Jicker/<org.jicker.flickrj{SetBrowse.java[SetBrowse"/>
+      <bendpoints>
+      </bendpoints>
+   </relationship>
+</uml>
+
