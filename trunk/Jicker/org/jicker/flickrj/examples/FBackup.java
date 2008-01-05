@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Iterator;
 
+import org.jicker.flickrj.SetBrowse;
 import org.jicker.flickrj.db4o.Sets;
 import org.xml.sax.SAXException;
 
@@ -20,6 +21,7 @@ import com.aetrion.flickr.photosets.PhotosetsInterface;
 import com.aetrion.flickr.util.FileAuthStore;
 import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
+import com.db4o.ObjectSet;
 
 public class FBackup {
 
@@ -71,37 +73,27 @@ public class FBackup {
 				rc.setAuth(auth);
 		}
 
-		// Photosets lesen
-		PhotosetsInterface pi = flickr.getPhotosetsInterface();
-		//Iterator über Photoset bilden
-		//nsid gegen eine andere austauschen
-		Iterator sets = pi.getList(this.nsid).getPhotosets().iterator();
-		//Iterator sets = pi.getList("14267014@N03").getPhotosets().iterator();
-		int n = 1;
+		// Zu Testzwecken jedesmal eine neue Datenbank anlegen
 		new File("flickrDb.db4o").delete();
 		ObjectContainer db = Db4o.openFile("flickrDb.db4o");
+		// Setliste ermitteln und speichern
+		SetBrowse sb = new SetBrowse(flickr, db, nsid);
+
+		// Zu Testzwecken Setliste ausgeben
+		ObjectSet<Sets> setlist = db.get(Sets.class);
+		// setlist.get(1).getTitle();
+		System.out.println(setlist.size() + " Sets");
 		Sets s = null;
-		while (sets.hasNext()) {
-			//aktuelles Objekt der Photosets Liste einem Photoset zuordnen
-			Photoset set = (Photoset) sets.next();
-			//Namen des Photosets ausgeben
-			System.out.print(n + ". " + set.getTitle().toString());
-			s = new Sets(set);
-			db.set(s);
-			int countPhotos = pi.getInfo(set.getId()).getPhotoCount();
-			System.out.println("\t" + countPhotos);
-			Iterator photos = pi.getPhotos(set.getId(), countPhotos, 1).iterator();
-			while (photos.hasNext()){
-				Photo photo = (Photo) photos.next();
-				System.out.println("\t" +photo.getId());
-			}
-			n++;
+		while (setlist.hasNext()) {
+			s = setlist.next();
+			System.out.println(s.getTitle() + " " + s.getId());
 		}
+		System.out.println("---");
 
 		PhotosInterface pin = flickr.getPhotosInterface();
-		Iterator nis = pin.getNotInSet(10000, 1).iterator();
+		Iterator<Photo> nis = pin.getNotInSet(10000, 1).iterator();
 		System.out.println("Fotos die in keinem Set sind.");
-		while (nis.hasNext()){
+		while (nis.hasNext()) {
 			Photo nisPhoto = (Photo) nis.next();
 			System.out.println("\t" + nisPhoto.getId());
 		}
@@ -110,20 +102,21 @@ public class FBackup {
 	}
 
 	private void authorize() throws IOException, SAXException, FlickrException {
-		//Einen frob anfordern 
+		// Einen frob anfordern
 		String frob = this.flickr.getAuthInterface().getFrob();
-		//Aus frob und angeforderten Rechten die Authentification Url generieren 
+		// Aus frob und angeforderten Rechten die Authentification Url
+		// generieren
 		URL authUrl = this.flickr.getAuthInterface().buildAuthenticationUrl(
 				Permission.READ, frob);
-		//Die generierte Url ausgeben
+		// Die generierte Url ausgeben
 		System.out.println("Öffne: " + authUrl.toExternalForm()
 				+ " und bestätige mit ENTER.");
-		//Auf Eingabe warten
+		// Auf Eingabe warten
 		System.in.read();
-		//Nach der Eingabe die Authentifizierung überprüfen 
+		// Nach der Eingabe die Authentifizierung überprüfen
 		Auth token = this.flickr.getAuthInterface().getToken(frob);
 		RequestContext.getRequestContext().setAuth(token);
-		//Den token in das AuthStor im Userhome schreiben
+		// Den token in das AuthStor im Userhome schreiben
 		this.authStore.store(token);
 		System.out
 				.println("Thanks.  You probably will not have to do this every time.  Now starting backup.");
