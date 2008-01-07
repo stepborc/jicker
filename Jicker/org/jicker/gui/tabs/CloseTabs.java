@@ -2,7 +2,11 @@ package org.jicker.gui.tabs;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.nio.channels.ClosedByInterruptException;
+
 import javax.swing.*;
+
+import org.jicker.flickrj.PhotoBrowse;
 
 public class CloseTabs {
   public static void main(String args[]) {
@@ -12,11 +16,19 @@ public class CloseTabs {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JTabbedPane jtp = new JTabbedPane();
         frame.add(jtp, BorderLayout.CENTER);
-        for (int i=0; i<5; i++) {
+        
+        JButton viewPhotosets = new JButton("Photosets");
+        jtp.add("Photosets", viewPhotosets);
+        JButton viewPhotos = new JButton("Photos");
+        jtp.add("Photos",viewPhotos);
+        new CloseTabButton(jtp,0);
+        
+        //new CloseTabButton(jtp,1);
+/*        for (int i=2; i<7; i++) {
           JButton button = new JButton("Card " + i);
           jtp.add("Btn " + i, button);
-          // new CloseTabButton(jtp, i);
-        }
+          new CloseTabButton(jtp, i);
+        }*/
         frame.setSize(400, 200);
         frame.setVisible(true);
       }
