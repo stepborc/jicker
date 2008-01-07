@@ -15,9 +15,9 @@ import com.db4o.ObjectContainer;
 
 public class SetBrowse {
 
-	public SetBrowse(Flickr flickr, ObjectContainer db, String nsid) throws IOException, SAXException, FlickrException{
+	public SetBrowse(PhotosetsInterface pi, Flickr flickr, ObjectContainer db, String nsid) throws IOException, SAXException, FlickrException{
 	// Photosets lesen
-	PhotosetsInterface pi = flickr.getPhotosetsInterface();
+	//PhotosetsInterface pi = flickr.getPhotosetsInterface();
 	//Iterator über Photoset bilden
 	//nsid gegen eine andere austauschen
 	Iterator sets = pi.getList(nsid).getPhotosets().iterator();
