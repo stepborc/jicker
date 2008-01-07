@@ -75,11 +75,14 @@ public class FBackup {
 		// Zu Testzwecken jedesmal eine neue Datenbank anlegen
 		new File("flickrDb.db4o").delete();
 		ObjectContainer db = Db4o.openFile("flickrDb.db4o");
-		// Setliste ermitteln und speichern
-		SetBrowse sb = new SetBrowse(flickr, db, nsid);
-		PhotoBrowse pb = new PhotoBrowse(flickr, db, nsid);
+		//Kommentar schreiben
+		PhotosetsInterface pi = flickr.getPhotosetsInterface();
+		// Setsliste ermitteln und speichern
+		SetBrowse sb = new SetBrowse(pi, flickr, db, nsid);
+		// Fotos pro Set ermitteln
+		PhotoBrowse pb = new PhotoBrowse(pi, flickr, db, nsid);
 		// Zu Testzwecken Setliste ausgeben
-		ObjectSet<Sets> setlist = db.get(Sets.class);
+/*		ObjectSet<Sets> setlist = db.get(Sets.class);
 		// setlist.get(1).getTitle();
 		System.out.println(setlist.size() + " Sets");
 		Sets s = null;
@@ -88,7 +91,9 @@ public class FBackup {
 			System.out.println(s.getTitle() + " " + s.getId());
 		}
 		System.out.println("---");
-
+*/
+		//Fotos der Sets ermitteln
+		
 		PhotosInterface pin = flickr.getPhotosInterface();
 		Iterator<Photo> nis = pin.getNotInSet(10000, 1).iterator();
 		System.out.println("Fotos die in keinem Set sind.");
