@@ -19,6 +19,7 @@ public class PhotoBrowse {
 		// setlist.get(1).getTitle();
 		System.out.println(setlist.size() + " Sets");
 		Sets s = null;
+		org.jicker.flickrj.db4o.Photos p = null;
 		while (setlist.hasNext()) {
 			s = setlist.next();
 			System.out.println(s.getTitle() + " " + s.getId());
@@ -26,6 +27,8 @@ public class PhotoBrowse {
 			while (photos.hasNext()){
 				Photo photo = (Photo) photos.next();
 				System.out.println("\t" +photo.getId());
+				p = new org.jicker.flickrj.db4o.Photos(photo);
+				db.set(p);
 			}
 		}
 		System.out.println("--- Ende PhotoBrowse");
