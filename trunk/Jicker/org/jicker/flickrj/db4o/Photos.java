@@ -3,8 +3,9 @@ package org.jicker.flickrj.db4o;
 import com.aetrion.flickr.photos.Editability;
 import com.aetrion.flickr.photos.GeoData;
 import com.aetrion.flickr.photos.Permissions;
+import com.aetrion.flickr.photos.Photo;
 
-public class Photo {
+public class Photos {
 
 	private int comments;
 	private java.util.Date dateAdded;
@@ -70,7 +71,7 @@ public class Photo {
 	private boolean isPrimary;
 	private boolean isPublicFlag;
 
-	public Photo(Photo p) {
+	public Photos(Photo p) {
 		this.comments = p.getComments();
 		this.dateAdded = p.getDateAdded();
 		this.datePosted = p.getDatePosted();
@@ -79,9 +80,10 @@ public class Photo {
 		this.editability = p.getEditability();
 		this.farm = p.getFarm();
 		this.geoData = p.getGeoData();
-		this.hasGeoData = p.hasGeoData;
+		this.hasGeoData = p.hasGeoData();
 		this.iconFarm = p.getIconFarm();
 		this.iconServer = p.getIconServer();
+		this.id = p.getId();
 	}
 
 	public int getComments() {
