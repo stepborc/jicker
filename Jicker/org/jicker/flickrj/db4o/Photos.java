@@ -71,6 +71,7 @@ public class Photos {
 	private boolean isPrimary;
 	private boolean isPublicFlag;
 
+	
 	public Photos(Photo p) {
 		this.comments = p.getComments();
 		this.dateAdded = p.getDateAdded();
@@ -84,6 +85,38 @@ public class Photos {
 		this.iconFarm = p.getIconFarm();
 		this.iconServer = p.getIconServer();
 		this.id = p.getId();
+		this.isFamilyFlag = p.isFamilyFlag();
+		this.isFavorite = p.isFavorite();
+		this.isFriendFlag = p.isFriendFlag();
+		this.isPrimary = p.isPrimary();
+		this.isPublicFlag = p.isPublicFlag();
+		//this.largeAsStream = p.getLargeAsStream();
+		//this.largeImage = p.getLargeImage();
+		this.largeUrl = p.getLargeUrl();
+		this.lastUpdate = p.getLastUpdate();
+		this.license = p.getLicense();
+		//this.mediumAsStream = p.getMediumAsStream();
+		//this.mediumImage = p.getMediumImage();
+		this.mediumUrl = p.getMediumUrl();
+		this.notes = p.getNotes();
+		//this.originalAsStream = p.getOriginalAsStream();
+		//this.originalFormat = p.getOriginalFormat();
+		//this.originalImage = p.getOriginalImage();
+		//this.originalSecret = p.getOriginalImage();
+		//this.owner = p.getOwner();
+		this.permissions = p.getPermissions();
+		this.rotation = p.getRotation();
+		this.secret = p.getSecret();
+		this.server = p.getServer();
+		this.smallSquareUrl = p.getSmallSquareUrl();
+		this.smallUrl = p.getSmallUrl();
+		this.tags = p.getTags();
+		this.takenGranularity = p.getTakenGranularity();
+		this.thumbnailUrl = p.getThumbnailUrl();
+		this.title = p.getTitle();
+		this.url = p.getUrl();
+		this.urls = p.getUrls();
+		this.views = p.getViews();
 	}
 
 	public int getComments() {
