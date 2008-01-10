@@ -2,7 +2,7 @@ package org.jicker.flickrj.db4o;
 
 import com.aetrion.flickr.photosets.Photoset;
 
-public class Sets {
+public class DbSets {
 
 	private String id;
 	private String primaryPhoto;
@@ -14,7 +14,7 @@ public class Sets {
 	private String description;
 	private String url;
 
-	public Sets(Photoset set) {
+	public DbSets(Photoset set) {
 		this.id = set.getId();
 		// this.primaryPhoto = set.getPrimaryPhoto();
 		this.secrect = set.getSecret();

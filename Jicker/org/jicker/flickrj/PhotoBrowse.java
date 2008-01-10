@@ -3,7 +3,7 @@ package org.jicker.flickrj;
 import java.io.IOException;
 import java.util.Iterator;
 
-import org.jicker.flickrj.db4o.Sets;
+import org.jicker.flickrj.db4o.DbSets;
 import org.xml.sax.SAXException;
 
 import com.aetrion.flickr.Flickr;
@@ -15,11 +15,11 @@ import com.db4o.ObjectSet;
 
 public class PhotoBrowse {
 	public PhotoBrowse(PhotosetsInterface pi, Flickr flickr, ObjectContainer db, String nsid ) throws IOException, SAXException, FlickrException{
-		ObjectSet<Sets> setlist = db.get(Sets.class);
+		ObjectSet<DbSets> setlist = db.get(DbSets.class);
 		// setlist.get(1).getTitle();
 		System.out.println(setlist.size() + " Sets");
-		Sets s = null;
-		org.jicker.flickrj.db4o.Photos p = null;
+		DbSets s = null;
+		org.jicker.flickrj.db4o.DbPhotos p = null;
 		while (setlist.hasNext()) {
 			s = setlist.next();
 			System.out.println(s.getTitle() + " " + s.getId());
@@ -27,7 +27,7 @@ public class PhotoBrowse {
 			while (photos.hasNext()){
 				Photo photo = (Photo) photos.next();
 				System.out.println("\t" +photo.getId());
-				p = new org.jicker.flickrj.db4o.Photos(photo);
+				p = new org.jicker.flickrj.db4o.DbPhotos(photo);
 				db.set(p);
 			}
 		}

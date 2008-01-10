@@ -3,7 +3,7 @@ package org.jicker.flickrj;
 import java.io.IOException;
 import java.util.Iterator;
 
-import org.jicker.flickrj.db4o.Sets;
+import org.jicker.flickrj.db4o.DbSets;
 import org.xml.sax.SAXException;
 
 import com.aetrion.flickr.Flickr;
@@ -23,13 +23,13 @@ public class SetBrowse {
 	Iterator sets = pi.getList(nsid).getPhotosets().iterator();
 	//Iterator sets = pi.getList("14267014@N03").getPhotosets().iterator();
 	//int n = 1;
-	Sets s = null;
+	DbSets s = null;
 	while (sets.hasNext()) {
 		//aktuelles Objekt der Photosets Liste einem Photoset zuordnen
 		Photoset set = (Photoset) sets.next();
 		//Namen des Photosets ausgeben
 		//System.out.println(set.getTitle().toString());
-		s = new Sets(set);
+		s = new DbSets(set);
 		db.set(s);
 /*		int countPhotos = pi.getInfo(set.getId()).getPhotoCount();
 		System.out.println("\t" + countPhotos);
