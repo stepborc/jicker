@@ -5,7 +5,7 @@ import com.aetrion.flickr.photos.GeoData;
 import com.aetrion.flickr.photos.Permissions;
 import com.aetrion.flickr.photos.Photo;
 
-public class Photos {
+public class DbPhotos {
 
 	private int comments;
 	private java.util.Date dateAdded;
@@ -38,7 +38,7 @@ public class Photos {
 	private java.awt.image.BufferedImage originalImage;
 	private java.lang.String originalSecret;
 	private java.lang.String originalUrl;
-	private User owner;
+	private DbUser owner;
 	private Permissions permissions;
 	private int rotation;
 	private java.lang.String secret;
@@ -72,7 +72,7 @@ public class Photos {
 	private boolean isPublicFlag;
 
 	
-	public Photos(Photo p) {
+	public DbPhotos(Photo p) {
 		this.comments = p.getComments();
 		this.dateAdded = p.getDateAdded();
 		this.datePosted = p.getDatePosted();
@@ -219,7 +219,7 @@ public class Photos {
 		return originalUrl;
 	}
 
-	public User getOwner() {
+	public DbUser getOwner() {
 		return owner;
 	}
 

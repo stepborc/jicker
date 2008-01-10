@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Iterator;
 
-import org.jicker.flickrj.db4o.Sets;
+import org.jicker.flickrj.db4o.DbSets;
 import org.xml.sax.SAXException;
 
 import com.aetrion.flickr.Flickr;
