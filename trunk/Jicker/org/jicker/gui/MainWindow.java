@@ -24,7 +24,11 @@ public class MainWindow extends BaseWindow{
         //String[] test = {"a","b","c"};
         //JList list = new JList(test);
  
-        JTree list = new JTree();
+        //JTree list = new JTree();
+        SetTree model = new SetTree();
+        
+        JTree list = new JTree(model.createTree());
+        
         StatusBar aStatusBar = new StatusBar(null,null,null,"Test");
         
         
