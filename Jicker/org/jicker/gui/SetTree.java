@@ -23,9 +23,18 @@ public class SetTree{
 		while (setlist.hasNext()) {
 			s = setlist.next();
 			DefaultMutableTreeNode album = new DefaultMutableTreeNode(s.getTitle());
-			tree.add(album);
-			//DbPhotos photoProto = new DbPhotos(s.getId());
+			
+			DbPhotos photoProto = new DbPhotos(null, s.getId());
 			//ObjectSet<DbPhotos> photolist = db.get(DbPhotos.class);
+			ObjectSet<DbPhotos> photolist = db.get(photoProto);
+			int laenge = photolist.size();
+			DbPhotos p = null;
+			while (photolist.hasNext()){
+				p = photolist.next();
+				DefaultMutableTreeNode bilder = new DefaultMutableTreeNode(p.getId());
+				album.add(bilder);
+			}
+			tree.add(album);
 		}
 		db.close();
 		return tree;
