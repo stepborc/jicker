@@ -27,7 +27,7 @@ public class PhotoBrowse {
 			while (photos.hasNext()){
 				Photo photo = (Photo) photos.next();
 				System.out.println("\t" +photo.getId());
-				p = new org.jicker.flickrj.db4o.DbPhotos(photo);
+				p = new org.jicker.flickrj.db4o.DbPhotos(photo, s.getId());
 				db.set(p);
 			}
 		}

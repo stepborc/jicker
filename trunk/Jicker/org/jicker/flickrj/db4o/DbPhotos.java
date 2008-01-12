@@ -70,9 +70,11 @@ public class DbPhotos {
 	private boolean isFriendFlag;
 	private boolean isPrimary;
 	private boolean isPublicFlag;
+	private String setId;
 
 	
-	public DbPhotos(Photo p) {
+	public DbPhotos(Photo p, String setId) {
+		if (p != null){
 		this.comments = p.getComments();
 		this.dateAdded = p.getDateAdded();
 		this.datePosted = p.getDatePosted();
@@ -117,6 +119,11 @@ public class DbPhotos {
 		this.url = p.getUrl();
 		this.urls = p.getUrls();
 		this.views = p.getViews();
+		}
+		this.setId = setId;
+		//}else{
+		//	this.setId = setId;
+		//}
 	}
 
 	public int getComments() {
@@ -297,6 +304,10 @@ public class DbPhotos {
 
 	public boolean isPublicFlag() {
 		return isPublicFlag;
+	}
+
+	public String getSetId() {
+		return setId;
 	}
 
 }
