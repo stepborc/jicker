@@ -7,11 +7,18 @@ import java.awt.event.KeyEvent;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTree;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.TreeSelectionModel;
 
-public class MainWindow extends BaseWindow{
+public class MainWindow extends BaseWindow implements TreeSelectionListener{
+	public StatusBar aStatusBar;
+	public JTree list;
 	public MainWindow(){
         JSplitPane aSplitPanel = new JSplitPane();
         //LeftPanel aLeftPanel = new LeftPanel();
@@ -27,15 +34,18 @@ public class MainWindow extends BaseWindow{
         //JTree list = new JTree();
         SetTree model = new SetTree();
         
-        JTree list = new JTree(model.createTree());
-        
-        StatusBar aStatusBar = new StatusBar(null,null,null,"Test");
-        
+        list = new JTree(model.createTree());
+        list.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+        list.addTreeSelectionListener(this);
+        JScrollPane listScroll = new JScrollPane();
+        listScroll.getViewport().add(list);
+        aStatusBar = new StatusBar(null,null,null,"Test");
+        aStatusBar.setStatus("Zweiter Test");
         
          
         setLayout(new BorderLayout());
         //aSplitPanel.setLeftComponent(aLeftPanel);
-        aSplitPanel.setLeftComponent(list);
+        aSplitPanel.setLeftComponent(listScroll);
         aSplitPanel.setRightComponent(aCenterPanel);
         
         add(aSplitPanel, BorderLayout.CENTER);
@@ -49,4 +59,13 @@ public class MainWindow extends BaseWindow{
         panel.add(filler);
         return panel;
     }
+	@Override
+	public void valueChanged(TreeSelectionEvent e) {
+		// TODO Auto-generated method stub
+		
+		DefaultMutableTreeNode node = (DefaultMutableTreeNode)list.getLastSelectedPathComponent();
+		Object nodeInfo = node.getUserObject();
+		aStatusBar.setStatus(nodeInfo.toString());
+		
+	}
 }
