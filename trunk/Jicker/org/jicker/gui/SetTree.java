@@ -3,6 +3,7 @@ package org.jicker.gui;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeNode;
 
+import org.jicker.flickrj.db4o.DbPhotos;
 import org.jicker.flickrj.db4o.DbSets;
 
 import com.db4o.Db4o;
@@ -18,9 +19,13 @@ public class SetTree{
 		ObjectContainer db = Db4o.openFile("flickrDb.db4o");
 		// Datenbank auslesen
 		ObjectSet<DbSets> setlist = db.get(DbSets.class);
+		DbSets s = null;
 		while (setlist.hasNext()) {
-			DefaultMutableTreeNode album = new DefaultMutableTreeNode(setlist.next().getTitle());
+			s = setlist.next();
+			DefaultMutableTreeNode album = new DefaultMutableTreeNode(s.getTitle());
 			tree.add(album);
+			//DbPhotos photoProto = new DbPhotos(s.getId());
+			//ObjectSet<DbPhotos> photolist = db.get(DbPhotos.class);
 		}
 		db.close();
 		return tree;
