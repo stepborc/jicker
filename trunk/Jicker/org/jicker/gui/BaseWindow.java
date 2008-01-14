@@ -1,6 +1,7 @@
 package org.jicker.gui;
 
 import javax.swing.JPanel;
+import javax.swing.event.TreeSelectionEvent;
 
 /**
  * The Class BaseWindow.
@@ -13,5 +14,10 @@ public class BaseWindow extends JPanel {
  */
 public BaseWindow(){
 	super();
+}
+
+public void valueChanged(TreeSelectionEvent e) {
+	// TODO Auto-generated method stub
+	return;
 }
 }
