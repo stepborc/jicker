@@ -1,4 +1,4 @@
-package org.jicker.flickrj;
+package org.jicker.flickrjbrowse;
 
 import java.io.IOException;
 import java.util.Iterator;
