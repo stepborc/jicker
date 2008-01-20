@@ -111,8 +111,7 @@ public class FBackup {
 		URL authUrl = this.flickr.getAuthInterface().buildAuthenticationUrl(
 				Permission.READ, frob);
 		// Die generierte Url ausgeben
-		System.out.println("Öffne: " + authUrl.toExternalForm()
-				+ " und bestätige mit ENTER.");
+		System.out.println(authUrl.toExternalForm());
 		// Auf Eingabe warten
 		System.in.read();
 		// Nach der Eingabe die Authentifizierung überprüfen
