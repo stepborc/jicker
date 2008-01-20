@@ -58,6 +58,7 @@ public class AuthExample {
         }
         System.out.println("frob: " + frob);
         URL url = authInterface.buildAuthenticationUrl(Permission.WRITE, frob);
+        
         System.out.println("Press return after you granted access at this URL:");
         System.out.println(url.toExternalForm());
         BufferedReader infile =
