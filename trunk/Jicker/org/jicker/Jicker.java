@@ -3,6 +3,7 @@ package org.jicker;
 import java.io.File;
 import java.util.logging.FileHandler;
 import java.util.logging.Handler;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
@@ -25,25 +26,24 @@ public class Jicker extends JickerApp {
 	 */
 	public static void main(String[] args) {
 
-        //Logger starten
-        try
-        {
-            File dir = new File(JickerGlobals.PROP_DIR);
-            if(!dir.exists())
-                dir.mkdirs();
-                        
-            Handler fh = new FileHandler(JickerGlobals.PROP_DIR + "/jicker%g.log", 50000, 5, true);
-            fh.setFormatter(new SimpleFormatter());
-            Logger.getLogger("").addHandler(fh);
-        }
-        catch(Exception ex)
-        {
-            ex.printStackTrace();
-        }
-        
-        Logger logger = Logger.getLogger("org.jicker");
+		// Logger starten
+		try {
+			File dir = new File(JickerGlobals.PROP_DIR);
+			if (!dir.exists())
+				dir.mkdirs();
 
-		
+			Handler fh = new FileHandler(JickerGlobals.PROP_DIR
+					+ "/jicker%g.log", 50000, 5, true);
+			fh.setFormatter(new SimpleFormatter());
+			Logger.getLogger("").addHandler(fh);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+
+		Logger logger = Logger.getLogger("org.jicker");
+		logger.log(Level.INFO, "Jicker gestartet.");
+		logger.info("Jicker gestartet.");
+
 		try {
 			final Jicker jicker = new Jicker();
 
