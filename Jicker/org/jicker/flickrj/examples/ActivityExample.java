@@ -39,7 +39,7 @@ public class ActivityExample {
       throws ParserConfigurationException, IOException {
         InputStream in = null;
         try {
-            in = getClass().getResourceAsStream("/setup.properties");
+            in = getClass().getResourceAsStream("setup.properties");
             properties = new Properties();
             properties.load(in);
         } finally {
