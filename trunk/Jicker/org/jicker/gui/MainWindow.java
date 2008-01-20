@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
+import javax.swing.JTextField;
 import javax.swing.JTree;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
@@ -19,12 +20,13 @@ import javax.swing.tree.TreeSelectionModel;
 public class MainWindow extends BaseWindow implements TreeSelectionListener{
 	public StatusBar aStatusBar;
 	public JTree list;
+	public JComponent panel1;
 	public MainWindow(){
         JSplitPane aSplitPanel = new JSplitPane();
         //LeftPanel aLeftPanel = new LeftPanel();
         JTabbedPane aCenterPanel = new JTabbedPane();
                 
-        JComponent panel1 = makeTextPanel("Panel #1");
+        panel1 = makeTextPanel("Panel #1");
         aCenterPanel.addTab("Photosets", panel1);
         aCenterPanel.setMnemonicAt(0, KeyEvent.VK_1);
         
@@ -62,10 +64,13 @@ public class MainWindow extends BaseWindow implements TreeSelectionListener{
 	@Override
 	public void valueChanged(TreeSelectionEvent e) {
 		// TODO Auto-generated method stub
-		
+		panel1.removeAll();
 		DefaultMutableTreeNode node = (DefaultMutableTreeNode)list.getLastSelectedPathComponent();
 		Object nodeInfo = node.getUserObject();
 		aStatusBar.setStatus(nodeInfo.toString());
+		JLabel text = new JLabel(nodeInfo.toString());
+		
+		panel1.add(text);
 		
 	}
 }

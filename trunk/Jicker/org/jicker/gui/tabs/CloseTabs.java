@@ -6,7 +6,7 @@ import java.nio.channels.ClosedByInterruptException;
 
 import javax.swing.*;
 
-import org.jicker.flickrj.PhotoBrowse;
+import org.jicker.flickrjbrowse.PhotoBrowse;
 
 public class CloseTabs {
   public static void main(String args[]) {

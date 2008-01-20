@@ -1,10 +1,11 @@
-package org.jicker.flickrj;
+package org.jicker.flickrjbrowse;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Iterator;
 
+import org.jicker.JickerGlobals;
 import org.jicker.flickrj.db4o.DbSets;
 import org.xml.sax.SAXException;
 
@@ -28,21 +29,18 @@ public class FBackup {
 	private static String backupDir;
 	private static String nsid;
 	private static String apiKey;
-	private Flickr flickr = null;
+	private Flickr flickr;;
 	private FileAuthStore authStore;
-	private Object authsDir = new File(System.getProperty("user.home")
-			+ File.separatorChar + ".flickrAuth");
+	private Object authsDir = JickerGlobals.FLICKR_AUTH_DIR;
 
 	public FBackup() throws IOException, SAXException, FlickrException {
 		this.flickr = new Flickr(apiKey);
 		if (this.authsDir != null) {
 			try {
-				this.authStore = new FileAuthStore(new File(System
-						.getProperty("user.home")
-						+ File.separatorChar + ".flickrAuth"));
+				this.authStore = new FileAuthStore(new File(JickerGlobals.FLICKR_AUTH_DIR));
+				// Logfile eintrag erstellen
 				System.out.print("Verzeichnis ");
-				System.out.print(new File(System.getProperty("user.home")
-						+ File.separatorChar + ".flickrAuth"));
+				System.out.print(JickerGlobals.FLICKR_AUTH_DIR);
 				System.out.println(" wird angelegt!");
 			} catch (IOException e) {
 				System.out.println("Userhome konnte nicht ermittelt werden.");
@@ -73,8 +71,8 @@ public class FBackup {
 		}
 
 		// Zu Testzwecken jedesmal eine neue Datenbank anlegen
-		new File("flickrDb.db4o").delete();
-		ObjectContainer db = Db4o.openFile("flickrDb.db4o");
+		new File(JickerGlobals.DATA_BASE).delete();
+		ObjectContainer db = Db4o.openFile(JickerGlobals.DATA_BASE);
 		//Kommentar schreiben
 		PhotosetsInterface pi = flickr.getPhotosetsInterface();
 		// Setsliste ermitteln und speichern
