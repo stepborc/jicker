@@ -6,6 +6,7 @@ import java.net.URL;
 import java.util.Iterator;
 
 import org.jicker.JickerGlobals;
+import org.jicker.util.OpenBrowser;
 import org.xml.sax.SAXException;
 
 import com.aetrion.flickr.Flickr;
@@ -112,6 +113,7 @@ public class FBackup {
 		String authUrlText = authUrl.toString();
 		//BarebonesTest authBrowser = new BarebonesTest(authUrlText);
 		OpenBrowser ob = new OpenBrowser(authUrlText);
+		
 		// Auf Eingabe warten
 		System.in.read();
 		// Nach der Eingabe die Authentifizierung überprüfen
