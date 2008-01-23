@@ -1,6 +1,6 @@
 package org.jicker.util;
 
-class OpenBrowser {
+public class OpenBrowser {
 	final String WIN_ID = "Win";
 
 	//public OpenBrowser(java.io.File file) {
@@ -39,7 +39,8 @@ class OpenBrowser {
 
 	private String tryCommand1() {
 		//return "C:\\Programme\\Internet Explorer\\Iexplore.exe file://";
-		return "C:\\Programme\\Internet Explorer\\Iexplore.exe ";
+		return "C:\\Programme\\Mozilla Firefox\\firefox.exe -new-window ";
+		//return "C:\\Programme\\Internet Explorer\\Iexplore.exe ";
 	}
 
 	private String tryCommand2() {
