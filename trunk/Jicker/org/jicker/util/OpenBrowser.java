@@ -3,7 +3,8 @@ package org.jicker.util;
 class OpenBrowser {
 	final String WIN_ID = "Win";
 
-	public OpenBrowser(java.io.File file) {
+	//public OpenBrowser(java.io.File file) {
+		public OpenBrowser(String file) {
 		if (isWindowsPlatform()) {
 			try {
 				Runtime.getRuntime().exec(tryCommand1() + file);
@@ -37,7 +38,8 @@ class OpenBrowser {
 	}
 
 	private String tryCommand1() {
-		return "C:\\Programme\\Internet Explorer\\Iexplore.exe file://";
+		//return "C:\\Programme\\Internet Explorer\\Iexplore.exe file://";
+		return "C:\\Programme\\Internet Explorer\\Iexplore.exe ";
 	}
 
 	private String tryCommand2() {

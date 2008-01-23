@@ -6,7 +6,6 @@ import java.net.URL;
 import java.util.Iterator;
 
 import org.jicker.JickerGlobals;
-import org.jicker.flickrj.db4o.DbSets;
 import org.xml.sax.SAXException;
 
 import com.aetrion.flickr.Flickr;
@@ -16,12 +15,10 @@ import com.aetrion.flickr.auth.Auth;
 import com.aetrion.flickr.auth.Permission;
 import com.aetrion.flickr.photos.Photo;
 import com.aetrion.flickr.photos.PhotosInterface;
-import com.aetrion.flickr.photosets.Photoset;
 import com.aetrion.flickr.photosets.PhotosetsInterface;
 import com.aetrion.flickr.util.FileAuthStore;
 import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
-import com.db4o.ObjectSet;
 
 public class FBackup {
 
@@ -112,6 +109,9 @@ public class FBackup {
 				Permission.READ, frob);
 		// Die generierte Url ausgeben
 		System.out.println(authUrl.toExternalForm());
+		String authUrlText = authUrl.toString();
+		//BarebonesTest authBrowser = new BarebonesTest(authUrlText);
+		OpenBrowser ob = new OpenBrowser(authUrlText);
 		// Auf Eingabe warten
 		System.in.read();
 		// Nach der Eingabe die Authentifizierung überprüfen
