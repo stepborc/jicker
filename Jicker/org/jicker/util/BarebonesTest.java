@@ -1,8 +1,10 @@
 package org.jicker.util;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -12,6 +14,7 @@ import org.lobobrowser.html.parser.*;
 import org.lobobrowser.html.test.*;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,7 +24,8 @@ import java.awt.*;
  */
 public class BarebonesTest {
 	public static void main(String[] args) throws Exception {
-		String uri = "http://flickr.com";
+	//public BarebonesTest(String uri) throws IOException, SAXException{
+		String uri = "http://www.flickr.com:80/services/auth?api_key=6fe409e0413a2a5e03d54c30ca6a27c4&frob=72157603781017414-bc1c84152ca76055-310345&perms=read&api_sig=44abae89be9fe6079e06d6c2bcd712cd";
 		URL url = new URL(uri);
 		URLConnection connection = url.openConnection();
 		InputStream in = connection.getInputStream();
