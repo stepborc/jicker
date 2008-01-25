@@ -1,12 +1,11 @@
 package org.jicker.gui.tabs;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.nio.channels.ClosedByInterruptException;
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
 
-import javax.swing.*;
-
-import org.jicker.flickrjbrowse.PhotoBrowse;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JTabbedPane;
 
 public class CloseTabs {
   public static void main(String args[]) {

@@ -4,20 +4,18 @@
 // Please first read the full copyright statement in file COPYRIGHT.html
 package org.jicker.gui;
 
-import java.awt.event.ActionListener;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
-import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-
-import java.awt.Dimension;
+import javax.swing.JPanel;
 
 /**
  * A classical status bar
