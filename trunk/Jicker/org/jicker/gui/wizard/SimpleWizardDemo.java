@@ -11,7 +11,7 @@ public class SimpleWizardDemo {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Class[] page = new Class[]{SimpleWizard.class,LocomotionPage.class}; 
+		Class[] page = new Class[]{SimpleWizard.class}; 
 		Wizard wizard = WizardPage.createWizard(page, WizardResultProducer.NO_OP);
 		WizardDisplayer.showWizard (wizard);
 
