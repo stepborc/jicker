@@ -1,23 +1,21 @@
 package org.jicker.util;
 
-import java.io.IOException;
+import java.awt.EventQueue;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
-import org.lobobrowser.html.*;
-import org.lobobrowser.html.gui.*;
-import org.lobobrowser.html.parser.*;
-import org.lobobrowser.html.test.*;
+import javax.swing.JFrame;
+
+import org.lobobrowser.html.HtmlRendererContext;
+import org.lobobrowser.html.gui.HtmlPanel;
+import org.lobobrowser.html.parser.DocumentBuilderImpl;
+import org.lobobrowser.html.parser.InputSourceImpl;
+import org.lobobrowser.html.test.SimpleHtmlRendererContext;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
-
-import javax.swing.*;
-import java.awt.*;
 
 /**
  * Minimal rendering example: google.com.

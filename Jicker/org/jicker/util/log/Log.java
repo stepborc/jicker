@@ -3,7 +3,11 @@ package org.jicker.util.log;
 import java.text.MessageFormat;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
-import org.apache.log4j.*;
+
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+import org.apache.log4j.MDC;
+import org.apache.log4j.Priority;
 import org.apache.log4j.xml.DOMConfigurator;
 
 public class Log

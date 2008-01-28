@@ -18,8 +18,10 @@ package org.jicker.gui.wizard.advanced.panels;
 
 import java.util.Arrays;
 import java.util.Map;
+
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
+
 import org.netbeans.spi.wizard.WizardController;
 
 /**

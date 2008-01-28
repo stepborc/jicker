@@ -8,7 +8,6 @@ import org.xml.sax.SAXException;
 
 import com.aetrion.flickr.Flickr;
 import com.aetrion.flickr.FlickrException;
-import com.aetrion.flickr.photos.Photo;
 import com.aetrion.flickr.photosets.Photoset;
 import com.aetrion.flickr.photosets.PhotosetsInterface;
 import com.db4o.ObjectContainer;

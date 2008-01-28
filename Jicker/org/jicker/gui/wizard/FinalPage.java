@@ -17,6 +17,7 @@ enclosed by brackets [] replaced by your own identifying information:
 package org.jicker.gui.wizard;
 
 import javax.swing.table.DefaultTableModel;
+
 import org.netbeans.spi.wizard.WizardPage;
 
 /**

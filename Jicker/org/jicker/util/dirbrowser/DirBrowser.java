@@ -8,10 +8,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.apache.commons.io.DirectoryWalker;
-import org.apache.commons.io.filefilter.FileFilterUtils;
-import org.apache.commons.io.filefilter.HiddenFileFilter;
 import org.apache.commons.io.filefilter.IOFileFilter;
-import org.apache.commons.io.filefilter.SuffixFileFilter;
 import org.apache.log4j.Level;
 import org.jicker.util.log.Log;
 

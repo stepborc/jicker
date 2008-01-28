@@ -1,7 +1,8 @@
 package org.jicker.gui.wizard;
 
 import java.io.File;
-import javax.swing.*;
+
+import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileFilter;
 
 public class FileChooserDemo {

@@ -1,14 +1,11 @@
 package org.jicker.jgoodies.looks;
-import com.jeta.forms.components.image.ImageComponent;
-import com.jeta.open.i18n.I18NUtils;
-import com.jgoodies.forms.layout.CellConstraints;
-import com.jgoodies.forms.layout.FormLayout;
 import java.awt.BorderLayout;
 import java.awt.ComponentOrientation;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+
 import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -18,6 +15,10 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTree;
 
 import org.jicker.gui.SetTree;
+
+import com.jeta.forms.components.image.ImageComponent;
+import com.jgoodies.forms.layout.CellConstraints;
+import com.jgoodies.forms.layout.FormLayout;
 
 
 public class MyForm extends JPanel

@@ -17,6 +17,7 @@ enclosed by brackets [] replaced by your own identifying information:
 package org.jicker.gui.wizard.advanced.panels;
 
 import java.util.Map;
+
 import org.netbeans.spi.wizard.WizardController;
 
 /**
