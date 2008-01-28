@@ -9,7 +9,7 @@ public class GetDirectory implements ActionListener {
 
 	      public void actionPerformed(ActionEvent ae)
           {
-            JFileChooser chooser = new JFileChooser();
+            JFileChooser chooser = new JFileChooser(SimpleWizard.dirName);
             chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
             int option = chooser.showOpenDialog(chooser);
 
