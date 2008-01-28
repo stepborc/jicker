@@ -16,6 +16,7 @@ import org.netbeans.spi.wizard.WizardPage;
 
 public class SimpleWizard extends WizardPage {
 	static File dirName = new File(JickerGlobals.PROP_DIR);
+	static JTextField dir;
 	public SimpleWizard() {
 		initComponents();
 	}
@@ -38,23 +39,27 @@ public class SimpleWizard extends WizardPage {
 		b1.setSelected(true);
 		add(b1);
 		
-		JRadioButton b2 = new JRadioButton("Spezial");		
+		JRadioButton b2 = new JRadioButton();		
 		bg.add(b2);
 		b2.setText("Spezial");
 		b2.setBorder(new javax.swing.border.EmptyBorder(new java.awt.Insets(0, 0, 0, 0)));
 		b2.setMargin(new java.awt.Insets(0, 0, 0, 0));
-		b2.setName("Spezial");
+		b2.setName("Standard");
 		add(b2);
 		
-		JPanel fcc = new JPanel();
+		//JPanel fcc = new JPanel();
 		
-		JTextField dir = new JTextField(dirName.getAbsolutePath().toString());
+		dir = new JTextField(dirName.getAbsolutePath().toString());
+		dir.setName("Pfad");
 		dir.setColumns(10);
 	    JButton db   = new JButton("Verzeichnis auswählen");
+	    dir.repaint();
 	    db.addActionListener(new GetDirectory());
-	    fcc.add(dir);
-	    fcc.add(db);
-		add(fcc);
+	    //fcc.add(dir);
+	    //fcc.add(db);
+		//add(fcc);
+	    add(dir);
+	    add(db);
 		
 		
 	}
