@@ -17,6 +17,7 @@ public class GetDirectory implements ActionListener {
             if(option == JFileChooser.APPROVE_OPTION)
             {
             	SimpleWizard.dirName = chooser.getSelectedFile();
+            	SimpleWizard.dir.setText(chooser.getSelectedFile().toString());
               //statusbar.setText("Sie haben folgendes Verzeichnis geöffnet: " + ((chooser.getSelectedFile()!=null)?chooser.getSelectedFile().getName():"nothing"));
             }
             else
