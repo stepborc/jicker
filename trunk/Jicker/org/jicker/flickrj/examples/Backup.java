@@ -1,8 +1,6 @@
 package org.jicker.flickrj.examples;
 
-import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -22,7 +20,6 @@ import com.aetrion.flickr.auth.Permission;
 import com.aetrion.flickr.photos.Photo;
 import com.aetrion.flickr.photos.PhotoList;
 import com.aetrion.flickr.photos.PhotosInterface;
-import com.aetrion.flickr.photos.Size;
 import com.aetrion.flickr.photosets.Photoset;
 import com.aetrion.flickr.photosets.PhotosetsInterface;
 import com.aetrion.flickr.util.AuthStore;

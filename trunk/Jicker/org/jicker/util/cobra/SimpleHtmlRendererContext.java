@@ -24,22 +24,36 @@
 package org.jicker.util.cobra;
 
 import java.awt.event.MouseEvent;
-import java.io.*;
-import java.net.*;
-import java.util.*;
+import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.Proxy;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
 
-import org.lobobrowser.html.*;
-import org.lobobrowser.html.domimpl.*;
+import org.lobobrowser.html.BrowserFrame;
+import org.lobobrowser.html.FormInput;
+import org.lobobrowser.html.HtmlObject;
+import org.lobobrowser.html.HtmlRendererContext;
+import org.lobobrowser.html.UserAgentContext;
+import org.lobobrowser.html.domimpl.FrameNode;
+import org.lobobrowser.html.domimpl.HTMLDocumentImpl;
 import org.lobobrowser.html.gui.HtmlPanel;
 import org.lobobrowser.html.parser.DocumentBuilderImpl;
 import org.lobobrowser.html.parser.InputSourceImpl;
-import org.lobobrowser.util.io.*;
-import org.lobobrowser.util.*;
-import org.w3c.dom.html2.*;
-
-import java.util.logging.*;
+import org.lobobrowser.util.Urls;
+import org.lobobrowser.util.io.RecordedInputStream;
+import org.w3c.dom.html2.HTMLCollection;
+import org.w3c.dom.html2.HTMLElement;
+import org.w3c.dom.html2.HTMLLinkElement;
 
 /**
  * The <code>SimpleHtmlRendererContext</code> class implements

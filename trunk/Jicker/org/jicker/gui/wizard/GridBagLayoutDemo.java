@@ -9,7 +9,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
-import javax.swing.ButtonGroup;
  
 class GridBagLayoutDemo 
 { 

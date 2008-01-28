@@ -3,7 +3,8 @@ package org.jicker.util.cobra;
 import java.security.Policy;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.logging.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.lobobrowser.html.HttpRequest;
 import org.lobobrowser.html.UserAgentContext;

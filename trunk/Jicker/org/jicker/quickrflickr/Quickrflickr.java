@@ -1,10 +1,7 @@
 package org.jicker.quickrflickr;
 
-import java.net.URL;
-
 import org.jtb.quickr.AuthService;
 import org.jtb.quickr.FrobResponse;
-import org.jtb.quickr.Permissions;
 import org.jtb.quickr.QuickrException;
 
 public class Quickrflickr {
