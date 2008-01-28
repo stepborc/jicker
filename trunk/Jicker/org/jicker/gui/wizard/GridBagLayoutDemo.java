@@ -1,8 +1,15 @@
 package org.jicker.gui.wizard;
 
-import java.awt.*; 
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 
-import javax.swing.*; 
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+import javax.swing.ButtonGroup;
  
 class GridBagLayoutDemo 
 { 
@@ -34,13 +41,13 @@ class GridBagLayoutDemo
  
     //                                      x  y  w  h  wx   wy 
  
-    addComponent( c, gbl, new JButton("1"), 0, 0, 2, 2, 1.0, 1.0 ); 
-    addComponent( c, gbl, new JButton("2"), 2, 0, 1, 1, 0  , 1.0 ); 
-    addComponent( c, gbl, new JButton("3"), 2, 1, 1, 1, 0  , 0   ); 
+    //addComponent( c, gbl, (Component)new ButtonGroup(), 0, 0, 2, 2, 1.0, 1.0 ); 
+    addComponent( c, gbl, new JRadioButton("1"), 2, 0, 1, 1, 0  , 1.0 ); 
+    addComponent( c, gbl, new JRadioButton("2"), 2, 1, 1, 1, 0  , 0   ); 
     addComponent( c, gbl, new JButton("4"), 0, 2, 3, 1, 0  , 1.0 ); 
     addComponent( c, gbl, new JButton("5"), 0, 3, 2, 1, 0  , 0   ); 
     addComponent( c, gbl, new JButton("6"), 0, 4, 2, 1, 0  , 0   ); 
-    addComponent( c, gbl, new JButton("7"), 2, 3, 1, 2, 0  , 0   ); 
+    addComponent( c, gbl, new JTextField("7"), 2, 3, 1, 2, 0  , 0   ); 
  
     f.setSize( 300, 200 ); 
     f.setVisible( true ); 
