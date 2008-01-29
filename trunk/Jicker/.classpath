@@ -18,5 +18,7 @@
 	<classpathentry kind="lib" path="lib/cobra.jar"/>
 	<classpathentry kind="lib" path="lib/js.jar"/>
 	<classpathentry kind="lib" path="lib/wizard.jar"/>
+	<classpathentry kind="lib" path="lib/wizard-0.1.12.jar"/>
+	<classpathentry kind="lib" path="lib/jwizz-0.1.4.jar"/>
 	<classpathentry kind="output" path=""/>
 </classpath>
