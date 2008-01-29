@@ -30,8 +30,7 @@ public class InstallWizard {
             public void wizardModelChanged(WizardModelEvent e) {}
         });
         
-        Wizard wizard = new Wizard(model, "Installation Wizard", 
-                new ImageIcon("Host24.gif"));
+        Wizard wizard = new Wizard(model, "Jicker Firststeps", new ImageIcon("jicker.gif"));
         
         wizard.pack();
         wizard.setLocationRelativeTo(null);
