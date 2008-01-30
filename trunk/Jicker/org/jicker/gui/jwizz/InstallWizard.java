@@ -12,7 +12,7 @@ import net.javaprog.ui.wizard.WizardModelListener;
 
 public class InstallWizard {
     public static void main(String[] args) {
-        DataModel data = new DataModel();
+        final DataModel data = new DataModel();
         
         WizardModel model = new DefaultWizardModel(new Step[]{
             new WelcomeStep(),
@@ -22,7 +22,8 @@ public class InstallWizard {
         });
         model.addWizardModelListener(new WizardModelListener() {
             public void wizardFinished(WizardModelEvent e) {
-                //do something with the collected data.
+            	data.getData("location");
+            	//do something with the collected data.
             }
 
             public void wizardCanceled(WizardModelEvent e) {}
@@ -35,6 +36,7 @@ public class InstallWizard {
         wizard.pack();
         wizard.setLocationRelativeTo(null);
         wizard.setVisible(true);
+        
         System.exit(0);
     }
 }
