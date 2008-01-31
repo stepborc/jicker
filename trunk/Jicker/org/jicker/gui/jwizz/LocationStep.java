@@ -1,8 +1,6 @@
 package org.jicker.gui.jwizz;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.lang.reflect.Method;
@@ -18,16 +16,17 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-import org.jicker.JickerGlobals;
-
 import net.javaprog.ui.wizard.AbstractStep;
 import net.javaprog.ui.wizard.DataModel;
 import net.javaprog.ui.wizard.DefaultDataLookup;
+
+import org.jicker.JickerGlobals;
 
 class LocationStep extends AbstractStep {
     protected DataModel data;
     protected JTextField fileTextField = new JTextField();
     protected JFileChooser fc = new JFileChooser();
+    protected JPanel inputPanel = new JPanel();
     
     public LocationStep(DataModel data) {
         super("Arbeitsverzeichnis", "Verzeichnis zum speichern der Programmeigenschaften auswählen");
@@ -43,26 +42,36 @@ class LocationStep extends AbstractStep {
         //Übergeordnete Box
         final JPanel stepComponent = new JPanel();
         stepComponent.setLayout(new BoxLayout(stepComponent, BoxLayout.PAGE_AXIS));
-        
+        stepComponent.setAlignmentX(0.0f);
+        stepComponent.setAlignmentY(0.0f);
         //Eingefügte Box mit 2 Radiobutton, vertikal
         //zweier Radiobutton gruppieren
         ButtonGroup group = new ButtonGroup();
         group.add(defaultLocationButton);
         group.add(noDefaultButton);
 
-        final JPanel radioButtonComponent = new JPanel();
+        noDefaultButton.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent e) {
+				inputPanel.setVisible(true);
+				
+			}
+        	
+        });
         
+        final JPanel radioButtonComponent = new JPanel();
         radioButtonComponent.setLayout(new BoxLayout(radioButtonComponent, BoxLayout.Y_AXIS));
-        radioButtonComponent.setAlignmentY(0.0f);
         radioButtonComponent.add(defaultLocationButton);
         radioButtonComponent.add(noDefaultButton);
+        radioButtonComponent.setAlignmentX(0.0f);
+        radioButtonComponent.setAlignmentY(0.0f);
         
         fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         
         //radioButtonComponent.add(Box.createVerticalGlue());
         //stepComponent.add(Box.createVerticalGlue());
         //JPanel inputPanel = new JPanel(new BorderLayout(5, 0));
-        JPanel inputPanel = new JPanel();
+        //JPanel inputPanel = new JPanel();
         inputPanel.setLayout(new BoxLayout(inputPanel,BoxLayout.X_AXIS));
         //inputPanel.add(new JLabel("Directory:"), BorderLayout.WEST);
         inputPanel.add(new JLabel("Directory:"));
@@ -78,6 +87,7 @@ class LocationStep extends AbstractStep {
         //inputPanel.add(browseButton, BorderLayout.EAST);
         inputPanel.add(browseButton);
         inputPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, inputPanel.getPreferredSize().height));
+        inputPanel.setVisible(false);
         stepComponent.add(radioButtonComponent);
         stepComponent.add(inputPanel);
         stepComponent.add(Box.createVerticalGlue());
