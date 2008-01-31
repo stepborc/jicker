@@ -1,0 +1,94 @@
+package org.jicker.gui.jwizz;
+
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+
+import org.jicker.JickerGlobals;
+
+import net.javaprog.ui.wizard.AbstractStep;
+import net.javaprog.ui.wizard.DataModel;
+
+public class PropertyLocationStep extends AbstractStep {
+protected DataModel data;
+protected JPanel chooseFile = new JPanel();
+
+	public PropertyLocationStep(DataModel data){
+		super("Arbeitsverzeichnis", "Einstellen des Arbeitsverzeichnis");
+		this.data = data;
+	}
+
+	@Override
+	protected JComponent createComponent() {
+		//Top JPanel
+		JPanel chooseDirectory = new JPanel();
+		//BoxLayout chooseDirectoryLayout = new BoxLayout(chooseDirectory, 0);
+		chooseDirectory.setLayout(new BoxLayout(chooseDirectory, BoxLayout.Y_AXIS));
+		chooseDirectory.add(Box.createVerticalGlue());		
+		
+		//Panel mit GridLayout fuer Radiobutton
+		GridLayout buttonLayout = new GridLayout(2,0);
+		JPanel buttonPanel = new JPanel();
+		buttonPanel.setLayout(buttonLayout);
+		
+		JRadioButton defaultDirectory = new JRadioButton("Standardverzeichnis " + JickerGlobals.PROP_DIR, true);
+		defaultDirectory.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent e) {
+				chooseFile.setVisible(false);
+				
+			}
+			
+		});
+		
+		JRadioButton noDefaultDirectory = new JRadioButton("Freie Wahl");
+		noDefaultDirectory.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent e) {
+				chooseFile.setVisible(true);		
+			}
+		});
+		
+		
+		ButtonGroup buttonGroup = new ButtonGroup();
+		buttonGroup.add(defaultDirectory);
+		buttonGroup.add(noDefaultDirectory);
+		
+		buttonPanel.add(defaultDirectory);
+		buttonPanel.add(noDefaultDirectory);
+		
+		//JPanel chooseFile = new JPanel();
+		chooseFile.setLayout(new BoxLayout(chooseFile, BoxLayout.X_AXIS));
+		JLabel label = new JLabel("Verzeichnis");
+		JTextField dirName = new JTextField();
+		JButton dirButton = new JButton("Öffnen");
+		
+		chooseFile.add(label);
+		chooseFile.add(dirName);
+		chooseFile.add(dirButton);
+		chooseFile.setMaximumSize(new Dimension(Integer.MAX_VALUE, chooseFile.getPreferredSize().height));
+		chooseFile.setVisible(false);
+		//hinzufuegen der Panel zum Top Panel
+		chooseDirectory.add(buttonPanel);
+		chooseDirectory.add(chooseFile);
+		chooseDirectory.add(Box.createVerticalGlue());
+		return chooseDirectory;
+	}
+
+	public void prepareRendering() {
+		//Nothing to do
+
+	}
+
+}

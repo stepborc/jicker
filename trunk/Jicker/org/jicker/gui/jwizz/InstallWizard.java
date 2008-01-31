@@ -17,7 +17,7 @@ public class InstallWizard {
         WizardModel model = new DefaultWizardModel(new Step[]{
             new WelcomeStep(),
             new LicenseStep(),
-            new LocationStep(data),
+            new PropertyLocationStep(data),
             new FinishStep()
         });
         model.addWizardModelListener(new WizardModelListener() {
