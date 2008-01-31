@@ -55,7 +55,7 @@ class LicenseStep extends AbstractStep {
     public void prepareRendering() {
         try {
             BufferedReader reader = new BufferedReader(
-                new FileReader("../../../LICENSE"));
+                new FileReader("lib/LICENSE Commons IO.txt"));
             String line;
             while ((line = reader.readLine()) != null) {
                 licenseArea.append(line + "\r\n");

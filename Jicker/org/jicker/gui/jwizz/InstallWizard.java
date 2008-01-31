@@ -22,8 +22,8 @@ public class InstallWizard {
         });
         model.addWizardModelListener(new WizardModelListener() {
             public void wizardFinished(WizardModelEvent e) {
-            	data.getData("location");
             	//do something with the collected data.
+            	System.out.println(data.getData("location"));
             }
 
             public void wizardCanceled(WizardModelEvent e) {}
@@ -32,11 +32,10 @@ public class InstallWizard {
         });
         
         Wizard wizard = new Wizard(model, "Jicker Firststeps", new ImageIcon("jicker.gif"));
-        
+
         wizard.pack();
         wizard.setLocationRelativeTo(null);
         wizard.setVisible(true);
-        
         System.exit(0);
     }
 }
