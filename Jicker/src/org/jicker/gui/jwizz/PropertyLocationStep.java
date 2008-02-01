@@ -10,6 +10,7 @@ import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
@@ -21,23 +22,26 @@ import net.javaprog.ui.wizard.DataModel;
 import org.jicker.JickerGlobals;
 
 public class PropertyLocationStep extends AbstractStep {
-protected DataModel data;
-protected JPanel chooseFile = new JPanel();
+	protected DataModel data;
+	protected JPanel chooseFile = new JPanel();
+	private JPanel chooseDirectory;
+	private JTextField dirName;
+	protected JFileChooser fc = new JFileChooser();
 
-	public PropertyLocationStep(DataModel data){
+	public PropertyLocationStep(DataModel data) {
 		super("Arbeitsverzeichnis", "Einstellen des Arbeitsverzeichnis");
 		this.data = data;
 	}
 
 	@Override
 	protected JComponent createComponent() {
-		//Top JPanel
-		JPanel chooseDirectory = new JPanel();
-		//BoxLayout chooseDirectoryLayout = new BoxLayout(chooseDirectory, 0);
+		// Top JPanel
+		chooseDirectory = new JPanel();
+		// BoxLayout chooseDirectoryLayout = new BoxLayout(chooseDirectory, 0);
 		chooseDirectory.setLayout(new BoxLayout(chooseDirectory, BoxLayout.Y_AXIS));
 		chooseDirectory.add(Box.createVerticalGlue());		
 		
-		//Panel mit GridLayout fuer Radiobutton
+		// Panel mit GridLayout fuer Radiobutton
 		GridLayout buttonLayout = new GridLayout(2,0);
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setLayout(buttonLayout);
@@ -69,18 +73,26 @@ protected JPanel chooseFile = new JPanel();
 		buttonPanel.add(defaultDirectory);
 		buttonPanel.add(noDefaultDirectory);
 		
-		//JPanel chooseFile = new JPanel();
+		// JPanel chooseFile = new JPanel();
 		chooseFile.setLayout(new BoxLayout(chooseFile, BoxLayout.X_AXIS));
+		fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 		JLabel label = new JLabel("Verzeichnis");
-		JTextField dirName = new JTextField();
+		dirName = new JTextField();
 		JButton dirButton = new JButton("Öffnen");
 		
+		dirButton.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+                if (fc.showOpenDialog(chooseDirectory) == JFileChooser.APPROVE_OPTION) {
+                    dirName.setText(fc.getSelectedFile().getPath());
+                }
+            }
+        });
 		chooseFile.add(label);
 		chooseFile.add(dirName);
 		chooseFile.add(dirButton);
 		chooseFile.setMaximumSize(new Dimension(Integer.MAX_VALUE, chooseFile.getPreferredSize().height));
 		chooseFile.setVisible(false);
-		//hinzufuegen der Panel zum Top Panel
+		// hinzufuegen der Panel zum Top Panel
 		chooseDirectory.add(buttonPanel);
 		chooseDirectory.add(chooseFile);
 		chooseDirectory.add(Box.createVerticalGlue());
@@ -88,7 +100,7 @@ protected JPanel chooseFile = new JPanel();
 	}
 
 	public void prepareRendering() {
-		//Nothing to do
+		// Nothing to do
 
 	}
 
