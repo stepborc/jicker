@@ -15,10 +15,10 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-import org.jicker.JickerGlobals;
-
 import net.javaprog.ui.wizard.AbstractStep;
 import net.javaprog.ui.wizard.DataModel;
+
+import org.jicker.JickerGlobals;
 
 public class PropertyLocationStep extends AbstractStep {
 protected DataModel data;

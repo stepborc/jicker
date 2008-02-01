@@ -1,7 +1,10 @@
 package org.jicker.gui.jwizz;
 
-import javax.swing.*;
-import net.javaprog.ui.wizard.*;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import net.javaprog.ui.wizard.AbstractStep;
 
 class WelcomeStep extends AbstractStep {
     public WelcomeStep() {
