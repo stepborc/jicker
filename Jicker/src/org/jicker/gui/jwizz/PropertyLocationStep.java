@@ -41,6 +41,7 @@ protected JPanel chooseFile = new JPanel();
 		GridLayout buttonLayout = new GridLayout(2,0);
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setLayout(buttonLayout);
+		buttonPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, buttonPanel.getPreferredSize().height));
 		
 		JRadioButton defaultDirectory = new JRadioButton("Standardverzeichnis " + JickerGlobals.PROP_DIR, true);
 		defaultDirectory.addActionListener(new ActionListener(){
