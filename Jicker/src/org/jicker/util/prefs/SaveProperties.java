@@ -3,33 +3,32 @@ package org.jicker.util.prefs;
 import java.io.*;
 import java.util.*;
 
-class SaveProperties
-{
-  public static void main( String args[] )
-  {
-   String filename = "properties.txt";
-    try
-    {
-      FileOutputStream propOutFile =
-         new FileOutputStream( filename );
+import org.jicker.JickerGlobals;
 
-      Properties p1 = new Properties( System.getProperties() );
+class SaveProperties {
+	public static void main(String args[]) {
+		FileOutputStream writer = null;
 
-      p1.setProperty( "MeinNameIst", "Forest Gump" );
-      p1.store( propOutFile, "Eine Insel mit zwei Bergen" );
+		try {
+			writer = new FileOutputStream("/jickerprop.xml");
 
-      FileInputStream propInFile = new FileInputStream( filename );
+			Properties p1 = new Properties(System.getProperties());
+			p1.setProperty("JickerHome", JickerGlobals.DATA_BASE
+					+ JickerGlobals.SEP + ".jicker");
+			p1.storeToXML(writer, "Jicker Properties");
 
-      Properties p2 = new Properties();
-      p2.load( propInFile );
+			FileInputStream reader = new FileInputStream("/jickerprop.xml");
 
-      p2.list( System.out );
-     }
-     catch ( FileNotFoundException e ) {
-       System.err.println( "Can’t find " + filename );
-     }
-     catch ( IOException e ) {
-       System.err.println( "I/O failed." );
-     }
-  }
+			Properties p2 = new Properties();
+			p2.loadFromXML(reader);
+			p2.list(System.out);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				writer.close();
+			} catch (IOException e) {
+			}
+		}
+	}
 }
