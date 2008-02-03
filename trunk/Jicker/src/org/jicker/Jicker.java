@@ -9,6 +9,7 @@ import java.util.logging.SimpleFormatter;
 
 import org.jicker.gui.JickerApp;
 import org.jicker.gui.MainWindow;
+import org.jicker.util.prefs.SaveProperties;
 
 @SuppressWarnings("serial")
 public class Jicker extends JickerApp {
@@ -43,7 +44,8 @@ public class Jicker extends JickerApp {
 		Logger logger = Logger.getLogger("org.jicker");
 		logger.log(Level.INFO, "Jicker gestartet.");
 		logger.info("Jicker gestartet.");
-
+		//Property starten
+		JickerGlobals jg = new JickerGlobals(); 
 		try {
 			final Jicker jicker = new Jicker();
 

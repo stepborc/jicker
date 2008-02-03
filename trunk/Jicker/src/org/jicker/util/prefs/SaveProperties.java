@@ -5,28 +5,28 @@ import java.util.*;
 
 import org.jicker.JickerGlobals;
 
-class SaveProperties {
-	public static void main(String args[]) {
-		FileOutputStream writer = null;
+public class SaveProperties {
+	FileOutputStream propertyFile;
+
+	public SaveProperties(Properties property) {
 
 		try {
-			writer = new FileOutputStream("/jickerprop.xml");
+			propertyFile = new FileOutputStream(JickerGlobals.PROP_DIR
+					+ JickerGlobals.SEP + JickerGlobals.PROP_FILE);
 
-			Properties p1 = new Properties(System.getProperties());
-			p1.setProperty("JickerHome", JickerGlobals.DATA_BASE
-					+ JickerGlobals.SEP + ".jicker");
-			p1.storeToXML(writer, "Jicker Properties");
+			//property.setProperty("JickerHome", JickerGlobals.DATA_BASE
+			//		+ JickerGlobals.SEP + ".jicker");
+			property.storeToXML(propertyFile, "Jicker Properties");
 
-			FileInputStream reader = new FileInputStream("/jickerprop.xml");
-
-			Properties p2 = new Properties();
-			p2.loadFromXML(reader);
-			p2.list(System.out);
+		} catch (FileNotFoundException e1) {
+			System.out.println("Property-Datei nicht gefunden.");
+			e1.printStackTrace();
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			try {
-				writer.close();
+				propertyFile.close();
 			} catch (IOException e) {
 			}
 		}

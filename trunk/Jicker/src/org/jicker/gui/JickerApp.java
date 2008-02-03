@@ -49,6 +49,7 @@ public class JickerApp extends JFrame {
 	            //UIManager.setLookAndFeel("com.jgoodies.looks.windows.WindowsLookAndFeel");
 	            UIManager.setLookAndFeel("com.jgoodies.looks.plastic.PlasticLookAndFeel");
 	         } catch (Exception e) {setLookAndFeel(false);}
+	         
 	}
 	   public void setLookAndFeel(boolean appIsRunning) {
 	        boolean lf = false;
