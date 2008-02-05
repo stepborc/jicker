@@ -24,5 +24,6 @@
 			<attribute name="javadoc_location" value="jar:platform:/resource/Jicker/lib/jwizz-0.1.4_docs.zip!/jwizz-0.1.4/doc/api"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
