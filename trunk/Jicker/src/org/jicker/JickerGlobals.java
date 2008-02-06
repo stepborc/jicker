@@ -1,7 +1,8 @@
 package org.jicker;
 
 import java.util.Properties;
-import org.jicker.util.prefs.*;
+
+import org.jicker.util.properties.*;
 
 public class JickerGlobals {
 	
