@@ -9,7 +9,7 @@ import java.util.logging.SimpleFormatter;
 
 import org.jicker.gui.JickerApp;
 import org.jicker.gui.MainWindow;
-import org.jicker.util.prefs.SaveProperties;
+import org.jicker.util.properties.SaveProperties;
 
 @SuppressWarnings("serial")
 public class Jicker extends JickerApp {
