@@ -9,6 +9,7 @@ import java.util.logging.SimpleFormatter;
 
 import org.jicker.gui.JickerApp;
 import org.jicker.gui.MainWindow;
+import org.jicker.gui.jwizz.InstallWizard;
 import org.jicker.util.properties.SaveProperties;
 
 @SuppressWarnings("serial")
@@ -44,8 +45,11 @@ public class Jicker extends JickerApp {
 		Logger logger = Logger.getLogger("org.jicker");
 		logger.log(Level.INFO, "Jicker gestartet.");
 		logger.info("Jicker gestartet.");
-		//Property starten
-		JickerGlobals jg = new JickerGlobals(); 
+		// Property starten
+		// JickerGlobals jg = new JickerGlobals();
+		if (!new File("jicker.properties").exists()) {
+			InstallWizard.main(args);
+		}
 		try {
 			final Jicker jicker = new Jicker();
 

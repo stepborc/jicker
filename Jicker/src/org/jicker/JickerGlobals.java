@@ -26,13 +26,13 @@ public class JickerGlobals {
 	
 	
 
-	public JickerGlobals() {
+	/*public JickerGlobals() {
 		Properties p = new Properties();
 		p.setProperty("dataHome", DATA_BASE);
 		p.setProperty("FlickrAuth", FLICKR_AUTH_DIR);
-		SaveProperties sp = new SaveProperties(p);
+		final SaveProperties sp = new SaveProperties(p);
 		
-	}
+	}*/
 	
 	//p.setProperties("dataHome",DATA_BASE);
 }
