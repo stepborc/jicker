@@ -1,5 +1,8 @@
 package org.jicker.gui.jwizz;
 
+import java.io.File;
+import java.io.IOException;
+
 import javax.swing.ImageIcon;
 
 import net.javaprog.ui.wizard.DataModel;
@@ -22,8 +25,13 @@ public class InstallWizard {
         });
         model.addWizardModelListener(new WizardModelListener() {
             public void wizardFinished(WizardModelEvent e) {
-            	//do something with the collected data.
+            	//Irgendetwas mit den Daten aus den Klassen tun
             	System.out.println(data.getData("location"));
+            	try {
+					new File("jicker.properties").createNewFile();
+				} catch (IOException e1) {
+					System.out.println("jicker.properties konnte nicht angelegt werden.");
+				}
             }
 
             public void wizardCanceled(WizardModelEvent e) {}
@@ -36,6 +44,7 @@ public class InstallWizard {
         wizard.pack();
         wizard.setLocationRelativeTo(null);
         wizard.setVisible(true);
-        System.exit(0);
+        wizard.dispose();
+        //System.exit(0);
     }
 }

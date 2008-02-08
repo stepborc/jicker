@@ -3,6 +3,7 @@ package org.jicker.gui;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeNode;
 
+import org.jicker.JickerGlobals;
 import org.jicker.flickrj.db4o.DbPhotos;
 import org.jicker.flickrj.db4o.DbSets;
 
@@ -16,7 +17,7 @@ public class SetTree{
 	}
 	public static TreeNode createTree(){
 		DefaultMutableTreeNode tree = new DefaultMutableTreeNode("Alben");
-		ObjectContainer db = Db4o.openFile("flickrDb.db4o");
+		ObjectContainer db = Db4o.openFile(JickerGlobals.DATA_BASE);
 		// Datenbank auslesen
 		ObjectSet<DbSets> setlist = db.get(DbSets.class);
 		DbSets s = null;
