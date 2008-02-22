@@ -17,7 +17,7 @@ public class JickerGlobals {
 	// The application's install dir
 	public static final String USER_DIR = System.getProperty("user.dir");
 	// location of default database
-	public static final String DATA_BASE = PROP_DIR + SEP + "jicker.db4o";
+	public static final String DATA_BASE = PROP_DIR + SEP + "jicker.yap";
 	// location of flickr authentification store 
 	//public static final String FLICKR_AUTH = PROP_FILE;
 	public static final String FLICKR_AUTH_DIR = PROP_DIR;
