@@ -27,22 +27,15 @@ public class DbSets {
 		this.url = set.getUrl();
 	}
 
-	public String getTitle() {
-		return title;
-	}
-
 	public String getId() {
 		return id;
 	}
-
 	public String getPrimaryPhoto() {
 		return primaryPhoto;
 	}
-
 	public String getSecrect() {
 		return secrect;
-	}
-
+	}	
 	public String getServer() {
 		return server;
 	}
@@ -54,7 +47,9 @@ public class DbSets {
 	public int getPhotoCount() {
 		return photoCount;
 	}
-
+	public String getTitle() {
+		return title;
+	}
 	public String getDescription() {
 		return description;
 	}
