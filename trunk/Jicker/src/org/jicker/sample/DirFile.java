@@ -16,7 +16,7 @@ public class DirFile {
 	 */
 	public static void main(String[] args) {
 		 new File("dirfile.db4o").delete();
-		ObjectContainer db = Db4o.openFile("dirfile.db4o");
+		ObjectContainer db = Db4o.openFile("dirfile.yap");
 		File dir = new File("e:/bilder/");
 		JickerFilter filter = new JickerFilter();
 		// Aufruf des DirBrowser mit Angabe des Verzeichnisses und den
