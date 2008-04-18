@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package org.jicker.util.cobra;
 
 import java.awt.BorderLayout;
@@ -29,18 +32,37 @@ import org.lobobrowser.html.parser.InputSourceImpl;
 import org.lobobrowser.util.io.IORoutines;
 import org.w3c.dom.Document;
 
+// TODO: Auto-generated Javadoc
 /**
  * Parser-only test frame.
  */
 public class ParserTest extends JFrame {
+	
+	/** The Constant logger. */
 	private static final Logger logger = Logger.getLogger(ParserTest.class.getName());
+	
+	/** The tree. */
 	private final JTree tree;
+	
+	/** The text area. */
 	private final JTextArea textArea;
 	
+	/**
+	 * Instantiates a new parser test.
+	 * 
+	 * @throws HeadlessException the headless exception
+	 */
 	public ParserTest() throws HeadlessException {
 		this("HTML Parser-Only Test Tool");
 	}
 	
+	/**
+	 * Instantiates a new parser test.
+	 * 
+	 * @param title the title
+	 * 
+	 * @throws HeadlessException the headless exception
+	 */
 	public ParserTest(String title) throws HeadlessException {
 		super(title);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -84,6 +106,11 @@ public class ParserTest extends JFrame {
 	}
 	
 
+	/**
+	 * Process.
+	 * 
+	 * @param uri the uri
+	 */
 	private void process(String uri) {
 		try {
 			URL url;
@@ -135,6 +162,11 @@ public class ParserTest extends JFrame {
 		}
 	}
 
+	/**
+	 * The main method.
+	 * 
+	 * @param args the arguments
+	 */
 	public static void main(String[] args) {
 		ParserTest frame = new ParserTest();
 		frame.setSize(800, 400);

@@ -23,25 +23,35 @@ import org.netbeans.spi.wizard.WizardController;
 import org.netbeans.spi.wizard.WizardPanelProvider;
 
 
+// TODO: Auto-generated Javadoc
 /**
  * Defines the first two panes of the wizard.  The second one is where the
  * user decides what comes next.
- *
+ * 
  * @author Timothy Boudreau
  */
  class InitialSteps extends WizardPanelProvider {
+    
+    /** The Constant ANIMAL_LOVER. */
     private static final String ANIMAL_LOVER = "animalLover";
+    
+    /** The Constant WHICH_ANIMAL. */
     private static final String WHICH_ANIMAL = "whichAnimal";
+    
+    /** The Constant STEP_0_PROBLEM. */
     private static final String STEP_0_PROBLEM = "Only animal lovers can complete this wizard";
 
     /**
-     * Creates a new instance of InitialSteps
+     * Creates a new instance of InitialSteps.
      */
     InitialSteps () {
         super( "New Pet Wizard", new String[] { ANIMAL_LOVER, WHICH_ANIMAL },
             new String[] { "Select basic preferences", "Choose a species" } );
     }
 
+    /* (non-Javadoc)
+     * @see org.netbeans.spi.wizard.WizardPanelProvider#createPanel(org.netbeans.spi.wizard.WizardController, java.lang.String, java.util.Map)
+     */
     protected JComponent createPanel (final WizardController controller,
         final String id, final Map data) {
         

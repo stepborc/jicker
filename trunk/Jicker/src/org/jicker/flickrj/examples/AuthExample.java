@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package org.jicker.flickrj.examples;
 
 import java.io.BufferedReader;
@@ -20,6 +23,7 @@ import com.aetrion.flickr.auth.AuthInterface;
 import com.aetrion.flickr.auth.Permission;
 import com.aetrion.flickr.util.IOUtilities;
 
+// TODO: Auto-generated Javadoc
 /**
  * Demonstrates the authentication-process.<p>
  * 
@@ -30,12 +34,29 @@ import com.aetrion.flickr.util.IOUtilities;
  * @version $Id: AuthExample.java,v 1.4 2007/12/01 00:05:34 x-mago Exp $
  */
 public class AuthExample {
+    
+    /** The f. */
     Flickr f;
+    
+    /** The request context. */
     RequestContext requestContext;
+    
+    /** The frob. */
     String frob = "";
+    
+    /** The token. */
     String token = "";
+    
+    /** The properties. */
     Properties properties = null;
 
+    /**
+     * Instantiates a new auth example.
+     * 
+     * @throws ParserConfigurationException the parser configuration exception
+     * @throws IOException Signals that an I/O exception has occurred.
+     * @throws SAXException the SAX exception
+     */
     public AuthExample() throws ParserConfigurationException, IOException, SAXException {
         InputStream in = null;
         try {
@@ -79,6 +100,11 @@ public class AuthExample {
         }
     }
 
+    /**
+     * The main method.
+     * 
+     * @param args the arguments
+     */
     public static void main(String[] args) {
         try {
             AuthExample t = new AuthExample();

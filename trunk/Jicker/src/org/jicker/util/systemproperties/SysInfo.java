@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package org.jicker.util.systemproperties;
 
 import java.awt.Container;
@@ -8,9 +11,16 @@ import java.util.Properties;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class SysInfo.
+ */
 @SuppressWarnings("serial")
 public class SysInfo extends JFrame {
 
+	/**
+	 * Instantiates a new sys info.
+	 */
 	public SysInfo(){
 		super("Ein einfacher Frame");
 		addWindowListener(new WindowClosingAdapter(true));
@@ -29,8 +39,11 @@ public class SysInfo extends JFrame {
 		}
 
 	}
+	
 	/**
-	 * @param args
+	 * The main method.
+	 * 
+	 * @param args the args
 	 */
 	public static void main(String[] args) {
 		SysInfo sysinfo = new SysInfo();

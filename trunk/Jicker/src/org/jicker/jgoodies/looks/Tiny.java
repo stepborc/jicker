@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package org.jicker.jgoodies.looks;
 
 /*
@@ -55,13 +58,14 @@ import com.jgoodies.looks.LookUtils;
 import com.jgoodies.looks.Options;
 
 
+// TODO: Auto-generated Javadoc
 /**
- * The main class of the JGoodies Tiny application. 
+ * The main class of the JGoodies Tiny application.
  * It configures the UI, builds the main frame and opens it.<p>
  * 
  * The JGoodies Looks Professional comes with Skeleton, a much better sample
  * application that separates concerns and uses a scalable architecture.
- *
+ * 
  * @author Karsten Lentzsch
  * @version $Revision: 1.3 $
  */
@@ -69,6 +73,8 @@ public final class Tiny {
 
     /**
      * Configures the UI, then builds and opens the UI.
+     * 
+     * @param args the args
      */
     public static void main(String[] args) {
         Tiny instance = new Tiny();
@@ -77,7 +83,7 @@ public final class Tiny {
     }
 
     /**
-     * Configures the UI; tries to set the system look on Mac, 
+     * Configures the UI; tries to set the system look on Mac,
      * <code>WindowsLookAndFeel</code> on general Windows, and
      * <code>Plastic3DLookAndFeel</code> on Windows XP and all other OS.<p>
      * 
@@ -119,6 +125,8 @@ public final class Tiny {
 
     /**
      * Locates the frame on the screen center.
+     * 
+     * @param frame the frame
      */
     private void locateOnScreen(Frame frame) {
         Dimension paneSize   = frame.getSize();
@@ -130,6 +138,8 @@ public final class Tiny {
 
     /**
      * Builds and answers the menu bar.
+     * 
+     * @return the j menu bar
      */
     private JMenuBar buildMenuBar() {
         JMenu menu;
@@ -155,6 +165,8 @@ public final class Tiny {
 
     /**
      * Builds and answers the content pane.
+     * 
+     * @return the j component
      */
     private JComponent buildContentPane() {
         JPanel panel = new JPanel(new BorderLayout());
@@ -166,6 +178,8 @@ public final class Tiny {
 
     /**
      * Builds and answers the tool bar.
+     * 
+     * @return the component
      */
     private Component buildToolBar() {
         JToolBar toolBar = new JToolBar();
@@ -177,6 +191,8 @@ public final class Tiny {
 
     /**
      * Builds and answers the split panel.
+     * 
+     * @return the component
      */
     private Component buildSplitPane() {
         JSplitPane splitPane =
@@ -189,6 +205,8 @@ public final class Tiny {
 
     /**
      * Builds and answers the side bar.
+     * 
+     * @return the component
      */
     private Component buildSideBar() {
         return createStrippedScrollPane(new JTree());
@@ -196,6 +214,8 @@ public final class Tiny {
 
     /**
      * Builds and answers the main panel.
+     * 
+     * @return the component
      */
     private Component buildMainPanel() {
         JEditorPane editor = new JEditorPane();
@@ -206,6 +226,8 @@ public final class Tiny {
 
     /**
      * Builds and answers the tool bar.
+     * 
+     * @return the component
      */
     private Component buildStatusBar() {
         JPanel statusBar = new JPanel(new BorderLayout());
@@ -217,6 +239,10 @@ public final class Tiny {
 
     /**
      * Creates and answers a <code>JScrollpane</code> that has no border.
+     * 
+     * @param c the c
+     * 
+     * @return the j scroll pane
      */
     private JScrollPane createStrippedScrollPane(Component c) {
         JScrollPane scrollPane = new JScrollPane(c);
@@ -227,6 +253,10 @@ public final class Tiny {
     /**
      * Creates and answers a <code>JLabel</code> that has the text
      * centered and that is wrapped with an empty border.
+     * 
+     * @param text the text
+     * 
+     * @return the component
      */
     private Component createCenteredLabel(String text) {
         JLabel label = new JLabel(text);

@@ -19,18 +19,25 @@ import org.jicker.gui.wizard.advanced.panels.DogTempermentPanel;
 import org.netbeans.spi.wizard.WizardController;
 import org.netbeans.spi.wizard.WizardPanelProvider;
 
+// TODO: Auto-generated Javadoc
 /**
- *
+ * The Class DogLoversSteps.
+ * 
  * @author Timothy Boudreau
  */
 public class DogLoversSteps extends WizardPanelProvider {
     
-    /** Creates a new instance of DogLoversSteps */
+    /**
+     * Creates a new instance of DogLoversSteps.
+     */
     public DogLoversSteps() {
         super (new String[] { "temperment", "size" },
                new String[] { "Select Temperment", "Choose size" });
     }
     
+    /* (non-Javadoc)
+     * @see org.netbeans.spi.wizard.WizardPanelProvider#createPanel(org.netbeans.spi.wizard.WizardController, java.lang.String, java.util.Map)
+     */
     protected JComponent createPanel(WizardController controller, String id, Map collectedData) {
         switch (indexOfStep(id)) {
             case 0 :

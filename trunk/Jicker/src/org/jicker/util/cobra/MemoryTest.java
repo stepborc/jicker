@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package org.jicker.util.cobra;
 
 import java.awt.BorderLayout;
@@ -30,6 +33,7 @@ import org.lobobrowser.html.renderer.RenderableSpot;
 import org.lobobrowser.util.io.IORoutines;
 import org.w3c.dom.Document;
 
+// TODO: Auto-generated Javadoc
 /**
  * Checks for memory leaks.
  */
@@ -38,10 +42,15 @@ public class MemoryTest {
 	// - 500K file with fairly complex markup.
 	// - 1.5M file with simple markup.
 	
+	/** The Constant logger. */
 	private static final Logger logger = Logger.getLogger(MemoryTest.class.getName());
 	
 	/**
-	 * @param args
+	 * The main method.
+	 * 
+	 * @param args the args
+	 * 
+	 * @throws Exception the exception
 	 */
 	public static void main(String[] args) throws Exception {
 		MemoryTest mt = new MemoryTest();
@@ -50,8 +59,14 @@ public class MemoryTest {
 		mt.testRendererGUILoop();
 	}
 
+	/** The TES t_ url. */
 	private static String TEST_URL = "file:c:\\temp\\html\\long.html";
 	
+	/**
+	 * Test parser loop.
+	 * 
+	 * @throws Exception the exception
+	 */
 	public void testParserLoop() throws Exception {
 		URL url = new URL(TEST_URL);
 		URLConnection connection = url.openConnection();
@@ -87,6 +102,11 @@ public class MemoryTest {
 		}				
 	}
 
+	/**
+	 * Test renderer loop.
+	 * 
+	 * @throws Exception the exception
+	 */
 	public void testRendererLoop() throws Exception {
 		URL url = new URL(TEST_URL);
 		URLConnection connection = url.openConnection();
@@ -139,6 +159,11 @@ public class MemoryTest {
 		}				
 	}
 	
+	/**
+	 * Test renderer gui loop.
+	 * 
+	 * @throws Exception the exception
+	 */
 	public void testRendererGUILoop() throws Exception {
 		URL url = new URL(TEST_URL);
 		URLConnection connection = url.openConnection();
@@ -189,70 +214,133 @@ public class MemoryTest {
 		}				
 	}
 
+	/**
+	 * The Class LocalRenderableContainer.
+	 */
 	private class LocalRenderableContainer implements RenderableContainer {
+		
+		/* (non-Javadoc)
+		 * @see org.lobobrowser.html.renderer.RenderableContainer#invalidateLayoutUpTree()
+		 */
 		public void invalidateLayoutUpTree() {
 			// nop
 		}
 		
+		/* (non-Javadoc)
+		 * @see org.lobobrowser.html.renderer.RenderableContainer#addComponent(java.awt.Component)
+		 */
 		public Component addComponent(Component component) {
 			//nop
 			return null;
 		}
 		
+		/**
+		 * Removes the.
+		 * 
+		 * @param c the c
+		 */
 		public void remove(Component c) {
 			// nop
 		}
 
+		/* (non-Javadoc)
+		 * @see org.lobobrowser.html.renderer.RenderableContainer#getPaintedBackgroundColor()
+		 */
 		public Color getPaintedBackgroundColor() {
 			return Color.BLACK;
 		}
 
+		/**
+		 * Gets the insets.
+		 * 
+		 * @return the insets
+		 */
 		public Insets getInsets() {
 			return new Insets(0, 0, 0, 0);
 		}
 
+		/* (non-Javadoc)
+		 * @see org.lobobrowser.html.renderer.RenderableContainer#repaint(int, int, int, int)
+		 */
 		public void repaint(int x, int y, int width, int height) {
 		}
 
+		/* (non-Javadoc)
+		 * @see org.lobobrowser.html.renderer.RenderableContainer#relayout()
+		 */
 		public void relayout() {
 			// nop
 		}
 
+		/* (non-Javadoc)
+		 * @see org.lobobrowser.html.renderer.RenderableContainer#updateAllWidgetBounds()
+		 */
 		public void updateAllWidgetBounds() {
 			// nop
 		}
 
+		/* (non-Javadoc)
+		 * @see org.lobobrowser.html.renderer.RenderableContainer#getGUIPoint(int, int)
+		 */
 		public Point getGUIPoint(int clientX, int clientY) {
 			return new Point(clientX, clientY);
 		}
 
+		/* (non-Javadoc)
+		 * @see org.lobobrowser.html.renderer.RenderableContainer#focus()
+		 */
 		public void focus() {
 			//nop
 		}
 
+		/* (non-Javadoc)
+		 * @see org.lobobrowser.html.renderer.RenderableContainer#addDelayedPair(org.lobobrowser.html.renderer.DelayedPair)
+		 */
 		public void addDelayedPair(DelayedPair pair) {
 			//nop
 		}
 
+		/* (non-Javadoc)
+		 * @see org.lobobrowser.html.renderer.RenderableContainer#getParentContainer()
+		 */
 		public RenderableContainer getParentContainer() {
 			return null;
 		}
 
+		/* (non-Javadoc)
+		 * @see org.lobobrowser.html.renderer.RenderableContainer#getDelayedPairs()
+		 */
 		public Collection getDelayedPairs() {
 			return null;
 		}
 
+		/* (non-Javadoc)
+		 * @see org.lobobrowser.html.renderer.RenderableContainer#clearDelayedPairs()
+		 */
 		public void clearDelayedPairs() {
 		}	
 	}
 	
+	/**
+	 * The Class LocalFrameContext.
+	 */
 	private class LocalFrameContext implements FrameContext {
+		
+		/* (non-Javadoc)
+		 * @see org.lobobrowser.html.renderer.FrameContext#expandSelection(org.lobobrowser.html.renderer.RenderableSpot)
+		 */
 		public void expandSelection(RenderableSpot rpoint) {
 		}
 
+		/* (non-Javadoc)
+		 * @see org.lobobrowser.html.renderer.FrameContext#resetSelection(org.lobobrowser.html.renderer.RenderableSpot)
+		 */
 		public void resetSelection(RenderableSpot rpoint) {
 		}
 
+		/* (non-Javadoc)
+		 * @see org.lobobrowser.html.renderer.FrameContext#delayedRelayout(org.lobobrowser.html.domimpl.NodeImpl)
+		 */
 		public void delayedRelayout(NodeImpl node) {
 		}
 	}

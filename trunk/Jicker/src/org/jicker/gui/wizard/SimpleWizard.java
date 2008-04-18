@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package org.jicker.gui.wizard;
 
 import java.awt.GridLayout;
@@ -12,17 +15,37 @@ import javax.swing.JTextField;
 import org.jicker.JickerGlobals;
 import org.netbeans.spi.wizard.WizardPage;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class SimpleWizard.
+ */
 public class SimpleWizard extends WizardPage {
+	
+	/** The dir name. */
 	static File dirName = new File(JickerGlobals.PROP_DIR);
+	
+	/** The dir. */
 	static JTextField dir;
+	
+	/**
+	 * Instantiates a new simple wizard.
+	 */
 	public SimpleWizard() {
 		initComponents();
 	}
 
+	/**
+	 * Gets the description.
+	 * 
+	 * @return the description
+	 */
 	public static final String getDescription() {
 		return "Stammverzeichnis festlegen";
 	}
 
+	/**
+	 * Inits the components.
+	 */
 	private void initComponents() {
 		//GridLayout gl = new GridLayout(1,1);
 		//JPanel panel = new JPanel();

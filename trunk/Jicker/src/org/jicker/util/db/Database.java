@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package org.jicker.util.db;
 
 import java.sql.Connection;
@@ -11,10 +14,21 @@ import java.sql.Statement;
 import org.apache.log4j.Level;
 import org.jicker.util.log.Log;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Database.
+ */
 public class Database {
+	
+	/** The conn. */
 	Connection conn;
 	//private static Log logger = Log.getInstance();
 
+	/**
+	 * Instantiates a new database.
+	 * 
+	 * @param db_file_name_prefix the db_file_name_prefix
+	 */
 	public Database(String db_file_name_prefix) {
 
 		// Laden des HSQL Database Engine JDBC Treibers
@@ -41,6 +55,9 @@ public class Database {
 		}
 	}
 
+	/**
+	 * Shutdown.
+	 */
 	public void shutdown() {
 
 		Statement st;
@@ -71,6 +88,13 @@ public class Database {
 */	}
 
 	// use for SQL command SELECT
+	/**
+	 * Query.
+	 * 
+	 * @param expression the expression
+	 * 
+	 * @throws SQLException the SQL exception
+	 */
 	public synchronized void query(String expression) throws SQLException {
 
 		Statement st = null;
@@ -95,6 +119,13 @@ public class Database {
 	}
 
 	// use for SQL commands CREATE, DROP, INSERT and UPDATE
+	/**
+	 * Update.
+	 * 
+	 * @param expression the expression
+	 * 
+	 * @throws SQLException the SQL exception
+	 */
 	public synchronized void update(String expression) throws SQLException {
 
 		Statement st = null;
@@ -110,6 +141,13 @@ public class Database {
 		st.close();
 	} // void update()
 
+	/**
+	 * Dump.
+	 * 
+	 * @param rs the rs
+	 * 
+	 * @throws SQLException the SQL exception
+	 */
 	public static void dump(ResultSet rs) throws SQLException {
 
 		// the order of the rows in a cursor
@@ -137,6 +175,9 @@ public class Database {
 		}
 	} // void dump( ResultSet rs )
 
+	/**
+	 * Drop table.
+	 */
 	public synchronized void dropTable() {
 		Statement st = null;
 
@@ -153,6 +194,13 @@ public class Database {
 
 	}
 
+	/**
+	 * Check table.
+	 * 
+	 * @param tableName the table name
+	 * 
+	 * @return true, if successful
+	 */
 	public boolean checkTable(String tableName) {
 		Statement st = null;
 		ResultSet rs = null;

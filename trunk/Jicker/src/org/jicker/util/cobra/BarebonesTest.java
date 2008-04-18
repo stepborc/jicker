@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package org.jicker.util.cobra;
 
 import java.awt.EventQueue;
@@ -18,10 +21,19 @@ import org.w3c.dom.Document;
 import org.w3c.dom.html2.HTMLElement;
 import org.xml.sax.InputSource;
 
+// TODO: Auto-generated Javadoc
 /**
  * Minimal rendering example: google.com.
  */
 public class BarebonesTest {
+	
+	/**
+	 * The main method.
+	 * 
+	 * @param args the arguments
+	 * 
+	 * @throws Exception the exception
+	 */
 	public static void main(String[] args) throws Exception {
 		String uri = "http://google.com";
 		//String uri = "file:C:\\opt\\XAMJ_Project\\HTML_Renderer\\testing\\table2.html";
@@ -79,38 +91,68 @@ public class BarebonesTest {
 		});
 	}
 
+	/**
+	 * The Class LocalUserAgentContext.
+	 */
 	private static class LocalUserAgentContext extends SimpleUserAgentContext {
 		// Override methods from SimpleUserAgentContext to
 		// provide more accurate information about application.
 		
+		/**
+		 * Instantiates a new local user agent context.
+		 */
 		public LocalUserAgentContext() {
 		}
 
+		/* (non-Javadoc)
+		 * @see org.jicker.util.cobra.SimpleUserAgentContext#getAppMinorVersion()
+		 */
 		public String getAppMinorVersion() {
 			return "0";
 		}
 
+		/* (non-Javadoc)
+		 * @see org.jicker.util.cobra.SimpleUserAgentContext#getAppName()
+		 */
 		public String getAppName() {
 			return "BarebonesTest";
 		}
 
+		/* (non-Javadoc)
+		 * @see org.jicker.util.cobra.SimpleUserAgentContext#getAppVersion()
+		 */
 		public String getAppVersion() {
 			return "1";
 		}
 
+		/* (non-Javadoc)
+		 * @see org.jicker.util.cobra.SimpleUserAgentContext#getUserAgent()
+		 */
 		public String getUserAgent() {
 			return "Mozilla/4.0 (compatible;)";
 		}
 	}
 
+	/**
+	 * The Class LocalHtmlRendererContext.
+	 */
 	private static class LocalHtmlRendererContext extends SimpleHtmlRendererContext {
 		// Override methods from SimpleHtmlRendererContext to provide
 		// browser functionality to the renderer.
 		
+		/**
+		 * Instantiates a new local html renderer context.
+		 * 
+		 * @param contextComponent the context component
+		 * @param ucontext the ucontext
+		 */
 		public LocalHtmlRendererContext(HtmlPanel contextComponent, UserAgentContext ucontext) {
 			super(contextComponent, ucontext);
 		}
 
+		/* (non-Javadoc)
+		 * @see org.jicker.util.cobra.SimpleHtmlRendererContext#linkClicked(org.w3c.dom.html2.HTMLElement, java.net.URL, java.lang.String)
+		 */
 		public void linkClicked(HTMLElement linkNode, URL url, String target) {
 			super.linkClicked(linkNode, url, target);
 			System.out.println("## Link clicked: " + linkNode);

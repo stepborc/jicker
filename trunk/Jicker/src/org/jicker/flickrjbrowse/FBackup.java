@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package org.jicker.flickrjbrowse;
 
 import java.io.File;
@@ -21,16 +24,40 @@ import com.aetrion.flickr.util.FileAuthStore;
 import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class FBackup.
+ */
 public class FBackup {
 
+	/** The shared secret. */
 	private static String sharedSecret;
+	
+	/** The backup dir. */
 	private static String backupDir;
+	
+	/** The nsid. */
 	private static String nsid;
+	
+	/** The api key. */
 	private static String apiKey;
+	
+	/** The flickr. */
 	private Flickr flickr;;
+	
+	/** The auth store. */
 	private FileAuthStore authStore;
+	
+	/** The auths dir. */
 	private Object authsDir = JickerGlobals.FLICKR_AUTH_DIR;
 
+	/**
+	 * Instantiates a new f backup.
+	 * 
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws SAXException the SAX exception
+	 * @throws FlickrException the flickr exception
+	 */
 	public FBackup() throws IOException, SAXException, FlickrException {
 		this.flickr = new Flickr(apiKey);
 		if (this.authsDir != null) {
@@ -101,6 +128,13 @@ public class FBackup {
 		db.close();
 	}
 
+	/**
+	 * Authorize.
+	 * 
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws SAXException the SAX exception
+	 * @throws FlickrException the flickr exception
+	 */
 	private void authorize() throws IOException, SAXException, FlickrException {
 		// Einen frob anfordern
 		String frob = this.flickr.getAuthInterface().getFrob();
@@ -126,10 +160,13 @@ public class FBackup {
 	}
 
 	/**
-	 * @param args
-	 * @throws FlickrException
-	 * @throws SAXException
-	 * @throws IOException
+	 * The main method.
+	 * 
+	 * @param args the args
+	 * 
+	 * @throws FlickrException the flickr exception
+	 * @throws SAXException the SAX exception
+	 * @throws IOException Signals that an I/O exception has occurred.
 	 */
 	public static void main(String[] args) throws IOException, SAXException,
 			FlickrException {

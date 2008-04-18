@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package org.jicker.gui.jwizz;
 
 import java.awt.BorderLayout;
@@ -17,13 +20,25 @@ import javax.swing.JTextArea;
 
 import net.javaprog.ui.wizard.AbstractStep;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class LicenseStep.
+ */
 class LicenseStep extends AbstractStep {
+    
+    /** The license area. */
     protected JTextArea licenseArea = new JTextArea();
     
+    /**
+     * Instantiates a new license step.
+     */
     public LicenseStep() {
         super("License Agreement", "Please read the license carefully");
     }
     
+    /* (non-Javadoc)
+     * @see net.javaprog.ui.wizard.AbstractStep#createComponent()
+     */
     protected JComponent createComponent() {
         JPanel stepComponent = new JPanel(new BorderLayout(0, 10));
         stepComponent.add(new JScrollPane(licenseArea));
@@ -52,6 +67,9 @@ class LicenseStep extends AbstractStep {
         return stepComponent;
     }
     
+    /* (non-Javadoc)
+     * @see net.javaprog.ui.wizard.Step#prepareRendering()
+     */
     public void prepareRendering() {
         try {
             BufferedReader reader = new BufferedReader(

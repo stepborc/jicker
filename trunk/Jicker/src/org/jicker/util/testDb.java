@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package org.jicker.util;
 
 import java.io.File;
@@ -11,14 +14,22 @@ import org.jicker.util.dirbrowser.DirBrowser;
 import org.jicker.util.dirbrowser.JickerFilter;
 import org.jicker.util.log.Log;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class testDb.
+ */
 public class testDb {
+	
+	/** The logger. */
 	private static Log logger = Log.getInstance();
+	
 	/**
-	 * @param args
-	 * @throws IOException 
-	 * @throws Exception 
-	 * @throws ClassNotFoundException 
-	 */
+	 * The main method.
+	 * 
+	 * @param args the args
+	 * 
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws Exception 	 * @throws ClassNotFoundException 	 */
 	public static void main(String[] args) throws IOException {
 		
 		Db testdb = new Db();

@@ -17,20 +17,28 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+// TODO: Auto-generated Javadoc
 /**
- * A classical status bar
+ * A classical status bar.
+ * 
  * @version $Revision: 1.3 $
  * @author  Benoît Mahé (bmahe@w3.org)
  */
 public class StatusBar extends JPanel {
 
+    /** The statusl. */
     JLabel  statusl   = null;
+    
+    /** The buttons. */
     JButton buttons[] = null;
+    
+    /** The descr. */
     String  descr[]   = null;
 
     /**
      * Constructor.<p>
      * <b>Note</b>: icons, commands and descr MUST have the same size.
+     * 
      * @param icons The Buttons Icons (on the left)
      * @param commands The actions commands
      * @param descr The actions descriptions
@@ -75,6 +83,11 @@ public class StatusBar extends JPanel {
         add(statusl, "Center");
     }
 
+    /**
+     * Adds the action listener.
+     * 
+     * @param listener the listener
+     */
     public void addActionListener(ActionListener listener) {
         if (buttons != null) {
             for (int i = 0 ; i < buttons.length ; i++) {
@@ -84,7 +97,8 @@ public class StatusBar extends JPanel {
     }
 
     /**
-     * Set the Status
+     * Set the Status.
+     * 
      * @param text the status
      */
     public void setStatus(String text) {
@@ -92,14 +106,15 @@ public class StatusBar extends JPanel {
     }
 
     /**
-     * Clear the status bar
+     * Clear the status bar.
      */
     public void clearStatus() {
         statusl.setText("");
     }
 
     /**
-     * Get the current status
+     * Get the current status.
+     * 
      * @return the status
      */
     public String getStatus() {

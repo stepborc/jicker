@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package org.jicker.flickrjbrowse;
 
 import java.io.IOException;
@@ -13,7 +16,24 @@ import com.aetrion.flickr.photosets.PhotosetsInterface;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PhotoBrowse.
+ */
 public class PhotoBrowse {
+	
+	/**
+	 * Instantiates a new photo browse.
+	 * 
+	 * @param pi the pi
+	 * @param flickr the flickr
+	 * @param db the db
+	 * @param nsid the nsid
+	 * 
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws SAXException the SAX exception
+	 * @throws FlickrException the flickr exception
+	 */
 	public PhotoBrowse(PhotosetsInterface pi, Flickr flickr, ObjectContainer db, String nsid ) throws IOException, SAXException, FlickrException{
 		ObjectSet<DbSets> setlist = db.get(DbSets.class);
 		// setlist.get(1).getTitle();

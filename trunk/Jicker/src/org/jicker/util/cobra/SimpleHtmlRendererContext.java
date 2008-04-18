@@ -55,22 +55,30 @@ import org.w3c.dom.html2.HTMLCollection;
 import org.w3c.dom.html2.HTMLElement;
 import org.w3c.dom.html2.HTMLLinkElement;
 
+// TODO: Auto-generated Javadoc
 /**
  * The <code>SimpleHtmlRendererContext</code> class implements
  * the {@link org.lobobrowser.html.HtmlRendererContext} interface.
  * Note that this class provides simple implementations
  * of most methods, which should be overridden to provide
- * real-world functionality. 
+ * real-world functionality.
  */
 public class SimpleHtmlRendererContext implements HtmlRendererContext {
+	
+	/** The Constant logger. */
 	private static final Logger logger = Logger.getLogger(SimpleHtmlRendererContext.class.getName());
 	
+	/** The html panel. */
 	private final HtmlPanel htmlPanel;
+	
+	/** The parent rcontext. */
 	private final HtmlRendererContext parentRcontext;
 	
 	/**
 	 * Constructs a SimpleHtmlRendererContext.
+	 * 
 	 * @param contextComponent The component that will render HTML.
+	 * 
 	 * @deprecated Use constructor that takes <code>HtmlPanel</code> and <code>UserAgentContext</code>
 	 */
 	public SimpleHtmlRendererContext(HtmlPanel contextComponent) {
@@ -79,7 +87,9 @@ public class SimpleHtmlRendererContext implements HtmlRendererContext {
 
 	/**
 	 * Constructs a SimpleHtmlRendererContext.
+	 * 
 	 * @param contextComponent The component that will render HTML.
+	 * @param ucontext the ucontext
 	 */
 	public SimpleHtmlRendererContext(HtmlPanel contextComponent, UserAgentContext ucontext) {
 		super();
@@ -90,6 +100,7 @@ public class SimpleHtmlRendererContext implements HtmlRendererContext {
 
 	/**
 	 * Constructs a SimpleHtmlRendererContext.
+	 * 
 	 * @param contextComponent The component that will render HTML.
 	 * @param parentRcontext The parent's renderer context. This is <code>null</code> for the root renderer context.
 	 * Normally ony frame renderer contexts would have parents.
@@ -101,12 +112,21 @@ public class SimpleHtmlRendererContext implements HtmlRendererContext {
 		this.bcontext = parentRcontext == null ? null : parentRcontext.getUserAgentContext();
 	}
 
+	/** The source code. */
 	private volatile String sourceCode;
 	
+	/**
+	 * Gets the source code.
+	 * 
+	 * @return the source code
+	 */
 	public String getSourceCode() {
 		return this.sourceCode;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.lobobrowser.html.HtmlRendererContext#getFrames()
+	 */
 	public HTMLCollection getFrames() {
 		Object rootNode = this.htmlPanel.getRootNode();
 		if(rootNode instanceof HTMLDocumentImpl) {
@@ -136,6 +156,10 @@ public class SimpleHtmlRendererContext implements HtmlRendererContext {
 	
 	/**
 	 * Implements the link click handler by invoking {@link #navigate(URL, String)}.
+	 * 
+	 * @param linkNode the link node
+	 * @param url the url
+	 * @param target the target
 	 */
 	public void linkClicked(HTMLElement linkNode, URL url, String target) {
 		this.navigate(url, target);
@@ -146,6 +170,8 @@ public class SimpleHtmlRendererContext implements HtmlRendererContext {
 	 * This implementation calls {@link SimpleUserAgentContext#getProxy()}
 	 * if {@link #getUserAgentContext()} returns an instance assignable to {@link SimpleUserAgentContext}.
 	 * The method may be overridden to provide a different proxy setting.
+	 * 
+	 * @return the proxy
 	 */
 	protected Proxy getProxy() {
 		Object ucontext = this.getUserAgentContext();
@@ -159,6 +185,9 @@ public class SimpleHtmlRendererContext implements HtmlRendererContext {
 	 * Implements simple navigation with incremental
 	 * rendering by invoking {@link #submitForm(String, URL, String, String, FormInput[])}
 	 * with a <code>GET</code> request method.
+	 * 
+	 * @param href the href
+	 * @param target the target
 	 */
 	public void navigate(final URL href, String target) {
 		this.submitForm("GET", href, target, null, null);
@@ -176,10 +205,16 @@ public class SimpleHtmlRendererContext implements HtmlRendererContext {
 	 * <li>Caching is not implemented.
 	 * <li>Cookies are not implemented.
 	 * <li>Incremental rendering is not optimized for
-	 *     ignorable document change notifications.
+	 * ignorable document change notifications.
 	 * <li>Other HTTP features are not implemented.
 	 * <li>The only form encoding type supported is <code>application/x-www-form-urlencoded</code>.
 	 * </ul>
+	 * 
+	 * @param method the method
+	 * @param action the action
+	 * @param target the target
+	 * @param enctype the enctype
+	 * @param formInputs the form inputs
 	 */
 	public void submitForm(final String method, final java.net.URL action, final String target, String enctype, final FormInput[] formInputs) {
 		// This method implements simple incremental rendering.
@@ -347,7 +382,10 @@ public class SimpleHtmlRendererContext implements HtmlRendererContext {
 	 * This method is invoked by {@link #submitForm(String, URL, String, String, FormInput[])}
 	 * to determine the charset of a document. This simple implementation returns
 	 * <code>ISO-8859-1</code> always. Override to use other charsets.
+	 * 
 	 * @param connection A URL connection.
+	 * 
+	 * @return the document charset
 	 */
 	protected String getDocumentCharset(URLConnection connection) {
 		return "ISO-8859-1";
@@ -355,31 +393,52 @@ public class SimpleHtmlRendererContext implements HtmlRendererContext {
 	
 	// Methods useful to Window below:
 	
+	/* (non-Javadoc)
+	 * @see org.lobobrowser.html.HtmlRendererContext#alert(java.lang.String)
+	 */
 	public void alert(String message) {
 		JOptionPane.showMessageDialog(this.htmlPanel, message);
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.lobobrowser.html.HtmlRendererContext#back()
+	 */
 	public void back() {
 		this.warn("back(): Not overridden");
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.lobobrowser.html.HtmlRendererContext#blur()
+	 */
 	public void blur() {
 		this.warn("back(): Not overridden");
 	}
 
+	/* (non-Javadoc)
+	 * @see org.lobobrowser.html.HtmlRendererContext#close()
+	 */
 	public void close() {
 		this.warn("close(): Not overridden");
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.lobobrowser.html.HtmlRendererContext#confirm(java.lang.String)
+	 */
 	public boolean confirm(String message) {
 		int retValue = JOptionPane.showConfirmDialog(htmlPanel, message, "Confirm", JOptionPane.YES_NO_OPTION);
 		return retValue == JOptionPane.YES_OPTION;
 	}
 		
+	/* (non-Javadoc)
+	 * @see org.lobobrowser.html.HtmlRendererContext#focus()
+	 */
 	public void focus() {
 		this.warn("focus(): Not overridden");
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.lobobrowser.html.HtmlRendererContext#open(java.lang.String, java.lang.String, java.lang.String, boolean)
+	 */
 	public final HtmlRendererContext open(String url, String windowName, String windowFeatures, boolean replace) {
 		URL urlObj;
 		try {
@@ -390,62 +449,104 @@ public class SimpleHtmlRendererContext implements HtmlRendererContext {
 		return this.open(urlObj, windowName, windowFeatures, replace);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.lobobrowser.html.HtmlRendererContext#open(java.net.URL, java.lang.String, java.lang.String, boolean)
+	 */
 	public HtmlRendererContext open(java.net.URL url, String windowName, String windowFeatures, boolean replace) {
 		this.warn("open(): Not overridden");
 		return null;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.lobobrowser.html.HtmlRendererContext#prompt(java.lang.String, java.lang.String)
+	 */
 	public String prompt(String message, String inputDefault) {
 		return JOptionPane.showInputDialog(htmlPanel, message);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.lobobrowser.html.HtmlRendererContext#scroll(int, int)
+	 */
 	public void scroll(int x, int y) {
 		this.warn("scroll(): Not overridden");
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.lobobrowser.html.HtmlRendererContext#isClosed()
+	 */
 	public boolean isClosed() {
 		this.warn("isClosed(): Not overridden");
 		return false;
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.lobobrowser.html.HtmlRendererContext#getDefaultStatus()
+	 */
 	public String getDefaultStatus() {
 		this.warn("getDefaultStatus(): Not overridden");
 		return "";
 	}
 		
+	/**
+	 * Gets the length.
+	 * 
+	 * @return the length
+	 */
 	public int getLength() {
 		this.warn("getLength(): Not overridden");
 		return 0;
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.lobobrowser.html.HtmlRendererContext#getName()
+	 */
 	public String getName() {
 		this.warn("getName(): Not overridden");
 		return "";
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.lobobrowser.html.HtmlRendererContext#getParent()
+	 */
 	public HtmlRendererContext getParent() {
 		return this.parentRcontext;
 	}
 
+	/** The opener. */
 	private volatile HtmlRendererContext opener;
 	
+	/* (non-Javadoc)
+	 * @see org.lobobrowser.html.HtmlRendererContext#getOpener()
+	 */
 	public HtmlRendererContext getOpener() {
 		return this.opener;
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.lobobrowser.html.HtmlRendererContext#setOpener(org.lobobrowser.html.HtmlRendererContext)
+	 */
 	public void setOpener(HtmlRendererContext opener) {
 		this.opener = opener;
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.lobobrowser.html.HtmlRendererContext#getStatus()
+	 */
 	public String getStatus() {
 		this.warn("getStatus(): Not overridden");
 		return "";
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.lobobrowser.html.HtmlRendererContext#setStatus(java.lang.String)
+	 */
 	public void setStatus(String message) {
 		this.warn("setStatus(): Not overridden");
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.lobobrowser.html.HtmlRendererContext#getTop()
+	 */
 	public HtmlRendererContext getTop() {
 		HtmlRendererContext ancestor = this.parentRcontext;
 		if(ancestor == null) {
@@ -461,24 +562,46 @@ public class SimpleHtmlRendererContext implements HtmlRendererContext {
 		return new SimpleBrowserFrame(this);
 	}		
 	
+	/**
+	 * Warn.
+	 * 
+	 * @param message the message
+	 * @param throwable the throwable
+	 */
 	public void warn(String message, Throwable throwable) {
 		if(logger.isLoggable(Level.WARNING)) {
 			logger.log(Level.WARNING, message, throwable);
 		}
 	}
 	
+	/**
+	 * Error.
+	 * 
+	 * @param message the message
+	 * @param throwable the throwable
+	 */
 	public void error(String message, Throwable throwable) {
 		if(logger.isLoggable(Level.SEVERE)) {
 			logger.log(Level.SEVERE, message, throwable);
 		}
 	}
 	
+	/**
+	 * Warn.
+	 * 
+	 * @param message the message
+	 */
 	public void warn(String message) {
 		if(logger.isLoggable(Level.WARNING)) {
 			logger.log(Level.WARNING, message);
 		}		
 	}
 	
+	/**
+	 * Error.
+	 * 
+	 * @param message the message
+	 */
 	public void error(String message) {
 		if(logger.isLoggable(Level.SEVERE)) {
 			logger.log(Level.SEVERE, message);
@@ -487,26 +610,36 @@ public class SimpleHtmlRendererContext implements HtmlRendererContext {
 
 	/**
 	 * Returns <code>null</code>. This method should be overridden
-	 * to provide OBJECT, EMBED or APPLET functionality. 
+	 * to provide OBJECT, EMBED or APPLET functionality.
+	 * 
+	 * @param element the element
+	 * 
+	 * @return the html object
 	 */
 	public HtmlObject getHtmlObject(HTMLElement element) {
 		return null;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.lobobrowser.html.HtmlRendererContext#setDefaultStatus(java.lang.String)
+	 */
 	public void setDefaultStatus(String message) {
 		this.warn("setDefaultStatus(): Not overridden.");
 	}
 
+	/** The bcontext. */
 	private UserAgentContext bcontext = null;
 	
 	/**
 	 * If a {@link org.lobobrowser.html.UserAgentContext} instance
 	 * was provided in the constructor, then that instance is returned.
-	 * Otherwise, an instance of {@link SimpleUserAgentContext} is 
+	 * Otherwise, an instance of {@link SimpleUserAgentContext} is
 	 * created and returned.
 	 * <p>
-	 * The context returned by this method is used by local request 
+	 * The context returned by this method is used by local request
 	 * facilities and other parts of the renderer.
+	 * 
+	 * @return the user agent context
 	 */
 	public UserAgentContext getUserAgentContext() {
 		synchronized(this) {
@@ -521,6 +654,10 @@ public class SimpleHtmlRendererContext implements HtmlRendererContext {
 	/**
 	 * Should be overridden to return true if the link
 	 * has been visited.
+	 * 
+	 * @param link the link
+	 * 
+	 * @return true, if checks if is visited link
 	 */
 	public boolean isVisitedLink(HTMLLinkElement link) {
 		//TODO
@@ -528,8 +665,14 @@ public class SimpleHtmlRendererContext implements HtmlRendererContext {
 	}
 
 	/**
+	 * Checks if is media.
+	 * 
+	 * @param mediaName the media name
+	 * 
+	 * @return true, if checks if is media
+	 * 
 	 * @deprecated This method has been moved to {@link UserAgentContext}.
-	 *             Override method from SimpleUserAgentContext instead.
+	 * Override method from SimpleUserAgentContext instead.
 	 */
 	public boolean isMedia(String mediaName) {
 		return true;
@@ -537,6 +680,9 @@ public class SimpleHtmlRendererContext implements HtmlRendererContext {
 
 	/**
 	 * This method must be overridden to implement a context menu.
+	 * 
+	 * @param element the element
+	 * @param event the event
 	 */
 	public void onContextMenu(HTMLElement element, MouseEvent event) {
 		this.warn("onContextMenu(): Not overridden.");
@@ -545,6 +691,9 @@ public class SimpleHtmlRendererContext implements HtmlRendererContext {
 	/**
 	 * This method can be overridden to receive notifications when the
 	 * mouse leaves an element.
+	 * 
+	 * @param element the element
+	 * @param event the event
 	 */
 	public void onMouseOut(HTMLElement element, MouseEvent event) {
 	}
@@ -552,6 +701,9 @@ public class SimpleHtmlRendererContext implements HtmlRendererContext {
 	/**
 	 * This method can be overridden to receive notifications when the
 	 * mouse first enters an element.
+	 * 
+	 * @param element the element
+	 * @param event the event
 	 */
 	public void onMouseOver(HTMLElement element, MouseEvent event) {
 	}

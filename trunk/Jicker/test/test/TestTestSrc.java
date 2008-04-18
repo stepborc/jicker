@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package test;
 
 import static org.junit.Assert.assertTrue;
@@ -8,8 +11,15 @@ import junit.framework.Assert;
 import org.jicker.test.TestSrc;
 import org.junit.Test;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class TestTestSrc.
+ */
 public class TestTestSrc {
 
+	/**
+	 * Test my method.
+	 */
 	@Test
 	public final void testMyMethod() {
 		//TestSrc ts = new TestSrc("test");

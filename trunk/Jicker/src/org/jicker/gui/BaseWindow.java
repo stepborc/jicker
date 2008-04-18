@@ -1,8 +1,12 @@
+/*
+ * 
+ */
 package org.jicker.gui;
 
 import javax.swing.JPanel;
 import javax.swing.event.TreeSelectionEvent;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class BaseWindow.
  */
@@ -16,6 +20,11 @@ public BaseWindow(){
 	super();
 }
 
+/**
+ * Value changed.
+ * 
+ * @param e the e
+ */
 public void valueChanged(TreeSelectionEvent e) {
 	// TODO Auto-generated method stub
 	return;

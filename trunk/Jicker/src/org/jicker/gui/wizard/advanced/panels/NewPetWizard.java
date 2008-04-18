@@ -16,17 +16,24 @@ import org.netbeans.spi.wizard.WizardBranchController;
 import org.netbeans.spi.wizard.WizardPanelProvider;
 
 
+// TODO: Auto-generated Javadoc
 /**
  * This is the main entry point, from which the wizard is created.
- *
+ * 
  * @author Timothy Boudreau
  */
 public class NewPetWizard extends WizardBranchController {
 
+    /**
+     * Instantiates a new new pet wizard.
+     */
     NewPetWizard(  ) {
         super( new InitialSteps(  ) );
     }
    
+    /* (non-Javadoc)
+     * @see org.netbeans.spi.wizard.WizardBranchController#getPanelProviderForStep(java.lang.String, java.util.Map)
+     */
     protected WizardPanelProvider getPanelProviderForStep(String step, Map collectedData) {
         //There's only one branch point, so we don't need to test the
         //value of step
@@ -42,6 +49,11 @@ public class NewPetWizard extends WizardBranchController {
         }
     }
 
+    /**
+     * Gets the dog lovers steps.
+     * 
+     * @return the dog lovers steps
+     */
     private WizardPanelProvider getDogLoversSteps() {
         if (dogLoversSteps == null) {
             dogLoversSteps = new DogLoversSteps();
@@ -49,6 +61,11 @@ public class NewPetWizard extends WizardBranchController {
         return dogLoversSteps;
     }
 
+    /**
+     * Gets the cat lovers steps.
+     * 
+     * @return the cat lovers steps
+     */
     private WizardPanelProvider getCatLoversSteps() {
         if (catLoversSteps == null) {
             catLoversSteps = new CatLoversSteps();
@@ -56,6 +73,9 @@ public class NewPetWizard extends WizardBranchController {
         return catLoversSteps;
     }
     
+    /** The cat lovers steps. */
     private CatLoversSteps catLoversSteps = null;
+    
+    /** The dog lovers steps. */
     private DogLoversSteps dogLoversSteps = null;
 }

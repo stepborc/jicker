@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package org.jicker.gui;
 
 /*
@@ -52,14 +55,20 @@ import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 
+// TODO: Auto-generated Javadoc
 /**
- * Display a file system in a JTree view
+ * Display a file system in a JTree view.
  * 
  * @version $Id: FileTree.java,v 1.9 2004/02/23 03:39:22 ian Exp $
  * @author Ian Darwin
  */
 public class FileTree extends JPanel {
-  /** Construct a FileTree */
+  
+  /**
+   * Construct a FileTree.
+   * 
+   * @param dir the dir
+   */
   public FileTree(File dir) {
     setLayout(new BorderLayout());
 
@@ -81,7 +90,14 @@ public class FileTree extends JPanel {
     add(BorderLayout.CENTER, scrollpane);
   }
 
-  /** Add nodes from under "dir" into curTop. Highly recursive. */
+  /**
+   * Add nodes from under "dir" into curTop. Highly recursive.
+   * 
+   * @param curTop the cur top
+   * @param dir the dir
+   * 
+   * @return the default mutable tree node
+   */
   DefaultMutableTreeNode addNodes(DefaultMutableTreeNode curTop, File dir) {
     String curPath = dir.getPath();
     DefaultMutableTreeNode curDir = new DefaultMutableTreeNode(curPath);
@@ -114,15 +130,25 @@ public class FileTree extends JPanel {
     return curDir;
   }
 
+  /* (non-Javadoc)
+   * @see javax.swing.JComponent#getMinimumSize()
+   */
   public Dimension getMinimumSize() {
     return new Dimension(200, 400);
   }
 
+  /* (non-Javadoc)
+   * @see javax.swing.JComponent#getPreferredSize()
+   */
   public Dimension getPreferredSize() {
     return new Dimension(200, 400);
   }
 
-  /** Main: make a Frame, add a FileTree */
+  /**
+   * Main: make a Frame, add a FileTree.
+   * 
+   * @param av the av
+   */
   public static void main(String[] av) {
 
     JFrame frame = new JFrame("FileTree");

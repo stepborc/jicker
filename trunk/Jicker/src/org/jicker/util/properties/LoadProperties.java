@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package org.jicker.util.properties;
 
 import java.io.FileInputStream;
@@ -6,10 +9,16 @@ import java.io.IOException;
 import java.util.Enumeration;
 import java.util.Properties;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class LoadProperties.
+ */
 public class LoadProperties {
 
 	/**
-	 * @param args
+	 * The main method.
+	 * 
+	 * @param args the args
 	 */
 	public static void main(String[] args) {
 		String filename = "/jickerprop.xml";

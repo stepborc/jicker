@@ -1,13 +1,22 @@
+/*
+ * 
+ */
 package org.jicker.util.properties;
 
 import java.util.prefs.Preferences;
 
 import org.jicker.JickerGlobals;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class TestPref.
+ */
 public class TestPref {
 
 	/**
-	 * @param args
+	 * The main method.
+	 * 
+	 * @param args the args
 	 */
 	public static void main(String[] args) {
 		Preferences root = Preferences.userRoot();

@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package org.jicker.gui.jwizz;
 
 import java.awt.Dimension;
@@ -22,17 +25,37 @@ import net.javaprog.ui.wizard.DefaultDataLookup;
 
 import org.jicker.JickerGlobals;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class LocationStep.
+ */
 class LocationStep extends AbstractStep {
+    
+    /** The data. */
     protected DataModel data;
+    
+    /** The file text field. */
     protected JTextField fileTextField = new JTextField();
+    
+    /** The fc. */
     protected JFileChooser fc = new JFileChooser();
+    
+    /** The input panel. */
     protected JPanel inputPanel = new JPanel();
     
+    /**
+     * Instantiates a new location step.
+     * 
+     * @param data the data
+     */
     public LocationStep(DataModel data) {
         super("Arbeitsverzeichnis", "Verzeichnis zum speichern der Programmeigenschaften auswählen");
         this.data = data;
     }
     
+    /* (non-Javadoc)
+     * @see net.javaprog.ui.wizard.AbstractStep#createComponent()
+     */
     protected JComponent createComponent() {
     	
         final JRadioButton defaultLocationButton = new JRadioButton(
@@ -100,5 +123,8 @@ class LocationStep extends AbstractStep {
         return stepComponent;
     }
     
+    /* (non-Javadoc)
+     * @see net.javaprog.ui.wizard.Step#prepareRendering()
+     */
     public void prepareRendering() {}
 }

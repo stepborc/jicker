@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package org.jicker.gui.wizard;
 
 import java.awt.event.ActionEvent;
@@ -5,9 +8,16 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFileChooser;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class GetDirectory.
+ */
 public class GetDirectory implements ActionListener {
 
-	      public void actionPerformed(ActionEvent ae)
+	      /* (non-Javadoc)
+      	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+      	 */
+      	public void actionPerformed(ActionEvent ae)
           {
             JFileChooser chooser = new JFileChooser(SimpleWizard.dirName);
             chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);

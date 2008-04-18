@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package org.jicker.gui.tabs;
 
 import java.awt.Dimension;
@@ -10,9 +13,22 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CloseTabButton.
+ */
 class CloseTabButton extends JPanel implements ActionListener {
-	  private JTabbedPane pane;
-	  public CloseTabButton(JTabbedPane pane, int index) {
+	  
+  	/** The pane. */
+  	private JTabbedPane pane;
+	  
+  	/**
+  	 * Instantiates a new close tab button.
+  	 * 
+  	 * @param pane the pane
+  	 * @param index the index
+  	 */
+  	public CloseTabButton(JTabbedPane pane, int index) {
 	    this.pane = pane;
 	    setOpaque(false);
 	    add(new JLabel(
@@ -27,7 +43,11 @@ class CloseTabButton extends JPanel implements ActionListener {
 	    btClose.addActionListener(this);
 	    pane.setTabComponentAt(index, this);
 	  }
-	  public void actionPerformed(ActionEvent e) {
+	  
+  	/* (non-Javadoc)
+  	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+  	 */
+  	public void actionPerformed(ActionEvent e) {
 	    int i = pane.indexOfTabComponent(this);
 	    if (i != -1) {
 	      pane.remove(i);

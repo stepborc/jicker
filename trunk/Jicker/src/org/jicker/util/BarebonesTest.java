@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package org.jicker.util;
 
 import java.awt.EventQueue;
@@ -17,10 +20,19 @@ import org.lobobrowser.html.test.SimpleHtmlRendererContext;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 
+// TODO: Auto-generated Javadoc
 /**
  * Minimal rendering example: google.com.
  */
 public class BarebonesTest {
+	
+	/**
+	 * The main method.
+	 * 
+	 * @param args the arguments
+	 * 
+	 * @throws Exception the exception
+	 */
 	public static void main(String[] args) throws Exception {
 	//public BarebonesTest(String uri) throws IOException, SAXException{
 		String uri = "http://www.flickr.com:80/services/auth?api_key=6fe409e0413a2a5e03d54c30ca6a27c4&frob=72157603781017414-bc1c84152ca76055-310345&perms=read&api_sig=44abae89be9fe6079e06d6c2bcd712cd";
@@ -77,8 +89,16 @@ public class BarebonesTest {
 		});
 	}
 
+	/**
+	 * The Class LocalHtmlRendererContext.
+	 */
 	private static class LocalHtmlRendererContext extends SimpleHtmlRendererContext {
 		// Override methods here to implement browser functionality
+		/**
+		 * Instantiates a new local html renderer context.
+		 * 
+		 * @param contextComponent the context component
+		 */
 		public LocalHtmlRendererContext(HtmlPanel contextComponent) {
 			super(contextComponent);
 		}

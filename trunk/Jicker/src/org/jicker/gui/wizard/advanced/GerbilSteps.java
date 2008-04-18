@@ -19,17 +19,24 @@ import javax.swing.JLabel;
 import org.netbeans.spi.wizard.WizardController;
 import org.netbeans.spi.wizard.WizardPanelProvider;
 
+// TODO: Auto-generated Javadoc
 /**
- *
+ * The Class GerbilSteps.
+ * 
  * @author Timothy Boudreau
  */
 public class GerbilSteps extends WizardPanelProvider {
     
-    /** Creates a new instance of GerbilSteps */
+    /**
+     * Creates a new instance of GerbilSteps.
+     */
     public GerbilSteps() {
         super (new String[] { "Finish" }, new String[] { "Finish" });
     }
     
+    /* (non-Javadoc)
+     * @see org.netbeans.spi.wizard.WizardPanelProvider#createPanel(org.netbeans.spi.wizard.WizardController, java.lang.String, java.util.Map)
+     */
     protected JComponent createPanel(WizardController controller, String id, Map settings) {
         controller.setForwardNavigationMode (WizardController.MODE_CAN_FINISH);
         controller.setProblem(null);

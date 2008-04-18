@@ -1,14 +1,24 @@
+/*
+ * 
+ */
 package org.jicker.quickrflickr;
 
 import org.jtb.quickr.AuthService;
 import org.jtb.quickr.FrobResponse;
 import org.jtb.quickr.QuickrException;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Quickrflickr.
+ */
 public class Quickrflickr {
 
 	/**
-	 * @param args
-	 * @throws QuickrException 
+	 * The main method.
+	 * 
+	 * @param args the args
+	 * 
+	 * @throws QuickrException the quickr exception
 	 */
 	public static void main(String[] args) throws QuickrException {
 		AuthService as = new AuthService();

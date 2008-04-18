@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package org.jicker.util.systemproperties;
 
 import java.applet.Applet;
@@ -5,8 +8,16 @@ import java.awt.Graphics;
 import java.util.Enumeration;
 import java.util.Properties;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class SystemInfo.
+ */
 @SuppressWarnings("serial")
 public class SystemInfo extends Applet {
+
+/* (non-Javadoc)
+ * @see java.awt.Container#paint(java.awt.Graphics)
+ */
 public void paint(Graphics g){
 	showStatus("Hello Vera");
 	Properties sysprops = System.getProperties();

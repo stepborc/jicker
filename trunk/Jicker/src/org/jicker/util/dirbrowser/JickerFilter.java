@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package org.jicker.util.dirbrowser;
 
 import java.io.FileFilter;
@@ -9,14 +12,19 @@ import org.apache.commons.io.filefilter.HiddenFileFilter;
 import org.apache.commons.io.filefilter.IOFileFilter;
 import org.apache.commons.io.filefilter.SuffixFileFilter;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class JickerFilter.
+ */
 public class JickerFilter {
 	
 	/**
-	 * Liefert ein FileFilter zurück.<p> 
-	 * Der Filter wird erstellt aus den übergebenen Dateiendungen (suffix), 
+	 * Liefert ein FileFilter zurück.<p>
+	 * Der Filter wird erstellt aus den übergebenen Dateiendungen (suffix),
 	 * welche in Groß- und Kleinschreibung konvertiert werden.
 	 * 
 	 * @param suffix - Dateiendung inklusive . (z.B. .jpg)
+	 * 
 	 * @return         FileFilter bestehed aus den Dateiendungen in Groß- und Kleinschreibung
 	 */
 	public FileFilter createFilter(String[] suffix){

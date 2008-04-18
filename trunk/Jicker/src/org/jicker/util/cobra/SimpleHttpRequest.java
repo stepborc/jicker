@@ -48,52 +48,71 @@ import org.lobobrowser.util.GenericEventListener;
 import org.lobobrowser.util.io.IORoutines;
 import org.w3c.dom.Document;
 
+// TODO: Auto-generated Javadoc
 /**
  * The <code>SimpleHttpRequest</code> class implements
  * the {@link org.lobobrowser.html.HttpRequest} interface.
  * The <code>HttpRequest</code> implementation provided
  * by this class is simple, with no caching. It creates
  * a new thread for each new asynchronous request.
+ * 
  * @author J. H. S.
  */
 public class SimpleHttpRequest implements HttpRequest {
+	
+	/** The Constant logger. */
 	private static final Logger logger = Logger.getLogger(SimpleHttpRequest.class.getName());
+	
+	/** The ready state. */
 	private int readyState;
+	
+	/** The status. */
 	private int status;
+	
+	/** The status text. */
 	private String statusText;
+	
+	/** The response bytes. */
 	private byte[] responseBytes;
+	
+	/** The context. */
 	private final UserAgentContext context;
+	
+	/** The proxy. */
 	private final Proxy proxy;
 
 
-	/**
-	 * Response headers are set in this map after
-	 * a response is received.
-	 */
+	/** Response headers are set in this map after a response is received. */
 	protected java.util.Map responseHeadersMap;
 	
-	/**
-	 * Response headers are set in this string after
-	 * a response is received.
-	 */	
+	/** Response headers are set in this string after a response is received. */	
 	protected String responseHeaders;
 	
-	/**
-	 * The <code>URLConnection</code> is assigned to
-	 * this field while it is ongoing.
-	 */
+	/** The <code>URLConnection</code> is assigned to this field while it is ongoing. */
 	protected java.net.URLConnection connection;
 
+	/**
+	 * Instantiates a new simple http request.
+	 * 
+	 * @param context the context
+	 * @param proxy the proxy
+	 */
 	public SimpleHttpRequest(UserAgentContext context, java.net.Proxy proxy) {
 		super();
 		this.context = context;
 		this.proxy = proxy;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.lobobrowser.html.HttpRequest#getReadyState()
+	 */
 	public synchronized int getReadyState() {
 		return this.readyState;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.lobobrowser.html.HttpRequest#getResponseText()
+	 */
 	public synchronized String getResponseText() {
 		byte[] bytes = this.responseBytes;
 		//TODO: proper charset
@@ -104,6 +123,9 @@ public class SimpleHttpRequest implements HttpRequest {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see org.lobobrowser.html.HttpRequest#getResponseXML()
+	 */
 	public synchronized Document getResponseXML() {
 		byte[] bytes = this.responseBytes;
 		if(bytes == null) {
@@ -118,6 +140,9 @@ public class SimpleHttpRequest implements HttpRequest {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see org.lobobrowser.html.HttpRequest#getResponseBytes()
+	 */
 	public synchronized byte[] getResponseBytes() {
 		return this.responseBytes;
 	}
@@ -133,14 +158,23 @@ public class SimpleHttpRequest implements HttpRequest {
 		return Toolkit.getDefaultToolkit().createImage(bytes);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.lobobrowser.html.HttpRequest#getStatus()
+	 */
 	public synchronized int getStatus() {
 		return this.status;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.lobobrowser.html.HttpRequest#getStatusText()
+	 */
 	public synchronized String getStatusText() {
 		return this.statusText;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.lobobrowser.html.HttpRequest#abort()
+	 */
 	public void abort() {
 		URLConnection c;
 		synchronized(this) {
@@ -158,36 +192,60 @@ public class SimpleHttpRequest implements HttpRequest {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see org.lobobrowser.html.HttpRequest#getAllResponseHeaders()
+	 */
 	public synchronized String getAllResponseHeaders() {
 		return this.responseHeaders;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.lobobrowser.html.HttpRequest#getResponseHeader(java.lang.String)
+	 */
 	public synchronized String getResponseHeader(String headerName) {
 		Map headers = this.responseHeadersMap;
 		return headers == null ? null : (String) headers.get(headerName);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.lobobrowser.html.HttpRequest#open(java.lang.String, java.lang.String)
+	 */
 	public void open(String method, String url) {
 		this.open(method, url, true);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.lobobrowser.html.HttpRequest#open(java.lang.String, java.net.URL)
+	 */
 	public void open(String method, URL url) {
 		this.open(method, url, true, null, null);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.lobobrowser.html.HttpRequest#open(java.lang.String, java.net.URL, boolean)
+	 */
 	public void open(String method, URL url, boolean asyncFlag) {
 		this.open(method, url, asyncFlag, null, null);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.lobobrowser.html.HttpRequest#open(java.lang.String, java.lang.String, boolean)
+	 */
 	public void open(String method, String url, boolean asyncFlag) {
 		this.open(method, url, asyncFlag, null);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.lobobrowser.html.HttpRequest#open(java.lang.String, java.lang.String, boolean, java.lang.String)
+	 */
 	public void open(String method, String url, boolean asyncFlag,
 			String userName) {
 		this.open(method, url, asyncFlag, userName, null);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.lobobrowser.html.HttpRequest#open(java.lang.String, java.lang.String, boolean, java.lang.String, java.lang.String)
+	 */
 	public void open(String method, String url, boolean asyncFlag,
 			String userName, String password) {
 		try {
@@ -200,8 +258,9 @@ public class SimpleHttpRequest implements HttpRequest {
 	}
 
 	/**
-	 * Opens the request by invoking {@link #openSync(String, URL, String, String)}. 
+	 * Opens the request by invoking {@link #openSync(String, URL, String, String)}.
 	 * For asynchronous requests, a new thread is created before proceeding.
+	 * 
 	 * @param method The request method.
 	 * @param url The request URL.
 	 * @param asyncFlag Whether the request should be asynchronous.
@@ -223,6 +282,14 @@ public class SimpleHttpRequest implements HttpRequest {
 		}
 	}
 
+	/**
+	 * Change state.
+	 * 
+	 * @param readyState the ready state
+	 * @param status the status
+	 * @param statusMessage the status message
+	 * @param bytes the bytes
+	 */
 	private void changeState(int readyState, int status, String statusMessage, byte[] bytes) {
 		synchronized(this) {
 			this.readyState = readyState;
@@ -233,6 +300,13 @@ public class SimpleHttpRequest implements HttpRequest {
 		this.readyEvent.fireEvent(null);
 	}
 	
+	/**
+	 * Gets the all response headers.
+	 * 
+	 * @param c the c
+	 * 
+	 * @return the all response headers
+	 */
 	private String getAllResponseHeaders(URLConnection c) {
 		int idx = 0;
 		String value;
@@ -248,6 +322,7 @@ public class SimpleHttpRequest implements HttpRequest {
 	/**
 	 * This method performs a synchronous URL connection.
 	 * It may be overridden.
+	 * 
 	 * @param method The request method.
 	 * @param url The request URL.
 	 * @param userName An optional username.
@@ -291,8 +366,12 @@ public class SimpleHttpRequest implements HttpRequest {
 		}
 	}
 
+	/** The ready event. */
 	private final EventDispatch readyEvent = new EventDispatch(); 
 	
+	/* (non-Javadoc)
+	 * @see org.lobobrowser.html.HttpRequest#addReadyStateChangeListener(org.lobobrowser.html.ReadyStateChangeListener)
+	 */
 	public void addReadyStateChangeListener(final ReadyStateChangeListener listener) {
 		readyEvent.addListener(new GenericEventListener() {
 		    public void processEvent(EventObject event) {

@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package org.jicker.util.db;
 
 import java.sql.Connection;
@@ -11,12 +14,19 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class test.
+ */
 public class test {
 
 	/**
-	 * @param args
-	 * @throws ClassNotFoundException 
-	 * @throws SQLException 
+	 * The main method.
+	 * 
+	 * @param args the args
+	 * 
+	 * @throws ClassNotFoundException the class not found exception
+	 * @throws SQLException the SQL exception
 	 */
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
