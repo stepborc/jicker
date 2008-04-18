@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package org.jicker.exif;
 
 import java.io.File;
@@ -12,7 +15,18 @@ import com.drew.metadata.Tag;
 import com.drew.metadata.exif.ExifDirectory;
 import com.drew.metadata.exif.ExifReader;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class GetExif.
+ */
 public class GetExif  {
+	
+	/**
+	 * Instantiates a new gets the exif.
+	 * 
+	 * @throws MetadataException the metadata exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public GetExif() throws MetadataException, IOException{
 	File jpegFile = new File("DSCF3635.JPG"); 
 	/*Metadata metadata = null;

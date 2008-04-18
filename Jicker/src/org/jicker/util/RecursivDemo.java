@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package org.jicker.util;
 
 import java.io.File;
@@ -11,13 +14,21 @@ import org.jicker.util.dirbrowser.DirBrowser;
 import org.jicker.util.dirbrowser.JickerFilter;
 import org.jicker.util.log.Log;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class RecursivDemo.
+ */
 public class RecursivDemo {
+	
+	/** The logger. */
 	private static Log logger = Log.getInstance();
+	
 	/**
-	 * Test der rekursiven Verwendung der Db Klasse
+	 * Test der rekursiven Verwendung der Db Klasse.
 	 * 
-	 * @param args
-	 * @throws IOException 
+	 * @param args the args
+	 * 
+	 * @throws IOException Signals that an I/O exception has occurred.
 	 */
 	public static void main(String[] args) throws IOException {
 		Db test = new Db();

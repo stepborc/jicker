@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package org.jicker.util.db;
 
 import java.sql.SQLException;
@@ -5,14 +8,24 @@ import java.sql.SQLException;
 import org.apache.log4j.Level;
 import org.jicker.util.log.Log;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class RunDatabase.
+ */
 public class RunDatabase {
 	//private static Log logger = Log.getInstance();
+	/** The db. */
 	Database db = null;
 
 //	public RunDatabase() {
 //	}
 
-	public boolean start() {
+	/**
+ * Start.
+ * 
+ * @return true, if successful
+ */
+public boolean start() {
 		
 		boolean dbStart = true;
 		try {
@@ -24,10 +37,25 @@ public class RunDatabase {
 		}
 		return dbStart;
 	}
+	
+	/**
+	 * Check table.
+	 * 
+	 * @param tableName the table name
+	 * 
+	 * @return true, if successful
+	 * 
+	 * @throws SQLException the SQL exception
+	 */
 	public boolean checkTable(String tableName) throws SQLException{
 		return db.checkTable(tableName);
 	}
 	
+	/**
+	 * Creates the table.
+	 * 
+	 * @return true, if successful
+	 */
 	public boolean createTable() {
 		boolean dbCreate = true;
 		db.checkTable("MAIN");
@@ -49,6 +77,11 @@ public class RunDatabase {
 		return dbCreate;
 	}
 
+	/**
+	 * Update.
+	 * 
+	 * @param update the update
+	 */
 	public void update(String update) {
 		try {
 			db.update(update);
@@ -57,11 +90,17 @@ public class RunDatabase {
 		}
 	}
 
+	/**
+	 * Shutdown.
+	 */
 	public void shutdown() {
 		db.shutdown()
 		;
 	}
 
+	/**
+	 * Show table.
+	 */
 	public void showTable() {
 		try {
 			db.query("SELECT * FROM main");
@@ -72,6 +111,9 @@ public class RunDatabase {
 
 	}
 
+	/**
+	 * Drop table.
+	 */
 	public void dropTable() {
 		//try {
 			db.dropTable();

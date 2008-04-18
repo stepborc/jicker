@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package org.jicker.gui;
 
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -12,9 +15,23 @@ import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class SetTree.
+ */
 public class SetTree{
+	
+	/**
+	 * Instantiates a new sets the tree.
+	 */
 	public SetTree() {
 	}
+	
+	/**
+	 * Creates the tree.
+	 * 
+	 * @return the tree node
+	 */
 	public static TreeNode createTree(){
 		DefaultMutableTreeNode tree = new DefaultMutableTreeNode("Alben");
 		ObjectContainer db = Db4o.openFile(JickerGlobals.DATA_BASE);

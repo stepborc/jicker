@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package org.jicker.util.db.db4o;
 
 import java.io.File;
@@ -11,11 +14,18 @@ import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class First.
+ */
 public class First {
 
 	/**
-	 * @param args
-	 * @throws IOException
+	 * The main method.
+	 * 
+	 * @param args the args
+	 * 
+	 * @throws IOException Signals that an I/O exception has occurred.
 	 */
 	public static void main(String[] args) throws IOException {
 		// Testverzeichnisse generieren

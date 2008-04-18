@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package org.jicker.jgoodies.looks;
 
 import java.awt.event.WindowAdapter;
@@ -7,8 +10,15 @@ import javax.swing.JFrame;
 
 import com.jeta.forms.components.panel.FormPanel;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class LooksTest.
+ */
 public class LooksTest extends JFrame {
 
+	/**
+	 * Instantiates a new looks test.
+	 */
 	public LooksTest(){
 		FormPanel panel = new FormPanel( "main.jfrm" );      
 		getContentPane().add( panel );
@@ -17,8 +27,11 @@ public class LooksTest extends JFrame {
 		setLocation( 200, 100 );      
 		setVisible( true );
 	}
+	
 	/**
-	 * @param args
+	 * The main method.
+	 * 
+	 * @param args the args
 	 */
 	public static void main(String[] args) {
 		LooksTest l = new LooksTest();

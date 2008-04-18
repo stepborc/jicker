@@ -17,19 +17,26 @@ import javax.swing.JComponent;
 import org.netbeans.spi.wizard.WizardController;
 import org.netbeans.spi.wizard.WizardPanelProvider;
 
+// TODO: Auto-generated Javadoc
 /**
- *
+ * The Class CatLoversSteps.
+ * 
  * @author Timothy Boudreau
  */
 public class CatLoversSteps extends WizardPanelProvider {
     
-    /** Creates a new instance of CatLoversSteps */
+    /**
+     * Creates a new instance of CatLoversSteps.
+     */
     public CatLoversSteps() {
         super (
             new String[] { "hairLength", "breed" }, 
             new String[] { "Select hair length", "Choose breed" });
     }
     
+    /* (non-Javadoc)
+     * @see org.netbeans.spi.wizard.WizardPanelProvider#createPanel(org.netbeans.spi.wizard.WizardController, java.lang.String, java.util.Map)
+     */
     protected JComponent createPanel(WizardController controller, String id, Map settings) {
         switch (indexOfStep(id)) {
             case 0 :

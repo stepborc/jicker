@@ -1,13 +1,22 @@
+/*
+ * 
+ */
 package org.jicker.util.systemproperties;
 
 import java.util.Enumeration;
 import java.util.Properties;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class sysprop.
+ */
 public class sysprop {
 
 	/**
-	 * @param args
+	 * The main method.
+	 * 
+	 * @param args the args
 	 */
 	public static void main(String[] args) {
 		Properties sysprops = System.getProperties();

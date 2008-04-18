@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package org.jicker.util.log;
 
 import java.text.MessageFormat;
@@ -10,21 +13,43 @@ import org.apache.log4j.MDC;
 import org.apache.log4j.Priority;
 import org.apache.log4j.xml.DOMConfigurator;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Log.
+ */
 public class Log
 {
+  
+  /** The Constant LOG4J_CONFIG_FILE. */
   private static final String LOG4J_CONFIG_FILE  = "org/jicker/util/log/log4j.xml";
+  
+  /** The Constant MEIN_LOGGER_NAME. */
   private static final String MEIN_LOGGER_NAME   = "Log";
+  
+  /** The Constant MESSAGES_RESBUNDLE. */
   private static final String MESSAGES_RESBUNDLE = "org/jicker/util/log/messages";
+  
+  /** The messages res bundle. */
   private static ResourceBundle messagesResBundle;
+  
+  /** The mein logger. */
   private static Log meinLogger;
+  
+  /** The log4j logger. */
   private static Logger log4jLogger;
 
   // private damit Singleton
+  /**
+   * Instantiates a new log.
+   */
   private Log()
   {
     init();
   }
 
+  /**
+   * Inits the.
+   */
   private synchronized void init()
   {
     try {
@@ -40,12 +65,25 @@ public class Log
   }
 
   // Singleton-Instanz
+  /**
+   * Gets the single instance of Log.
+   * 
+   * @return single instance of Log
+   */
   public static synchronized Log getInstance()
   {
     if( meinLogger == null ) meinLogger = new Log();
     return meinLogger;
   }
 
+  /**
+   * Log.
+   * 
+   * @param level the level
+   * @param caller the caller
+   * @param id the id
+   * @param parms the parms
+   */
   public synchronized static void log( Level level, Object caller, String id, String[] parms ) 
   {
     MDC.put( "clss", caller.getClass().getName() );
@@ -70,6 +108,13 @@ public class Log
     }
   }
 
+  /**
+   * Checks if is enabled for.
+   * 
+   * @param level the level
+   * 
+   * @return true, if is enabled for
+   */
   public boolean isEnabledFor( Level level )
   {
      return log4jLogger.isEnabledFor( level );

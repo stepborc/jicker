@@ -23,20 +23,26 @@
  */
 package org.jicker.util.cobra;
 
+// TODO: Auto-generated Javadoc
 /**
  * The <code>TestEntry</code> class is a Java test
  * program for the Cobra HTML rendering engine. It
- * displays a frame with a text field and three tabs. 
+ * displays a frame with a text field and three tabs.
  * The tabs show the renderered HTML, the HTML DOM
  * represented as a JTree, and the HTML source code.
  */
 public class TestEntry {
+	
+	/**
+	 * Instantiates a new test entry.
+	 */
 	private TestEntry() {
 		super();
 	}
 
 	/**
 	 * Test application entry point.
+	 * 
 	 * @param args Program arguments.
 	 */
 	public static void main(String[] args) {

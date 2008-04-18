@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package org.jicker.jgoodies.looks;
 import java.awt.BorderLayout;
 import java.awt.ComponentOrientation;
@@ -21,18 +24,36 @@ import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MyForm.
+ */
 public class MyForm extends JPanel
 {
+   
+   /** The m_photo panel. */
    JPanel m_photoPanel = new JPanel();
+   
+   /** The m_image. */
    ImageComponent m_image = new ImageComponent();
+   
+   /** The m_imagecomponent1. */
    ImageComponent m_imagecomponent1 = new ImageComponent();
+   
+   /** The m_tree tab. */
    JTabbedPane m_treeTab = new JTabbedPane();
+   
+   /** The model. */
    SetTree model = new SetTree();
+   
+   /** The m_flickr tree. */
    JTree m_flickrTree = new JTree(model.createTree());
+   
+   /** The m_own tree. */
    JTree m_ownTree = new JTree();
 
    /**
-    * Default constructor
+    * Default constructor.
     */
    public MyForm()
    {
@@ -40,7 +61,9 @@ public class MyForm extends JPanel
    }
 
    /**
-    * Main method for panel
+    * Main method for panel.
+    * 
+    * @param args the args
     */
    public static void main(String[] args)
    {
@@ -62,8 +85,10 @@ public class MyForm extends JPanel
    /**
     * Adds fill components to empty cells in the first row and first column of the grid.
     * This ensures that the grid spacing will be the same as shown in the designer.
+    * 
     * @param cols an array of column indices in the first row where fill components should be added.
     * @param rows an array of row indices in the first column where fill components should be added.
+    * @param panel the panel
     */
    void addFillComponents( Container panel, int[] cols, int[] rows )
    {
@@ -102,9 +127,12 @@ public class MyForm extends JPanel
    }
 
    /**
-    * Helper method to load an image file from the CLASSPATH
+    * Helper method to load an image file from the CLASSPATH.
+    * 
     * @param imageName the package and name of the file to load relative to the CLASSPATH
+    * 
     * @return an ImageIcon instance with the specified image file
+    * 
     * @throws IllegalArgumentException if the image resource cannot be loaded.
     */
    public ImageIcon loadImage( String imageName )
@@ -127,8 +155,9 @@ public class MyForm extends JPanel
    }
 
    /**
-    * Method for recalculating the component orientation for 
+    * Method for recalculating the component orientation for
     * right-to-left Locales.
+    * 
     * @param orientation the component orientation to be applied
     */
    public void applyComponentOrientation( ComponentOrientation orientation )
@@ -138,6 +167,11 @@ public class MyForm extends JPanel
       super.applyComponentOrientation(orientation);
    }
 
+   /**
+    * Creates the panel.
+    * 
+    * @return the j panel
+    */
    public JPanel createPanel()
    {
       JPanel jpanel1 = new JPanel();
@@ -157,6 +191,11 @@ public class MyForm extends JPanel
       return jpanel1;
    }
 
+   /**
+    * Createphoto panel.
+    * 
+    * @return the j panel
+    */
    public JPanel createphotoPanel()
    {
       m_photoPanel.setName("photoPanel");
@@ -173,6 +212,11 @@ public class MyForm extends JPanel
       return m_photoPanel;
    }
 
+   /**
+    * Creates the panel1.
+    * 
+    * @return the j panel
+    */
    public JPanel createPanel1()
    {
       JPanel jpanel1 = new JPanel();
@@ -191,6 +235,11 @@ public class MyForm extends JPanel
       return jpanel1;
    }
 
+   /**
+    * Creates the panel2.
+    * 
+    * @return the j panel
+    */
    public JPanel createPanel2()
    {
       JPanel jpanel1 = new JPanel();
@@ -210,7 +259,7 @@ public class MyForm extends JPanel
    }
 
    /**
-    * Initializer
+    * Initializer.
     */
    protected void initializePanel()
    {

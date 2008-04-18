@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package org.jicker.util;
 
 import java.io.File;
@@ -16,12 +19,25 @@ import org.jicker.util.db.RunDatabase;
 import org.jicker.util.dirbrowser.DirBrowser;
 import org.jicker.util.log.Log;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class TestDirBrowser.
+ */
 public class TestDirBrowser {
 
 	// FileHandler handler = new FileHandler("my.log");
 	//static Logger logger = Logger.getLogger(TestDirBrowser.class);
+	/** The logger. */
 	private static Log logger = Log.getInstance();
 
+	/**
+	 * The main method.
+	 * 
+	 * @param args the arguments
+	 * 
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws SQLException the SQL exception
+	 */
 	public static void main(String[] args) throws IOException, SQLException {
 		//SimpleLayout layout = new SimpleLayout();
 		//ConsoleAppender consoleAppender = new ConsoleAppender(layout);

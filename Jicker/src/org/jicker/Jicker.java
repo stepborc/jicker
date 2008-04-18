@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package org.jicker;
 
 import java.io.File;
@@ -12,9 +15,16 @@ import org.jicker.gui.MainWindow;
 import org.jicker.gui.jwizz.InstallWizard;
 import org.jicker.util.properties.SaveProperties;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Jicker.
+ */
 @SuppressWarnings("serial")
 public class Jicker extends JickerApp {
 	// Konstruktor
+	/**
+	 * Instantiates a new jicker.
+	 */
 	public Jicker() {
 		super("Jicker", "Jicker");
 		MainWindow aMainWindow = new MainWindow();
@@ -22,9 +32,9 @@ public class Jicker extends JickerApp {
 	}
 
 	/**
-	 * Startup no paramet accept
+	 * Startup no paramet accept.
 	 * 
-	 * @param args
+	 * @param args the args
 	 */
 	public static void main(String[] args) {
 

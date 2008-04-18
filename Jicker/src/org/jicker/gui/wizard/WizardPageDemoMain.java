@@ -16,12 +16,19 @@ import org.netbeans.spi.wizard.Wizard;
 import org.netbeans.spi.wizard.WizardPage;
 import org.netbeans.spi.wizard.WizardPage.WizardResultProducer;
 
+// TODO: Auto-generated Javadoc
 /**
  * Demo entry point.  Assembles a wizard from a set of classes and shows it.
- *
+ * 
  * @author Tim Boudreau
  */
 public class WizardPageDemoMain {
+    
+    /**
+     * The main method.
+     * 
+     * @param ignored the arguments
+     */
     public static void main(String[] ignored) {
         //All we do here is assemble the list of WizardPage subclasses we
         //want to show:

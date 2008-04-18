@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package org.jicker.gui;
 
 import java.awt.BorderLayout;
@@ -16,10 +19,24 @@ import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeSelectionModel;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MainWindow.
+ */
 public class MainWindow extends BaseWindow implements TreeSelectionListener{
+	
+	/** The a status bar. */
 	public StatusBar aStatusBar;
+	
+	/** The list. */
 	public JTree list;
+	
+	/** The panel1. */
 	public JComponent panel1;
+	
+	/**
+	 * Instantiates a new main window.
+	 */
 	public MainWindow(){
         JSplitPane aSplitPanel = new JSplitPane();
         //LeftPanel aLeftPanel = new LeftPanel();
@@ -52,6 +69,14 @@ public class MainWindow extends BaseWindow implements TreeSelectionListener{
         add(aSplitPanel, BorderLayout.CENTER);
         add(aStatusBar, BorderLayout.SOUTH);
 	}
+	
+	/**
+	 * Make text panel.
+	 * 
+	 * @param text the text
+	 * 
+	 * @return the j component
+	 */
 	protected JComponent makeTextPanel(String text) {
         JPanel panel = new JPanel(false);
         JLabel filler = new JLabel(text);
@@ -60,6 +85,10 @@ public class MainWindow extends BaseWindow implements TreeSelectionListener{
         panel.add(filler);
         return panel;
     }
+	
+	/* (non-Javadoc)
+	 * @see org.jicker.gui.BaseWindow#valueChanged(javax.swing.event.TreeSelectionEvent)
+	 */
 	@Override
 	public void valueChanged(TreeSelectionEvent e) {
 		// TODO Auto-generated method stub

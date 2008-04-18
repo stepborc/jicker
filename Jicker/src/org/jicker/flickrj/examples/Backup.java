@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package org.jicker.flickrj.examples;
 
 import java.io.File;
@@ -25,10 +28,11 @@ import com.aetrion.flickr.photosets.PhotosetsInterface;
 import com.aetrion.flickr.util.AuthStore;
 import com.aetrion.flickr.util.FileAuthStore;
 
+// TODO: Auto-generated Javadoc
 /**
- * A simple program to backup all of a users private and public photos in a photoset aware manner.  If photos 
+ * A simple program to backup all of a users private and public photos in a photoset aware manner.  If photos
  * are classified in multiple photosets, they will be copied.  Its a sample, its not perfect :-)
- *
+ * 
  * This sample also uses the AuthStore interface, so users will only be asked to authorize on the first run.
  * 
  * @author Matthew MacKenzie
@@ -37,11 +41,28 @@ import com.aetrion.flickr.util.FileAuthStore;
 
 public class Backup {
 
+    /** The nsid. */
     private String nsid = null;
+    
+    /** The flickr. */
     private Flickr flickr = null;
+    
+    /** The auth store. */
     private AuthStore authStore = null;
+    
+    /** The shared secret. */
     private String sharedSecret = null;
 
+    /**
+     * Instantiates a new backup.
+     * 
+     * @param apiKey the api key
+     * @param nsid the nsid
+     * @param sharedSecret the shared secret
+     * @param authsDir the auths dir
+     * 
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     public Backup(String apiKey, String nsid, String sharedSecret, File authsDir) throws IOException {
         this.flickr = new Flickr(apiKey);
         this.sharedSecret = sharedSecret;
@@ -52,6 +73,13 @@ public class Backup {
         }
     }
 
+	/**
+	 * Authorize.
+	 * 
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws SAXException the SAX exception
+	 * @throws FlickrException the flickr exception
+	 */
 	private void authorize() throws IOException, SAXException, FlickrException {
 		String frob = this.flickr.getAuthInterface().getFrob();
 		
@@ -66,6 +94,11 @@ public class Backup {
 		System.out.println("Thanks.  You probably will not have to do this every time.  Now starting backup.");
 	}
 	
+	/**
+	 * Do backup.
+	 * 
+	 * @param directory the directory
+	 */
 	public void doBackup(File directory) {
 		if (!directory.exists()) directory.mkdir();
 		
@@ -209,6 +242,13 @@ public class Backup {
 		
 	}
 
+	/**
+	 * Make safe filename.
+	 * 
+	 * @param input the input
+	 * 
+	 * @return the string
+	 */
 	private String makeSafeFilename(String input) {
 		/*String replacepattern = "\\\\";
 		input.replace("\\", "+");
@@ -227,6 +267,13 @@ public class Backup {
 	}
 	
 	
+	/**
+	 * The main method.
+	 * 
+	 * @param args the arguments
+	 * 
+	 * @throws Exception the exception
+	 */
 	public static void main(String[] args) throws Exception {
 		if (args.length < 4) {
 			System.out.println("Usage: java " + Backup.class.getName() + " api_key nsid shared_secret output_dir");

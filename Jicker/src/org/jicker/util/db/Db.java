@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package org.jicker.util.db;
 
 import java.io.File;
@@ -16,9 +19,20 @@ import java.util.Map;
 import org.apache.log4j.Level;
 import org.jicker.util.log.Log;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Db.
+ */
 public class Db {
+	
+	/** The conn. */
 	Connection conn;
 
+	/**
+	 * Start db.
+	 * 
+	 * @return true, if successful
+	 */
 	public synchronized boolean startDb() {
 		boolean start = false;
 		try {
@@ -50,6 +64,11 @@ public class Db {
 		return start;
 	}
 
+	/**
+	 * Stop db.
+	 * 
+	 * @return true, if successful
+	 */
 	public synchronized boolean stopDb() {
 		boolean stop = false;
 		Statement st = null;
@@ -68,6 +87,13 @@ public class Db {
 		return stop;
 	}
 
+	/**
+	 * Check table.
+	 * 
+	 * @param tableName the table name
+	 * 
+	 * @return true, if successful
+	 */
 	public synchronized boolean checkTable(String tableName) {
 		Statement st = null;
 		ResultSet rs = null;
@@ -93,6 +119,13 @@ public class Db {
 		return tableCheck;
 	}
 
+	/**
+	 * Update.
+	 * 
+	 * @param update the update
+	 * 
+	 * @return true, if successful
+	 */
 	public synchronized boolean update(String update) {
 		boolean success = false;
 		try {
@@ -108,10 +141,23 @@ public class Db {
 		return success;
 	}
 
+	/**
+	 * Drop table.
+	 */
 	public synchronized void dropTable() {
 		this.update("DROP TABLE MAIN");
 		Log.log(Level.INFO, this, "DBtabledrop", null);
 	}
+	
+	/**
+	 * Query.
+	 * 
+	 * @param expression the expression
+	 * 
+	 * @return the list
+	 * 
+	 * @throws SQLException the SQL exception
+	 */
 	public synchronized List query(String expression) throws SQLException {
 
 		Statement st = null;
@@ -155,6 +201,17 @@ public class Db {
 		
 
 	}
+    
+    /**
+     * To list.
+     * 
+     * @param rs the rs
+     * @param wantedColumnNames the wanted column names
+     * 
+     * @return the list
+     * 
+     * @throws SQLException the SQL exception
+     */
     public final List toList(ResultSet rs, List wantedColumnNames) throws SQLException
     {
         List rows = new ArrayList();
@@ -176,6 +233,14 @@ public class Db {
  
         return rows;
     }
+	
+	/**
+	 * Dump.
+	 * 
+	 * @param rs the rs
+	 * 
+	 * @throws SQLException the SQL exception
+	 */
 	public static void dump(ResultSet rs) throws SQLException {
 
 		// the order of the rows in a cursor
@@ -203,6 +268,11 @@ public class Db {
 		}
 	} // void dump( ResultSet rs )
 	
+	/**
+	 * Creates the table.
+	 * 
+	 * @return true, if successful
+	 */
 	public boolean createTable() {
 		boolean dbCreate = true;
 		if (!this.checkTable("MAIN")){
@@ -213,6 +283,16 @@ public class Db {
 		}
 		return dbCreate;
 	}
+	
+	/**
+	 * Save data.
+	 * 
+	 * @param n the n
+	 * @param browse the browse
+	 * @param csum the csum
+	 * 
+	 * @return true, if successful
+	 */
 	public synchronized boolean saveData(int n,List browse, int csum) {
 		boolean success = false;
 		String update = "insert into main (kid,name,dir,crc) VALUES(" + n + ",'" + browse.get(n).toString().replace("'","''") + "'," + ((File)(browse.get(n))).isDirectory() + "," + csum + ")";

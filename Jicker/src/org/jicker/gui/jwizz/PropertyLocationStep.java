@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package org.jicker.gui.jwizz;
 
 import java.awt.Dimension;
@@ -21,18 +24,40 @@ import net.javaprog.ui.wizard.DataModel;
 
 import org.jicker.JickerGlobals;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PropertyLocationStep.
+ */
 public class PropertyLocationStep extends AbstractStep {
+	
+	/** The data. */
 	protected DataModel data;
+	
+	/** The choose file. */
 	protected JPanel chooseFile = new JPanel();
+	
+	/** The choose directory. */
 	private JPanel chooseDirectory;
+	
+	/** The dir name. */
 	private JTextField dirName;
+	
+	/** The fc. */
 	protected JFileChooser fc = new JFileChooser();
 
+	/**
+	 * Instantiates a new property location step.
+	 * 
+	 * @param data the data
+	 */
 	public PropertyLocationStep(DataModel data) {
 		super("Arbeitsverzeichnis", "Einstellen des Arbeitsverzeichnis");
 		this.data = data;
 	}
 
+	/* (non-Javadoc)
+	 * @see net.javaprog.ui.wizard.AbstractStep#createComponent()
+	 */
 	@Override
 	protected JComponent createComponent() {
 		// Top JPanel
@@ -99,6 +124,9 @@ public class PropertyLocationStep extends AbstractStep {
 		return chooseDirectory;
 	}
 
+	/* (non-Javadoc)
+	 * @see net.javaprog.ui.wizard.Step#prepareRendering()
+	 */
 	public void prepareRendering() {
 		// Nothing to do
 

@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package org.jicker.sample;
 
 import java.io.File;
@@ -9,10 +12,16 @@ import org.jicker.util.dirbrowser.JickerFilter;
 import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class DirFile.
+ */
 public class DirFile {
 
 	/**
-	 * @param args
+	 * The main method.
+	 * 
+	 * @param args the args
 	 */
 	public static void main(String[] args) {
 		 new File("dirfile.db4o").delete();
@@ -55,12 +64,26 @@ public class DirFile {
 
 	}
 
+	/**
+	 * Store dir.
+	 * 
+	 * @param db the db
+	 * @param dirObject the dir object
+	 * @param dirname the dirname
+	 */
 	public static void storeDir(ObjectContainer db, Dir dirObject, String dirname) {
 		Dir dir = new Dir(dirObject, dirname);
 		db.set(dir);
 		//System.out.println("Gespeichert " + dir);
 	}
 
+	/**
+	 * Store file.
+	 * 
+	 * @param db the db
+	 * @param dirObject the dir object
+	 * @param filename the filename
+	 */
 	public static void storeFile(ObjectContainer db, Dir dirObject, String filename) {
 		org.jicker.sample.File file = new org.jicker.sample.File(dirObject, filename);
 		db.set(file);

@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package org.jicker.gui.jwizz;
 
 import java.io.File;
@@ -13,7 +16,17 @@ import net.javaprog.ui.wizard.WizardModel;
 import net.javaprog.ui.wizard.WizardModelEvent;
 import net.javaprog.ui.wizard.WizardModelListener;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class InstallWizard.
+ */
 public class InstallWizard {
+    
+    /**
+     * The main method.
+     * 
+     * @param args the arguments
+     */
     public static void main(String[] args) {
         final DataModel data = new DataModel();
         

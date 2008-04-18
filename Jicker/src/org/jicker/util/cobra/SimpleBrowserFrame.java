@@ -31,37 +31,65 @@ import org.lobobrowser.html.HtmlRendererContext;
 import org.lobobrowser.html.gui.HtmlPanel;
 import org.w3c.dom.Document;
 
+// TODO: Auto-generated Javadoc
 /**
  * The <code>SimpleBrowserFrame</code> class implements
- * the {@link org.lobobrowser.html.BrowserFrame} interface. 
+ * the {@link org.lobobrowser.html.BrowserFrame} interface.
  * It represents a browser frame component.
+ * 
  * @author J. H. S.
  */
 public class SimpleBrowserFrame extends HtmlPanel implements BrowserFrame {
+	
+	/** The rcontext. */
 	private final SimpleHtmlRendererContext rcontext;
+	
+	/** The parent rcontext. */
 	private final HtmlRendererContext parentRcontext;
 	
+	/**
+	 * Instantiates a new simple browser frame.
+	 * 
+	 * @param parentRcontext the parent rcontext
+	 */
 	public SimpleBrowserFrame(HtmlRendererContext parentRcontext) {
 		this.parentRcontext = parentRcontext;
 		this.rcontext = new SimpleHtmlRendererContext(this, parentRcontext);
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.lobobrowser.html.BrowserFrame#getHtmlRendererContext()
+	 */
 	public HtmlRendererContext getHtmlRendererContext() {
 		return this.rcontext;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.lobobrowser.html.BrowserFrame#getComponent()
+	 */
 	public Component getComponent() {
 		return this;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.lobobrowser.html.BrowserFrame#loadURL(java.net.URL)
+	 */
 	public void loadURL(URL url) {
 		this.rcontext.navigate(url, "_this");
 	}
 
+	/* (non-Javadoc)
+	 * @see org.lobobrowser.html.BrowserFrame#getContentDocument()
+	 */
 	public Document getContentDocument() {
 		return (Document) this.getRootNode();
 	}
 	
+	/**
+	 * Gets the parent html renderer context.
+	 * 
+	 * @return the parent html renderer context
+	 */
 	public HtmlRendererContext getParentHtmlRendererContext() {
 		return this.parentRcontext;
 	}

@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package org.jicker.gui;
 
 import java.awt.Cursor;
@@ -15,26 +18,50 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 import org.jicker.util.Pref;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class JickerApp.
+ */
 public class JickerApp extends JFrame {
+	
+	/** The Constant LOOKFEEL. */
 	public static final String LOOKFEEL = "lookfeel";
+	
+	/** The Constant LOOKFEEL_CLASSNAME. */
 	public static final String LOOKFEEL_CLASSNAME = "com.jgoodies.looks.plastic.PlasticLookAndFeel";
     //public static final String LOOKFEEL_CLASSNAME = "com.jgoodies.looks.plastic.PlasticXPLookAndFeel";
     //public static final String LOOKFEEL_CLASSNAME = "com.jgoodies.looks.windows.WindowsLookAndFeel";
     
+    /** The Constant CODEPAGE. */
     public static final String CODEPAGE = "codepage";
 
+	/** The a main panel. */
 	private JPanel aMainPanel = null;
+	
+	/** The aa application. */
 	private JickerApp aaApplication;
+	
+	/** The a default cursor. */
 	private Cursor aDefaultCursor;
+	
+	/** The a wait cursor. */
 	private Cursor aWaitCursor;
+	
+	/** The a operating system. */
 	private String aOperatingSystem;
+	
+	/** The a app name. */
 	private String aAppName;
 
-	/**
-	 *
-	 */
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Instantiates a new jicker app.
+	 * 
+	 * @param appName the app name
+	 * @param prefName the pref name
+	 */
 	public JickerApp(String appName, String prefName) {
 		super(appName);
 		// Task: Logging einbauen
@@ -51,7 +78,13 @@ public class JickerApp extends JFrame {
 	         } catch (Exception e) {setLookAndFeel(false);}
 	         
 	}
-	   public void setLookAndFeel(boolean appIsRunning) {
+	   
+   	/**
+   	 * Sets the look and feel.
+   	 * 
+   	 * @param appIsRunning the new look and feel
+   	 */
+   	public void setLookAndFeel(boolean appIsRunning) {
 	        boolean lf = false;
 	        try {
 	            String lookAndFeelName;
@@ -109,6 +142,12 @@ public class JickerApp extends JFrame {
 	            }
 	        }
 	    }
+	
+	/**
+	 * Restore.
+	 * 
+	 * @param panel the panel
+	 */
 	public void restore(JPanel panel) {
 		aMainPanel = panel;
 

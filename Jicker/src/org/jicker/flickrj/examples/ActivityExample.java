@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package org.jicker.flickrj.examples;
 
 import java.io.IOException;
@@ -21,20 +24,39 @@ import com.aetrion.flickr.auth.Auth;
 import com.aetrion.flickr.auth.Permission;
 import com.aetrion.flickr.util.IOUtilities;
 
+// TODO: Auto-generated Javadoc
 /**
  * Demonstration of howto use the ActivityInterface.
- *
+ * 
  * @author mago
  * @version $Id: ActivityExample.java,v 1.2 2007/12/08 15:11:58 x-mago Exp $
  */
 public class ActivityExample {
+    
+    /** The api key. */
     static String apiKey;
+    
+    /** The shared secret. */
     static String sharedSecret;
+    
+    /** The f. */
     Flickr f;
+    
+    /** The rest. */
     REST rest;
+    
+    /** The request context. */
     RequestContext requestContext;
+    
+    /** The properties. */
     Properties properties = null;
 
+    /**
+     * Instantiates a new activity example.
+     * 
+     * @throws ParserConfigurationException the parser configuration exception
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     public ActivityExample()
       throws ParserConfigurationException, IOException {
         InputStream in = null;
@@ -56,6 +78,13 @@ public class ActivityExample {
         Flickr.debugStream = false;
     }
 
+    /**
+     * Show activity.
+     * 
+     * @throws FlickrException the flickr exception
+     * @throws IOException Signals that an I/O exception has occurred.
+     * @throws SAXException the SAX exception
+     */
     public void showActivity() throws FlickrException, IOException, SAXException {
         ActivityInterface iface = f.getActivityInterface();
         ItemList list = iface.userComments(10, 0);
@@ -95,6 +124,11 @@ public class ActivityExample {
         }
     }
 
+    /**
+     * The main method.
+     * 
+     * @param args the arguments
+     */
     public static void main(String[] args) {
         try {
             ActivityExample t = new ActivityExample();
