@@ -1,5 +1,5 @@
 /*
- * 
+ *
  */
 package org.jicker.gui;
 
@@ -23,33 +23,35 @@ import org.jicker.util.Pref;
  * The Class JickerApp.
  */
 public class JickerApp extends JFrame {
-	
+
 	/** The Constant LOOKFEEL. */
 	public static final String LOOKFEEL = "lookfeel";
-	
+
 	/** The Constant LOOKFEEL_CLASSNAME. */
 	public static final String LOOKFEEL_CLASSNAME = "com.jgoodies.looks.plastic.PlasticLookAndFeel";
-    //public static final String LOOKFEEL_CLASSNAME = "com.jgoodies.looks.plastic.PlasticXPLookAndFeel";
-    //public static final String LOOKFEEL_CLASSNAME = "com.jgoodies.looks.windows.WindowsLookAndFeel";
-    
-    /** The Constant CODEPAGE. */
-    public static final String CODEPAGE = "codepage";
+	// public static final String LOOKFEEL_CLASSNAME =
+	// "com.jgoodies.looks.plastic.PlasticXPLookAndFeel";
+	// public static final String LOOKFEEL_CLASSNAME =
+	// "com.jgoodies.looks.windows.WindowsLookAndFeel";
+
+	/** The Constant CODEPAGE. */
+	public static final String CODEPAGE = "codepage";
 
 	/** The a main panel. */
 	private JPanel aMainPanel = null;
-	
+
 	/** The aa application. */
 	private JickerApp aaApplication;
-	
+
 	/** The a default cursor. */
 	private Cursor aDefaultCursor;
-	
+
 	/** The a wait cursor. */
 	private Cursor aWaitCursor;
-	
+
 	/** The a operating system. */
 	private String aOperatingSystem;
-	
+
 	/** The a app name. */
 	private String aAppName;
 
@@ -58,9 +60,11 @@ public class JickerApp extends JFrame {
 
 	/**
 	 * Instantiates a new jicker app.
-	 * 
-	 * @param appName the app name
-	 * @param prefName the pref name
+	 *
+	 * @param appName
+	 *            the app name
+	 * @param prefName
+	 *            the pref name
 	 */
 	public JickerApp(String appName, String prefName) {
 		super(appName);
@@ -72,81 +76,86 @@ public class JickerApp extends JFrame {
 		aAppName = appName;
 
 		new Pref(prefName);
-	       try {
-	            //UIManager.setLookAndFeel("com.jgoodies.looks.windows.WindowsLookAndFeel");
-	            UIManager.setLookAndFeel("com.jgoodies.looks.plastic.PlasticLookAndFeel");
-	         } catch (Exception e) {setLookAndFeel(false);}
-	         
+		try {
+			// UIManager.setLookAndFeel(
+			// "com.jgoodies.looks.windows.WindowsLookAndFeel");
+			UIManager
+					.setLookAndFeel("com.jgoodies.looks.plastic.PlasticLookAndFeel");
+		} catch (Exception e) {
+			setLookAndFeel(false);
+		}
+
 	}
-	   
-   	/**
-   	 * Sets the look and feel.
-   	 * 
-   	 * @param appIsRunning the new look and feel
-   	 */
-   	public void setLookAndFeel(boolean appIsRunning) {
-	        boolean lf = false;
-	        try {
-	            String lookAndFeelName;
-	            if (appIsRunning) {
-	                lookAndFeelName = Pref.getPref(LOOKFEEL, LOOKFEEL_CLASSNAME);
-	            }
-	            else {
-	                lookAndFeelName = System.getProperty("swing.defaultlaf");
 
-	                if (lookAndFeelName == null || lookAndFeelName.length() < 10) {
-	                    lookAndFeelName = Pref.getPref(LOOKFEEL, LOOKFEEL_CLASSNAME);
-	                }
-	            }
-	            //Log.get().addTime(1, "Java Look & Feel is set to: " + lookAndFeelName);
+	/**
+	 * Sets the look and feel.
+	 *
+	 * @param appIsRunning
+	 *            the new look and feel
+	 */
+	public void setLookAndFeel(boolean appIsRunning) {
+		boolean lf = false;
+		try {
+			String lookAndFeelName;
+			if (appIsRunning) {
+				lookAndFeelName = Pref.getPref(LOOKFEEL, LOOKFEEL_CLASSNAME);
+			} else {
+				lookAndFeelName = System.getProperty("swing.defaultlaf");
 
-	            if (lookAndFeelName != null) {
-	                UIManager.setLookAndFeel(lookAndFeelName);
-	            }
-	        }
-	        catch (ClassNotFoundException e) {
-	            //showHtmlError("Look and feel library can't be found.", e.getMessage());
-	            lf = true;
-	        }
-	        catch (InstantiationException e) {
-	            lf = true;
-	        }
-	        catch (IllegalAccessException e) {
-	            lf = true;
-	        }
-	        catch (UnsupportedLookAndFeelException e) {
-	            //showHtmlError("Selected \"look and feel\" is unsupported on this platform.", e.getMessage());
-	            lf = true;
-	        }
+				if (lookAndFeelName == null || lookAndFeelName.length() < 10) {
+					lookAndFeelName = Pref
+							.getPref(LOOKFEEL, LOOKFEEL_CLASSNAME);
+				}
+			}
+			// Log.get().addTime(1, "Java Look & Feel is set to: " +
+			// lookAndFeelName);
 
-	        if (appIsRunning) {
-	            SwingUtilities.updateComponentTreeUI(this);
+			if (lookAndFeelName != null) {
+				UIManager.setLookAndFeel(lookAndFeelName);
+			}
+		} catch (ClassNotFoundException e) {
+			// showHtmlError("Look and feel library can't be found.",
+			// e.getMessage());
+			lf = true;
+		} catch (InstantiationException e) {
+			lf = true;
+		} catch (IllegalAccessException e) {
+			lf = true;
+		} catch (UnsupportedLookAndFeelException e) {
+			// showHtmlError(
+			// "Selected \"look and feel\" is unsupported on this platform.",
+			// e.getMessage());
+			lf = true;
+		}
 
-	            for (Frame f : getFrames()) {
-	                SwingUtilities.updateComponentTreeUI(f);
-	                f.validate();
+		if (appIsRunning) {
+			SwingUtilities.updateComponentTreeUI(this);
 
-	                for (Window w : f.getOwnedWindows()) {
-	                    SwingUtilities.updateComponentTreeUI(w);
-	                    w.validate();
-	                }
-	            }
-	        }
-	        else {
-	            try {
-	                if (lf) {
-	                    UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-	                }
-	            }
-	            catch (Exception e) {
-	            }
-	        }
-	    }
-	
+			for (Frame f : getFrames()) {
+				SwingUtilities.updateComponentTreeUI(f);
+				f.validate();
+
+				for (Window w : f.getOwnedWindows()) {
+					SwingUtilities.updateComponentTreeUI(w);
+					w.validate();
+				}
+			}
+		} else {
+			try {
+				if (lf) {
+					UIManager.setLookAndFeel(UIManager
+							.getCrossPlatformLookAndFeelClassName());
+				}
+			} catch (Exception e) {
+			}
+		}
+	}
+
 	/**
 	 * Restore.
-	 * 
-	 * @param panel the panel
+	 *
+	 * @param panel
+	 *            the panel
 	 */
 	public void restore(JPanel panel) {
 		aMainPanel = panel;

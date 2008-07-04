@@ -24,7 +24,7 @@ import org.jicker.util.log.Log;
  * The Class Db.
  */
 public class Db {
-	
+
 	/** The conn. */
 	Connection conn;
 
@@ -42,8 +42,11 @@ public class Db {
 			start = true;
 			Log.log(Level.INFO, this, "DBstart", null);
 			if (!this.checkTable("MAIN")) {
-				/*this
-						.update("CREATE TABLE main ( id INTEGER IDENTITY, str_col VARCHAR(256), num_col INTEGER, crc BIGINT)");*/
+				/*
+				 * this.update(
+				 * "CREATE TABLE main ( id INTEGER IDENTITY, str_col VARCHAR(256), num_col INTEGER, crc BIGINT)"
+				 * );
+				 */
 				this.createTable();
 				Log.log(Level.INFO, this, "DBtablecreate", null);
 				start = true;
@@ -90,7 +93,8 @@ public class Db {
 	/**
 	 * Check table.
 	 * 
-	 * @param tableName the table name
+	 * @param tableName
+	 *            the table name
 	 * 
 	 * @return true, if successful
 	 */
@@ -122,7 +126,8 @@ public class Db {
 	/**
 	 * Update.
 	 * 
-	 * @param update the update
+	 * @param update
+	 *            the update
 	 * 
 	 * @return true, if successful
 	 */
@@ -148,15 +153,17 @@ public class Db {
 		this.update("DROP TABLE MAIN");
 		Log.log(Level.INFO, this, "DBtabledrop", null);
 	}
-	
+
 	/**
 	 * Query.
 	 * 
-	 * @param expression the expression
+	 * @param expression
+	 *            the expression
 	 * 
 	 * @return the list
 	 * 
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException
+	 *             the SQL exception
 	 */
 	public synchronized List query(String expression) throws SQLException {
 
@@ -164,82 +171,77 @@ public class Db {
 		ResultSet rs = null;
 		ResultSetMetaData meta = null;
 		List<String> wantedColumnNames = new ArrayList<String>();
-		
-		
-			st = conn.createStatement();
-			// statement objects can be reused with
 
-			// repeated calls to execute but we
-			// choose to make a new one each time
-			rs = st.executeQuery(expression); // run the query
-			
+		st = conn.createStatement();
+		// statement objects can be reused with
 
-			// closed too
-			// so you should copy the contents to some other object.
-			// the result set is invalidated also if you recycle an Statement
-			// and try to execute some other query before the result set has been
-			// completely examined.
-			//return toList(rs, wantedColumnNames)
+		// repeated calls to execute but we
+		// choose to make a new one each time
+		rs = st.executeQuery(expression); // run the query
 
-		
-			// TODO Auto-generated catch block
-			meta = rs.getMetaData();
-			int test = meta.getColumnCount();
-		for (int n = 1; n < meta.getColumnCount()-1;n++){
+		// closed too
+		// so you should copy the contents to some other object.
+		// the result set is invalidated also if you recycle an Statement
+		// and try to execute some other query before the result set has been
+		// completely examined.
+		// return toList(rs, wantedColumnNames)
+
+		// TODO Auto-generated catch block
+		meta = rs.getMetaData();
+		int test = meta.getColumnCount();
+		for (int n = 1; n < meta.getColumnCount() - 1; n++) {
 			wantedColumnNames.add(meta.getColumnName(n).toString());
 		}
-		
+
 		// do something with the result set.
-		
-		//dump(rs);
+
+		// dump(rs);
 		List result = new ArrayList();
 		result = this.toList(rs, wantedColumnNames);
-		st.close(); 
+		st.close();
 		return result;
 		// NOTE!! if you close a statement the associated ResultSet
 		// is
-		
 
 	}
-    
-    /**
-     * To list.
-     * 
-     * @param rs the rs
-     * @param wantedColumnNames the wanted column names
-     * 
-     * @return the list
-     * 
-     * @throws SQLException the SQL exception
-     */
-    public final List toList(ResultSet rs, List wantedColumnNames) throws SQLException
-    {
-        List rows = new ArrayList();
- 
-        int numWantedColumns = wantedColumnNames.size();
-        while (rs.next())
-        {
-            Map row = new LinkedHashMap();
- 
-            for (int i = 0; i < numWantedColumns; ++i)
-            {
-                String columnName   = (String)wantedColumnNames.get(i);
-                Object value = rs.getObject(columnName);
-                row.put(columnName, value);
-            }
- 
-            rows.add(row);
-        }
- 
-        return rows;
-    }
-	
+
+	/**
+	 * To list.
+	 * 
+	 * @param rs
+	 *            the rs
+	 * @param wantedColumnNames
+	 *            the wanted column names
+	 * 
+	 * @return the list
+	 * 
+	 * @throws SQLException
+	 *             the SQL exception
+	 */
+	public final List toList(ResultSet rs, List wantedColumnNames)
+			throws SQLException {
+		List rows = new ArrayList();
+		int numWantedColumns = wantedColumnNames.size();
+		while (rs.next()) {
+			Map row = new LinkedHashMap();
+			for (int i = 0; i < numWantedColumns; ++i) {
+				String columnName = (String) wantedColumnNames.get(i);
+				Object value = rs.getObject(columnName);
+				row.put(columnName, value);
+			}
+			rows.add(row);}
+
+		return rows;
+	}
+
 	/**
 	 * Dump.
 	 * 
-	 * @param rs the rs
+	 * @param rs
+	 *            the rs
 	 * 
-	 * @throws SQLException the SQL exception
+	 * @throws SQLException
+	 *             the SQL exception
 	 */
 	public static void dump(ResultSet rs) throws SQLException {
 
@@ -267,7 +269,7 @@ public class Db {
 			System.out.println(" ");
 		}
 	} // void dump( ResultSet rs )
-	
+
 	/**
 	 * Creates the table.
 	 * 
@@ -275,27 +277,33 @@ public class Db {
 	 */
 	public boolean createTable() {
 		boolean dbCreate = true;
-		if (!this.checkTable("MAIN")){
+		if (!this.checkTable("MAIN")) {
 			// erstellen einer leeren Tabelle
 			// durch deklarieren der ID Spalte
 			// hsql try {
-			this.update("CREATE TABLE main ( id BIGINT IDENTITY, kid BIGINT, name VARCHAR(256),dir BOOLEAN, crc BIGINT)");
+			this
+					.update("CREATE TABLE main ( id BIGINT IDENTITY, kid BIGINT, name VARCHAR(256),dir BOOLEAN, crc BIGINT)");
 		}
 		return dbCreate;
 	}
-	
+
 	/**
 	 * Save data.
 	 * 
-	 * @param n the n
-	 * @param browse the browse
-	 * @param csum the csum
+	 * @param n
+	 *            the n
+	 * @param browse
+	 *            the browse
+	 * @param csum
+	 *            the csum
 	 * 
 	 * @return true, if successful
 	 */
-	public synchronized boolean saveData(int n,List browse, int csum) {
+	public synchronized boolean saveData(int n, List browse, int csum) {
 		boolean success = false;
-		String update = "insert into main (kid,name,dir,crc) VALUES(" + n + ",'" + browse.get(n).toString().replace("'","''") + "'," + ((File)(browse.get(n))).isDirectory() + "," + csum + ")";
+		String update = "insert into main (kid,name,dir,crc) VALUES(" + n
+				+ ",'" + browse.get(n).toString().replace("'", "''") + "',"
+				+ ((File) (browse.get(n))).isDirectory() + "," + csum + ")";
 		try {
 			Statement st = null;
 			st = conn.createStatement();

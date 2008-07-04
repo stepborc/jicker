@@ -1,5 +1,5 @@
 /*
- * 
+ *
  */
 package org.jicker.util.cobra;
 
@@ -37,31 +37,35 @@ import org.w3c.dom.Document;
  * Parser-only test frame.
  */
 public class ParserTest extends JFrame {
-	
+
 	/** The Constant logger. */
-	private static final Logger logger = Logger.getLogger(ParserTest.class.getName());
-	
+	private static final Logger logger = Logger.getLogger(ParserTest.class
+			.getName());
+
 	/** The tree. */
 	private final JTree tree;
-	
+
 	/** The text area. */
 	private final JTextArea textArea;
-	
+
 	/**
 	 * Instantiates a new parser test.
-	 * 
-	 * @throws HeadlessException the headless exception
+	 *
+	 * @throws HeadlessException
+	 *             the headless exception
 	 */
 	public ParserTest() throws HeadlessException {
 		this("HTML Parser-Only Test Tool");
 	}
-	
+
 	/**
 	 * Instantiates a new parser test.
-	 * 
-	 * @param title the title
-	 * 
-	 * @throws HeadlessException the headless exception
+	 *
+	 * @param title
+	 *            the title
+	 *
+	 * @throws HeadlessException
+	 *             the headless exception
 	 */
 	public ParserTest(String title) throws HeadlessException {
 		super(title);
@@ -78,60 +82,60 @@ public class ParserTest extends JFrame {
 		final JTree tree = new JTree();
 		tree.setModel(null);
 		final JScrollPane scrollPane = new JScrollPane(tree);
-		
+
 		this.tree = tree;
-		
+
 		contentPane.add(topPanel, BorderLayout.NORTH);
 		contentPane.add(bottomPanel, BorderLayout.CENTER);
-		
+
 		topPanel.add(new JLabel("URL: "), BorderLayout.WEST);
 		topPanel.add(textField, BorderLayout.CENTER);
 		topPanel.add(button, BorderLayout.EAST);
-		
+
 		bottomPanel.add(tabbedPane, BorderLayout.CENTER);
-				
+
 		final JTextArea textArea = new JTextArea();
 		textArea.setEditable(false);
 		this.textArea = textArea;
 		final JScrollPane textAreaSp = new JScrollPane(textArea);
-		
+
 		tabbedPane.addTab("HTML DOM", scrollPane);
 		tabbedPane.addTab("Source Code", textAreaSp);
-		
+
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 				process(textField.getText());
 			}
 		});
 	}
-	
 
 	/**
 	 * Process.
-	 * 
-	 * @param uri the uri
+	 *
+	 * @param uri
+	 *            the uri
 	 */
 	private void process(String uri) {
 		try {
 			URL url;
 			try {
 				url = new URL(uri);
-			} catch(java.net.MalformedURLException mfu) {
+			} catch (java.net.MalformedURLException mfu) {
 				int idx = uri.indexOf(':');
-				if(idx == -1 || idx == 1) {
+				if (idx == -1 || idx == 1) {
 					// try file
 					url = new URL("file:" + uri);
-				}
-				else {
+				} else {
 					throw mfu;
 				}
 			}
 			logger.info("process(): Loading URI=[" + uri + "].");
 			long time0 = System.currentTimeMillis();
 			URLConnection connection = url.openConnection();
-			connection.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible;) Cobra/0.96.1+");
+			connection.setRequestProperty("User-Agent",
+					"Mozilla/4.0 (compatible;) Cobra/0.96.1+");
 			connection.setRequestProperty("Cookie", "");
-			if(connection instanceof HttpURLConnection) {
+			if (connection instanceof HttpURLConnection) {
 				HttpURLConnection hc = (HttpURLConnection) connection;
 				hc.setInstanceFollowRedirects(true);
 				int responseCode = hc.getResponseCode();
@@ -153,24 +157,29 @@ public class ParserTest extends JFrame {
 			// Provide a proper URI, in case it was a file.
 			String actualURI = url.toExternalForm();
 			// Should change to use proper charset.
-			Document document = builder.parse(new InputSourceImpl(bin, actualURI, "ISO-8859-1"));
+			Document document = builder.parse(new InputSourceImpl(bin,
+					actualURI, "ISO-8859-1"));
 			long time2 = System.currentTimeMillis();
-			logger.info("Parsed URI=[" + uri + "]: Parse elapsed: " + (time2 - time1) + " ms. Load elapsed: " + (time1 - time0) + " ms.");
+			logger.info("Parsed URI=[" + uri + "]: Parse elapsed: "
+					+ (time2 - time1) + " ms. Load elapsed: " + (time1 - time0)
+					+ " ms.");
 			this.tree.setModel(new NodeTreeModel(document));
-		} catch(Exception err) {
-			logger.log(Level.SEVERE, "Error trying to load URI=[" + uri + "].", err);
+		} catch (Exception err) {
+			logger.log(Level.SEVERE, "Error trying to load URI=[" + uri + "].",
+					err);
 		}
 	}
 
 	/**
 	 * The main method.
-	 * 
-	 * @param args the arguments
+	 *
+	 * @param args
+	 *            the arguments
 	 */
 	public static void main(String[] args) {
 		ParserTest frame = new ParserTest();
 		frame.setSize(800, 400);
 		frame.setExtendedState(TestFrame.MAXIMIZED_BOTH);
-		frame.setVisible(true);		
+		frame.setVisible(true);
 	}
 }

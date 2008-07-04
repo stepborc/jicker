@@ -1,5 +1,5 @@
 /*
- * 
+ *
  */
 package org.jicker.util.db;
 
@@ -22,13 +22,17 @@ public class test {
 
 	/**
 	 * The main method.
-	 * 
-	 * @param args the args
-	 * 
-	 * @throws ClassNotFoundException the class not found exception
-	 * @throws SQLException the SQL exception
+	 *
+	 * @param args
+	 *            the args
+	 *
+	 * @throws ClassNotFoundException
+	 *             the class not found exception
+	 * @throws SQLException
+	 *             the SQL exception
 	 */
-	public static void main(String[] args) throws ClassNotFoundException, SQLException {
+	public static void main(String[] args) throws ClassNotFoundException,
+			SQLException {
 		List<Map<String, Object>> rows = new ArrayList<Map<String, Object>>();
 		Class.forName("org.hsqldb.jdbcDriver");
 		Connection conn = DriverManager.getConnection("jdbc:hsqldb:"
@@ -36,37 +40,33 @@ public class test {
 		Statement st = null;
 		ResultSet rs = null;
 		ResultSetMetaData meta = null;
-		 
+
 		st = conn.createStatement(); // statement objects can be reused with
 		rs = st.executeQuery("SELECT * FROM MAIN");
 		meta = rs.getMetaData();
-		//int n = meta.getColumnCount();
+		// int n = meta.getColumnCount();
 		List<String> wantedColumnNames = new ArrayList<String>();
-		for (int n = 1; n < meta.getColumnCount();n++){
+		for (int n = 1; n < meta.getColumnCount(); n++) {
 			wantedColumnNames.add(meta.getColumnName(n).toString());
 		}
 		System.out.println(wantedColumnNames.toString());
-	       
-		
-	       while (rs.next())
-	        {
-	            Map<String, Object> row = new LinkedHashMap<String, Object>();
-	 
-	            for (int i = 0; i < meta.getColumnCount()- 1; ++i)
-	            {
-	                String columnName   = (String)wantedColumnNames.get(i);
-	                Object value = rs.getObject(columnName);
-	                row.put(columnName, value);
-	            }
-	 
-	            rows.add(row);
-	        }
-		
+
+		while (rs.next()) {
+			Map<String, Object> row = new LinkedHashMap<String, Object>();
+
+			for (int i = 0; i < meta.getColumnCount() - 1; ++i) {
+				String columnName = (String) wantedColumnNames.get(i);
+				Object value = rs.getObject(columnName);
+				row.put(columnName, value);
+			}
+
+			rows.add(row);
+		}
+
 		st.close();
-rs.close();
-conn.close();
-System.out.println(rows.toString());
+		rs.close();
+		conn.close();
+		System.out.println(rows.toString());
 	}
-	
 
 }
