@@ -1,5 +1,5 @@
 /*
- * 
+ *
  */
 package org.jicker.util.cobra;
 
@@ -44,31 +44,35 @@ import com.steadystate.css.parser.CSSOMParser;
  * Tests only the CSS parser.
  */
 public class CssParserTest extends JFrame {
-	
+
 	/** The Constant logger. */
-	private static final Logger logger = Logger.getLogger(CssParserTest.class.getName());
-	
+	private static final Logger logger = Logger.getLogger(CssParserTest.class
+			.getName());
+
 	/** The css output. */
 	private final HtmlPanel cssOutput;
-	
+
 	/** The text area. */
 	private final JTextArea textArea;
-	
+
 	/**
 	 * Instantiates a new css parser test.
-	 * 
-	 * @throws HeadlessException the headless exception
+	 *
+	 * @throws HeadlessException
+	 *             the headless exception
 	 */
 	public CssParserTest() throws HeadlessException {
 		this("CSS Parser Test Tool");
 	}
-	
+
 	/**
 	 * Instantiates a new css parser test.
-	 * 
-	 * @param title the title
-	 * 
-	 * @throws HeadlessException the headless exception
+	 *
+	 * @param title
+	 *            the title
+	 *
+	 * @throws HeadlessException
+	 *             the headless exception
 	 */
 	public CssParserTest(String title) throws HeadlessException {
 		super(title);
@@ -85,57 +89,57 @@ public class CssParserTest extends JFrame {
 
 		HtmlPanel htmlPanel = new HtmlPanel();
 		this.cssOutput = htmlPanel;
-		
+
 		contentPane.add(topPanel, BorderLayout.NORTH);
 		contentPane.add(bottomPanel, BorderLayout.CENTER);
-		
+
 		topPanel.add(new JLabel("URL: "), BorderLayout.WEST);
 		topPanel.add(textField, BorderLayout.CENTER);
 		topPanel.add(button, BorderLayout.EAST);
-		
+
 		bottomPanel.add(tabbedPane, BorderLayout.CENTER);
-				
+
 		final JTextArea textArea = new JTextArea();
 		this.textArea = textArea;
 		final JScrollPane textAreaSp = new JScrollPane(textArea);
-		
+
 		tabbedPane.addTab("Parsed CSS", htmlPanel);
 		tabbedPane.addTab("Source Code", textAreaSp);
-		
+
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
 				process(textField.getText());
 			}
 		});
 	}
-	
 
 	/**
 	 * Process.
-	 * 
-	 * @param uri the uri
+	 *
+	 * @param uri
+	 *            the uri
 	 */
 	private void process(String uri) {
 		try {
 			URL url;
 			try {
 				url = new URL(uri);
-			} catch(java.net.MalformedURLException mfu) {
+			} catch (java.net.MalformedURLException mfu) {
 				int idx = uri.indexOf(':');
-				if(idx == -1 || idx == 1) {
+				if (idx == -1 || idx == 1) {
 					// try file
 					url = new URL("file:" + uri);
-				}
-				else {
+				} else {
 					throw mfu;
 				}
 			}
 			logger.info("process(): Loading URI=[" + uri + "].");
 			long time0 = System.currentTimeMillis();
 			URLConnection connection = url.openConnection();
-			connection.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible;) Cobra/0.96.1+");
+			connection.setRequestProperty("User-Agent",
+					"Mozilla/4.0 (compatible;) Cobra/0.96.1+");
 			connection.setRequestProperty("Cookie", "");
-			if(connection instanceof HttpURLConnection) {
+			if (connection instanceof HttpURLConnection) {
 				HttpURLConnection hc = (HttpURLConnection) connection;
 				hc.setInstanceFollowRedirects(true);
 				int responseCode = hc.getResponseCode();
@@ -152,13 +156,17 @@ public class CssParserTest extends JFrame {
 			this.textArea.setText(source);
 			long time1 = System.currentTimeMillis();
 			CSSOMParser parser = new CSSOMParser();
-			InputSource is = CSSUtilities.getCssInputSourceForStyleSheet(source);
+			InputSource is = CSSUtilities
+					.getCssInputSourceForStyleSheet(source);
 			CSSStyleSheet styleSheet = parser.parseStyleSheet(is);
 			long time2 = System.currentTimeMillis();
-			logger.info("Parsed URI=[" + uri + "]: Parse elapsed: " + (time2 - time1) + " ms. Load elapsed: " + (time1 - time0) + " ms.");
+			logger.info("Parsed URI=[" + uri + "]: Parse elapsed: "
+					+ (time2 - time1) + " ms. Load elapsed: " + (time1 - time0)
+					+ " ms.");
 			this.showStyleSheet(styleSheet);
-		} catch(Exception err) {
-			logger.log(Level.SEVERE, "Error trying to load URI=[" + uri + "].", err);
+		} catch (Exception err) {
+			logger.log(Level.SEVERE, "Error trying to load URI=[" + uri + "].",
+					err);
 			this.clearCssOutput();
 		}
 	}
@@ -172,8 +180,9 @@ public class CssParserTest extends JFrame {
 
 	/**
 	 * Show style sheet.
-	 * 
-	 * @param styleSheet the style sheet
+	 *
+	 * @param styleSheet
+	 *            the style sheet
 	 */
 	private void showStyleSheet(CSSStyleSheet styleSheet) {
 		StringWriter stringWriter = new StringWriter();
@@ -181,9 +190,10 @@ public class CssParserTest extends JFrame {
 		writer.println("<DL>");
 		CSSRuleList ruleList = styleSheet.getCssRules();
 		int length = ruleList.getLength();
-		for(int i = 0; i < length; i++) {
+		for (int i = 0; i < length; i++) {
 			CSSRule rule = ruleList.item(i);
-			writer.println("<DT><strong>Rule: type=" + rule.getType() + ",class=" + rule.getClass().getName() + "</strong></DT>");
+			writer.println("<DT><strong>Rule: type=" + rule.getType()
+					+ ",class=" + rule.getClass().getName() + "</strong></DT>");
 			writer.println("<DD>");
 			this.writeRuleInfo(writer, rule);
 			writer.println("</DD>");
@@ -191,40 +201,43 @@ public class CssParserTest extends JFrame {
 		writer.println("</DL>");
 		writer.flush();
 		String html = stringWriter.toString();
-		HtmlRendererContext rcontext = new SimpleHtmlRendererContext(this.cssOutput);
+		HtmlRendererContext rcontext = new SimpleHtmlRendererContext(
+				this.cssOutput);
 		this.cssOutput.setHtml(html, "about:css", rcontext);
 	}
 
 	/**
 	 * Write rule info.
-	 * 
-	 * @param writer the writer
-	 * @param rule the rule
+	 *
+	 * @param writer
+	 *            the writer
+	 * @param rule
+	 *            the rule
 	 */
 	private void writeRuleInfo(PrintWriter writer, CSSRule rule) {
-		if(rule instanceof CSSStyleRule) {
+		if (rule instanceof CSSStyleRule) {
 			CSSStyleRule styleRule = (CSSStyleRule) rule;
 			writer.println("Selector: " + styleRule.getSelectorText());
 			writer.println("<br>");
 			writer.println("CSS Text: " + styleRule.getCssText());
-		}
-		else if(rule instanceof CSSImportRule) {
+		} else if (rule instanceof CSSImportRule) {
 			CSSImportRule styleRule = (CSSImportRule) rule;
 			writer.println("HREF: " + styleRule.getHref());
 			writer.println("<br>");
-			writer.println("CSS Text: " + styleRule.getCssText());			
+			writer.println("CSS Text: " + styleRule.getCssText());
 		}
 	}
-	
+
 	/**
 	 * The main method.
-	 * 
-	 * @param args the arguments
+	 *
+	 * @param args
+	 *            the arguments
 	 */
 	public static void main(String[] args) {
 		CssParserTest frame = new CssParserTest();
 		frame.setSize(800, 400);
 		frame.setExtendedState(TestFrame.MAXIMIZED_BOTH);
-		frame.setVisible(true);		
+		frame.setVisible(true);
 	}
 }

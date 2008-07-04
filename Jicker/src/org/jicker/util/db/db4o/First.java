@@ -1,5 +1,5 @@
 /*
- * 
+ *
  */
 package org.jicker.util.db.db4o;
 
@@ -22,9 +22,9 @@ public class First {
 
 	/**
 	 * The main method.
-	 * 
+	 *
 	 * @param args the args
-	 * 
+	 *
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 */
 	public static void main(String[] args) throws IOException {
