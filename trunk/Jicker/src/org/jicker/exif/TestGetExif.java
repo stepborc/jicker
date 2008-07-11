@@ -16,14 +16,16 @@ public class TestGetExif {
 	/**
 	 * The main method.
 	 * 
-	 * @param args the args
+	 * @param args
+	 *            the args
 	 * 
-	 * @throws IOException Signals that an I/O exception has occurred.
-	 * @throws MetadataException the metadata exception
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 * @throws MetadataException
+	 *             the metadata exception
 	 */
-	public static void main(String[] args) throws MetadataException, IOException {
+	public static void main(String[] args) {
 		new GetExif();
-
 	}
 
 }

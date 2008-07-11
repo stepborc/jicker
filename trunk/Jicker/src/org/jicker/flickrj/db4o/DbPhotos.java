@@ -72,6 +72,7 @@ public class DbPhotos {
 	private java.lang.String mediumUrl;
 	
 	/** The notes. */
+	@SuppressWarnings("unchecked")
 	private java.util.Collection notes;
 	// Deprecated
 	/** The original as stream. */
@@ -118,6 +119,7 @@ public class DbPhotos {
 	private java.lang.String smallUrl;
 	
 	/** The tags. */
+	@SuppressWarnings("unchecked")
 	private java.util.Collection tags;
 	
 	/** The taken granularity. */
@@ -136,6 +138,7 @@ public class DbPhotos {
 	private java.lang.String url;
 	
 	/** The urls. */
+	@SuppressWarnings("unchecked")
 	private java.util.Collection urls;
 	
 	/** The views. */
@@ -398,6 +401,7 @@ public class DbPhotos {
 	 * 
 	 * @return the notes
 	 */
+	@SuppressWarnings("unchecked")
 	public java.util.Collection getNotes() {
 		return notes;
 	}
@@ -515,6 +519,7 @@ public class DbPhotos {
 	 * 
 	 * @return the tags
 	 */
+	@SuppressWarnings("unchecked")
 	public java.util.Collection getTags() {
 		return tags;
 	}
@@ -560,6 +565,7 @@ public class DbPhotos {
 	 * 
 	 * @return the urls
 	 */
+	@SuppressWarnings("unchecked")
 	public java.util.Collection getUrls() {
 		return urls;
 	}
