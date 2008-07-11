@@ -29,7 +29,7 @@ public class GetExif {
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	public GetExif() throws MetadataException, IOException {
+	public GetExif() {
 		File jpegFile = new File("DSCF3635.JPG");
 		/*
 		 * Metadata metadata = null; try { metadata =
@@ -76,8 +76,16 @@ public class GetExif {
 					.getDirectory(ExifDirectory.class);
 			if (directory.containsThumbnail()) {
 				System.out.println("Writing thumbnail...");
-				directory.writeThumbnail(jpegFile.toString().trim()
-						+ ".thumb.jpg");
+				try {
+					directory.writeThumbnail(jpegFile.toString().trim()
+							+ ".thumb.jpg");
+				} catch (MetadataException e) {
+					System.out.println("Jpeg Datei steht nicht zur Verfügung");
+					e.printStackTrace();
+				} catch (IOException e) {
+					System.out.println("Datei nicht im Filesystem gefunden");
+					e.printStackTrace();
+				}
 			} else {
 				System.out.println("No thumbnail data exists in this image");
 			}
