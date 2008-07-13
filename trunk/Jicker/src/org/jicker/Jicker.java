@@ -15,9 +15,11 @@ import org.jicker.gui.MainWindow;
 import org.jicker.gui.jwizz.InstallWizard;
 import org.jicker.util.properties.SaveProperties;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class Jicker.
+ * Starting the Jicker GUI
+ * 
  */
 @SuppressWarnings("serial")
 public class Jicker extends JickerApp {
@@ -26,6 +28,7 @@ public class Jicker extends JickerApp {
 	 * Instantiates a new jicker.
 	 */
 	public Jicker() {
+		
 		super("Jicker", "Jicker");
 		MainWindow aMainWindow = new MainWindow();
 		restore(aMainWindow);
