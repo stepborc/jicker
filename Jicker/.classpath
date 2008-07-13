@@ -9,7 +9,6 @@
 	<classpathentry kind="lib" path="lib/looks-2.1.4.jar"/>
 	<classpathentry kind="lib" path="lib/ostermillerutils_1_06_01.jar"/>
 	<classpathentry kind="lib" path="lib/quickr-0.8.jar"/>
-	<classpathentry kind="lib" path="lib/db4o-6.4.14.8131-java5.jar"/>
 	<classpathentry kind="lib" path="lib/formsrt.jar"/>
 	<classpathentry kind="lib" path="lib/cobra.jar"/>
 	<classpathentry kind="lib" path="lib/js.jar"/>
@@ -27,5 +26,6 @@
 			<attribute name="javadoc_location" value="jar:platform:/resource/Jicker/lib/flickrapi-1.1.zip!/flickrapi-1.1/docs/api"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="lib/db4o-7.2.48.10988-java5.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
