@@ -1,0 +1,3 @@
+#Eine Insel mit zwei Bergen
+#Thu Jul 17 20:46:18 CEST 2008
+MeinNameIst=Forest Gump
