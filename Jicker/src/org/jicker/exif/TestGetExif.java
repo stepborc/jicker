@@ -25,6 +25,7 @@ public class TestGetExif {
 	 *             the metadata exception
 	 */
 	public static void main(String[] args) {
+		System.out.println("Test der Exif Api.");
 		new GetExif();
 	}
 
