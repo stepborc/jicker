@@ -1,0 +1,18 @@
+<uml>
+   <greenVersion="30100"/>
+   <type>
+      <name="=Jicker/src<org.jicker.util.dirbrowser{JickerFilter.java[JickerFilter"/>
+      <height="-1"/>
+      <width="-1"/>
+      <x="0"/>
+      <y="0"/>
+   </type>
+   <type>
+      <name="=Jicker/src<org.jicker.util.dirbrowser{DirBrowser.java[DirBrowser"/>
+      <height="-1"/>
+      <width="-1"/>
+      <x="186"/>
+      <y="120"/>
+   </type>
+</uml>
+
