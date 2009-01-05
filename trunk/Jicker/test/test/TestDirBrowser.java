@@ -20,7 +20,11 @@ public class TestDirBrowser {
 		JickerFilter filter = new JickerFilter();
 		List<File> browse = new DirBrowser(filter.createFilter(new String[] { ".mp3" }), -1).find(dir);
 		for (int n = 0; n < browse.size(); n++) {
-			System.out.println(browse.get(n));
+			if (browse.get(n).isFile()){
+				System.out.println("      Datei: " + browse.get(n).getName());
+			}else{
+				System.out.println("Verzeichnis: " + browse.get(n).getPath());
+			}
 		}
 			/*if (((File) browse.get(n)).isFile()) {
 				verzeichnis = new Verzeichnis(browse.get(n).toString().substring(0, browse.get(n).toString().lastIndexOf("\\")));
