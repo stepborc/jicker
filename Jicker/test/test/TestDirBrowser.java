@@ -16,9 +16,9 @@ public class TestDirBrowser {
 	public static void main(String[] args) {
 		//Klasse DirBrowser
 		//Startverzeichnis dir festlegen
-		File dir = new File("e:/musik/cd/");
+		File dir = new File("z:/cd/");
 		JickerFilter filter = new JickerFilter();
-		List browse = new DirBrowser(filter.createFilter(new String[] { ".mp3" }), -1).find(dir);
+		List<File> browse = new DirBrowser(filter.createFilter(new String[] { ".mp3" }), -1).find(dir);
 		for (int n = 0; n < browse.size(); n++) {
 			System.out.println(browse.get(n));
 		}
