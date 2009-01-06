@@ -62,19 +62,36 @@ public class TestJAudioTagger {
 				Tag tag = f.getTag();
 				// AudioHeader ah = f.getAudioHeader();
 				// System.out.print(tag.getFirstTrack() + " - ");
-				 //System.out.print(browse.get(i) + " - ");
-
+				// System.out.print(browse.get(i) + " - ");
+				String firstArtist = null;
+				String firstAlbum = null;
+				String firstTitle = null;
+				String firstTrack = null;
 				try {
-					tag.getFieldCount();
-					tag.getFirstArtwork();
-					//tag.getFirstAlbum();
-					// System.out.println(tag.getFirstArtist());
+					firstArtist = tag.getFirstArtist();
 				} catch (NullPointerException e) {
-					// TODO: handle exception
-					//System.out.print(browse.get(i) + " - ");
-					//System.out.println("Feld leer");
-
+					firstArtist = "Artist leer";
 				}
+				try {
+					firstAlbum = tag.getFirstAlbum();
+				} catch (NullPointerException e) {
+					firstArtist = "Album leer";
+				}
+				try {
+					firstTrack = tag.getFirstTrack();
+				} catch (UnsupportedOperationException e) {
+					firstTrack = "xxx";
+				} catch (NullPointerException e){
+					firstTrack = "Track leer";
+				}
+				try {
+					firstTitle = tag.getFirstTitle();
+				} catch (NullPointerException e) {
+					firstTrack = "Title leer";
+				}
+				
+				System.out.println(firstTrack + " " + firstArtist + " - " + firstAlbum + " - " + firstTitle );
+
 			}
 		}
 		System.out.println("Fertig");
