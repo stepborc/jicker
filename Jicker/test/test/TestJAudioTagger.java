@@ -18,7 +18,7 @@ import org.jicker.util.dirbrowser.DirBrowser;
 import org.jicker.util.dirbrowser.JickerFilter;
 
 public class TestJAudioTagger {
-
+	//JAudioTagger logger ausschalten
 	static {
 		try {
 			LogManager.getLogManager().readConfiguration(
@@ -34,7 +34,7 @@ public class TestJAudioTagger {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		File dir = new File("z:/cd/");
+		File dir = new File("e:/musik/cd/");
 		JickerFilter filter = new JickerFilter();
 		List<File> browse = new DirBrowser(filter
 				.createFilter(new String[] { ".mp3" }), -1).find(dir);
