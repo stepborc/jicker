@@ -23,6 +23,8 @@ public class GetData {
 			JickerFilter filter = new JickerFilter();
 			List<File> browse = new DirBrowser(filter
 					.createFilter(new String[] { ".mp3" }), -1).find(dir);
+		}else{
+			//DB synchronisieren
 		}
 		ObjectContainer db = Db4o.openFile(dbName);
 		
