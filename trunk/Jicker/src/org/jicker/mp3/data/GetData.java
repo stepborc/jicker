@@ -10,7 +10,7 @@ import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
 
 public class GetData {
-	private String dbName = "/JickerMp2.yap";
+	private String dbName = "JickerMp2.yap";
 
 	public GetData() {
 		// TODO Auto-generated constructor stub
