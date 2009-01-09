@@ -13,15 +13,13 @@ public class JickerMp3 {
 
 	/**
 	 * @param args
-	 * @throws InvocationTargetException 
-	 * @throws InterruptedException 
 	 */
 	public static void main(String[] args){
-		SwingUtilities.invokeLater(new Runnable() {
+		/*SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				new JickerMp3UI();
 			}
-		});
+		});*/
 		// Datenabfrage starten
 		GetData gd = new GetData();
 		// GUI aufbauen

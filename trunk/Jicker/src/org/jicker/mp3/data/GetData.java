@@ -18,15 +18,23 @@ public class GetData {
 		// Datenbank öffnen oder anlegen
 		// File dbFile = new File(dbName);
 		File dbFile = new File(dbName);
+		dbFile.delete();
+		List<File> browse =null;
 		if (!dbFile.exists()){
-			File dir = new File("d:/JickerMp3/");
+			File dir = new File("Z:/CD/");
 			JickerFilter filter = new JickerFilter();
-			List<File> browse = new DirBrowser(filter
+			browse = new DirBrowser(filter
 					.createFilter(new String[] { ".mp3" }), -1).find(dir);
 		}else{
 			//DB synchronisieren
 		}
 		ObjectContainer db = Db4o.openFile(dbName);
+		Mp3File mp3File = null;
+		for (int n = 0; n < browse.size();n++){
+			mp3File = new Mp3File(browse.get(n).getName(), browse.get(n).getPath());
+			db.store(mp3File);
+			System.out.print(n + " ");
+		}
 		
 	}
 }
