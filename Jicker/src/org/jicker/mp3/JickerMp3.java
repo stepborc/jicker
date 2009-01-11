@@ -13,8 +13,10 @@ public class JickerMp3 {
 
 	/**
 	 * @param args
+	 * @throws NoSuchFieldException 
+	 * @throws SecurityException 
 	 */
-	public static void main(String[] args){
+	public static void main(String[] args) throws SecurityException, NoSuchFieldException{
 		/*SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				new JickerMp3UI();

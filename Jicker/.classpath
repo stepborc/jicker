@@ -27,7 +27,7 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/jaudiotagger.jar"/>
 	<classpathentry kind="lib" path="lib/java_mp3.jar"/>
-	<classpathentry kind="lib" path="lib/db4o-7.4.71.12224-java5.jar"/>
 	<classpathentry kind="lib" path="lib/commons-io-1.4.jar"/>
+	<classpathentry kind="lib" path="lib/db4o-7.4.71.12224-java5.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
