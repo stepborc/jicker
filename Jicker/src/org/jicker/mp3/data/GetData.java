@@ -14,42 +14,37 @@ public class GetData {
 	private String dbName = "JickerMp2.yap";
 
 	public GetData() throws SecurityException, NoSuchFieldException {
-		//File dbFile = new File(dbName);
+		// File dbFile = new File(dbName);
 		File dbFile = new File(dbName);
-		//Datenbank löschen
+		// Datenbank löschen
 		dbFile.delete();
-		//Collection für das Ergebnis des Verzeichnisscans
-		List<File> browse =null;
-		//Wenn Datenbank existiert
-		if (!dbFile.exists()){
-			//Filesystem scannen, nach Dateien mit der Endung mp3
-			File dir = new File("Z:/CD/");
+		// Collection für das Ergebnis des Verzeichnisscans
+		List<File> browse = null;
+		// Wenn Datenbank existiert
+		if (!dbFile.exists()) {
+			// Filesystem scannen, nach Dateien mit der Endung mp3
+			File dir = new File("e:/musik/CD/");
 			JickerFilter filter = new JickerFilter();
 			browse = new DirBrowser(filter
 					.createFilter(new String[] { ".mp3" }), -1).find(dir);
 			System.out.println(browse.size());
-		}else{
-			//DB synchronisieren
+		} else {
+			// DB synchronisieren
 		}
-		//Datenbank öffnen oder anlegen
+		// Datenbank öffnen oder anlegen
 		ObjectContainer db = Db4o.openFile(dbName);
-		//Datenobjekt initialisieren
+		// Datenobjekt initialisieren
 		Mp3File mp3File = null;
-		//Alle Positionen des Ergebnisses ansteuern 
-		for (int n = 0; n < browse.size();n++){
-			//Neues Objekt vom Type Mp3File anlegen
-			mp3File = new Mp3File(browse.get(n).getName(), browse.get(n).getPath(),browse.get(n).lastModified(),browse.get(n).getAbsolutePath(),browse.get(n).getAbsoluteFile());
-			//Abspeichern
+		// Alle Positionen des Ergebnisses ansteuern
+		for (int n = 0; n < browse.size(); n++) {
+			// Neues Objekt vom Type Mp3File anlegen
+			mp3File = new Mp3File(browse.get(n).getName(), browse.get(n)
+					.getPath(), browse.get(n).lastModified(), browse.get(n)
+					.getAbsolutePath(), browse.get(n).getAbsoluteFile());
+			// Abspeichern
 			db.store(mp3File);
-			//Zahl als Fortschrittsangabe ausgeben
+			// Zahl als Fortschrittsangabe ausgeben
 			System.out.println(n + 1);
-		}
-		//ObjectSet<Mp3File> mp3FileList = db.get(Mp3File.class);
-		ObjectSet<Mp3File> mp3FileList = db.queryByExample(mp3File);
-		Mp3File mp3FileGet = null;
-		while (mp3FileList.hasNext()){
-			mp3FileGet = mp3FileList.next();
-			System.out.println(mp3FileGet.getAbsolutDir());
 		}
 		db.close();
 	}
