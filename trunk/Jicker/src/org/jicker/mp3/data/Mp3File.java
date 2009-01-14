@@ -39,6 +39,8 @@ public class Mp3File {
 			File testDir = new File(dir);
 			if (!testDir.isDirectory()) {
 				dir = dir.substring(0, dir.lastIndexOf("\\") + 1);
+			}else{
+				dir = dir + "\\";
 			}
 		}
 		this.dir = dir;
@@ -50,7 +52,7 @@ public class Mp3File {
 
 	public void setFile(String file, String dir) {
 		// File testFile = new File(dir + file);
-		if (dir != null) {
+		if (dir != null && file != null) {
 			File testFile = new File(dir);
 			if (testFile.isFile()) {
 				this.file = file;

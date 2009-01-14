@@ -23,7 +23,7 @@ public class GetData {
 		// Wenn Datenbank existiert
 		if (!dbFile.exists()) {
 			// Filesystem scannen, nach Dateien mit der Endung mp3
-			File dir = new File("e:/musik/CD/");
+			File dir = new File("z:/CD/");
 			JickerFilter filter = new JickerFilter();
 			browse = new DirBrowser(filter
 					.createFilter(new String[] { ".mp3" }), -1).find(dir);
@@ -33,6 +33,7 @@ public class GetData {
 		}
 		// Datenbank öffnen oder anlegen
 		ObjectContainer db = Db4o.openFile(dbName);
+		
 		// Datenobjekt initialisieren
 		Mp3File mp3File = null;
 		// Alle Positionen des Ergebnisses ansteuern

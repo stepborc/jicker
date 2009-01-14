@@ -15,14 +15,13 @@ public class ReadData {
 	public ReadData(String dbName) {
 		ObjectContainer db = Db4o.openFile(dbName);
 		Mp3File mp3File = new Mp3File(null, null, 0, null, null);
-		;
 		ObjectSet<Mp3File> mp3FileList = db.queryByExample(mp3File);
 		Mp3File mp3FileGet = null;
 		while (mp3FileList.hasNext()) {
 			mp3FileGet = mp3FileList.next();
 			// File m = new File(mp3FileGet.getFile());
 			// if (m.isFile()){
-			System.out.println(mp3FileGet.getDir());
+			System.out.println(mp3FileGet.getDir() + " -> " + mp3FileGet.getFile());
 			// }
 		}
 		db.close();
