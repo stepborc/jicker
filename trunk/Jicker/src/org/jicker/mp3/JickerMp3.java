@@ -1,11 +1,6 @@
 package org.jicker.mp3;
 
-import java.lang.reflect.InvocationTargetException;
-
-import javax.swing.SwingUtilities;
-
 import org.jicker.mp3.data.GetData;
-import org.jicker.mp3.ui.JickerMp3UI;
 
 public class JickerMp3 {
 
@@ -21,7 +16,7 @@ public class JickerMp3 {
 		 * JickerMp3UI(); } });
 		 */
 		// Datenabfrage starten
-		GetData gd = new GetData();
+		new GetData();
 		// GUI aufbauen
 
 	}

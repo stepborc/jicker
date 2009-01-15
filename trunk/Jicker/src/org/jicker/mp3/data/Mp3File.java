@@ -13,11 +13,11 @@ public class Mp3File {
 	private String file;
 	private String dir;
 	private long date;
-	private String absolutDir;
-	private File absolutFile;
+	//private String absolutDir;
+	//private File absolutFile;
+	private int tiefe;
 
-	public Mp3File(String file, String dir, long date, String absotuteDir,
-			File absolutFile) {
+	public Mp3File(String file, String dir, long date) {
 		this.setFile(file, dir);
 		this.setDir(dir);
 		this.setDate(date);
@@ -34,15 +34,22 @@ public class Mp3File {
 	public void setDir(String dir) {
 		// das trimmen des Strings nur ausführen wenn Wert ungleich null
 		// z.B. für QueryByExample wichtig
-
+		int tiefe = 0;
 		if (dir != null) {
 			File testDir = new File(dir);
 			if (!testDir.isDirectory()) {
 				dir = dir.substring(0, dir.lastIndexOf("\\") + 1);
-			}else{
+			} else {
 				dir = dir + "\\";
 			}
+			int index = ReadData.baseDir.length();
+			//Verzeichnistiefe berechnen
+			while (dir.indexOf("\\", index) != -1) {
+				index = dir.indexOf("\\", index) + 1;
+				tiefe = tiefe + 1;
+			}
 		}
+		this.setTiefe(tiefe);
 		this.dir = dir;
 	}
 
@@ -68,19 +75,27 @@ public class Mp3File {
 		return file;
 	}
 
-	public void setAbsolutDir(String absolutDir) {
-		this.absolutDir = absolutDir;
+	//public void setAbsolutDir(String absolutDir) {
+	//	this.absolutDir = absolutDir;
+	//}
+
+	//public String getAbsolutDir() {
+	//	return absolutDir;
+	//}
+
+	//public void setAbsolutFile(File absolutFile) {
+	//	this.absolutFile = absolutFile;
+	//}
+
+	//public File getAbsolutFile() {
+	//	return absolutFile;
+	//}
+
+	public void setTiefe(int tiefe) {
+		this.tiefe = tiefe;
 	}
 
-	public String getAbsolutDir() {
-		return absolutDir;
-	}
-
-	public void setAbsolutFile(File absolutFile) {
-		this.absolutFile = absolutFile;
-	}
-
-	public File getAbsolutFile() {
-		return absolutFile;
+	public int getTiefe() {
+		return tiefe;
 	}
 }
