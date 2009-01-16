@@ -3,6 +3,7 @@ package org.jicker.mp3.data;
 import java.io.File;
 import java.util.List;
 
+import org.jicker.mp3.JickerMp3Globals;
 import org.jicker.util.dirbrowser.DirBrowser;
 import org.jicker.util.dirbrowser.JickerFilter;
 
@@ -12,7 +13,7 @@ import com.db4o.ObjectContainer;
 public class GetData {
 	public GetData() throws SecurityException, NoSuchFieldException {
 		// File dbFile = new File(dbName);
-		File dbFile = new File(ReadData.dbName);
+		File dbFile = new File(JickerMp3Globals.dbName);
 		// Datenbank löschen
 		dbFile.delete();
 		// Collection für das Ergebnis des Verzeichnisscans
@@ -20,7 +21,7 @@ public class GetData {
 		// Wenn Datenbank existiert
 		if (!dbFile.exists()) {
 			// Filesystem scannen, nach Dateien mit der Endung mp3
-			File dir = new File(ReadData.baseDir);
+			File dir = new File(JickerMp3Globals.baseMusicDir);
 			JickerFilter filter = new JickerFilter();
 			browse = new DirBrowser(filter
 					.createFilter(new String[] { ".mp3" }), -1).find(dir);
@@ -29,7 +30,7 @@ public class GetData {
 			// DB synchronisieren
 		}
 		// Datenbank öffnen oder anlegen
-		ObjectContainer db = Db4o.openFile(ReadData.dbName);
+		ObjectContainer db = Db4o.openFile(JickerMp3Globals.dbName);
 
 		// Datenobjekt initialisieren
 		Mp3File mp3File = null;

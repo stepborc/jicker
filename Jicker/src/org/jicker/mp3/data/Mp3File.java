@@ -5,6 +5,8 @@ package org.jicker.mp3.data;
 
 import java.io.File;
 
+import org.jicker.mp3.JickerMp3Globals;
+
 /**
  * @author sborcher
  * 
@@ -42,7 +44,7 @@ public class Mp3File {
 			} else {
 				dir = dir + "\\";
 			}
-			int index = ReadData.baseDir.length();
+			int index = JickerMp3Globals.baseMusicDir.length();
 			//Verzeichnistiefe berechnen
 			while (dir.indexOf("\\", index) != -1) {
 				index = dir.indexOf("\\", index) + 1;
