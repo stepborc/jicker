@@ -4,13 +4,13 @@ import java.io.File;
 
 import javax.swing.filechooser.FileSystemView;
 
+import org.jicker.mp3.JickerMp3Globals;
+
 import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
 
 public class ReadData {
-	public static final String baseDir = "z:\\CD\\";
-	public static final String dbName = "JickerMp3.yap";
 	/**
 	 * 
 	 */
@@ -34,12 +34,12 @@ public class ReadData {
 	 */
 	public static void main(String[] args) throws SecurityException,
 			NoSuchFieldException {
-		File laufwerk = new File(baseDir.substring(0, 3));
+		File laufwerk = new File(JickerMp3Globals.baseMusicDir.substring(0, 3));
 		boolean view = FileSystemView.getFileSystemView().isDrive(laufwerk);
 		if (view) {
-			new ReadData(dbName);
+			new ReadData(JickerMp3Globals.dbName);
 		}else{
-			System.out.println("baseDir ist kein Laufwerk");
+			System.out.println("baseMusicDir: " + JickerMp3Globals.baseMusicDir + " ist kein Laufwerk");
 		}
 	}
 }
