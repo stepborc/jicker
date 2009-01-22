@@ -13,13 +13,14 @@ import org.jicker.mp3.JickerMp3Globals;
  */
 public class Mp3File {
 	private String file;
-	private String dir;
+	//private String dir;
+	private Mp3Dir dir;
 	private long date;
 	//private String absolutDir;
 	//private File absolutFile;
-	private int tiefe;
+	//private int tiefe;
 
-	public Mp3File(String file, String dir, long date) {
+	public Mp3File(String file, Mp3Dir dir, long date) {
 		this.setFile(file, dir);
 		this.setDir(dir);
 		this.setDate(date);
@@ -33,8 +34,8 @@ public class Mp3File {
 		return date;
 	}
 
-	public void setDir(String dir) {
-		// das trimmen des Strings nur ausführen wenn Wert ungleich null
+	public void setDir(Mp3Dir dir) {
+/*		// das trimmen des Strings nur ausführen wenn Wert ungleich null
 		// z.B. für QueryByExample wichtig
 		int tiefe = 0;
 		if (dir != null) {
@@ -51,17 +52,17 @@ public class Mp3File {
 				tiefe = tiefe + 1;
 			}
 		}
-		this.setTiefe(tiefe);
+		this.setTiefe(tiefe);*/
 		this.dir = dir;
 	}
 
-	public String getDir() {
+	public Mp3Dir getDir() {
 		return dir;
 	}
 
-	public void setFile(String file, String dir) {
+	public void setFile(String file, Mp3Dir dir) {
 		// File testFile = new File(dir + file);
-		if (dir != null && file != null) {
+/*		if (dir != null && file != null) {
 			File testFile = new File(dir);
 			if (testFile.isFile()) {
 				this.file = file;
@@ -70,7 +71,8 @@ public class Mp3File {
 			}
 		} else {
 			this.file = null;
-		}
+		}*/
+		this.file = file;
 	}
 
 	public String getFile() {
@@ -93,11 +95,11 @@ public class Mp3File {
 	//	return absolutFile;
 	//}
 
-	public void setTiefe(int tiefe) {
-		this.tiefe = tiefe;
-	}
+	//public void setTiefe(int tiefe) {
+		//this.tiefe = tiefe;
+	//}
 
-	public int getTiefe() {
-		return tiefe;
-	}
+	//public int getTiefe() {
+		//return tiefe;
+	//}
 }
