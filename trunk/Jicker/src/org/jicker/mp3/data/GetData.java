@@ -11,7 +11,7 @@ import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
 
 public class GetData {
-	public GetData() throws SecurityException, NoSuchFieldException {
+	public GetData() {
 		// File dbFile = new File(dbName);
 		File dbFile = new File(JickerMp3Globals.dbName);
 		// Datenbank löschen
@@ -29,16 +29,27 @@ public class GetData {
 		} else {
 			// DB synchronisieren
 		}
+		for (int n = 0;n<browse.size();n++){
+			System.out.println(browse.get(n).isDirectory() + "::" + browse.get(n).getName());
+		}
+		
 		// Datenbank öffnen oder anlegen
 		ObjectContainer db = Db4o.openFile(JickerMp3Globals.dbName);
 
 		// Datenobjekt initialisieren
 		Mp3File mp3File = null;
+		Mp3Dir mp3Dir = null;
 		// Alle Positionen des Ergebnisses ansteuern
 		for (int n = 0; n < browse.size(); n++) {
+			if (browse.get(n).isDirectory()){
+				mp3Dir = new Mp3Dir(browse.get(n).getPath(), browse.get(n).lastModified());
+				db.store(mp3Dir);
+			}else{
+				
+			}
 			// Neues Objekt vom Type Mp3File anlegen
-			mp3File = new Mp3File(browse.get(n).getName(), browse.get(n)
-					.getPath(), browse.get(n).lastModified());
+			//mp3File = new Mp3File(browse.get(n).getName(), browse.get(n)
+			//		.getPath(), browse.get(n).lastModified());
 			// Abspeichern
 			db.store(mp3File);
 			// Zahl als Fortschrittsangabe ausgeben

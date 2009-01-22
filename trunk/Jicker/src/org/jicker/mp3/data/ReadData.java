@@ -16,6 +16,16 @@ public class ReadData {
 	 */
 	public ReadData(String dbName) {
 		ObjectContainer db = Db4o.openFile(dbName);
+		System.out.println("--- Verzeichnisse ---");
+		Mp3Dir mp3Dir = new Mp3Dir(null, 0);
+		ObjectSet<Mp3Dir> mp3DirList = db.queryByExample(mp3Dir);
+		Mp3Dir mp3DirGet = null;
+		while (mp3DirList.hasNext()) {
+			mp3DirGet = mp3DirList.next();
+			System.out
+					.println(mp3DirGet.getTiefe() + "::" + mp3DirGet.getDir());
+		}
+		System.out.println("--- Dateien ---");
 		Mp3File mp3File = new Mp3File(null, null, 0);
 		ObjectSet<Mp3File> mp3FileList = db.queryByExample(mp3File);
 		Mp3File mp3FileGet = null;
@@ -23,7 +33,8 @@ public class ReadData {
 			mp3FileGet = mp3FileList.next();
 			// File m = new File(mp3FileGet.getFile());
 			// if (m.isFile()){
-			System.out.println(mp3FileGet.getDir() + "->" + mp3FileGet.getTiefe() + " -> " + mp3FileGet.getFile());
+			System.out.println(mp3FileGet.getDir() + "->" + " -> "
+					+ mp3FileGet.getFile());
 			// }
 		}
 		db.close();
@@ -32,14 +43,14 @@ public class ReadData {
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) throws SecurityException,
-			NoSuchFieldException {
+	public static void main(String[] args) {
 		File laufwerk = new File(JickerMp3Globals.baseMusicDir.substring(0, 3));
 		boolean view = FileSystemView.getFileSystemView().isDrive(laufwerk);
 		if (view) {
 			new ReadData(JickerMp3Globals.dbName);
-		}else{
-			System.out.println("baseMusicDir: " + JickerMp3Globals.baseMusicDir + " ist kein Laufwerk");
+		} else {
+			System.out.println("baseMusicDir: " + JickerMp3Globals.baseMusicDir
+					+ " ist kein Laufwerk");
 		}
 	}
 }
