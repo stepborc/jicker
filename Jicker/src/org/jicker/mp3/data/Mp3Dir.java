@@ -14,6 +14,7 @@ import org.jicker.mp3.JickerMp3Globals;
 public class Mp3Dir {
 	private String dir;
 	private long date;
+	private String dirName;
 	// private String absolutDir;
 	// private File absolutFile;
 	private int tiefe;
@@ -59,5 +60,14 @@ public class Mp3Dir {
 
 	public void setTiefe(int tiefe) {
 		this.tiefe = tiefe;
+	}
+
+	public void setDirName(String dirName) {
+		dirName = this.getDir().substring(this.getDir().lastIndexOf("\\"), this.getDir().length());
+		this.dirName = dirName;
+	}
+
+	public String getDirName() {
+		return dirName;
 	}
 }
