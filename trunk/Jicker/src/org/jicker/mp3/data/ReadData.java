@@ -22,8 +22,11 @@ public class ReadData {
 		Mp3Dir mp3DirGet = null;
 		while (mp3DirList.hasNext()) {
 			mp3DirGet = mp3DirList.next();
+			for (int n = 0;n<mp3DirGet.getTiefe();n++){
+				System.out.print("\t");
+			}
 			System.out
-					.println(mp3DirGet.getTiefe() + "::" + mp3DirGet.getDir());
+					.println(mp3DirGet.getDirName());
 		}
 		System.out.println("--- Dateien ---");
 		Mp3File mp3File = new Mp3File(null, null, 0);

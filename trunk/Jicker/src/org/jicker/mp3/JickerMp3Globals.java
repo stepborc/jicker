@@ -9,5 +9,5 @@ public class JickerMp3Globals {
 	/*
 	 * baseMusikDir - Basisverzeichnis der Musiksammlung 
 	 */
-	public static final String baseMusicDir = "d:\\musik\\CD\\";
+	public static final String baseMusicDir = "z:\\CD\\";
 }
