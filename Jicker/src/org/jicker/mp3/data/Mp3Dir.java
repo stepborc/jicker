@@ -23,6 +23,7 @@ public class Mp3Dir {
 		// this.setFile(file, dir);
 		this.setDir(dir);
 		this.setDate(date);
+		this.setDirName(dir);
 	}
 
 	public void setDate(long date) {
@@ -62,9 +63,12 @@ public class Mp3Dir {
 		this.tiefe = tiefe;
 	}
 
-	public void setDirName(String dirName) {
-		dirName = this.getDir().substring(this.getDir().lastIndexOf("\\"), this.getDir().length());
-		this.dirName = dirName;
+	public void setDirName(String dir) {
+		if (dir != null) {
+			dir = dir.substring(dir.lastIndexOf("\\"),
+					dir.length());
+		}
+		this.dirName = dir;
 	}
 
 	public String getDirName() {
