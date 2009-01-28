@@ -8,12 +8,19 @@ import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
+import javax.swing.JTree;
 import javax.swing.WindowConstants;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
+import javax.swing.tree.TreeSelectionModel;
 
-public class JickerMp3UI extends JFrame {
+import org.jicker.gui.SetTree;
+
+public class JickerMp3UI extends JFrame implements TreeSelectionListener {
 	public static Toolkit toolkit = Toolkit.getDefaultToolkit();
-		// Eine JSplitPane einrichten
+	// Eine JSplitPane einrichten
 	private JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
 	// linke Seite der JPlitPane
 	private JPanel leftPanel = new JPanel();
@@ -23,9 +30,11 @@ public class JickerMp3UI extends JFrame {
 	private JPanel rightPanel = new JPanel();
 	// BorderLayout setzen
 	private LayoutManager rightPanelLayout = new BorderLayout();
+
 	public JickerMp3UI() {
 		initJickerMp3UI();
 	}
+
 	private void initJickerMp3UI() {
 		// Wenn CloseButton angeklickt wird, wird das Programm beendet
 		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -46,21 +55,38 @@ public class JickerMp3UI extends JFrame {
 		 * .html#setLocationRelativeTo(java.awt.Component)
 		 */
 		this.setLocationRelativeTo(null);
-		//Linke Seite der splitPane zuordnen
-		splitPane.setLeftComponent(leftPanel);
-		//Hintergrundfarbe setzen
+		// Tree generieren
+		//Eigenen Klasse CreateTree verwenden
+		CreateTree model = new CreateTree();
+
+		JTree list = new JTree(model.createTree());
+		list.getSelectionModel().setSelectionMode(
+				TreeSelectionModel.SINGLE_TREE_SELECTION);
+		list.addTreeSelectionListener(this);
+		JScrollPane listScroll = new JScrollPane();
+		listScroll.getViewport().add(list);
+
+		// Linke Seite der splitPane zuordnen
+		splitPane.setLeftComponent(listScroll);
+		// Hintergrundfarbe setzen
 		leftPanel.setBackground(Color.CYAN);
 		leftPanel.setLayout(leftPanelLayout);
-		//Rechte Seite der splitPane zuordnen
+		// Rechte Seite der splitPane zuordnen
 		splitPane.setRightComponent(rightPanel);
-		//Hintergrundfarbe setzen
+		// Hintergrundfarbe setzen
 		rightPanel.setBackground(Color.DARK_GRAY);
 		rightPanel.setLayout(rightPanelLayout);
-		//Content fuer JFrame setzen
+		// Content fuer JFrame setzen
 		this.setContentPane(splitPane);
 		// Sichtbar machen
 		this.setVisible(true);
 
+	}
+
+	@Override
+	public void valueChanged(TreeSelectionEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
