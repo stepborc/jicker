@@ -5,9 +5,6 @@ package test;
 
 import static org.junit.Assert.assertTrue;
 
-import org.junit.Assert.*;
-import junit.framework.Assert;
-
 import org.jicker.test.TestSrc;
 import org.junit.Test;
 

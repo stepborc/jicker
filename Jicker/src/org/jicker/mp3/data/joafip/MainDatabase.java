@@ -1,7 +1,6 @@
 package org.jicker.mp3.data.joafip;
 
 import java.io.File;
-import java.util.Collection;
 import java.util.List;
 
 import net.sf.joafip.entity.EnumFilePersistenceCloseAction;
@@ -80,7 +79,8 @@ public final class MainDatabase {
 
 		session.open();
 		itemTable = (ItemTable) session.getObject("itemTable");
-		final Collection<Item> collection = itemTable.getAllItem();
+		//2009-01-30: Warum wird Collection verwendet?
+		//final Collection<Item> collection = itemTable.getAllItem();
 		//_log.info("all item: " + collection);
 		session.close(EnumFilePersistenceCloseAction.DO_NOT_SAVE);
 
@@ -101,6 +101,7 @@ public final class MainDatabase {
 		/* retrieve by price */
 		session.open();
 		itemTable = (ItemTable) session.getObject("itemTable");
+		@SuppressWarnings("unused")
 		final List<Item> list = itemTable
 				.getItemByPrice(9/* fromPrice */, 11/* toPrice */);
 		//_log.info("retrieved by price from 9 thru 11:" + list);

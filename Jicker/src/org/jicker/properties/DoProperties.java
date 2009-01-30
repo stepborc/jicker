@@ -2,17 +2,18 @@ package org.jicker.properties;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
 
 public class DoProperties {
 
 	public DoProperties(){
-	Properties p = new Properties();
+	//Properties p = new Properties();
+	new Properties();
     // Laden der Properties
 	String propertiesFile = "gda.properties";
-	FileOutputStream propOutFile = null;
+	//2009-01-30: propOutFile auskommentiert
+	//FileOutputStream propOutFile = null;
 	FileInputStream propInFile = null;
 /*	try {
 		propOutFile = new FileOutputStream( propertiesFile );

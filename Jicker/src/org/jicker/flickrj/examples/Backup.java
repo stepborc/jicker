@@ -111,13 +111,10 @@ public class Backup {
 				try {
 					this.authorize();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (SAXException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (FlickrException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			else rc.setAuth(auth);
@@ -132,13 +129,10 @@ public class Backup {
 		try {
 			sets = pi.getList(this.nsid).getPhotosets().iterator();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SAXException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (FlickrException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -148,13 +142,10 @@ public class Backup {
 			try {
 				photos = pi.getPhotos(set.getId(), 500, 1);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (SAXException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (FlickrException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			allPhotos.put(set.getTitle(), photos);
@@ -167,13 +158,10 @@ public class Backup {
 			try {
 				nis = photoInt.getNotInSet(50, notInSetPage);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (SAXException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (FlickrException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			notInASet.addAll(nis);
@@ -205,14 +193,12 @@ public class Backup {
 				try {
 					url = p.getOriginalUrl();
 				} catch (FlickrException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				URL u=null;
 				try {
 					u = new URL(url);
 				} catch (MalformedURLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				String filename = u.getFile();
@@ -221,7 +207,6 @@ public class Backup {
 				try {
 					System.out.println("Now writing " + filename + " to " + setDirectory.getCanonicalPath());
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				/*BufferedInputStream inStream = new BufferedInputStream(photoInt.getImageAsStream(p, Size.ORIGINAL));

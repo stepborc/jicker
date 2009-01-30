@@ -4,12 +4,8 @@
 package org.jicker.mp3.ui;
 
 import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
 
-import org.jicker.JickerGlobals;
-import org.jicker.flickrj.db4o.DbPhotos;
-import org.jicker.flickrj.db4o.DbSets;
 import org.jicker.mp3.JickerMp3Globals;
 import org.jicker.mp3.data.Mp3Dir;
 

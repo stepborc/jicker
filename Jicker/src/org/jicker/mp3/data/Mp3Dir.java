@@ -3,8 +3,6 @@
  */
 package org.jicker.mp3.data;
 
-import java.io.File;
-
 import org.jicker.mp3.JickerMp3Globals;
 
 /**

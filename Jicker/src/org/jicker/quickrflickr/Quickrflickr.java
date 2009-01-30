@@ -22,6 +22,7 @@ public class Quickrflickr {
 	 */
 	public static void main(String[] args) throws QuickrException {
 		AuthService as = new AuthService();
+		@SuppressWarnings("unused")
 		FrobResponse f = as.getFrob();
 		//FrobResponse f = as.getFrob("read");
 		//URL u = as.getAuthUrl(f, "read");

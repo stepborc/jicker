@@ -4,12 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import org.jicker.util.db.db4o.Datei;
-import org.jicker.util.db.db4o.Verzeichnis;
 import org.jicker.util.dirbrowser.DirBrowser;
 import org.jicker.util.dirbrowser.JickerFilter;
-
-import sun.misc.GC;
 
 import de.vdheide.mp3.FrameDamagedException;
 import de.vdheide.mp3.ID3v2DecompressionException;

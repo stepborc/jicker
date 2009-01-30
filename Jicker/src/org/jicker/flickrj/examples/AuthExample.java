@@ -3,10 +3,8 @@
  */
 package org.jicker.flickrj.examples;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.Properties;
 
@@ -82,9 +80,12 @@ public class AuthExample {
         
         System.out.println("Press return after you granted access at this URL:");
         System.out.println(url.toExternalForm());
-        BufferedReader infile =
-          new BufferedReader ( new InputStreamReader (System.in) );
-        String line = infile.readLine();
+        //2009-01-30: Zeile nicht in Verwendung
+        //            Sinn Und Zweck unklar
+        /*
+         * BufferedReader infile = new BufferedReader ( new InputStreamReader (System.in) );
+         * String line = infile.readLine();
+         */
         try {
             Auth auth = authInterface.getToken(frob);
             System.out.println("Authentication success");
@@ -107,7 +108,8 @@ public class AuthExample {
      */
     public static void main(String[] args) {
         try {
-            AuthExample t = new AuthExample();
+            //AuthExample t = new AuthExample();
+        	new AuthExample();
         } catch(Exception e) {
             e.printStackTrace();
         }

@@ -22,20 +22,24 @@ public class First {
 
 	/**
 	 * The main method.
-	 *
-	 * @param args the args
-	 *
-	 * @throws IOException Signals that an I/O exception has occurred.
+	 * 
+	 * @param args
+	 *            the args
+	 * 
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
 	public static void main(String[] args) throws IOException {
 		// Testverzeichnisse generieren
 		for (int n = 1; n < 10; n++) {
 			String verzName = "e:/bilder/test/test" + n + "/";
-			boolean status = new File(verzName).mkdir();
+			// boolean status = new File(verzName).mkdir();
+			new File(verzName).mkdir();
 			for (int m = 1; m < 10; m++) {
 				String fileName = "test" + m + ".jpg";
-				boolean statusFile = new File(verzName + fileName)
-						.createNewFile();
+				// boolean statusFile = new File(verzName + fileName)
+				// .createNewFile();
+				new File(verzName + fileName).createNewFile();
 			}
 		}
 		// Datenbank löschen
@@ -56,8 +60,11 @@ public class First {
 			for (int n = 0; n < browse.size(); n++) {
 				System.out.println(browse.get(n));
 				if (((File) browse.get(n)).isFile()) {
-					verzeichnis = new Verzeichnis(browse.get(n).toString().substring(0, browse.get(n).toString().lastIndexOf("\\")));
-					Datei datei = new Datei(browse.get(n).toString(), verzeichnis);
+					verzeichnis = new Verzeichnis(browse.get(n).toString()
+							.substring(0,
+									browse.get(n).toString().lastIndexOf("\\")));
+					Datei datei = new Datei(browse.get(n).toString(),
+							verzeichnis);
 					db.set(datei);
 				} else {
 					verzeichnis = new Verzeichnis(browse.get(n).toString());
@@ -66,8 +73,8 @@ public class First {
 
 			}
 			/*
-			 * for (int n = 1;n<10;n++){ String verzName = "E:/bilder/test" + n +
-			 * "/"; Verzeichnis verzeichnis = new Verzeichnis(verzName);
+			 * for (int n = 1;n<10;n++){ String verzName = "E:/bilder/test" + n
+			 * + "/"; Verzeichnis verzeichnis = new Verzeichnis(verzName);
 			 * db.set(verzeichnis); for (int m =1;m<10;m++){ Datei datei = new
 			 * Datei(verzName + "test" + m + ".jpg", verzeichnis);
 			 * db.set(datei); //System.out.println((verzName + "test" + m +
@@ -95,10 +102,11 @@ public class First {
 
 			Verzeichnis verzeichnisProto = new Verzeichnis(tmpVerz);
 			Datei dateiProto = new Datei(null, verzeichnisProto);
-			//dateiProto.setVerzeichnis(verzeichnisProto);
+			// dateiProto.setVerzeichnis(verzeichnisProto);
 			ObjectSet result3 = db.get(dateiProto);
 
-			System.out.println(result3.size() + " Datei(en) im Verzeichnis " + tmpVerz);
+			System.out.println(result3.size() + " Datei(en) im Verzeichnis "
+					+ tmpVerz);
 			while (result3.hasNext()) {
 				System.out.println(result3.next());
 			}
