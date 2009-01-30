@@ -72,7 +72,8 @@ filename = "counter.properties";
 
 
 
-Properties props = new Properties();
+//Properties props = new Properties();
+new Properties();
 
 
 

@@ -188,7 +188,8 @@ public class Db {
 
 		// TODO Auto-generated catch block
 		meta = rs.getMetaData();
-		int test = meta.getColumnCount();
+		//2009-01-30: Warum test?
+		//int test = meta.getColumnCount();
 		for (int n = 1; n < meta.getColumnCount() - 1; n++) {
 			wantedColumnNames.add(meta.getColumnName(n).toString());
 		}

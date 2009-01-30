@@ -16,8 +16,6 @@ import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.TreeSelectionModel;
 
-import org.jicker.gui.SetTree;
-
 public class JickerMp3UI extends JFrame implements TreeSelectionListener {
 	public static Toolkit toolkit = Toolkit.getDefaultToolkit();
 	// Eine JSplitPane einrichten

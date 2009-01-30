@@ -218,7 +218,8 @@ public class MyForm extends JPanel {
 		JPanel jpanel1 = new JPanel();
 		FormLayout formlayout1 = new FormLayout("FILL:DEFAULT:GROW(1.0)",
 				"CENTER:DEFAULT:GROW(1.0)");
-		CellConstraints cc = new CellConstraints();
+		//2009-30-01: CellConstraints Verwendung 
+		//CellConstraints cc = new CellConstraints();
 		jpanel1.setLayout(formlayout1);
 
 		m_flickrTree.setName("flickrTree");
@@ -244,7 +245,8 @@ public class MyForm extends JPanel {
 		JPanel jpanel1 = new JPanel();
 		FormLayout formlayout1 = new FormLayout("FILL:DEFAULT:GROW(1.0)",
 				"CENTER:DEFAULT:GROW(1.0)");
-		CellConstraints cc = new CellConstraints();
+		//2009-01-30: Warum wird CellConstraints verwendet?
+		//CellConstraints cc = new CellConstraints();
 		jpanel1.setLayout(formlayout1);
 
 		m_ownTree.setName("ownTree");

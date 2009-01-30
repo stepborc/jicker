@@ -13,7 +13,6 @@ import java.util.logging.SimpleFormatter;
 import org.jicker.gui.JickerApp;
 import org.jicker.gui.MainWindow;
 import org.jicker.gui.jwizz.InstallWizard;
-import org.jicker.util.properties.SaveProperties;
 
 
 /**

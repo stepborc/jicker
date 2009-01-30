@@ -32,37 +32,41 @@ public class FBackup {
 
 	/** The shared secret. */
 	private static String sharedSecret;
-	
+
 	/** The backup dir. */
 	private static String backupDir;
-	
+
 	/** The nsid. */
 	private static String nsid;
-	
+
 	/** The api key. */
 	private static String apiKey;
-	
+
 	/** The flickr. */
 	private Flickr flickr;;
-	
+
 	/** The auth store. */
 	private FileAuthStore authStore;
-	
+
 	/** The auths dir. */
 	private Object authsDir = JickerGlobals.FLICKR_AUTH_DIR;
 
 	/**
 	 * Instantiates a new f backup.
 	 * 
-	 * @throws IOException Signals that an I/O exception has occurred.
-	 * @throws SAXException the SAX exception
-	 * @throws FlickrException the flickr exception
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 * @throws SAXException
+	 *             the SAX exception
+	 * @throws FlickrException
+	 *             the flickr exception
 	 */
 	public FBackup() throws IOException, SAXException, FlickrException {
 		this.flickr = new Flickr(apiKey);
 		if (this.authsDir != null) {
 			try {
-				this.authStore = new FileAuthStore(new File(JickerGlobals.FLICKR_AUTH_DIR));
+				this.authStore = new FileAuthStore(new File(
+						JickerGlobals.FLICKR_AUTH_DIR));
 				// Logfile eintrag erstellen
 				System.out.print("Verzeichnis ");
 				System.out.print(JickerGlobals.FLICKR_AUTH_DIR);
@@ -98,25 +102,23 @@ public class FBackup {
 		// Zu Testzwecken jedesmal eine neue Datenbank anlegen
 		new File(JickerGlobals.DATA_BASE).delete();
 		ObjectContainer db = Db4o.openFile(JickerGlobals.DATA_BASE);
-		//Kommentar schreiben
+		// Kommentar schreiben
 		PhotosetsInterface pi = flickr.getPhotosetsInterface();
 		// Setsliste ermitteln und speichern
-		SetBrowse sb = new SetBrowse(pi, flickr, db, nsid);
+		// SetBrowse sb = new SetBrowse(pi, flickr, db, nsid);
+		new SetBrowse(pi, flickr, db, nsid);
 		// Fotos pro Set ermitteln
-		PhotoBrowse pb = new PhotoBrowse(pi, flickr, db, nsid);
+		// PhotoBrowse pb = new PhotoBrowse(pi, flickr, db, nsid);
+		new PhotoBrowse(pi, flickr, db, nsid);
 		// Zu Testzwecken Setliste ausgeben
-/*		ObjectSet<Sets> setlist = db.get(Sets.class);
-		// setlist.get(1).getTitle();
-		System.out.println(setlist.size() + " Sets");
-		Sets s = null;
-		while (setlist.hasNext()) {
-			s = setlist.next();
-			System.out.println(s.getTitle() + " " + s.getId());
-		}
-		System.out.println("---");
-*/
-		//Fotos der Sets ermitteln
-		
+		/*
+		 * ObjectSet<Sets> setlist = db.get(Sets.class); //
+		 * setlist.get(1).getTitle(); System.out.println(setlist.size() +
+		 * " Sets"); Sets s = null; while (setlist.hasNext()) { s =
+		 * setlist.next(); System.out.println(s.getTitle() + " " + s.getId()); }
+		 * System.out.println("---");
+		 */
+		// Fotos der Sets ermitteln
 		PhotosInterface pin = flickr.getPhotosInterface();
 		Iterator<Photo> nis = pin.getNotInSet(10000, 1).iterator();
 		System.out.println("Fotos die in keinem Set sind.");
@@ -131,9 +133,12 @@ public class FBackup {
 	/**
 	 * Authorize.
 	 * 
-	 * @throws IOException Signals that an I/O exception has occurred.
-	 * @throws SAXException the SAX exception
-	 * @throws FlickrException the flickr exception
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 * @throws SAXException
+	 *             the SAX exception
+	 * @throws FlickrException
+	 *             the flickr exception
 	 */
 	private void authorize() throws IOException, SAXException, FlickrException {
 		// Einen frob anfordern
@@ -145,9 +150,9 @@ public class FBackup {
 		// Die generierte Url ausgeben
 		System.out.println(authUrl.toExternalForm());
 		String authUrlText = authUrl.toString();
-		//BarebonesTest authBrowser = new BarebonesTest(authUrlText);
-		OpenBrowser ob = new OpenBrowser(authUrlText);
-		
+		// BarebonesTest authBrowser = new BarebonesTest(authUrlText);
+		// OpenBrowser ob = new OpenBrowser(authUrlText);
+		new OpenBrowser(authUrlText);
 		// Auf Eingabe warten
 		System.in.read();
 		// Nach der Eingabe die Authentifizierung überprüfen
@@ -162,11 +167,15 @@ public class FBackup {
 	/**
 	 * The main method.
 	 * 
-	 * @param args the args
+	 * @param args
+	 *            the args
 	 * 
-	 * @throws FlickrException the flickr exception
-	 * @throws SAXException the SAX exception
-	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws FlickrException
+	 *             the flickr exception
+	 * @throws SAXException
+	 *             the SAX exception
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
 	public static void main(String[] args) throws IOException, SAXException,
 			FlickrException {
@@ -175,7 +184,8 @@ public class FBackup {
 		nsid = "37931219@N00";
 		sharedSecret = "5c570508bbc86e00";
 		backupDir = "c:/tmp/flickrj/";
-		FBackup bf = new FBackup();
+		// FBackup bf = new FBackup();
+		new FBackup();
 
 	}
 

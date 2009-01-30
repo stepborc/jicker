@@ -13,7 +13,6 @@ import com.drew.metadata.Metadata;
 import com.drew.metadata.MetadataException;
 import com.drew.metadata.Tag;
 import com.drew.metadata.exif.ExifDirectory;
-import com.drew.metadata.exif.ExifReader;
 
 // TODO: Auto-generated Javadoc
 /**
