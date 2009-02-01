@@ -5,7 +5,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="lib/hsqldb.jar"/>
 	<classpathentry kind="lib" path="lib/log4j-1.2.15.jar"/>
-	<classpathentry kind="lib" path="lib/looks-2.1.4.jar"/>
 	<classpathentry kind="lib" path="lib/ostermillerutils_1_06_01.jar"/>
 	<classpathentry kind="lib" path="lib/quickr-0.8.jar"/>
 	<classpathentry kind="lib" path="lib/formsrt.jar"/>
@@ -30,5 +29,6 @@
 	<classpathentry kind="lib" path="lib/db4o-7.4.71.12224-java5.jar"/>
 	<classpathentry kind="lib" path="lib/jaudiotagger.jar"/>
 	<classpathentry kind="lib" path="lib/joafip-2.1.0.jar"/>
+	<classpathentry kind="lib" path="lib/looks-2.2.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
