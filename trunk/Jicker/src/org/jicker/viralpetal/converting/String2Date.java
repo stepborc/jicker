@@ -7,6 +7,11 @@ import java.util.Date;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * @author sborcher
+ * @version 1.0
+ * @see
+ */
 public class String2Date {
 	private final static Logger log = LoggerFactory
 			.getLogger(String2Date.class);
