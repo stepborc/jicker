@@ -60,7 +60,14 @@ public class GetId3Tags {
 				JickerDirFilter, sf);
 
 		List results = new DirBrowser(JickerFilter, 5).find(new File("E:"));
-
+		int spaltenBreite = 0;
+		for (int n = 0;n < results.size();n++){
+			String resultsElement = results.get(n).toString();
+			resultsElement = resultsElement.substring(resultsElement.lastIndexOf("\\") + 1, resultsElement.length());
+			if (resultsElement.length() > spaltenBreite ){
+				spaltenBreite = resultsElement.length();
+			}
+		}
 		// gesehen in
 		// http://www.impressive-artworx.de/tutorials.php?kat=java&id=16
 		for (int n = 0; n < results.size(); n++) {
@@ -94,7 +101,8 @@ public class GetId3Tags {
 				// ex.printStackTrace();
 			}
 			//System.out.println( testFile + " | " + artist);
-			String key = String.format("%-"+96+"s", testFile);
+			String testFileOut = testFile.toString().substring(testFile.toString().lastIndexOf("\\") + 1, testFile.toString().length());
+			String key = String.format("%-"+spaltenBreite+"s", testFileOut);
 			System.out.println( key + " | " + artist);
 			// System.out.println(f.displayStructureAsPlainText());
 			// System.out.println(f.displayStructureAsXML());
