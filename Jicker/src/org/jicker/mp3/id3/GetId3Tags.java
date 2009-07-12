@@ -59,7 +59,7 @@ public class GetId3Tags {
 		java.io.FileFilter JickerFilter = FileFilterUtils.orFileFilter(
 				JickerDirFilter, sf);
 
-		List results = new DirBrowser(JickerFilter, 5).find(new File("E:"));
+		List results = new DirBrowser(JickerFilter, 5).find(new File(args[0]));
 		int spaltenBreite = 0;
 		for (int n = 0;n < results.size();n++){
 			String resultsElement = results.get(n).toString();
