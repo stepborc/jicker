@@ -34,6 +34,6 @@
 	<classpathentry kind="lib" path="lib/slf4j-api-1.5.6.jar"/>
 	<classpathentry kind="lib" path="lib/slf4j-simple-1.5.6.jar"/>
 	<classpathentry kind="con" path="org.dyno.visual.swing.VS_LIBRARY/layoutext"/>
-	<classpathentry kind="lib" path="lib/neodatis-odb-1.9.1.571.jar"/>
+	<classpathentry kind="lib" path="lib/neodatis-odb-1.9.2.598.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
