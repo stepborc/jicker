@@ -6,7 +6,7 @@ package org.jicker.mp3;
 import java.io.File;
 import java.util.List;
 
-import org.jicker.mp3.object.Mp3File;
+import org.jicker.mp3.dbobject.Mp3File;
 import org.neodatis.odb.ODB;
 import org.neodatis.odb.ODBFactory;
 

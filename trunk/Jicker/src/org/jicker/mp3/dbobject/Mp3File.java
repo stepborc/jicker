@@ -1,4 +1,4 @@
-package org.jicker.mp3.object;
+package org.jicker.mp3.dbobject;
 
 import java.io.File;
 
