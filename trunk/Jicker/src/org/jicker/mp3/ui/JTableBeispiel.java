@@ -29,11 +29,11 @@ public class JTableBeispiel extends JFrame {
 		// new GetId3Tags().getMP3Array(gMp3);
 		
 		//JTable table = new JTable(new CreateDataTable().dataTableValue(), spaltenName);
-		Object[][] tObject = new CreateDataTable().dataTableValue();
-		TableModel model = new DefaultTableModel(tObject,spaltenName);
-		JTable table = new JTable(model);
-		JScrollPane scrollPane = new JScrollPane(table);
-		topPanel.add(scrollPane, BorderLayout.CENTER);
+		//Object[][] tObject = new CreateDataTable().dataTableValue();
+		//TableModel model = new DefaultTableModel(tObject,spaltenName);
+		//JTable table = new JTable(model);
+		//JScrollPane scrollPane = new JScrollPane(table);
+		//topPanel.add(scrollPane, BorderLayout.CENTER);
 	}
 
 	/**
