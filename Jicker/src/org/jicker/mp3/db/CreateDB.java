@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.jicker.mp3;
+package org.jicker.mp3.db;
 
 import java.io.File;
 import java.util.List;
