@@ -7,12 +7,13 @@ import javax.swing.table.AbstractTableModel;
 class TableModel extends AbstractTableModel {
 	private static final long serialVersionUID = 1L;
 
-	private String[] columnNames = { "Datei", "Interpret" };
+	private String[] columnNames = { "Datei", "CRC32 alt", "CRC32 neu" };
 	private Vector<Object> spalte1 = new Vector<Object>();
 	private Vector<Object> spalte2 = new Vector<Object>();
+	private Vector<Object> spalte3 = new Vector<Object>();
 
 	public int getColumnCount() {
-		return 2;
+		return 3;
 	}
 
 	public int getRowCount() {
@@ -28,6 +29,8 @@ class TableModel extends AbstractTableModel {
 			return spalte1.get(row);
 		if ((col == 1) && (!spalte2.isEmpty()))
 			return spalte2.get(row);
+		if ((col == 2) && (!spalte3.isEmpty()))
+			return spalte3.get(row);
 		else
 			return 0;
 	}
@@ -57,6 +60,12 @@ class TableModel extends AbstractTableModel {
 				spalte2.set(row, value);
 			} else {
 				spalte2.add(row, value);
+			}
+		} else if (col == 2) {
+			if (row < spalte3.size()) {
+				spalte3.set(row, value);
+			} else {
+				spalte3.add(row, value);
 			}
 		}
 		fireTableCellUpdated(row, col);
