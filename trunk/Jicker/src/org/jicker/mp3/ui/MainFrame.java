@@ -14,6 +14,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 
+import org.jicker.mp3.dbobject.Mp3File;
+import org.neodatis.odb.ODB;
+import org.neodatis.odb.ODBFactory;
+import org.neodatis.odb.Objects;
+import org.neodatis.odb.impl.core.query.values.ValuesCriteriaQuery;
+
 import org.apache.commons.io.FileUtils;
 import org.jicker.mp3.dbobject.Mp3File;
 import org.neodatis.odb.ODB;
@@ -34,6 +40,10 @@ public class MainFrame extends JFrame implements ActionListener {
 				(d.height - getSize().height) / 2);
 
 		setVisible(true);
+		
+		//Datenbank auslesen und in Tabelle überführen
+		
+
 		ODB odb = ODBFactory.open("jickerMp3.odb");
 		System.out.println(odb.getValues(new ValuesCriteriaQuery(Mp3File.class)
 				.count("mp3Complett")));
@@ -54,7 +64,9 @@ public class MainFrame extends JFrame implements ActionListener {
 			n = n + 1;
 		}
 		odb.close();
-
+	
+		/*
+		table.getModel().setValueAt("test1", 0, 0);
 		/*
 		table.getModel().setValueAt("", 0, 1);
 		table.getModel().setValueAt("test2", 1, 0);
