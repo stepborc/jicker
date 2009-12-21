@@ -6,7 +6,7 @@ public class JickerMp3App {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		new JickerMp3Main("e:\\musik\\cd\\");
+		new JickerMp3Main("z:\\cd\\");
 
 	}
 
