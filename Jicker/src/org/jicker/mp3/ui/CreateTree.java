@@ -7,7 +7,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeNode;
 
 import org.jicker.mp3.JickerMp3Globals;
-import org.jicker.mp3.data.Mp3Dir;
+import org.jicker.mp3.dbobject.Mp3Dir;
 
 import com.db4o.Db4o;
 import com.db4o.ObjectContainer;

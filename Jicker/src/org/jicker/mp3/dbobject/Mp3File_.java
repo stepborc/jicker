@@ -1,14 +1,15 @@
 /**
  * 
  */
-package org.jicker.mp3.data;
+package org.jicker.mp3.dbobject;
+
 
 
 /**
  * @author sborcher
  * 
  */
-public class Mp3File {
+public class Mp3File_ {
 	private String file;
 	//private String dir;
 	private Mp3Dir dir;
@@ -17,7 +18,7 @@ public class Mp3File {
 	//private File absolutFile;
 	//private int tiefe;
 
-	public Mp3File(String file, Mp3Dir dir, long date) {
+	public Mp3File_(String file, Mp3Dir dir, long date) {
 		this.setFile(file, dir);
 		this.setDir(dir);
 		this.setDate(date);

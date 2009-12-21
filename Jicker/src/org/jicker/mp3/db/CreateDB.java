@@ -27,6 +27,7 @@ public class CreateDB {
 		System.out.println(odb.getName() + " angelegt.");
 
 		for (int n = 0; n < list.size(); n++) {
+			System.out.print(list.size());
 			if (new File(list.get(n).toString()).isFile()){
 			list.get(n).toString();
 			Mp3File mp3Files = new Mp3File(list.get(n));

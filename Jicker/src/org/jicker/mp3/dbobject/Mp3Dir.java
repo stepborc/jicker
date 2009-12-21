@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.jicker.mp3.data;
+package org.jicker.mp3.dbobject;
 
 import org.jicker.mp3.JickerMp3Globals;
 

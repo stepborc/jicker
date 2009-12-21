@@ -19,8 +19,9 @@ public class Mp3File {
 		this.setMp3CRC32(mp3Complett);
 	}
 
+ 
 	// Konstruktor wenn nur kompletter Dateiname bekannt ist
-	public Mp3File(File Mp3Complett) {
+	public Mp3File(File mp3Complett) {
 		this.setMp3Complett(mp3Complett);
 		this.mp3File = new File(mp3Complett.toString().substring(
 				mp3Complett.toString().lastIndexOf("\\") + 1,
@@ -29,17 +30,7 @@ public class Mp3File {
 				mp3Complett.toString().lastIndexOf("\\")));
 		this.setMp3CRC32(mp3Complett);
 	}
-
-	public Mp3File(Object mp3Complett) {
-		this.mp3Complett = new File(mp3Complett.toString());
-		this.mp3File = new File(mp3Complett.toString().substring(
-				mp3Complett.toString().lastIndexOf("\\") + 1,
-				mp3Complett.toString().length()));
-		this.mp3Dir = new File(mp3Complett.toString().substring(0,
-				mp3Complett.toString().lastIndexOf("\\")));
-		this.setMp3CRC32((File) mp3Complett);
-	}
-
+	
 	public File getMp3Dir() {
 		return mp3Dir;
 	}
@@ -63,17 +54,17 @@ public class Mp3File {
 		return mp3Complett;
 	}
 
-	public void setMp3Complett(File mp3Complett) {
-		this.mp3Complett = mp3Complett;
+	public void setMp3Complett(File mp3Complett2) {
+		this.mp3Complett = mp3Complett2;
 	}
 
 	public void setMp3CRC32(File mp3Complett) {
-		try {
-			this.mp3CRC32 = FileUtils.checksumCRC32(mp3Complett);
+		/*try {
+			this.mp3CRC32 = FileUtils.checksumCRC32(new File(mp3Complett));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			this.mp3CRC32 = 0;
-		}
+		}*/
 	}
 }

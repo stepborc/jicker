@@ -6,6 +6,8 @@ import java.util.List;
 import javax.swing.filechooser.FileSystemView;
 
 import org.jicker.mp3.JickerMp3Globals;
+import org.jicker.mp3.dbobject.Mp3Dir;
+import org.jicker.mp3.dbobject.Mp3File_;
 
 import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
@@ -41,9 +43,9 @@ public class ReadData {
 					.println(mp3DirGet.getDirName());
 		}
 		System.out.println("--- Dateien ---");
-		Mp3File mp3File = new Mp3File(null, null, 0);
-		ObjectSet<Mp3File> mp3FileList = db.queryByExample(mp3File);
-		Mp3File mp3FileGet = null;
+		Mp3File_ mp3File = new Mp3File_(null, null, 0);
+		ObjectSet<Mp3File_> mp3FileList = db.queryByExample(mp3File);
+		Mp3File_ mp3FileGet = null;
 		while (mp3FileList.hasNext()) {
 			mp3FileGet = mp3FileList.next();
 			// File m = new File(mp3FileGet.getFile());
