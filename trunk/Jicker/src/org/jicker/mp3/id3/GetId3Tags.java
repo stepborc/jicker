@@ -117,8 +117,8 @@ public class GetId3Tags {
 				String key = String.format("%-" + spaltenBreite + "s",
 						testFileOut);
 				System.out.println(key + " | " + artist);
-				dataValue[n][0] = key;
-				dataValue[n][1] = artist;
+				//dataValue[n][0] = key;
+				//dataValue[n][1] = artist;
 				// System.out.println(f.displayStructureAsPlainText());
 				// System.out.println(f.displayStructureAsXML());
 				// System.out.println(f.getAudioHeader().getChannels());

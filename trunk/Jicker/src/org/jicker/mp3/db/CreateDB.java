@@ -30,7 +30,7 @@ public class CreateDB {
 			System.out.print(list.size());
 			if (new File(list.get(n).toString()).isFile()){
 			list.get(n).toString();
-			Mp3File mp3Files = new Mp3File(list.get(n));
+			Mp3File mp3Files = new Mp3File((File) list.get(n));
 			odb.store(mp3Files);
 			}
 		}

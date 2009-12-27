@@ -86,9 +86,9 @@ public class GetMp3Files {
 				fortschrittValue = fortschrittValue + fortschritt;
 			}
 			if (browse.get(n).isDirectory()) {
-				// mp3Dir = new Mp3Dir(browse.get(n).getPath(),
-				// browse.get(n).lastModified(), null, 0);
-				// odb.store(mp3Dir);
+				mp3Dir = new Mp3Dir(browse.get(n).getPath(),
+				browse.get(n).lastModified(), null, 0);
+				odb.store(mp3Dir);
 			} else {
 				mp3File = new Mp3File(browse.get(n));
 				odb.store(mp3File);

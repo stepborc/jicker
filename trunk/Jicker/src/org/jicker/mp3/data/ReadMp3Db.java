@@ -12,7 +12,12 @@ public ReadMp3Db(){
 	ODB odb = ODBFactory.open(JickerMp3Globals.dbName);
 	Objects<Mp3File> mp3Files = odb.getObjects(Mp3File.class);
 	System.out.println(mp3Files.size());
-	// Close ODB
+	Objects<Mp3Dir> mp3Dir = odb.getObjects(Mp3Dir.class);
+	System.out.println(mp3Dir.size());
+	for (int n = 0; n < mp3Dir.size(); n++){
+		System.out.println(mp3Dir.next().getDirName());
+	}
+	//Close ODB
 	odb.close();
 
 	
