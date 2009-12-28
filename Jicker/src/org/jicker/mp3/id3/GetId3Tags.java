@@ -3,6 +3,7 @@ package org.jicker.mp3.id3;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.rmi.UnexpectedException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.LogManager;
@@ -13,11 +14,17 @@ import org.apache.commons.io.filefilter.IOFileFilter;
 import org.apache.commons.io.filefilter.SuffixFileFilter;
 import org.jaudiotagger.audio.AudioFile;
 import org.jaudiotagger.audio.AudioFileIO;
+import org.jaudiotagger.audio.AudioHeader;
 import org.jaudiotagger.audio.exceptions.CannotReadException;
 import org.jaudiotagger.audio.exceptions.InvalidAudioFrameException;
 import org.jaudiotagger.audio.exceptions.ReadOnlyFileException;
+import org.jaudiotagger.audio.mp3.MP3AudioHeader;
+import org.jaudiotagger.audio.mp3.MP3File;
+import org.jaudiotagger.tag.FieldKey;
+import org.jaudiotagger.tag.KeyNotFoundException;
 import org.jaudiotagger.tag.Tag;
 import org.jaudiotagger.tag.TagException;
+import org.jaudiotagger.tag.reference.Tagger;
 import org.jicker.util.dirbrowser.DirBrowser;
 
 public class GetId3Tags {
@@ -84,6 +91,7 @@ public class GetId3Tags {
 			File testFile = new File(results.get(n).toString());
 			if (testFile.isFile()) {
 				AudioFile f = null;
+			
 				try {
 					f = AudioFileIO.read(testFile);
 				} catch (CannotReadException e) {
@@ -102,21 +110,42 @@ public class GetId3Tags {
 					System.out.println("InvalidAudioFrameException");
 					e.printStackTrace();
 				}
+				MP3AudioHeader mah = (MP3AudioHeader) f.getAudioHeader();
+				
+				
 				Tag tag = f.getTag();
+				;
+				System.out.println(f.getAudioHeader().isVariableBitRate());
 				String artist = null;
-				try {
-					artist = tag.getFirstArtist();
-				} catch (NullPointerException ex) {
-					artist = "Name nicht gespeichert";
-					// ex.printStackTrace();
-				}
+				FieldKey artistArray[] = null;
+//				try {
+					//artist = tag.getFirstArtist();
+					//artist = tag.getFirst(FieldKey.ARTIST);
+
+					//Schleife über alle FieldKeys (ARTIST, TRACK, etc...)
+					String tagLine = "" + n +" | " ;
+					for (FieldKey c : FieldKey.values()){
+						try {
+						tagLine = tagLine + " | " + c + ": " +  tag.getFirst(c);
+						} catch (UnsupportedOperationException ex){
+							tagLine = tagLine + " | " + c + ": " + ex.getLocalizedMessage();
+						} catch (KeyNotFoundException ex){
+							tagLine = tagLine + " | " + c + ": " + ex.getLocalizedMessage();
+						} catch (NullPointerException ex) {
+							tagLine = tagLine + " | " + c + ": " + ex.getLocalizedMessage();
+						}
+					}
+					System.out.println(tagLine);
+				 //catch (UnsupportedOperationException ex){
+					
+				//}
 				// System.out.println( testFile + " | " + artist);
-				String testFileOut = testFile.toString().substring(
+				/*String testFileOut = testFile.toString().substring(
 						testFile.toString().lastIndexOf("\\") + 1,
 						testFile.toString().length());
 				String key = String.format("%-" + spaltenBreite + "s",
 						testFileOut);
-				System.out.println(key + " | " + artist);
+				System.out.println(key + " | " + artist);*/
 				//dataValue[n][0] = key;
 				//dataValue[n][1] = artist;
 				// System.out.println(f.displayStructureAsPlainText());
