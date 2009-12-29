@@ -116,21 +116,24 @@ public class GetId3Tags {
 					e.printStackTrace();
 					continue;
 				}
-				if ( mf.getID3v1Tag() != null) {
-					System.out.println("v1-->" + mf.getID3v1Tag().getMajorVersion()
-							+ mf.getID3v1Tag().getRelease()
+				if (mf.getID3v1Tag() != null) {
+					System.out.println("v1-->"
+							+ mf.getID3v1Tag().getMajorVersion() + "."
+							+ mf.getID3v1Tag().getRelease() + "."
 							+ mf.getID3v1Tag().getRevision());
 
 				}
-				if ( mf.getID3v2Tag() != null) {
-					System.out.println("v2-->" + mf.getID3v2Tag().getMajorVersion()
-							+ mf.getID3v2Tag().getRelease()
+				if (mf.getID3v2Tag() != null) {
+					System.out.println("v2-->"
+							+ mf.getID3v2Tag().getMajorVersion() + "."
+							+ mf.getID3v2Tag().getRelease() + "."
 							+ mf.getID3v2Tag().getRevision());
 
 				}
-				if ( mf.getID3v2TagAsv24() != null) {
-					System.out.println("v2..-->" + mf.getID3v2TagAsv24().getMajorVersion()
-							+ mf.getID3v2TagAsv24().getRelease()
+				if (mf.getID3v2TagAsv24() != null) {
+					System.out.println("v2..-->"
+							+ mf.getID3v2TagAsv24().getMajorVersion() + "."
+							+ mf.getID3v2TagAsv24().getRelease() + "."
 							+ mf.getID3v2TagAsv24().getRevision());
 
 				}
