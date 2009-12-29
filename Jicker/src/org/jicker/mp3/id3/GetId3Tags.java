@@ -76,82 +76,103 @@ public class GetId3Tags {
 		List results = new DirBrowser(JickerFilter, 5).find(new File(args[0]));
 		// Array für die Rückgabe des Ergebnisses
 		String[][] dataValue = null;
-		int spaltenBreite = 0;
-		for (int n = 0; n < results.size(); n++) {
-			String resultsElement = results.get(n).toString();
-			resultsElement = resultsElement.substring(resultsElement
-					.lastIndexOf("\\") + 1, resultsElement.length());
-			if (resultsElement.length() > spaltenBreite) {
-				spaltenBreite = resultsElement.length();
-			}
-		}
+		/*
+		 * Wurde zur berechnung der Spaltenbreiten weiter unten verwendet. Wird
+		 * erstmal nicht mehr gebraucht int spaltenBreite = 0; for (int n = 0; n
+		 * < results.size(); n++) { String resultsElement =
+		 * results.get(n).toString(); resultsElement =
+		 * resultsElement.substring(resultsElement .lastIndexOf("\\") + 1,
+		 * resultsElement.length()); if (resultsElement.length() >
+		 * spaltenBreite) { spaltenBreite = resultsElement.length(); } }
+		 */
 		// gesehen in
 		// http://www.impressive-artworx.de/tutorials.php?kat=java&id=16
 		for (int n = 0; n < results.size(); n++) {
 			File testFile = new File(results.get(n).toString());
 			if (testFile.isFile()) {
 				AudioFile f = null;
-			
+				MP3File mf = null;
 				try {
 					f = AudioFileIO.read(testFile);
+					mf = (MP3File) AudioFileIO.read(testFile);
 				} catch (CannotReadException e) {
 					System.out.println("CannotReadException");
 					e.printStackTrace();
+					continue;
 				} catch (IOException e) {
 					System.out.println("IOException");
 					e.printStackTrace();
+					continue;
 				} catch (TagException e) {
 					System.out.println("TagException");
 					e.printStackTrace();
+					continue;
 				} catch (ReadOnlyFileException e) {
 					System.out.println("ReadOnlyException");
 					e.printStackTrace();
+					continue;
 				} catch (InvalidAudioFrameException e) {
 					System.out.println("InvalidAudioFrameException");
 					e.printStackTrace();
+					continue;
 				}
-				MP3AudioHeader mah = (MP3AudioHeader) f.getAudioHeader();
-				
-				
+				if ( mf.getID3v1Tag() != null) {
+					System.out.println("v1-->" + mf.getID3v1Tag().getMajorVersion()
+							+ mf.getID3v1Tag().getRelease()
+							+ mf.getID3v1Tag().getRevision());
+
+				}
+				if ( mf.getID3v2Tag() != null) {
+					System.out.println("v2-->" + mf.getID3v2Tag().getMajorVersion()
+							+ mf.getID3v2Tag().getRelease()
+							+ mf.getID3v2Tag().getRevision());
+
+				}
+				if ( mf.getID3v2TagAsv24() != null) {
+					System.out.println("v2..-->" + mf.getID3v2TagAsv24().getMajorVersion()
+							+ mf.getID3v2TagAsv24().getRelease()
+							+ mf.getID3v2TagAsv24().getRevision());
+
+				}
 				Tag tag = f.getTag();
-				;
-				System.out.println(f.getAudioHeader().isVariableBitRate());
+
+				// Format des Audiofiles ausgeben
+				// System.out.println(f.getAudioHeader().getFormat());
 				String artist = null;
 				FieldKey artistArray[] = null;
-//				try {
-					//artist = tag.getFirstArtist();
-					//artist = tag.getFirst(FieldKey.ARTIST);
-
-					//Schleife über alle FieldKeys (ARTIST, TRACK, etc...)
-					String tagLine = "" + n +" | " ;
-					for (FieldKey c : FieldKey.values()){
-						try {
-						tagLine = tagLine + " | " + c + ": " +  tag.getFirst(c);
-						} catch (UnsupportedOperationException ex){
-							tagLine = tagLine + " | " + c + ": " + ex.getLocalizedMessage();
-						} catch (KeyNotFoundException ex){
-							tagLine = tagLine + " | " + c + ": " + ex.getLocalizedMessage();
-						} catch (NullPointerException ex) {
-							tagLine = tagLine + " | " + c + ": " + ex.getLocalizedMessage();
-						}
+				// Schleife über alle FieldKeys (ARTIST, TRACK, etc...)
+				String tagLine = "" + n + " | ";
+				for (FieldKey c : FieldKey.values()) {
+					try {
+						tagLine = tagLine + " | " + c + ": " + tag.getFirst(c);
+					} catch (UnsupportedOperationException ex) {
+						tagLine = tagLine + " | " + c + ": "
+								+ ex.getLocalizedMessage();
+					} catch (KeyNotFoundException ex) {
+						tagLine = tagLine + " | " + c + ": "
+								+ ex.getLocalizedMessage();
+					} catch (NullPointerException ex) {
+						tagLine = tagLine + " | " + c + ": "
+								+ ex.getLocalizedMessage();
 					}
-					System.out.println(tagLine);
-				 //catch (UnsupportedOperationException ex){
-					
-				//}
+				}
+				System.out.println(tagLine);
+				// catch (UnsupportedOperationException ex){
+
+				// }
 				// System.out.println( testFile + " | " + artist);
-				/*String testFileOut = testFile.toString().substring(
-						testFile.toString().lastIndexOf("\\") + 1,
-						testFile.toString().length());
-				String key = String.format("%-" + spaltenBreite + "s",
-						testFileOut);
-				System.out.println(key + " | " + artist);*/
-				//dataValue[n][0] = key;
-				//dataValue[n][1] = artist;
+				/*
+				 * String testFileOut = testFile.toString().substring(
+				 * testFile.toString().lastIndexOf("\\") + 1,
+				 * testFile.toString().length()); String key =
+				 * String.format("%-" + spaltenBreite + "s", testFileOut);
+				 * System.out.println(key + " | " + artist);
+				 */
+				// dataValue[n][0] = key;
+				// dataValue[n][1] = artist;
 				// System.out.println(f.displayStructureAsPlainText());
 				// System.out.println(f.displayStructureAsXML());
 				// System.out.println(f.getAudioHeader().getChannels());
-
 				// AudioHeader header = f.getAudioHeader();
 				// System.out.println(header.getBitRate());
 				// Iterator iterator = tag.getFields();
