@@ -8,6 +8,7 @@ import org.jaudiotagger.audio.AudioFileIO;
 import org.jaudiotagger.audio.exceptions.CannotReadException;
 import org.jaudiotagger.audio.exceptions.InvalidAudioFrameException;
 import org.jaudiotagger.audio.exceptions.ReadOnlyFileException;
+import org.jaudiotagger.tag.FieldKey;
 import org.jaudiotagger.tag.Tag;
 import org.jaudiotagger.tag.TagException;
 
@@ -41,7 +42,10 @@ public class Artist {
 		Tag tag = f.getTag();
 		String artist = null;
 		try {
-			artist = tag.getFirstArtist();
+			//Ab Version 2.0.1 von jaudiotagger nicht mehr möglich
+			//artist = tag.getFirstArtist();
+			//Neu...
+			artist = tag.getFirst(FieldKey.ARTIST);
 		} catch (NullPointerException ex) {
 			artist = "Ohne Künstler";
 			// ex.printStackTrace();
