@@ -58,10 +58,14 @@ public class GetId3Tags {
 						HiddenFileFilter.VISIBLE);
 
 		// Erstelle Filter für Dateien mit der bestimmnten Endungen
-		String suffix = ".mp3";
+		String suffix = ".ogg";
 		List<String> suffixFilter = new ArrayList<String>();
 		suffixFilter.add(suffix.toLowerCase());
 		suffixFilter.add(suffix.toUpperCase());
+		suffixFilter.add(".mp3".toLowerCase());
+		suffixFilter.add(".mp3".toUpperCase());
+		suffixFilter.add(".flac".toLowerCase());
+		suffixFilter.add(".flac".toUpperCase());
 		SuffixFileFilter sf = new SuffixFileFilter(suffixFilter);
 
 		/*
@@ -94,7 +98,9 @@ public class GetId3Tags {
 				MP3File mf = null;
 				try {
 					f = AudioFileIO.read(testFile);
-					mf = (MP3File) AudioFileIO.read(testFile);
+					if (testFile.getName().endsWith(".mp3")) {
+						mf = (MP3File) AudioFileIO.read(testFile);
+					}
 				} catch (CannotReadException e) {
 					System.out.println("CannotReadException");
 					e.printStackTrace();
@@ -116,26 +122,29 @@ public class GetId3Tags {
 					e.printStackTrace();
 					continue;
 				}
-				if (mf.getID3v1Tag() != null) {
-					System.out.println("v1-->"
-							+ mf.getID3v1Tag().getMajorVersion() + "."
-							+ mf.getID3v1Tag().getRelease() + "."
-							+ mf.getID3v1Tag().getRevision());
+				if (testFile.getName().endsWith(".mp3")) {
 
-				}
-				if (mf.getID3v2Tag() != null) {
-					System.out.println("v2-->"
-							+ mf.getID3v2Tag().getMajorVersion() + "."
-							+ mf.getID3v2Tag().getRelease() + "."
-							+ mf.getID3v2Tag().getRevision());
+					if (mf.getID3v1Tag() != null) {
+						System.out.println("v1-->"
+								+ mf.getID3v1Tag().getMajorVersion() + "."
+								+ mf.getID3v1Tag().getRelease() + "."
+								+ mf.getID3v1Tag().getRevision());
 
-				}
-				if (mf.getID3v2TagAsv24() != null) {
-					System.out.println("v2..-->"
-							+ mf.getID3v2TagAsv24().getMajorVersion() + "."
-							+ mf.getID3v2TagAsv24().getRelease() + "."
-							+ mf.getID3v2TagAsv24().getRevision());
+					}
+					if (mf.getID3v2Tag() != null) {
+						System.out.println("v2-->"
+								+ mf.getID3v2Tag().getMajorVersion() + "."
+								+ mf.getID3v2Tag().getRelease() + "."
+								+ mf.getID3v2Tag().getRevision());
 
+					}
+					if (mf.getID3v2TagAsv24() != null) {
+						System.out.println("v2..-->"
+								+ mf.getID3v2TagAsv24().getMajorVersion() + "."
+								+ mf.getID3v2TagAsv24().getRelease() + "."
+								+ mf.getID3v2TagAsv24().getRevision());
+
+					}
 				}
 				Tag tag = f.getTag();
 
