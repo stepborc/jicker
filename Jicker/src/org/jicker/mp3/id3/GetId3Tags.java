@@ -58,7 +58,7 @@ public class GetId3Tags {
 						HiddenFileFilter.VISIBLE);
 
 		// Erstelle Filter für Dateien mit der bestimmnten Endungen
-		String suffix = ".ogg";
+		String suffix = ".mp3";
 		List<String> suffixFilter = new ArrayList<String>();
 		suffixFilter.add(suffix.toLowerCase());
 		suffixFilter.add(suffix.toUpperCase());
@@ -69,15 +69,15 @@ public class GetId3Tags {
 		SuffixFileFilter sf = new SuffixFileFilter(suffixFilter);
 
 		/*
-		 * Alte Variante des FileFilters // Verbinde die Filter mit dem
-		 * or-Filter java.io.FileFilter JickerFilter =
-		 * FileFilterUtils.orFileFilter( JickerDirFilter, JickerFileFilter);
+		 * Alte Variante des FileFilters
+		 * Verbinde die Filter mit dem or-Filter 
+		 * java.io.FileFilter JickerFilter = FileFilterUtils.orFileFilter( JickerDirFilter, JickerFileFilter);
 		 */
 		// Neue Variante des FileFilters, Suffix ist nun ein List
 		java.io.FileFilter JickerFilter = FileFilterUtils.orFileFilter(
 				JickerDirFilter, sf);
 
-		List results = new DirBrowser(JickerFilter, 5).find(new File(args[0]));
+		List results = new DirBrowser(JickerFilter, 5).find(new File(suffix));
 		// Array für die Rückgabe des Ergebnisses
 		String[][] dataValue = null;
 		/*
