@@ -86,6 +86,8 @@ unsafeWindow.doSmartPrint = function() {window.setTimeout(smartPrint);};
 imgType=getXEle("//a[@title='About Cache Types']/img/@alt").textContent.substring(0,5);
 // Name
 name=document.getElementById("ctl00_ContentBody_CacheName").textContent;
+//GC-Code
+gccode=document.getElementById("ctl00_cacheCodeWidget").textContent;
 // Owner
 owner=getXEle("//span[@id=\"ctl00_ContentBody_CacheOwner\"]/a").textContent;
 // Versteckdatum
