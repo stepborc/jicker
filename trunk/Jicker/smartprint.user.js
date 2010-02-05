@@ -20,8 +20,14 @@ function getXEles(path) {
 // Datenausgabe in neuem Fenster
 function smartPrint() {
    css="* { font-size:10px; font-family:Arial,Helvetica; }";
-   var newPage="<html><head><style type=\"text/css\">"+css+"</style></head><body><!--NOKOUTIL--><br><br>&nbsp;<hr>"
-       +"<b>Typ: "+imgType+" - "+name+" by "+owner+"</b><br>";
+   var newPage="<html><head>" 
+	   //+ "<style type=\"text/css\">"+css+"</style>"
+	   + " </head>"
+       + "<body><!--NOKOUTIL-->"
+       //+ "<br><br>&nbsp;"
+   	   //+ "<hr>"
+       + "<h3 align=\"left\">Typ: "+imgType+" - "+name+" by "+owner+"</h1>"
+       //+ "<br>";
    newPage+="KOs: "+KOs+" | Hidden: "+dateHidden+" | Size: "+size+" | Diff: "+diff+" | Terr: "+terr+"<br>"; 
    if (lf!="") {
      newPage+=lf+"<br><br>";
@@ -93,7 +99,7 @@ diff=diff.substring(0,diff.indexOf(" "));
 terr=getXEle("//span[@id=\"ctl00_ContentBody_Terrain\"]/img").getAttribute("alt");
 terr=terr.substring(0,terr.indexOf(" "));
 // Koordinaten
-//KOs=document.getElementById("ctl00_ContentBody_LatLon").childNodes[1].textContent;
+KOs=document.getElementById("ctl00_ContentBody_LatLon").childNodes[0].textContent;
 // Beschreibungstext
 shortDesc=document.getElementById("ctl00_ContentBody_ShortDescription");
 shortDesc=(null==shortDesc?"":shortDesc.innerHTML);
