@@ -20,18 +20,20 @@ function getXEles(path) {
 // Datenausgabe in neuem Fenster
 function smartPrint() {
    css="* { font-size:10px; font-family:Arial,Helvetica; }";
+   var propTable = "<table border=1 cellspacing=0><tr><td>"+KOs+"</td><td>"+dateHidden+"</td><td>"+size+"</td><td>"+diff+"</td><td>"+terr+"</td>" + "<tr></table>";
    var newPage="<html><head>" 
 	   //+ "<style type=\"text/css\">"+css+"</style>"
 	   + " </head>"
        + "<body><!--NOKOUTIL-->"
        //+ "<br><br>&nbsp;"
    	   //+ "<hr>"
-       + "<h3 align=\"left\">Typ: "+imgType+" - "+name+" by "+owner+"</h1>"
+       + "<h3 align=\"left\">" + gccode + ": "+name+" by "+owner+"</h1>"
+   	   + propTable;
        //+ "<br>";
-   newPage+="KOs: "+KOs+" | Hidden: "+dateHidden+" | Size: "+size+" | Diff: "+diff+" | Terr: "+terr+"<br>"; 
-   if (lf!="") {
-     newPage+=lf+"<br><br>";
-   }
+   newPage+=KOs+" | Hidden: "+dateHidden+" | Size: "+size+" | Diff: "+diff+" | Terr: "+terr+"<br>"; 
+   //if (lf!="") {
+   //  newPage+=lf+"<br><br>";
+   //}
    newPage+=shortDesc+"<br>";
    newPage+=longDesc+"<br>";
    if (hints!="") {
