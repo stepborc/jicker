@@ -16,7 +16,7 @@ public class Test {
 		SAXParser parser = factory.newSAXParser();
 		// Parser parser = new Parser();
 
-		parser.parse(new File("C:/tmp/4138906/test.gpx"),
+		parser.parse(new File("src/org/jicker/xml/sax/test.gpx"),
 				new NestingHandler());
 		// parser.parse(Resolver.createInputSource(new java.io.File(file)));
 
