@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
 public class CreateDataTable {
+	@SuppressWarnings("serial")
 	public ArrayList<TableObject> dataTableValue() {
 		String[][] test = { {"test1","Test1"},{"test2","Test2"} };
 		ArrayList<TableObject> liste = new ArrayList<TableObject>();
@@ -31,7 +32,7 @@ public class CreateDataTable {
 		        rowData[row][col] = value;
 		        fireTableCellUpdated(row, col);
 		    }
-		}
+		};
 
 		
 		
