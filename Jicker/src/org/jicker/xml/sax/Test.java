@@ -18,7 +18,5 @@ public class Test {
 
 		parser.parse(new File("src/org/jicker/xml/sax/test.gpx"),
 				new NestingHandler());
-		// parser.parse(Resolver.createInputSource(new java.io.File(file)));
-
 	}
 }

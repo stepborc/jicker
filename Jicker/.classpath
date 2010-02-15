@@ -27,17 +27,17 @@
 	<classpathentry kind="lib" path="lib/java_mp3.jar"/>
 	<classpathentry kind="lib" path="lib/commons-io-1.4.jar"/>
 	<classpathentry kind="lib" path="lib/db4o-7.4.71.12224-java5.jar"/>
-	<classpathentry kind="lib" path="lib/jaudiotagger.jar"/>
 	<classpathentry kind="lib" path="lib/joafip-2.1.0.jar"/>
 	<classpathentry kind="lib" path="lib/looks-2.2.1.jar"/>
 	<classpathentry kind="lib" path="lib/substance.jar"/>
 	<classpathentry kind="lib" path="lib/slf4j-api-1.5.6.jar"/>
 	<classpathentry kind="lib" path="lib/slf4j-simple-1.5.6.jar"/>
 	<classpathentry kind="con" path="org.dyno.visual.swing.VS_LIBRARY/layoutext"/>
-	<classpathentry kind="lib" path="lib/neodatis-odb-1.9.2.598.jar"/>
 	<classpathentry kind="lib" path="lib/jogg-0.0.7.jar"/>
 	<classpathentry kind="lib" path="lib/jorbis-0.0.15.jar"/>
 	<classpathentry kind="lib" path="lib/tritonus_share.jar"/>
 	<classpathentry kind="lib" path="lib/vorbisspi1.0.3.jar"/>
+	<classpathentry kind="lib" path="lib/jaudiotagger-2.0.2-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="lib/neodatis-odb-1.9.21.670.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

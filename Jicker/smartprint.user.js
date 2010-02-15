@@ -20,7 +20,10 @@ function getXEles(path) {
 // Datenausgabe in neuem Fenster
 function smartPrint() {
    css="* { font-size:10px; font-family:Arial,Helvetica; }";
-   var propTable = "<table border=1 cellspacing=0><tr><td>"+KOs+"</td><td>"+dateHidden+"</td><td>"+size+"</td><td>"+diff+"</td><td>"+terr+"</td>" + "<tr></table>";
+   var propTable = "<table border=1 cellspacing=0>" 
+	   			 + "<tr><td>Koordinaten</td><td>Gelegt</td><td>Cachegroesse</td><td>D</td><td>T</td></tr>"          
+	   			 + "<tr><td>"+KOs+"</td><td>"+dateHidden+"</td><td>"+size+"</td><td>"+diff+"</td><td>"+terr+"</td>" 
+	             + "<tr></table>";
    var newPage="<html><head>" 
 	   //+ "<style type=\"text/css\">"+css+"</style>"
 	   + " </head>"
