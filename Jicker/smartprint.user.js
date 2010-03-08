@@ -20,20 +20,21 @@ function getXEles(path) {
 // Datenausgabe in neuem Fenster
 function smartPrint() {
    css="* { font-size:10px; font-family:Arial,Helvetica; }";
-   var propTable = "<table border=1 cellspacing=0>" 
-	   			 + "<tr><td>Koordinaten</td><td>Gelegt</td><td>Cachegroesse</td><td>D</td><td>T</td></tr>"          
-	   			 + "<tr><td>"+KOs+"</td><td>"+dateHidden+"</td><td>"+size+"</td><td>"+diff+"</td><td>"+terr+"</td>" 
+   var propTable = "<table border=1 cellspacing=0 nowrap>"
+	   			 + "<tr><th>Koordinaten</th><th>Gelegt</th><th>Cachegroesse</th><th>Difficulty</th><th>Terrain</th></tr>"
+	   			 + "<tr><td>"+KOs+"</td><td>"+dateHidden+"</td><td>"+size+"</td><td>"+diff+"</td><td>"+terr+"</td>"
 	             + "<tr></table>";
-   var newPage="<html><head>" 
+   var newPage="<html><head>"
 	   //+ "<style type=\"text/css\">"+css+"</style>"
 	   + " </head>"
        + "<body><!--NOKOUTIL-->"
        //+ "<br><br>&nbsp;"
    	   //+ "<hr>"
-       + "<h3 align=\"left\">" + gccode + ": "+name+" by "+owner+"</h1>"
+       + "<h3 align=\"left\">" + gccode + ": "+name+"</h3>"
+       + "<h4> von "+owner + "</h4>"
    	   + propTable;
        //+ "<br>";
-   newPage+=KOs+" | Hidden: "+dateHidden+" | Size: "+size+" | Diff: "+diff+" | Terr: "+terr+"<br>"; 
+
    //if (lf!="") {
    //  newPage+=lf+"<br><br>";
    //}
@@ -142,8 +143,8 @@ if (null!=imgspan) {
   for (i=0;i<imgspan.childNodes.length;i++) {
     if (imgspan.childNodes[i].tagName=="A") {
        newlink=document.createElement("img");
-       newlink.setAttribute("src",imgspan.childNodes[i].getAttribute("href")); 
-       newlink.setAttribute("border","0"); 
+       newlink.setAttribute("src",imgspan.childNodes[i].getAttribute("href"));
+       newlink.setAttribute("border","0");
 
        newp=document.createElement("p");
        newp.appendChild(newlink);
@@ -152,7 +153,7 @@ if (null!=imgspan) {
        newImg.appendChild(document.createTextNode(imgspan.childNodes[i].childNodes[2].textContent));
        newImg.appendChild(document.createElement("br"));
        // Dann Image selbst anzeigen
-       
+
        newImg.appendChild(newp);
     } else {
       newImg.appendChild(imgspan.childNodes[i].cloneNode(true));
@@ -186,7 +187,7 @@ if (null != lfs) {
       myType=":-)";
     } else if (icon.indexOf("icon_sad")>0) {
       myType=":-(";
-    } 
+    }
     lf=lf+myType+" ";
     lf=lf+fndimg.nextSibling.textContent;
     lf=lf+fndimg.nextSibling.nextSibling.textContent+" | ";
@@ -200,7 +201,7 @@ attrib = "";
 attribs = getXEles("//div[@class='CacheDetailNavigationWidget Spacing']/img");
 if (null != attribs) {
   for ( var i=1 ; i < attribs.snapshotLength; i++ ) {
-    if (attribs.snapshotItem(i).getAttribute("alt")!="blank") { 
+    if (attribs.snapshotItem(i).getAttribute("alt")!="blank") {
       attrib=attrib+(attrib==""?"":", ")+attribs.snapshotItem(i).getAttribute("alt");
     }
   }
