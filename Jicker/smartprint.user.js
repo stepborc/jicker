@@ -19,20 +19,21 @@ function getXEles(path) {
 
 // Datenausgabe in neuem Fenster
 function smartPrint() {
-   css="* { font-size:10px; font-family:Arial,Helvetica; }";
+   css="* { font-size:10px; font-family:Arial,Helvetica; align=left; }";
    var propTable = "<table border=1 cellspacing=0 nowrap>"
 	   			 + "<tr><th>Koordinaten</th><th>Gelegt</th><th>Cachegroesse</th><th>Difficulty</th><th>Terrain</th></tr>"
 	   			 + "<tr><td>"+KOs+"</td><td>"+dateHidden+"</td><td>"+size+"</td><td>"+diff+"</td><td>"+terr+"</td>"
 	             + "<tr></table>";
    var newPage="<html><head>"
-	   //+ "<style type=\"text/css\">"+css+"</style>"
-	   + " </head>"
-       + "<body><!--NOKOUTIL-->"
+	   + "<style type=\"text/css\">"+css+"</style>"
+	   + " </head><body><!--NOKOUTIL-->"
        //+ "<br><br>&nbsp;"
    	   //+ "<hr>"
-       + "<h3 align=\"left\">" + gccode + ": "+name+"</h3>"
-       + "<h4> von "+owner + "</h4>"
-   	   + propTable;
+       //+ "<h3 align=\"left\">" + gccode + ": "+name+"</h3>"
+       //+ "<h4> von "+owner + "</h4>"
+       + gccode + ": "+name + "<br />"
+       + owner + "<br>"
+       + propTable;
        //+ "<br>";
 
    //if (lf!="") {
@@ -77,12 +78,34 @@ function rot_13(text) {
       codechar = (codechar == codechar.toUpperCase()) ?
                  keycode.substring(pos, pos + 1) :
                  keycode.substring(pos, pos + 1).toLowerCase()
+                 rot13 = rot13 + codechar;
+    }else{
+    	//Wenn ein &-Zeichen im Text auftaucht, das nächste Semikolon suchen
+    	if (codechar == "&"){
+    		rot13 = rot13 + codechar;
+    		var laenge = 1;
+    		while ( text.substring(i + laenge, i + 1 + laenge) != ";"){
+    			codechar = text.substring(i + laenge, i + 1 + laenge);
+    			rot13 = rot13 + codechar;
+    			laenge++;
+    		}
+    		i = i + laenge;
+    	}else if (codechar == "<"){
+    		if (text.substring(i, i + 4).toUpperCase == "<BR>"  ){
+    			rot13 = rot13 + "<BR>";
+    			i = i + 5;
+    		}
+    	}else
+    	{
+    		rot13 = rot13 + codechar;
+    	}
     }
-    rot13 = rot13 + codechar;
-  }
-  return rot13;
-}
+    //rot13 = rot13 + codechar;
+  	}
 
+
+    return rot13;
+}
 // Smartprint-Aktion registrieren
 unsafeWindow.doSmartPrint = function() {window.setTimeout(smartPrint);};
 
