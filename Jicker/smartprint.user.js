@@ -81,12 +81,9 @@ function rot_13(text) {
 					.toLowerCase()
 			rot13 = rot13 + codechar;
 		} else {
-			// Wenn ein &-Zeichen im Text auftaucht, das nächste Semikolon
-			// suchen
-
 			switch (codechar) {
 			case "<":
-				if (text.substring(i, i + 4) == "<BR>"
+				if (text.substring(i, i + 4).toUpperCase() == "<BR>"
 						|| text.substring(i, i + 4) == "<br>") {
 					rot13 = rot13 + "<BR>";
 					i = i + 3;
@@ -95,6 +92,8 @@ function rot_13(text) {
 				}
 				break;
 			case "&":
+				// Wenn ein &-Zeichen im Text auftaucht, das nächste Semikolon
+				// suchen
 				rot13 = rot13 + codechar;
 				var laenge = 1;
 				while (text.substring(i + laenge, i + 1 + laenge) != ";") {
