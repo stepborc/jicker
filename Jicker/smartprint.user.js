@@ -83,10 +83,12 @@ function rot_13(text) {
 		} else {
 			switch (codechar) {
 			case "<":
-				if (text.substring(i, i + 4).toUpperCase() == "<BR>"
-						|| text.substring(i, i + 4) == "<br>") {
+				if (text.substring(i, i + 4).toUpperCase() == "<BR>") {
 					rot13 = rot13 + "<BR>";
 					i = i + 3;
+				}else if (text.substring(i, i + 3).toUpperCase() == "<P>"){
+					rot13 = rot13 + "<P>";
+					i = i + 2;
 				} else {
 					rot13 = rot13 + codechar;
 				}
