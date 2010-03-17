@@ -21,19 +21,16 @@ function getXEles(path) {
 
 // Datenausgabe in neuem Fenster
 function smartPrint() {
-	css = "* { font-size:10px; font-family:Arial,Helvetica; align=left; }";
+	//css = "* { font-size:10px; font-family:Arial,Helvetica; align=left;} h1 { color:red; font-size:48px; }";
+	css = "* { font-family:Arial,Helvetica; align=left;} h1 { color:red; font-size:48px; }";
 	var propTable = "<table border=1 cellspacing=0 nowrap>"
-			+ "<tr><th>Koordinaten</th><th>Gelegt</th><th>Cachegroesse</th><th>Difficulty</th><th>Terrain</th></tr>"
-			+ "<tr><td>" + KOs + "</td><td>" + dateHidden + "</td><td>" + size
-			+ "</td><td>" + diff + "</td><td>" + terr + "</td>"
+			+ "<tr><th>Koordinaten</th><th>Cachegroesse</th><th>Difficulty</th><th>Terrain</th><th>Owner</th><th>Gelegt</th></tr>"
+			+ "<tr><td>" + KOs + "</td><td>" + size
+			+ "</td><td>" + diff + "</td><td>" + terr + "</td><td>"+owner+"</td><td>" + dateHidden + "</td>"
 			+ "<tr></table>";
 	var newPage = "<html><head>" + "<style type=\"text/css\">" + css
 			+ "</style>" + " </head><body><!--NOKOUTIL-->"
-			// + "<br><br>&nbsp;"
-			// + "<hr>"
-			// + "<h3 align=\"left\">" + gccode + ": "+name+"</h3>"
-			// + "<h4> von "+owner + "</h4>"
-			+ gccode + ": " + name + "<br />" + owner + "<br>" + propTable;
+			+ "<h3>" + gccode + ": " + name + "</h3>" + propTable;
 	// + "<br>";
 
 	// if (lf!="") {
@@ -65,7 +62,7 @@ function smartPrint() {
 }
 
 // Dekodiert den Hint
-// Schwierigkeit bereiten HTML-Tag und Sonderzeichen in der Form &xxx;
+// Schwierigkeit bereiten HTML-Tag und Sonderzeichen in der Form '&xxx;' und '<BR>'
 function rot_13(text) {
 	var keycode = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 	var rot13 = new String()
