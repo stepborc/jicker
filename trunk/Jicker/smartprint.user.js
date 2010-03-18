@@ -161,11 +161,11 @@ if (hintstate.textContent == "Decrypt") {
 }
 // Waypoints aufbereiten
 wps = getXEle("//strong[contains(text(),'Way')]/following-sibling::*/following::table[1]/tbody");
-alert(text);
+alert(wps);
 waypoints = "";
 
 if (null != wps && wps.childNodes.length > 0) {
-	alert("In der If");
+	alert('In der If');
 	wpidx = 1;
 	for (i = 1; i < wps.childNodes.length - 4; i += 4) {
 		waypoints += "WP" + wpidx + ": "
