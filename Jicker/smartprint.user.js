@@ -125,6 +125,7 @@ imgType = getXEle("//a[@title='About Cache Types']/img/@alt").textContent
 name = document.getElementById("ctl00_ContentBody_CacheName").textContent;
 // GC-Code
 gccode = document.getElementById("ctl00_cacheCodeWidget").textContent;
+gccode = gccode.trim();
 // Owner
 owner = getXEle("//span[@id=\"ctl00_ContentBody_CacheOwner\"]/a").textContent;
 // Versteckdatum
@@ -144,8 +145,13 @@ KOs = document.getElementById("ctl00_ContentBody_LatLon").childNodes[0].textCont
 // Beschreibungstext
 shortDesc = document.getElementById("ctl00_ContentBody_ShortDescription");
 shortDesc = (null == shortDesc ? "" : shortDesc.innerHTML);
+shortDesc = shortDesc.replace(/align="center"/gi, "align=\"left\"")
 // Langbeschreibung
 longDesc = document.getElementById("ctl00_ContentBody_LongDescription").innerHTML;
+longDesc = longDesc.replace(/align="center"/gi, "align=\"left\"");
+longDesc = longDesc.replace(/<center>/gi, "<left>");
+longDesc = longDesc.replace(/<\/center>/gi, "<left>");
+longDesc = longDesc.replace(/width="100%"/gi, "");
 // Hints dekodieren
 hints = document.getElementById("ctl00_ContentBody_Hints")
 hints = (null == hints ? "" : hints.innerHTML);
@@ -155,9 +161,11 @@ if (hintstate.textContent == "Decrypt") {
 }
 // Waypoints aufbereiten
 wps = getXEle("//strong[contains(text(),'Way')]/following-sibling::*/following::table[1]/tbody");
+alert(text);
 waypoints = "";
 
 if (null != wps && wps.childNodes.length > 0) {
+	alert("In der If");
 	wpidx = 1;
 	for (i = 1; i < wps.childNodes.length - 4; i += 4) {
 		waypoints += "WP" + wpidx + ": "
