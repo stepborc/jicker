@@ -160,7 +160,7 @@ if (hintstate.textContent == "Decrypt") {
 	hints = rot_13(hints);
 }
 // Waypoints aufbereiten
-wps = getXEle("//strong[contains(text(),'Way')]/following-sibling::*/following::table[1]/tbody");
+wps = getXEle("//strong[contains(text(),'Additional Waypoints')]/following-sibling::*/following::table[1]/tbody");
 alert(wps);
 waypoints = "";
 
