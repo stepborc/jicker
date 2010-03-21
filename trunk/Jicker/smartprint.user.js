@@ -50,9 +50,10 @@ function smartPrint() {
 	if (images != "") {
 		newPage += images + "<br>";
 	}
-	if (log != "") {
-		newPage += log + "<br>";
-	}
+	//Logs ausgeblendet
+	//if (log != "") {
+	//	newPage += log + "<br>";
+	//}
 	newPage += "</body></html>";
 
 	popup = window.open("about:blank", "smartPrint");
