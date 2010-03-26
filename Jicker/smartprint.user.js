@@ -161,21 +161,36 @@ if (hintstate.textContent == "Decrypt") {
 	hints = rot_13(hints);
 }
 // Waypoints aufbereiten
-wps = getXEle("//strong[contains(text(),'Additional Waypoints')]/following-sibling::*/following::table[1]/tbody");
-alert(wps);
+//wps = getXEle("//strong[contains(text(),'Additional Waypoints')]/following-sibling::*/following::table[1]/tbody");
+//wps = getXEle("//Table");
+//wps = getXEle("//table[@class='Table']/");
+//getXEles("//table[@class='LogsTable Table']//strong/img");
+wps = getXEle("//table[@class='Table']//thead/tr");
+//wps = getXEle("//table[@class='TABLE']/tbody/")
+
+//alert(wps.textContent);
+//alert(wps.childNodes.length);
 waypoints = "";
 
 if (null != wps && wps.childNodes.length > 0) {
-	alert('In der If');
+	alert('Waypoints identifiziert');
+	var cnlaenge = wps.childNodes.length;
+	alert(cnlaenge  + ' Zellen');
 	wpidx = 1;
-	for (i = 1; i < wps.childNodes.length - 4; i += 4) {
-		waypoints += "WP" + wpidx + ": "
-				+ wps.childNodes[i].childNodes[7].textContent + "&nbsp;"
-				+ wps.childNodes[i].childNodes[9].textContent + "&nbsp;"
-				+ wps.childNodes[i].childNodes[11].textContent + "&nbsp;"
-				+ wps.childNodes[i + 2].childNodes[3].textContent + "<br>";
+	//for (i = 1; i < wps.childNodes.length - 4; i += 4) {
+	for (i = 0; i < wps.childNodes.length; i+=2) {
+		alert('Inhalt:' + wps.childNodes[i].textContent + ' Laenge:' + wps.childNodes[i].length);
+		if (wps.childNodes[i].length == 9){
+			alert("Innen:" + i);
+		}
+//		waypoints += "WP" + wpidx + ": "
+//				+ wps.childNodes[i].childNodes[7].textContent + "&nbsp;"
+//				+ wps.childNodes[i].childNodes[9].textContent + "&nbsp;"
+//				+ wps.childNodes[i].childNodes[11].textContent + "&nbsp;"
+//				+ wps.childNodes[i + 2].childNodes[3].textContent + "<br>";
 		wpidx++;
 	}
+	alert(wpidx);
 }
 
 // Bilder sammeln
@@ -212,6 +227,7 @@ if (null != imgspan) {
 // Log-�bersicht
 log = "";
 logs = getXEles("//table[@class='LogsTable Table']/tbody/tr/td");
+
 if (null != logs) {
 	logTmp = document.createElement("span");
 	for ( var i = 1; i < logs.snapshotLength - 1; i++) {
@@ -224,6 +240,7 @@ if (null != logs) {
 
 lf = "";
 lfs = getXEles("//table[@class='LogsTable Table']//strong/img");
+
 if (null != lfs) {
 	for ( var i = 0; i < lfs.snapshotLength; i++) {
 		fndimg = lfs.snapshotItem(i);
