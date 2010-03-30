@@ -6,7 +6,7 @@
 
 // TODO: TBs
 
-// Beschafft das erste auf den ï¿½bergebenen XPath passende Element
+// Beschafft das erste auf den übergebenen XPath passende Element
 function getXEle(path) {
 	var result = document.evaluate(path, document, null,
 			XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
@@ -165,32 +165,39 @@ if (hintstate.textContent == "Decrypt") {
 //wps = getXEle("//Table");
 //wps = getXEle("//table[@class='Table']/");
 //getXEles("//table[@class='LogsTable Table']//strong/img");
-wps = getXEle("//table[@class='Table']//thead/tr");
-//wps = getXEle("//table[@class='TABLE']/tbody/")
+//wps = getXEle("//table[@class='Table']//thead/tr");
+wps = getXEle("//table[@class='Table']")
 
 //alert(wps.textContent);
 //alert(wps.childNodes.length);
 waypoints = "";
 
 if (null != wps && wps.childNodes.length > 0) {
-	alert('Waypoints identifiziert');
+	alert('Waypoints identifiziert:' + wps.nodeName);
 	var cnlaenge = wps.childNodes.length;
 	alert(cnlaenge  + ' Zellen');
-	wpidx = 1;
+	//wpidx = 1;
 	//for (i = 1; i < wps.childNodes.length - 4; i += 4) {
-	for (i = 0; i < wps.childNodes.length; i+=2) {
-		alert('Inhalt:' + wps.childNodes[i].textContent + ' Laenge:' + wps.childNodes[i].length);
-		if (wps.childNodes[i].length == 9){
-			alert("Innen:" + i);
-		}
+	//for (i = 2; i < wps.childNodes.length; i+=1) {
+		//alert('Inhalt:' + wps.childNodes[i].textContent + ' Laenge:' + wps.childNodes[i].length);
+		//alert('Inhalt:' + wps.childNodes[i].textContent + ' Laenge:' + wps.childNodes[i].length);
+		//if (wps.childNodes[i].length == 9){
+			alert(wps.childNodes[3].textContent + '_'+ wps.childNodes[3].childNodes.length);
+			if (wps.childNodes[3].hasChildNodes()){
+				alert(wps.childNodes[3].childNodes[3].textContent);
+			}
+			for(i = 1;i <= wps.childNodes[3].childNodes.length;i = i + 2){
+				alert('i:' + i +' ' + wps.childNodes[3].childNodes[i].nodeName + '->' +wps.childNodes[3].childNodes[i].textContent);
+			}
+		//}
 //		waypoints += "WP" + wpidx + ": "
 //				+ wps.childNodes[i].childNodes[7].textContent + "&nbsp;"
 //				+ wps.childNodes[i].childNodes[9].textContent + "&nbsp;"
 //				+ wps.childNodes[i].childNodes[11].textContent + "&nbsp;"
 //				+ wps.childNodes[i + 2].childNodes[3].textContent + "<br>";
-		wpidx++;
-	}
-	alert(wpidx);
+		//wpidx++;
+	//}
+	//alert(wpidx);
 }
 
 // Bilder sammeln
