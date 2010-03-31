@@ -6,7 +6,7 @@
 
 // TODO: TBs
 
-// Beschafft das erste auf den übergebenen XPath passende Element
+// Beschafft das erste auf den ï¿½bergebenen XPath passende Element
 function getXEle(path) {
 	var result = document.evaluate(path, document, null,
 			XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
@@ -24,9 +24,9 @@ function smartPrint() {
 	//css = "* { font-size:10px; font-family:Arial,Helvetica; align=left;} h1 { color:red; font-size:48px; }";
 	css = "* { font-family:Arial,Helvetica; align=left;} h1 { color:red; font-size:48px; }";
 	var propTable = "<table border=1 cellspacing=0 nowrap>"
-			+ "<tr><th>Koordinaten</th><th>Cachegroesse</th><th>Difficulty</th><th>Terrain</th><th>Owner</th><th>Gelegt</th></tr>"
+			+ "<tr><th>Koordinaten</th><th>Cachegroesse</th><th>Difficulty</th><th>Terrain</th><th>Owner</th><th>Gelegt</th><th>Cachetype</th></tr>"
 			+ "<tr><td>" + KOs + "</td><td>" + size
-			+ "</td><td>" + diff + "</td><td>" + terr + "</td><td>"+owner+"</td><td>" + dateHidden + "</td>"
+			+ "</td><td>" + diff + "</td><td>" + terr + "</td><td>"+owner+"</td><td>" + dateHidden + "</td><td>"+imgType+"</td>"
 			+ "<tr></table>";
 	var newPage = "<html><head>" + "<style type=\"text/css\">" + css
 			+ "</style>" + " </head><body><!--NOKOUTIL-->"
@@ -44,16 +44,16 @@ function smartPrint() {
 	if (attrib != "") {
 		newPage += "<b>Attribute</b>: " + attrib + "<br>";
 	}
+	// Vorübergend deaktiviert
 	if (waypoints != "") {
 		newPage += "<b>" + waypoints + "</b><br>";
 	}
 	if (images != "") {
 		newPage += images + "<br>";
 	}
-	//Logs ausgeblendet
-	//if (log != "") {
-	//	newPage += log + "<br>";
-	//}
+	if (log != "") {
+		newPage += log + "<br>";
+	}
 	newPage += "</body></html>";
 
 	popup = window.open("about:blank", "smartPrint");
@@ -164,7 +164,10 @@ if (hintstate.textContent == "Decrypt") {
 // Waypoints aufbereiten
 wps = getXEle("//table[@class='Table']")
 waypoints = "";
+if (wps != null && wps.childNodes.length > 0){
+}
 
+/*
 if (null != wps && wps.childNodes.length > 0) {
 	alert('Waypoints identifiziert:' + wps.nodeName);
 	var cnlaenge = wps.childNodes.length;
@@ -174,6 +177,8 @@ if (null != wps && wps.childNodes.length > 0) {
 		alert('i:' + i +' ' + wps.childNodes[3].childNodes[i].nodeName + '->' +wps.childNodes[3].childNodes[i].textContent);
 	}
 }
+*/
+
 
 // Bilder sammeln
 imgspan = document.getElementById("ctl00_ContentBody_Images");
@@ -209,7 +214,6 @@ if (null != imgspan) {
 // Log-ï¿½bersicht
 log = "";
 logs = getXEles("//table[@class='LogsTable Table']/tbody/tr/td");
-
 if (null != logs) {
 	logTmp = document.createElement("span");
 	for ( var i = 1; i < logs.snapshotLength - 1; i++) {
@@ -222,7 +226,6 @@ if (null != logs) {
 
 lf = "";
 lfs = getXEles("//table[@class='LogsTable Table']//strong/img");
-
 if (null != lfs) {
 	for ( var i = 0; i < lfs.snapshotLength; i++) {
 		fndimg = lfs.snapshotItem(i);
