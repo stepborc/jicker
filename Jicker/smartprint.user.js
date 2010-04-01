@@ -51,9 +51,9 @@ function smartPrint() {
 	if (images != "") {
 		newPage += images + "<br>";
 	}
-	if (log != "") {
-		newPage += log + "<br>";
-	}
+	//if (log != "") {
+	//	newPage += log + "<br>";
+	//}
 	newPage += "</body></html>";
 
 	popup = window.open("about:blank", "smartPrint");
@@ -164,7 +164,22 @@ if (hintstate.textContent == "Decrypt") {
 // Waypoints aufbereiten
 wps = getXEle("//table[@class='Table']")
 waypoints = "";
+wpanzahl = 0;
+wplaenge = 0;
 if (wps != null && wps.childNodes.length > 0){
+	wpanzahl = wps.childNodes[3].childNodes.length;
+	for(i = 1; i < wpanzahl;i = i + 2){
+		wplaenge = wps.childNodes[3].childNodes[i].childNodes.length;
+		alert(wplaenge);
+		if (wplaenge == 7){
+			//alert('note' + wplaenge);
+			waypoints = waypoints + wps.childNodes[3].childNodes[i].textContent;
+		}else if(wplaenge == 15){
+			alert('ko' + wplaenge);
+			waypoints = waypoints + wps.childNodes[3].childNodes[i].textContent;
+		}
+		waypoints=waypoints +sborcher	 "<br />";
+	}
 }
 
 /*
