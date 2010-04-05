@@ -166,9 +166,32 @@ waypoints = "";
 wpanzahl = 0;
 wplaenge = 0;
 if (wps != null && wps.childNodes.length > 0){
-
+//	wpanzahl = wps.childNodes[3].childNodes.length;
+//	for(i = 1; i < wpanzahl;i = i + 2){
+//		wplaenge = wps.childNodes[3].childNodes[i].childNodes.length;
+//		alert(wplaenge);
+//		if (wplaenge == 7){
+//			//alert('note' + wplaenge);
+//			waypoints = waypoints + wps.childNodes[3].childNodes[i].textContent;
+//		}else if(wplaenge == 15){
+//			alert('ko' + wplaenge);
+//			waypoints = waypoints + wps.childNodes[3].childNodes[i].textContent;
+//		}
+//		waypoints=waypoints + "<br />";
+//	}
 }
 
+/*
+if (null != wps && wps.childNodes.length > 0) {
+	alert('Waypoints identifiziert:' + wps.nodeName);
+	var cnlaenge = wps.childNodes.length;
+	alert(cnlaenge  + ' Zellen');
+	alert(wps.childNodes[3].textContent + '_'+ wps.childNodes[3].childNodes.length);
+	for(i = 1;i <= wps.childNodes[3].childNodes.length;i = i + 2){
+		alert('i:' + i +' ' + wps.childNodes[3].childNodes[i].nodeName + '->' +wps.childNodes[3].childNodes[i].textContent);
+	}
+}
+*/
 
 
 // Bilder sammeln
