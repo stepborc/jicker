@@ -44,7 +44,7 @@ function smartPrint() {
 	if (attrib != "") {
 		newPage += "<b>Attribute</b>: " + attrib + "<br>";
 	}
-		if (waypoints != "") {
+	if (waypoints != "") {
 		newPage += "<b>" + waypoints + "</b><br>";
 	}
 	if (images != "") {
@@ -156,17 +156,29 @@ longDesc = longDesc.replace(/width="100%"/gi, "");
 hints = document.getElementById("ctl00_ContentBody_Hints")
 hints = (null == hints ? "" : hints.innerHTML);
 hintstate = document.getElementById("ctl00_ContentBody_Encrypt");
-if (hintstate.textContent == "Decrypt") {
-	hints = rot_13(hints);
-}
+//if (hintstate.textContent == "Decrypt") {
+//	hints = rot_13(hints);
+//}
 
-// Waypoints aufbereiten
+//Waypoints aufbereiten
 wps = getXEle("//table[@class='Table']")
 waypoints = "";
 wpanzahl = 0;
 wplaenge = 0;
 if (wps != null && wps.childNodes.length > 0){
-
+	wpanzahl = wps.childNodes[3].childNodes.length;
+	for(i = 1; i < wpanzahl;i = i + 2){
+		wplaenge = wps.childNodes[3].childNodes[i].childNodes.length;
+		alert(wplaenge);
+		if (wplaenge == 7){
+			//alert('note' + wplaenge);
+			waypoints = waypoints + wps.childNodes[3].childNodes[i].textContent;
+		}else if(wplaenge == 15){
+			//alert('ko' + wplaenge);
+			waypoints = waypoints + wps.childNodes[3].childNodes[i].textContent;
+		}
+		waypoints=waypoints + "<br />";
+	}
 }
 
 
