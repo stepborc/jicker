@@ -153,32 +153,51 @@ longDesc = longDesc.replace(/<center>/gi, "<left>");
 longDesc = longDesc.replace(/<\/center>/gi, "<left>");
 longDesc = longDesc.replace(/width="100%"/gi, "");
 // Hints dekodieren
-hints = document.getElementById("ctl00_ContentBody_Hints")
-hints = (null == hints ? "" : hints.innerHTML);
-hintstate = document.getElementById("ctl00_ContentBody_Encrypt");
+//hints = document.getElementById("ctl00_ContentBody_Hints")
+//hints = (null == hints ? "" : hints.innerHTML);
+//hintstate = document.getElementById("ctl00_ContentBody_Encrypt");
 //if (hintstate.textContent == "Decrypt") {
 //	hints = rot_13(hints);
 //}
+hints = document.getElementById("div_hint").textContent;
+//alert(hints.textContent);
 
 //Waypoints aufbereiten
 wps = getXEle("//table[@class='Table']")
 waypoints = "";
 wpanzahl = 0;
 wplaenge = 0;
+wp_colspan = 1;
+wp_colspan_measure = false;
 if (wps != null && wps.childNodes.length > 0){
 	wpanzahl = wps.childNodes[3].childNodes.length;
+	waypoints = "<table border=1 cellspacing = 0 nowrap>"
 	for(i = 1; i < wpanzahl;i = i + 2){
 		wplaenge = wps.childNodes[3].childNodes[i].childNodes.length;
-		alert(wplaenge);
 		if (wplaenge == 7){
-			//alert('note' + wplaenge);
-			waypoints = waypoints + wps.childNodes[3].childNodes[i].textContent;
+			wp_line = "<tr>";
+			wp_line = wp_line + "<td colspan = " +wp_colspan+">"+ wps.childNodes[3].childNodes[i].textContent+ "&nbsp" + "</td>";
+			wp_line = wp_line + "</tr>";
 		}else if(wplaenge == 15){
-			//alert('ko' + wplaenge);
-			waypoints = waypoints + wps.childNodes[3].childNodes[i].textContent;
+			wp_line = "<tr>"
+			for (j = 1; j < wplaenge;j++){
+				if (wps.childNodes[3].childNodes[i].childNodes[j].childNodes.length > 0){
+					if (wp_colspan_measure == false){
+						wp_colspan++;
+					}
+					if (wps.childNodes[3].childNodes[i].childNodes[j].childNodes[0].attributes != null && wps.childNodes[3].childNodes[i].childNodes[j].childNodes[0].attributes.length == 4){
+						wp_line = wp_line + "<td>" + wps.childNodes[3].childNodes[i].childNodes[j].childNodes[0].attributes[2].nodeValue + "&nbsp</td>";
+					}else{
+						wp_line = wp_line + "<td>" + wps.childNodes[3].childNodes[i].childNodes[j].textContent + "&nbsp</td>";
+					}
+				}
+			}
+			wp_line = wp_line + "</tr>";
+			wp_colspan_measure = true;
 		}
-		waypoints=waypoints + "<br />";
+		waypoints=waypoints + wp_line;
 	}
+	waypoints = waypoints + "</table>";
 }
 
 
