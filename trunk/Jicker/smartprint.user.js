@@ -61,6 +61,25 @@ function smartPrint() {
 	popup.document.close();
 }
 
+function dht(linkVar) {
+    try {
+        $('div_hint').innerHTML = convertROTStringWithBrackets($('div_hint').innerHTML);
+        linkVar.innerHTML = (linkVar.innerHTML == 'Decrypt') ? 'Encrypt' : 'Decrypt';
+        //$('lnkDH').innerHTML = ($('lnkDH').innerHTML == 'Decrypt') ? 'Encrypt' : 'Decrypt';
+        //if (dh)
+        //$('EncryptionKey').show();
+        //else
+        //$('EncryptionKey').hide();
+        //dh = !dh;
+    }
+    catch (e) {
+        alert(e);
+        return false;
+    }
+    return false;
+}
+
+
 // Dekodiert den Hint
 // Schwierigkeit bereiten HTML-Tag und Sonderzeichen in der Form '&xxx;' und '<BR>'
 function rot_13(text) {
@@ -160,7 +179,8 @@ longDesc = longDesc.replace(/width="100%"/gi, "");
 //	hints = rot_13(hints);
 //}
 hints = document.getElementById("div_hint").textContent;
-//alert(hints.textContent);
+alert(dht(hints));
+
 
 //Waypoints aufbereiten
 wps = getXEle("//table[@class='Table']")
