@@ -190,7 +190,7 @@ wps = getXEle("//table[@class='Table']")
 waypoints = "";
 wpanzahl = 0;
 wplaenge = 0;
-wp_colspan = 1;
+wp_colspan = 0;
 wp_colspan_measure = false;
 if (wps != null && wps.childNodes.length > 0){
 	wpanzahl = wps.childNodes[3].childNodes.length;
@@ -199,7 +199,7 @@ if (wps != null && wps.childNodes.length > 0){
 		wplaenge = wps.childNodes[3].childNodes[i].childNodes.length;
 		if (wplaenge == 7){
 			wp_line = "<tr><td>--></td>";
-			wp_line = wp_line + "<td colspan = " + wp_colspan - 1 + ">"+ wps.childNodes[3].childNodes[i].textContent+ "&nbsp" + "</td>";
+			wp_line = wp_line + "<td colspan = " + wp_colspan + ">"+ wps.childNodes[3].childNodes[i].textContent+ "&nbsp" + "</td>";
 			wp_line = wp_line + "</tr>";
 		}else if(wplaenge == 15){
 			wp_line = "<tr>"
