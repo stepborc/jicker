@@ -99,7 +99,7 @@ function rot_13(text) {
 		} else {
 			switch (codechar) {
 			case "<":
-				if (text.substring(i, i + 4).toUpperCase() == "<BR>") {
+				if (text.substring(i, i + 4).trim().toUpperCase() == "<BR>" || text.substring(i, i + 4).trim().toUpperCase() == "<BR/>" ) {
 					rot13 = rot13 + "<BR>";
 					i = i + 3;
 				}else if (text.substring(i, i + 3).toUpperCase() == "<P>"){
@@ -174,12 +174,15 @@ longDesc = longDesc.replace(/width="100%"/gi, "");
 // Hints dekodieren
 //hints = document.getElementById("ctl00_ContentBody_Hints")
 //hints = (null == hints ? "" : hints.innerHTML);
-//hintstate = document.getElementById("ctl00_ContentBody_Encrypt");
-//if (hintstate.textContent == "Decrypt") {
-//	hints = rot_13(hints);
-//}
-hints = document.getElementById("div_hint").textContent;
-alert(dht(hints));
+hintstate = document.getElementById("ctl00_ContentBody_lnkDH");
+if (hintstate.textContent == "Decrypt") {
+	hints = document.getElementById("div_hint");
+	//Hier wird das Element mit innerHTML überegeb, damit die HTML-Tags erhalten bleiben
+	//z.B. <BR>
+	hints = rot_13(hints.innerHTML);
+}
+//hints = document.getElementById("div_hint");
+//alert(dht(hints));
 
 
 //Waypoints aufbereiten
@@ -195,8 +198,8 @@ if (wps != null && wps.childNodes.length > 0){
 	for(i = 1; i < wpanzahl;i = i + 2){
 		wplaenge = wps.childNodes[3].childNodes[i].childNodes.length;
 		if (wplaenge == 7){
-			wp_line = "<tr>";
-			wp_line = wp_line + "<td colspan = " +wp_colspan+">"+ wps.childNodes[3].childNodes[i].textContent+ "&nbsp" + "</td>";
+			wp_line = "<tr><td>--></td>";
+			wp_line = wp_line + "<td colspan = " + wp_colspan - 1 + ">"+ wps.childNodes[3].childNodes[i].textContent+ "&nbsp" + "</td>";
 			wp_line = wp_line + "</tr>";
 		}else if(wplaenge == 15){
 			wp_line = "<tr>"
