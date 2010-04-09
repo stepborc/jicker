@@ -61,25 +61,6 @@ function smartPrint() {
 	popup.document.close();
 }
 
-function dht(linkVar) {
-    try {
-        $('div_hint').innerHTML = convertROTStringWithBrackets($('div_hint').innerHTML);
-        linkVar.innerHTML = (linkVar.innerHTML == 'Decrypt') ? 'Encrypt' : 'Decrypt';
-        //$('lnkDH').innerHTML = ($('lnkDH').innerHTML == 'Decrypt') ? 'Encrypt' : 'Decrypt';
-        //if (dh)
-        //$('EncryptionKey').show();
-        //else
-        //$('EncryptionKey').hide();
-        //dh = !dh;
-    }
-    catch (e) {
-        alert(e);
-        return false;
-    }
-    return false;
-}
-
-
 // Dekodiert den Hint
 // Schwierigkeit bereiten HTML-Tag und Sonderzeichen in der Form '&xxx;' und '<BR>'
 function rot_13(text) {
@@ -175,11 +156,13 @@ longDesc = longDesc.replace(/width="100%"/gi, "");
 //hints = document.getElementById("ctl00_ContentBody_Hints")
 //hints = (null == hints ? "" : hints.innerHTML);
 hintstate = document.getElementById("ctl00_ContentBody_lnkDH");
-if (hintstate.textContent == "Decrypt") {
+if (hintstate.textContent == "Decrypt" || hintstate.textContent == "Encrypt") {
 	hints = document.getElementById("div_hint");
 	//Hier wird das Element mit innerHTML überegeb, damit die HTML-Tags erhalten bleiben
 	//z.B. <BR>
 	hints = rot_13(hints.innerHTML);
+}else{
+	hints = "Keine verdeckten Hinweise vorhanden."
 }
 //hints = document.getElementById("div_hint");
 //alert(dht(hints));
@@ -190,7 +173,7 @@ wps = getXEle("//table[@class='Table']")
 waypoints = "";
 wpanzahl = 0;
 wplaenge = 0;
-wp_colspan = 0;
+wp_colspan = 1;
 wp_colspan_measure = false;
 if (wps != null && wps.childNodes.length > 0){
 	wpanzahl = wps.childNodes[3].childNodes.length;
@@ -199,7 +182,8 @@ if (wps != null && wps.childNodes.length > 0){
 		wplaenge = wps.childNodes[3].childNodes[i].childNodes.length;
 		if (wplaenge == 7){
 			wp_line = "<tr><td>--></td>";
-			wp_line = wp_line + "<td colspan = " + wp_colspan + ">"+ wps.childNodes[3].childNodes[i].textContent+ "&nbsp" + "</td>";
+			//alert(wps.childNodes[3].childNodes[i].childNodes[3].innerHTML);
+			wp_line = wp_line + "<td colspan = " + wp_colspan + ">"+ wps.childNodes[3].childNodes[i].childNodes[3].innerHTML+ "&nbsp" + "</td>";
 			wp_line = wp_line + "</tr>";
 		}else if(wplaenge == 15){
 			wp_line = "<tr>"
@@ -211,6 +195,7 @@ if (wps != null && wps.childNodes.length > 0){
 					if (wps.childNodes[3].childNodes[i].childNodes[j].childNodes[0].attributes != null && wps.childNodes[3].childNodes[i].childNodes[j].childNodes[0].attributes.length == 4){
 						wp_line = wp_line + "<td>" + wps.childNodes[3].childNodes[i].childNodes[j].childNodes[0].attributes[2].nodeValue + "&nbsp</td>";
 					}else{
+						//alert(wps.childNodes[3].childNodes[i].childNodes[j].innerHTML);
 						wp_line = wp_line + "<td>" + wps.childNodes[3].childNodes[i].childNodes[j].textContent + "&nbsp</td>";
 					}
 				}
