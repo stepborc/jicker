@@ -102,6 +102,18 @@ function rot_13(text) {
 				}
 				i = i + laenge - 1;
 				break;
+			// Wenn "eckige" Klammer, den Text bis zur 
+			//schliessenden Klammer nicht decodieren
+			case "[":
+				alert(rot13);
+				while (text.substring(i,i+1) != "]"){
+					rot13 = rot13 + text.substring(i,i+1);
+					i++;
+				}
+				if (text.substring(i,i+1) == "]"){
+					rot13 = rot13 + text.substring(i,i+1)
+					i++;
+				}
 			default:
 				rot13 = rot13 + codechar;
 				break;
