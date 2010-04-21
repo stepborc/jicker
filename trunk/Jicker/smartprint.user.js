@@ -113,11 +113,13 @@ function rot_13(text) {
 				}
 				//if (text.substring(i,i+1) == "]"){
 				rot13 = rot13 + "]";
-				//i++;
+				i++;
 				//}
 				//i++;
-			default:
+			case " ":
 				rot13 = rot13 + codechar;
+			default:
+				rot13 = rot13 + '§' + codechar + '§';
 				break;
 			}
 		}
