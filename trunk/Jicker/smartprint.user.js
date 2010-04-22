@@ -21,6 +21,7 @@ function getXEles(path) {
 
 // Datenausgabe in neuem Fenster
 function smartPrint() {
+	//stepborc: Anpassung an eigene CSS Vorstellungen
 	//css = "* { font-size:10px; font-family:Arial,Helvetica; align=left;} h1 { color:red; font-size:48px; }";
 	css = "* { font-family:Arial,Helvetica; align=left;} h1 { color:red; font-size:48px; }";
 	var propTable = "<table border=1 cellspacing=0 nowrap>"
@@ -31,11 +32,6 @@ function smartPrint() {
 	var newPage = "<html><head>" + "<style type=\"text/css\">" + css
 			+ "</style>" + " </head><body><!--NOKOUTIL-->"
 			+ "<h3>" + gccode + ": " + name + "</h3>" + propTable;
-	// + "<br>";
-
-	// if (lf!="") {
-	// newPage+=lf+"<br><br>";
-	// }
 	newPage += shortDesc + "<br>";
 	newPage += longDesc + "<br>";
 	if (hints != "") {
@@ -50,11 +46,12 @@ function smartPrint() {
 	if (images != "") {
 		newPage += images + "<br>";
 	}
+	//stepborc: Logs ausblenden
 	//if (log != "") {
 	//	newPage += log + "<br>";
 	//}
 	newPage += "</body></html>";
-
+	//stepborc: 
 	popup = window.open("about:blank", "smartPrint");
 	popup.document.open();
 	popup.document.write(newPage);
@@ -70,7 +67,7 @@ function rot_13(text) {
 	for ( var i = 0; i < text.length; i++) {
 		var codechar = text.substring(i, i + 1)
 		var pos = keycode.indexOf(codechar.toUpperCase())
-
+		//alert('Forschleifenindex: ' + i + ' pos:' + pos + ' Zeichen:' + codechar);
 		if (pos >= 0) {
 			pos = (pos + keycode.length / 2) % keycode.length
 			codechar = (codechar == codechar.toUpperCase()) ? keycode
@@ -102,29 +99,24 @@ function rot_13(text) {
 				}
 				i = i + laenge - 1;
 				break;
-			// Wenn "eckige" Klammer, den Text bis zur 
+			// Wenn "eckige" Klammer, den Text bis zur
 			//schliessenden Klammer nicht decodieren
 			case "[":
-				alert(text.substring(i,i+1));
 				while (text.substring(i,i+1) != "]"){
-					alert(rot13);
 					rot13 = rot13 + text.substring(i,i+1);
 					i++;
 				}
-				//if (text.substring(i,i+1) == "]"){
 				rot13 = rot13 + "]";
-				i++;
-				//}
-				//i++;
+				break;
 			case " ":
 				rot13 = rot13 + codechar;
+				break;
 			default:
-				rot13 = rot13 + '§' + codechar + '§';
+				rot13 = rot13 + codechar;
 				break;
 			}
 		}
 	}
-
 	return rot13;
 }
 // Smartprint-Aktion registrieren
