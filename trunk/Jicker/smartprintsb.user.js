@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name           SmartPrint
+// @name           SmartPrintSB
 // @namespace      http://rflexor.cachezentrale.de
 // @include        http://www.geocaching.com/seek/*
 // ==/UserScript==
@@ -23,7 +23,7 @@ function getXEles(path) {
 function smartPrint() {
 	//stepborc: Anpassung an eigene CSS Vorstellungen
 	//css = "* { font-size:10px; font-family:Arial,Helvetica; align=left;} h1 { color:red; font-size:48px; }";
-	css = "* { font-family:Arial,Helvetica; align=left;} h1 { color:red; font-size:48px; }";
+	css = "* { font-family:Arial,Helvetica; align=left;} h3 { color:black; font-size:24px; margin-bottom:2px}";
 	var propTable = "<table border=1 cellspacing=0 nowrap>"
 			+ "<tr><th>Koordinaten</th><th>Cachegroesse</th><th>Difficulty</th><th>Terrain</th><th>Owner</th><th>Gelegt</th><th>Cachetype</th></tr>"
 			+ "<tr><td>" + KOs + "</td><td>" + size
