@@ -5,16 +5,14 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.concurrent.ArrayBlockingQueue;
 
-public class Divisor {
+public class ValueOfQuotient {
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		long left;
 		long right;
-		Long result = null;
-		ArrayList divisor = new ArrayList<String>();
+		ArrayList<Long> voq = new ArrayList<Long>();
 		for (int r = 0; r <= 9; r++) {
 			for (int v = 0; v <= 9; v++) {
 				for (int w = 0; w <= 9; w++) {
@@ -24,11 +22,11 @@ public class Divisor {
 									+ (v * 100) + (r * 10) + 3;
 							Long lRight = null;
 							for (int n = 1; n <= 9; n++) {
-								lRight = lRight.valueOf(right * n);
+								lRight = Long.valueOf(right * n);
 								if (lRight.toString().length() == 7) {
 									if (lRight.toString().substring(2, 3)
 											.equals("3")) {
-										divisor.add(lRight);
+										voq.add(lRight);
 									}
 								}
 							}
@@ -37,8 +35,8 @@ public class Divisor {
 				}
 			}
 		}
-		Collections.sort(divisor);
-		for (int index = 0; index < divisor.size(); index++)
-			System.out.println(divisor.get(index));
+		Collections.sort(voq);
+		for (int index = 0; index < voq.size(); index++)
+			System.out.println(voq.get(index));
 	}
 }
