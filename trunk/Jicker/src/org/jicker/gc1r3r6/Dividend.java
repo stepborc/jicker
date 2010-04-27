@@ -1,11 +1,20 @@
+/*
+ * 
+ */
 package org.jicker.gc1r3r6;
 
 import java.math.BigInteger;
 
-public class Division {
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Dividend.
+ */
+public class Dividend {
 
 	/**
-	 * @param args
+	 * The main method.
+	 *
+	 * @param args the arguments
 	 */
 	public static void main(String[] args) {
 		// Multipliziere 2 Zahlen, die Spiegelungsgleich sind
