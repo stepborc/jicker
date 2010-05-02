@@ -72,14 +72,19 @@ public class AltOfDividend {
 												if (subPartResult > 0 & subPartResult.toString().length()==6){
 													//System.out.println(subPartResult);
 													if(subPartResult.toString().indexOf("3")==5){
-														System.out.println(partResult +"-" + vLeft +"="+ (subPartResult));
+														System.out.println(partResult +"-" + vLeft +"="+ (subPartResult)+" || Divisor: " + left + " bei Faktor: " + nn) ;
+														//Ergänze subPartResult um eine beliebige Ziffer am Ende,
+														//und subtrahiere ein 6-stelliges Produkt vom Divisor davon ab
+														//subPartResult xxxxx3(x) - (n*3rvwxy)
+														for(int nnn = 1; nnn<=9;nnn++){
+															Long nSubPartResult;
+															nSubPartResult = Long.valueOf(subPartResult.toString() + nnn);
+															System.out.println(nSubPartResult);
+														}
+														d.add(subPartResult);
 													}
+												}
 											}
-											}
-																					}
-										if (partResult>= 0 & partResult.toString().indexOf("3") == 5){
-											//System.out.println(partResult);
-											d.add(result);
 										}
 									}
 								}
