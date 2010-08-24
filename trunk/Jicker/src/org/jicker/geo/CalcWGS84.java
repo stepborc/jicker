@@ -26,12 +26,15 @@ public class CalcWGS84 {
         System.out.println("Breite: " + tmpBreite);
         System.out.println("Länge: " + tmpLaenge);
         System.out.println("Richtung: " + tmpRichtung);
-        System.out.println("Entfernung: "+tmpEntfernung);
+        System.out.println("Entfernung: " + tmpEntfernung);
 
         double lat = Math.asin(Math.sin(tmpBreite)*Math.cos(tmpEntfernung)+Math.cos(tmpBreite)*Math.sin(tmpEntfernung)*Math.cos(tmpRichtung));
-        // Gegenüber Excel sind x und y vertauscht
-        double dlon = (Math.atan2(Math.sin(tmpRichtung)*Math.sin(tmpEntfernung)*Math.cos(tmpBreite),Math.cos(tmpEntfernung)-Math.sin(tmpBreite)*Math.sin(lat)))*-1;
-        double lon = (tmpLaenge - dlon + Math.PI)-(tmpLaenge-dlon + Math.PI)/2/Math.PI-Math.PI;
+        // Gegenüber Excel sind x und y in der Methode atan2 vertauscht
+        Double dlon = (Math.atan2(Math.sin(tmpRichtung)*Math.sin(tmpEntfernung)*Math.cos(tmpBreite),Math.cos(tmpEntfernung)-Math.sin(tmpBreite)*Math.sin(lat)))*-1;
+        Double pLon = tmpLaenge - dlon + Math.PI;
+        Double pLonn = pLon/2/Math.PI;
+
+        Double lon = pLon - (pLonn) - Math.PI;
         System.out.println("Latidude: " + lat);
         System.out.println("dlon: " + dlon);
         System.out.println("lon: " + lon);
