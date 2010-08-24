@@ -34,7 +34,7 @@ public class CalcWGS84 {
         Double pLon = tmpLaenge - dlon + Math.PI;
         Double pLonn = pLon/2/Math.PI;
 
-        Double lon = pLon - (pLonn) - Math.PI;
+        Double lon = pLon - pLonn.intValue() - Math.PI;
         System.out.println("Latidude: " + lat);
         System.out.println("dlon: " + dlon);
         System.out.println("lon: " + lon);
