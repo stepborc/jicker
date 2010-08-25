@@ -21,17 +21,18 @@ function getXEles(path) {
 
 // Datenausgabe in neuem Fenster
 function smartPrint() {
-	//stepborc: Anpassung an eigene CSS Vorstellungen
-	//css = "* { font-size:10px; font-family:Arial,Helvetica; align=left;} h1 { color:red; font-size:48px; }";
+	// stepborc: Anpassung an eigene CSS Vorstellungen
+	// css = "* { font-size:10px; font-family:Arial,Helvetica; align=left;} h1 {
+	// color:red; font-size:48px; }";
 	css = "* { font-family:Courier New,Courier; align=left;} h3 { color:black; font-size:24px; margin-bottom:2px}";
 	var propTable = "<table border=1 cellspacing=0 nowrap>"
 			+ "<tr><th>Koordinaten</th><th>Cachegroesse</th><th>Difficulty</th><th>Terrain</th><th>Owner</th><th>Gelegt</th><th>Cachetype</th></tr>"
-			+ "<tr><td>" + KOs + "</td><td>" + size
-			+ "</td><td>" + diff + "</td><td>" + terr + "</td><td>"+owner+"</td><td>" + dateHidden + "</td><td>"+imgType+"</td>"
-			+ "<tr></table>";
+			+ "<tr><td>" + KOs + "</td><td>" + size + "</td><td>" + diff
+			+ "</td><td>" + terr + "</td><td>" + owner + "</td><td>"
+			+ dateHidden + "</td><td>" + imgType + "</td>" + "<tr></table>";
 	var newPage = "<html><head>" + "<style type=\"text/css\">" + css
-			+ "</style>" + " </head><body><!--NOKOUTIL-->"
-			+ "<h3>" + gccode + ": " + name + "</h3>" + propTable;
+			+ "</style>" + " </head><body><!--NOKOUTIL-->" + "<h3>" + gccode
+			+ ": " + name + "</h3>" + propTable;
 	newPage += shortDesc + "<br>";
 	newPage += longDesc + "<br>";
 	if (hints != "") {
@@ -46,12 +47,12 @@ function smartPrint() {
 	if (images != "") {
 		newPage += images + "<br>";
 	}
-	//stepborc: Logs ausblenden
-	//if (log != "") {
-	//	newPage += log + "<br>";
-	//}
+	// stepborc: Logs ausblenden
+	// if (log != "") {
+	// newPage += log + "<br>";
+	// }
 	newPage += "</body></html>";
-	//stepborc:
+	// stepborc:
 	popup = window.open("about:blank", "smartPrint");
 	popup.document.open();
 	popup.document.write(newPage);
@@ -59,7 +60,8 @@ function smartPrint() {
 }
 
 // Dekodiert den Hint
-// Schwierigkeit bereiten HTML-Tag und Sonderzeichen in der Form '&xxx;' und '<BR>'
+// Schwierigkeit bereiten HTML-Tag und Sonderzeichen in der Form '&xxx;' und
+// '<BR>'
 function rot_13(text) {
 	var keycode = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 	var rot13 = new String()
@@ -67,7 +69,8 @@ function rot_13(text) {
 	for ( var i = 0; i < text.length; i++) {
 		var codechar = text.substring(i, i + 1)
 		var pos = keycode.indexOf(codechar.toUpperCase())
-		//alert('Forschleifenindex: ' + i + ' pos:' + pos + ' Zeichen:' + codechar);
+		// alert('Forschleifenindex: ' + i + ' pos:' + pos + ' Zeichen:' +
+		// codechar);
 		if (pos >= 0) {
 			pos = (pos + keycode.length / 2) % keycode.length
 			codechar = (codechar == codechar.toUpperCase()) ? keycode
@@ -77,10 +80,11 @@ function rot_13(text) {
 		} else {
 			switch (codechar) {
 			case "<":
-				if (text.substring(i, i + 4).trim().toUpperCase() == "<BR>" || text.substring(i, i + 4).trim().toUpperCase() == "<BR/>" ) {
+				if (text.substring(i, i + 4).trim().toUpperCase() == "<BR>"
+						|| text.substring(i, i + 4).trim().toUpperCase() == "<BR/>") {
 					rot13 = rot13 + "<BR>";
 					i = i + 3;
-				}else if (text.substring(i, i + 3).toUpperCase() == "<P>"){
+				} else if (text.substring(i, i + 3).toUpperCase() == "<P>") {
 					rot13 = rot13 + "<P>";
 					i = i + 2;
 				} else {
@@ -102,8 +106,8 @@ function rot_13(text) {
 			// Wenn "eckige" Klammer, den Text bis zur
 			// schliessenden Klammer nicht decodieren
 			case "[":
-				while (text.substring(i,i+1) != "]"){
-					rot13 = rot13 + text.substring(i,i+1);
+				while (text.substring(i, i + 1) != "]") {
+					rot13 = rot13 + text.substring(i, i + 1);
 					i++;
 				}
 				rot13 = rot13 + "]";
@@ -132,7 +136,9 @@ name = document.getElementById("ctl00_ContentBody_CacheName").textContent;
 gccode = document.getElementById("ctl00_cacheCodeWidget").textContent;
 gccode = gccode.trim();
 // Owner
-owner = getXEle("//span[@id=\"ctl00_ContentBody_CacheOwner\"]/a").textContent;
+// auskommentiert am 03.06.2010
+// owner =
+// getXEle("//span[@id=\"ctl00_ContentBody_CacheOwner\"]/a").textContent;
 // Versteckdatum
 dateHidden = document.getElementById("ctl00_ContentBody_DateHidden").textContent;
 // Grï¿½ï¿½e
@@ -158,62 +164,69 @@ longDesc = longDesc.replace(/<center>/gi, "<left>");
 longDesc = longDesc.replace(/<\/center>/gi, "<left>");
 longDesc = longDesc.replace(/width="100%"/gi, "");
 // Hints dekodieren
-//hints = document.getElementById("ctl00_ContentBody_Hints")
-//hints = (null == hints ? "" : hints.innerHTML);
+// hints = document.getElementById("ctl00_ContentBody_Hints")
+// hints = (null == hints ? "" : hints.innerHTML);
 hintstate = document.getElementById("ctl00_ContentBody_lnkDH");
 if (hintstate.textContent == "Decrypt" || hintstate.textContent == "Encrypt") {
 	hints = document.getElementById("div_hint");
-	//Hier wird das Element mit innerHTML überegeb, damit die HTML-Tags erhalten bleiben
-	//z.B. <BR>
+	// Hier wird das Element mit innerHTML überegeb, damit die HTML-Tags
+	// erhalten bleiben
+	// z.B. <BR>
 	hints = rot_13(hints.innerHTML);
-}else{
+} else {
 	hints = "Keine verdeckten Hinweise vorhanden."
 }
-//hints = document.getElementById("div_hint");
-//alert(dht(hints));
+// hints = document.getElementById("div_hint");
+// alert(dht(hints));
 
-
-//Waypoints aufbereiten
+// Waypoints aufbereiten
 wps = getXEle("//table[@class='Table']")
 waypoints = "";
 wpanzahl = 0;
 wplaenge = 0;
 wp_colspan = 1;
 wp_colspan_measure = false;
-if (wps != null && wps.childNodes.length > 0){
+if (wps != null && wps.childNodes.length > 0) {
 	wpanzahl = wps.childNodes[3].childNodes.length;
 	waypoints = "<table border=1 cellspacing = 0 nowrap>"
-	for(i = 1; i < wpanzahl;i = i + 2){
+	for (i = 1; i < wpanzahl; i = i + 2) {
 		wplaenge = wps.childNodes[3].childNodes[i].childNodes.length;
-		if (wplaenge == 7){
+		if (wplaenge == 7) {
 			wp_line = "<tr><td>--></td>";
-			//alert(wps.childNodes[3].childNodes[i].childNodes[3].innerHTML);
-			wp_line = wp_line + "<td colspan = " + wp_colspan + ">"+ wps.childNodes[3].childNodes[i].childNodes[3].innerHTML+ "&nbsp" + "</td>";
+			// alert(wps.childNodes[3].childNodes[i].childNodes[3].innerHTML);
+			wp_line = wp_line + "<td colspan = " + wp_colspan + ">"
+					+ wps.childNodes[3].childNodes[i].childNodes[3].innerHTML
+					+ "&nbsp" + "</td>";
 			wp_line = wp_line + "</tr>";
-		}else if(wplaenge == 15){
+		} else if (wplaenge == 15) {
 			wp_line = "<tr>"
-			for (j = 1; j < wplaenge;j++){
-				if (wps.childNodes[3].childNodes[i].childNodes[j].childNodes.length > 0){
-					if (wp_colspan_measure == false){
+			for (j = 1; j < wplaenge; j++) {
+				if (wps.childNodes[3].childNodes[i].childNodes[j].childNodes.length > 0) {
+					if (wp_colspan_measure == false) {
 						wp_colspan++;
 					}
-					if (wps.childNodes[3].childNodes[i].childNodes[j].childNodes[0].attributes != null && wps.childNodes[3].childNodes[i].childNodes[j].childNodes[0].attributes.length == 4){
-						wp_line = wp_line + "<td>" + wps.childNodes[3].childNodes[i].childNodes[j].childNodes[0].attributes[2].nodeValue + "&nbsp</td>";
-					}else{
-						//alert(wps.childNodes[3].childNodes[i].childNodes[j].innerHTML);
-						wp_line = wp_line + "<td>" + wps.childNodes[3].childNodes[i].childNodes[j].textContent + "&nbsp</td>";
+					if (wps.childNodes[3].childNodes[i].childNodes[j].childNodes[0].attributes != null
+							&& wps.childNodes[3].childNodes[i].childNodes[j].childNodes[0].attributes.length == 4) {
+						wp_line = wp_line
+								+ "<td>"
+								+ wps.childNodes[3].childNodes[i].childNodes[j].childNodes[0].attributes[2].nodeValue
+								+ "&nbsp</td>";
+					} else {
+						// alert(wps.childNodes[3].childNodes[i].childNodes[j].innerHTML);
+						wp_line = wp_line
+								+ "<td>"
+								+ wps.childNodes[3].childNodes[i].childNodes[j].textContent
+								+ "&nbsp</td>";
 					}
 				}
 			}
 			wp_line = wp_line + "</tr>";
 			wp_colspan_measure = true;
 		}
-		waypoints=waypoints + wp_line;
+		waypoints = waypoints + wp_line;
 	}
 	waypoints = waypoints + "</table>";
 }
-
-
 
 // Bilder sammeln
 imgspan = document.getElementById("ctl00_ContentBody_Images");
