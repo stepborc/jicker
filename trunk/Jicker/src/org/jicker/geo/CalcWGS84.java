@@ -39,6 +39,19 @@ public class CalcWGS84 {
         System.out.println("dlon: " + dlon);
         System.out.println("lon: " + lon);
 
+        Double tmpNeueBreiteGrad = 180/Math.PI*lat;
+        int nBreiteGrad = tmpNeueBreiteGrad.intValue();
+        Double nBreiteMinute =(tmpNeueBreiteGrad - nBreiteGrad) * 60;
+        System.out.println("Neue Breite: " + nBreiteGrad + "° " + nBreiteMinute);
+
+        Double tmpNeueLaengeGrad = 180/Math.PI*lon;
+        int nLaengeGrad = tmpNeueLaengeGrad.intValue();
+        Double nLaengeMinute =(tmpNeueLaengeGrad - nLaengeGrad) * 60;
+        System.out.println("Neue Länge: " + nLaengeGrad + "° " + nLaengeMinute);
+
+
+
+
 
 
     }
