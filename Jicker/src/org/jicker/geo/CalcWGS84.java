@@ -13,7 +13,7 @@ public class CalcWGS84 {
         double sLaengeMinute = 48.372;
         int sRichtung = 90;
         double sEntfernung = 0.180;
-
+        //N51°23.339 E006°48.564
         calcNewCoords(sBreiteGrad, sBreiteMinute, sLaengeGrad, sLaengeMinute, sRichtung, sEntfernung);
 
     }
