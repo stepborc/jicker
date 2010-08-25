@@ -17,10 +17,18 @@ public class CalcWGS84 {
         calcNewCoords(sBreiteGrad, sBreiteMinute, sLaengeGrad, sLaengeMinute, sRichtung, sEntfernung);
 
     }
-
+private static double decBreite(int sBreiteGrad, double sBreiteMinute){
+	double breite =  Math.PI/180*(sBreiteGrad+(sBreiteMinute/60));
+	return breite;
+}
+private static double decLaenge(int sLaengeGrad, double sLaengeMinute){
+	double laenge = Math.PI/180*(sLaengeGrad+(sLaengeMinute/60));
+	return laenge;
+	
+}
     private static void calcNewCoords(int sBreiteGrad, double sBreiteMinute, int sLaengeGrad, double sLaengeMinute, int sRichtung, double sEntfernung) {
-        double tmpBreite =  Math.PI/180*(sBreiteGrad+(sBreiteMinute/60));
-        double tmpLaenge = Math.PI/180*(sLaengeGrad+(sLaengeMinute/60));
+        double tmpBreite =  decBreite(sBreiteGrad, sBreiteMinute);
+        double tmpLaenge = decLaenge(sLaengeGrad, sLaengeMinute);
         double tmpRichtung = Math.PI/180*sRichtung;
         double tmpEntfernung = (Math.PI/(180*60))*sEntfernung/1.852;
         System.out.println("Breite: " + tmpBreite);
