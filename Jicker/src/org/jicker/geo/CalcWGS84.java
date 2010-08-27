@@ -18,13 +18,11 @@ public class CalcWGS84 {
 
     }
 private static double decBreite(int sBreiteGrad, double sBreiteMinute){
-	double breite =  Math.PI/180*(sBreiteGrad+(sBreiteMinute/60));
-	return breite;
+    return Math.PI/180*(sBreiteGrad+(sBreiteMinute/60));
 }
 private static double decLaenge(int sLaengeGrad, double sLaengeMinute){
-	double laenge = Math.PI/180*(sLaengeGrad+(sLaengeMinute/60));
-	return laenge;
-	
+    return Math.PI/180*(sLaengeGrad+(sLaengeMinute/60));
+
 }
     private static void calcNewCoords(int sBreiteGrad, double sBreiteMinute, int sLaengeGrad, double sLaengeMinute, int sRichtung, double sEntfernung) {
         double tmpBreite =  decBreite(sBreiteGrad, sBreiteMinute);
