@@ -17,7 +17,7 @@ public class TestCalcWGS84 {
         //N51°23.339 E006°48.564
         System.out.println("Berechnet");
 		CalcWGS84 c = new CalcWGS84(sBreiteGrad, sBreiteMinute, sLaengeGrad, sLaengeMinute, sRichtung, sEntfernung);
-		System.out.println(c.getBreite());
+		System.out.println(c.getBreite() + " - " + c.getLaenge());
 	}
 
 }

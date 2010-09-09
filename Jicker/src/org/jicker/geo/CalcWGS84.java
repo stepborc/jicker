@@ -2,8 +2,10 @@ package org.jicker.geo;
 
 public class CalcWGS84 {
 
-	private int nLaengeMinute;
-	private String nLaengeGrad;
+	private static double nLaengeMinute;
+	private static int nLaengeGrad;
+	private static double nBreiteMinute;
+	private static int nBreiteGrad;
 	public CalcWGS84(int sBreiteGrad, double sBreiteMinute, int sLaengeGrad,
 			double sLaengeMinute, double sRichtung, double sEntfernung) {
 		calcNewCoords(sBreiteGrad, sBreiteMinute, sLaengeGrad, sLaengeMinute,
@@ -53,19 +55,21 @@ public class CalcWGS84 {
 		System.out.println("lon: " + lon);
 
 		Double tmpNeueBreiteGrad = 180 / Math.PI * lat;
-		int nBreiteGrad = tmpNeueBreiteGrad.intValue();
-		Double nBreiteMinute = (tmpNeueBreiteGrad - nBreiteGrad) * 60;
+		nBreiteGrad = tmpNeueBreiteGrad.intValue();
+		nBreiteMinute = (tmpNeueBreiteGrad - nBreiteGrad) * 60;
 		System.out
 				.println("Neue Breite: " + nBreiteGrad + "° " + nBreiteMinute);
 
 		Double tmpNeueLaengeGrad = 180 / Math.PI * lon;
 		//Double tmpNeueLaengeGrad = decRichtung(lon);
-		int nLaengeGrad = tmpNeueLaengeGrad.intValue();
-		Double nLaengeMinute = (tmpNeueLaengeGrad - nLaengeGrad) * 60;
+		nLaengeGrad = tmpNeueLaengeGrad.intValue();
+		nLaengeMinute = (tmpNeueLaengeGrad - nLaengeGrad) * 60;
 		System.out.println("Neue Länge: " + nLaengeGrad + "° " + nLaengeMinute);
 	}
 	public String getBreite(){
 		return nLaengeGrad + "° " + nLaengeMinute;
-		
+	}
+	public String getLaenge(){
+		return nBreiteGrad + "° " + nBreiteMinute;
 	}
 }
