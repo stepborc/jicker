@@ -1,11 +1,13 @@
 package org.jicker.geo;
 
 public class CalcWGS84 {
-
-	private static double nLaengeMinute;
-	private static int nLaengeGrad;
-	private static double nBreiteMinute;
-	private static int nBreiteGrad;
+	private static double laengeMinute;
+	private static int laengeGrad;
+	private static double breiteMinute;
+	private static int breiteGrad;
+	public CalcWGS84(){
+	}
+	
 	public CalcWGS84(int sBreiteGrad, double sBreiteMinute, int sLaengeGrad,
 			double sLaengeMinute, double sRichtung, double sEntfernung) {
 		calcNewCoords(sBreiteGrad, sBreiteMinute, sLaengeGrad, sLaengeMinute,
@@ -28,7 +30,7 @@ public class CalcWGS84 {
 		return (Math.PI / (180 * 60)) * sEntfernung / 1.852;
 	}
 
-	private static void calcNewCoords(int sBreiteGrad, double sBreiteMinute,
+	public void calcNewCoords(int sBreiteGrad, double sBreiteMinute,
 			int sLaengeGrad, double sLaengeMinute, double sRichtung,
 			double sEntfernung) {
 
@@ -50,26 +52,25 @@ public class CalcWGS84 {
 		Double pLonn = pLon / 2 / Math.PI;
 
 		Double lon = pLon - pLonn.intValue() - Math.PI;
-		System.out.println("Latidude: " + lat);
-		System.out.println("dlon: " + dlon);
-		System.out.println("lon: " + lon);
+		//System.out.println("Latidude: " + lat);
+		//System.out.println("dlon: " + dlon);
+		//System.out.println("lon: " + lon);
 
 		Double tmpNeueBreiteGrad = 180 / Math.PI * lat;
-		nBreiteGrad = tmpNeueBreiteGrad.intValue();
-		nBreiteMinute = (tmpNeueBreiteGrad - nBreiteGrad) * 60;
-		System.out
-				.println("Neue Breite: " + nBreiteGrad + "° " + nBreiteMinute);
+		breiteGrad = tmpNeueBreiteGrad.intValue();
+		breiteMinute = (tmpNeueBreiteGrad - breiteGrad) * 60;
+		//System.out.println("Neue Breite: " + breiteGrad + "° " + breiteMinute);
 
 		Double tmpNeueLaengeGrad = 180 / Math.PI * lon;
 		//Double tmpNeueLaengeGrad = decRichtung(lon);
-		nLaengeGrad = tmpNeueLaengeGrad.intValue();
-		nLaengeMinute = (tmpNeueLaengeGrad - nLaengeGrad) * 60;
-		System.out.println("Neue Länge: " + nLaengeGrad + "° " + nLaengeMinute);
+		laengeGrad = tmpNeueLaengeGrad.intValue();
+		laengeMinute = (tmpNeueLaengeGrad - laengeGrad) * 60;
+		//System.out.println("Neue Länge: " + laengeGrad + "° " + laengeMinute);
 	}
 	public String getBreite(){
-		return nLaengeGrad + "° " + nLaengeMinute;
+		return laengeGrad + "° " + laengeMinute;
 	}
 	public String getLaenge(){
-		return nBreiteGrad + "° " + nBreiteMinute;
+		return breiteGrad + "° " + breiteMinute;
 	}
 }
