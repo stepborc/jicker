@@ -7,7 +7,6 @@ public class CalcWGS84 {
 	private static int breiteGrad;
 	public CalcWGS84(){
 	}
-	
 	public CalcWGS84(int sBreiteGrad, double sBreiteMinute, int sLaengeGrad,
 			double sLaengeMinute, double sRichtung, double sEntfernung) {
 		calcNewCoords(sBreiteGrad, sBreiteMinute, sLaengeGrad, sLaengeMinute,
