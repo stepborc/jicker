@@ -15,29 +15,30 @@ public class TestCalcWGS84 {
 
         System.out.println("Gegeben");
         int sBreiteGrad = 51;
-        double sBreiteMinute = 23.260;
+        Float sBreiteMinute = 23.260f;
         int sLaengeGrad = 6;
-        double sLaengeMinute = 48.372;
+        Float sLaengeMinute = 48.372f;
         //double sRichtung = 90.0;
-        double sEntfernung = 0.180;
+        Float sEntfernung = 0.180f;
         //N51°23.339 E006°48.564
         System.out.println("Berechnet");
 		//CalcWGS84 c = new CalcWGS84(sBreiteGrad, sBreiteMinute, sLaengeGrad, sLaengeMinute, sRichtung, sEntfernung);
-        CalcWGS84 c = new CalcWGS84();
-        for(double sRichtung = 0.0; sRichtung<360.0;sRichtung=sRichtung + 0.1){
-        c.calcNewCoords(sBreiteGrad, sBreiteMinute, sLaengeGrad, sLaengeMinute, sRichtung, sEntfernung);
+        CalcWGS84 c = new CalcWGS84(sBreiteGrad, sBreiteMinute, sLaengeGrad, sLaengeMinute, sEntfernung);
+        for(float sRichtung = 0.0f; sRichtung<360.0;sRichtung=sRichtung + 0.1f){
+        c.calcNewCoords(sRichtung);
 		System.out.println(sRichtung +"°: " +c.getLaenge() + " - " + c.getBreite());
+		System.out.println(sRichtung +"°: " +c.getLaenge() + " - " + c.getBreiteDezimalGrad());
         }
-        final Kml kml = new Kml();
-        kml.createAndSetPlacemark()
-           .withName("London, UK").withOpen(Boolean.TRUE)
-           .createAndSetPoint().addToCoordinates(-0.126236, 51.500152);
-        try {
-			kml.marshal(new File("HelloKml.kml"));
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//        final Kml kml = new Kml();
+//        kml.createAndSetPlacemark()
+//           .withName("London, UK").withOpen(Boolean.TRUE)
+//           .createAndSetPoint().addToCoordinates(-0.126236, 51.500152);
+//        try {
+//			kml.marshal(new File("HelloKml.kml"));
+//		} catch (FileNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 
 	}
 
