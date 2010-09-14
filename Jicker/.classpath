@@ -40,5 +40,9 @@
 	<classpathentry kind="lib" path="lib/jaudiotagger-2.0.2-SNAPSHOT.jar"/>
 	<classpathentry kind="lib" path="lib/neodatis-odb-1.9.21.670.jar"/>
 	<classpathentry kind="lib" path="lib/JavaAPIforKml.jar"/>
+	<classpathentry kind="lib" path="lib/activation.jar"/>
+	<classpathentry kind="lib" path="lib/jaxb-api.jar"/>
+	<classpathentry kind="lib" path="lib/jaxb-impl.jar"/>
+	<classpathentry kind="lib" path="lib/jaxb-xjc.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
