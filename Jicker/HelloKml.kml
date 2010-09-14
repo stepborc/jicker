@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:xal="urn:oasis:names:tc:ciq:xsdschema:xAL:2.0">
     <Placemark>
-        <name>London, UK</name>
+        <name>359.91275</name>
         <open xmlns:ns5="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns6="http://www.w3.org/2001/XMLSchema" ns5:type="ns6:boolean">true</open>
         <Point>
-            <coordinates>-0.126236,51.500152</coordinates>
+            <coordinates>6.0,9026628.0</coordinates>
         </Point>
     </Placemark>
 </kml>
