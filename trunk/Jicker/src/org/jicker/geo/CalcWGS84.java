@@ -7,8 +7,21 @@ package org.jicker.geo;
 /**
  * The Class CalcWGS84.
  * 
- * Breitengrad: Vom Aequator nach Norden und Süden gehend.
- * Laengengrad: Vom Null-Meridian nach Osten und Westen gehend
+ * Breitengrad: Noerdliche bzw. suedliche Position 
+ * 				eines Punktes vom Aequator
+ * 				engl. Latitude. Abk. Lat.
+ * 				Werte: 0° am Aequator,
+ * 				       +90° am Nord- und (bezeichnet als + oder N)
+ * 				       -90° am Suedpol (bezeichnet als - oder S)
+ * 				
+ * Laengengrad: Oestliche bzw. westliche Position
+ *              eines Punktes om Null-Meridian
+ *              engl. Longitude Abk. Lon oder auch Long.
+ *              Formelzeichen: Lambda
+ *              Werte: 0° Null-Meridian (Greenwich)
+ *                     +180° in Richtung Osten (bezeichnet als + oder O)
+ *                     -180° in Richtung Westen (bezeichnet als - oder W)
+ *                     
  * Dezimal-Grad > Grad, Minuten, Sekunden
  * Stellen hinter dem Komma mit 60 multiplizieren:
  * Beispiel: 49,6019° in Dezimalgrad entspricht
@@ -183,7 +196,7 @@ public class CalcWGS84 {
 	 *
 	 * @return the breite
 	 */
-	public String getBreite(){
+	public String getLaenge(){
 		return laengeGrad + "° " + laengeMinute;
 	}
 	
@@ -192,12 +205,17 @@ public class CalcWGS84 {
 	 *
 	 * @return the laenge
 	 */
-	public String getLaenge(){
+	public String getBreite(){
 		return breiteGrad + "° " + breiteMinute;
 	}
 	public String getBreiteDezimalGrad(){
 		Float breiteMinuteFloat;
 		breiteMinuteFloat = breiteMinute/60.0f;
 		return breiteGrad + "," + breiteMinuteFloat.toString().substring(2);
+	}
+	public String getLaengeDezimalGrad(){
+		Float laengeMinuteFloat;
+		laengeMinuteFloat = laengeMinute/60.0f;
+		return laengeGrad + "," + laengeMinuteFloat.toString().substring(2);
 	}
 }
