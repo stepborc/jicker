@@ -19,18 +19,52 @@ public class TestPolygon {
 
 	/**
 	 * @param args
+	 * @throws FileNotFoundException 
 	 */
-	public static void main(String[] args) {
-		final Point point = new Point();
-		List<Coordinate> coord = new ArrayList<Coordinate>();
-		point.setCoordinates(coord);
-		coord.add(new Coordinate(-90.86948943473118,48.25450093195546));
-        try {
-			point.marshal(new File("HelloKml.kml"));
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+	public static void main(String[] args) throws FileNotFoundException {
+		final Kml kml = new Kml();
+		final Document document = new Document();
+		kml.setFeature(document);
+		document.setName("Polygon.kml");
+		document.setOpen(false);
+		final Placemark placemark = new Placemark();
+		document.getFeature().add(placemark);
+		placemark.setName("hollow box");
 
+		final Polygon polygon = new Polygon();
+		placemark.setGeometry(polygon);
+
+		polygon.setExtrude(true);
+		polygon.setAltitudeMode(AltitudeMode.RELATIVE_TO_GROUND);
+
+		final Boundary outerboundary = new Boundary();
+		polygon.setOuterBoundaryIs(outerboundary);
+
+		final LinearRing outerlinearring = new LinearRing();
+		outerboundary.setLinearRing(outerlinearring);
+
+		List<Coordinate> outercoord = new ArrayList<Coordinate>();
+		outerlinearring.setCoordinates(outercoord);
+		outercoord.add(new Coordinate(-122.366278,37.818844,30));
+		outercoord.add(new Coordinate(-122.365248,37.819267,30));
+		outercoord.add(new Coordinate(-122.365640,37.819861,30));
+		outercoord.add(new Coordinate(-122.366669,37.819429,30));
+		outercoord.add(new Coordinate(-122.366278,37.818844,30));
+
+		final Boundary innerboundary = new Boundary();
+		polygon.getInnerBoundaryIs().add(innerboundary);
+
+		final LinearRing innerlinearring = new LinearRing();
+		innerboundary.setLinearRing(innerlinearring);
+
+		List<Coordinate> innercoord = new ArrayList<Coordinate>();
+		innerlinearring.setCoordinates(innercoord);
+		innercoord.add(new Coordinate(-122.366212,37.818977,30));
+		innercoord.add(new Coordinate(-122.365424,37.819294,30));
+		innercoord.add(new Coordinate(-122.365704,37.819731,30));
+		innercoord.add(new Coordinate(-122.366488,37.819402,30));
+		innercoord.add(new Coordinate(-122.366212,37.818977,30));
+		kml.marshal(new File("testpolygon.kml"));
+
+	}
 }

@@ -2,10 +2,15 @@ package org.jicker.geo;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 import de.micromata.opengis.kml.v_2_2_0.Coordinate;
+import de.micromata.opengis.kml.v_2_2_0.Document;
 import de.micromata.opengis.kml.v_2_2_0.Kml;
+import de.micromata.opengis.kml.v_2_2_0.LineString;
+import de.micromata.opengis.kml.v_2_2_0.Placemark;
 
 public class TestCalcWGS84 {
 
@@ -26,40 +31,64 @@ public class TestCalcWGS84 {
         System.out.println("Berechnet");
 		//CalcWGS84 c = new CalcWGS84(sBreiteGrad, sBreiteMinute, sLaengeGrad, sLaengeMinute, sRichtung, sEntfernung);
         CalcWGS84 c = new CalcWGS84(sBreiteGrad, sBreiteMinute, sLaengeGrad, sLaengeMinute, sEntfernung);
-        final Kml kml = new Kml();
-        final Document document = new Document();
-        kml.setFeature(document);
 
-        final Placemark placemark = new Placemark();
-        document.getFeature().add(placemark);
-        placemark.setName("LinearRing.kml");
+		final Kml kml = new Kml();
+		final Document document = new Document();
+		kml.setFeature(document);
+		document.setName("LineString.kml");
+		document.setOpen(true);
 
-        final Polygon polygon = new Polygon();
-        placemark.setGeometry(polygon);
-        final Boundary boundary = new Boundary();
-        polygon.setOuterBoundaryIs(boundary);
+//		final LookAt lookat = new LookAt();
+//		lookat.setLongitude(-122.36415);
+//		lookat.setLatitude(37.824553);
+//		lookat.setRange(150.0d);
+//		lookat.setTilt(50.0d);
+//		lookat.setHeading(0.0d);
+//
+//		document.setAbstractView(lookat);
 
-        final LinearRing linearring = new LinearRing();
-        boundary.setLinearRing(linearring);
-
-        List<Coordinate> coord = new ArrayList<Coordinate>();
-        linearring.setCoordinates(coord);
-//        coord.add(new Coordinate(-122.365662,37.826988,0));
-//        coord.add(new Coordinate(-122.365202,37.826302,0));
-//        coord.add(new Coordinate(-122.364581,37.82655,0));
-//        coord.add(new Coordinate(-122.365038,37.827237,0));
-//        coord.add(new Coordinate(-122.365662,37.826988,0));
-
+		final Placemark placemark2 = new Placemark();
+		document.getFeature().add(placemark2);
+		placemark2.setName("extruded");
+		final LineString linestring2 = new LineString();
+		placemark2.setGeometry(linestring2);
+		linestring2.setExtrude(true);
+		linestring2.setTessellate(true);
+		List<Coordinate> coord2 = new ArrayList<Coordinate>();
+		linestring2.setCoordinates(coord2);
+		String strCoord = null;
         for(Float sRichtung = 0.0f; sRichtung<360.0;sRichtung=sRichtung + 0.1f){
         c.calcNewCoords(sRichtung);
 		System.out.println(sRichtung +"°: " +c.getBreite() + " - " + c.getLaenge());
 		System.out.println(sRichtung +"°: " +c.getBreiteDezimalGrad() + " - " + c.getLaengeDezimalGrad());
 		
-		coord.add(new Coordinate((c.getBreiteDezimalGrad() + "," + c.getLaengeDezimalGrad())));
+		//coord2.add(new Coordinate(-122.364167,37.824787,50));
+		//coord2.add(new Coordinate(-122.363917,37.824423,50));
+		strCoord = c.getBreiteDezimalGrad().toString().replaceAll(",", ".") + "," + c.getLaengeDezimalGrad().toString().replaceAll(",", ".");
+		coord2.add(new Coordinate(strCoord));
+		
         }
-        kml.marshal(new File("HelloKml.kml"));
+
         System.out.println("Ende");
 
+        
+
+
+//		final Placemark placemark1 = new Placemark();
+//		document.getFeature().add(placemark1);
+//		placemark1.setName("unextruded");
+//		final LineString linestring1 = new LineString();
+//		placemark1.setGeometry(linestring1);
+//		linestring1.setExtrude(false);
+//		linestring1.setTessellate(true);
+//		List<Coordinate> coord1 = new ArrayList<Coordinate>();
+//		linestring1.setCoordinates(coord1);
+//		coord1.add(new Coordinate(-122.364383,37.824664,0));
+//		coord1.add(new Coordinate(-122.364152,37.824322,0));
+
+
+
+		kml.marshal(new File(document.getName()));     
 
 	}
 
