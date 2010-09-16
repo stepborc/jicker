@@ -1,7 +1,10 @@
 package org.jicker.geo;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,9 +19,9 @@ public class TestCalcWGS84 {
 
 	/**
 	 * @param args
-	 * @throws FileNotFoundException 
+	 * @throws IOException 
 	 */
-	public static void main(String[] args) throws FileNotFoundException {
+	public static void main(String[] args) throws IOException {
 
         System.out.println("Gegeben");
         int sBreiteGrad = 51;
@@ -32,6 +35,10 @@ public class TestCalcWGS84 {
 		//CalcWGS84 c = new CalcWGS84(sBreiteGrad, sBreiteMinute, sLaengeGrad, sLaengeMinute, sRichtung, sEntfernung);
         CalcWGS84 c = new CalcWGS84(sBreiteGrad, sBreiteMinute, sLaengeGrad, sLaengeMinute, sEntfernung);
 
+        BufferedWriter csvFile = null;
+        csvFile = new BufferedWriter(new FileWriter("gpsfile.csv"));
+        
+        
 		final Kml kml = new Kml();
 		final Document document = new Document();
 		kml.setFeature(document);
@@ -65,12 +72,15 @@ public class TestCalcWGS84 {
 		//coord2.add(new Coordinate(-122.364167,37.824787,50));
 		//coord2.add(new Coordinate(-122.363917,37.824423,50));
 		strCoord = c.getBreiteDezimalGrad().toString().replaceAll(",", ".") + "," + c.getLaengeDezimalGrad().toString().replaceAll(",", ".");
+		csvFile.write(strCoord);
+		csvFile.newLine();
 		coord2.add(new Coordinate(strCoord));
 		
         }
 
         System.out.println("Ende");
-
+        csvFile.flush();
+        csvFile.close();
         
 
 
