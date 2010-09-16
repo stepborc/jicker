@@ -63,7 +63,8 @@ public class TestCalcWGS84 {
 		linestring2.setTessellate(true);
 		List<Coordinate> coord2 = new ArrayList<Coordinate>();
 		linestring2.setCoordinates(coord2);
-		String strCoord = null;
+		String strCoord1 = null;
+		String strCoord2 = null;
         for(Float sRichtung = 0.0f; sRichtung<360.0;sRichtung=sRichtung + 0.1f){
         c.calcNewCoords(sRichtung);
 		System.out.println(sRichtung +"°: " +c.getBreite() + " - " + c.getLaenge());
@@ -71,10 +72,11 @@ public class TestCalcWGS84 {
 		
 		//coord2.add(new Coordinate(-122.364167,37.824787,50));
 		//coord2.add(new Coordinate(-122.363917,37.824423,50));
-		strCoord = c.getBreiteDezimalGrad().toString().replaceAll(",", ".") + "," + c.getLaengeDezimalGrad().toString().replaceAll(",", ".");
-		csvFile.write(strCoord);
+		strCoord1 = c.getBreiteDezimalGrad().toString().replaceAll(",", ".") + "," + c.getLaengeDezimalGrad().toString().replaceAll(",", ".");
+		strCoord2 = c.getBreite() + "," + c.getLaenge();
+		csvFile.write(strCoord2);
 		csvFile.newLine();
-		coord2.add(new Coordinate(strCoord));
+		coord2.add(new Coordinate(strCoord1));
 		
         }
 
