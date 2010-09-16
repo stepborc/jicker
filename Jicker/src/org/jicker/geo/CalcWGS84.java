@@ -37,19 +37,19 @@ package org.jicker.geo;
 public class CalcWGS84 {
 	
 	/** The laenge minute. */
-	private static Float laengeMinute;
+	private static Double laengeMinute;
 	
 	/** The laenge grad. */
 	private static int laengeGrad;
 	
 	/** The breite minute. */
-	private static Float breiteMinute;
+	private static Double breiteMinute;
 	
 	/** The breite grad. */
 	private static int breiteGrad;
 	
 	/** The entfernung. */
-	private Float entfernung;
+	private Double entfernung;
 	
 	/**
 	 * Instantiates a new calc wg s84.
@@ -82,8 +82,8 @@ public class CalcWGS84 {
 	 * @param sLaengeMinute the s laenge minute
 	 * @param sEntfernung the s entfernung
 	 */
-	public CalcWGS84(int sBreiteGrad, float sBreiteMinute, int sLaengeGrad,
-			float sLaengeMinute, float sEntfernung) {
+	public CalcWGS84(int sBreiteGrad, double sBreiteMinute, int sLaengeGrad,
+			double sLaengeMinute, double sEntfernung) {
 		//calcNewCoords(sBreiteGrad, sBreiteMinute, sLaengeGrad, sLaengeMinute, sEntfernung);
 		breiteGrad = sBreiteGrad;
 		breiteMinute = sBreiteMinute;
@@ -99,7 +99,7 @@ public class CalcWGS84 {
 	 * @param sBreiteMinute the s breite minute
 	 * @return the float
 	 */
-	private static float decBreite(int sBreiteGrad, float sBreiteMinute) {
+	private static float decBreite(int sBreiteGrad, double sBreiteMinute) {
 		return (float) (Math.PI / 180 * (sBreiteGrad + (sBreiteMinute / 60)));
 	}
 
@@ -110,18 +110,18 @@ public class CalcWGS84 {
 	 * @param sLaengeMinute the s laenge minute
 	 * @return the float
 	 */
-	private static float decLaenge(int sLaengeGrad, float sLaengeMinute) {
+	private static float decLaenge(int sLaengeGrad, double sLaengeMinute) {
 		return (float) (Math.PI / 180 * (sLaengeGrad + (sLaengeMinute / 60)));
 	}
 
 	/**
 	 * Dec richtung.
 	 *
-	 * @param lon the lon
+	 * @param sRichtung the lon
 	 * @return the float
 	 */
-	private static float decRichtung(float lon) {
-		return (float) (Math.PI / 180 * lon);
+	private static float decRichtung(double sRichtung) {
+		return (float) (Math.PI / 180 * sRichtung);
 	}
 
 	/**
@@ -130,7 +130,7 @@ public class CalcWGS84 {
 	 * @param sEntfernung the s entfernung
 	 * @return the float
 	 */
-	private static float decEntfernung(float sEntfernung) {
+	private static float decEntfernung(double sEntfernung) {
 		return (float) ((Math.PI / (180 * 60)) * sEntfernung / 1.852);
 	}
 	
@@ -139,7 +139,7 @@ public class CalcWGS84 {
 	 *
 	 * @param sRichtung the s richtung
 	 */
-	public void calcNewCoords(float sRichtung){
+	public void calcNewCoords(double sRichtung){
 		calcNewCoords(breiteGrad, breiteMinute, laengeGrad, laengeMinute, sRichtung, entfernung);
 	}
 
@@ -153,9 +153,9 @@ public class CalcWGS84 {
 	 * @param sRichtung the s richtung
 	 * @param sEntfernung the s entfernung
 	 */
-	public void calcNewCoords(int sBreiteGrad, float sBreiteMinute,
-			int sLaengeGrad, float sLaengeMinute, float sRichtung,
-			float sEntfernung) {
+	public void calcNewCoords(int sBreiteGrad, double sBreiteMinute,
+			int sLaengeGrad, double sLaengeMinute, double sRichtung,
+			double sEntfernung) {
 
 		float lat = (float) Math.asin(Math.sin(decBreite(sBreiteGrad, sBreiteMinute))
 				* Math.cos(decEntfernung(sEntfernung))
@@ -171,20 +171,20 @@ public class CalcWGS84 {
 						- Math.sin(decBreite(sBreiteGrad, sBreiteMinute))
 						* Math.sin(lat))
 				* -1);
-		float pLon = (float) (decLaenge(sLaengeGrad, sLaengeMinute) - dlon + Math.PI);
-		Float pLonn = (float) (pLon / 2 / Math.PI);
+		double pLon = (decLaenge(sLaengeGrad, sLaengeMinute) - dlon + Math.PI);
+		Double pLonn =  (pLon / 2 / Math.PI);
 
-		float lon = (float) (pLon - pLonn.intValue() - Math.PI);
+		double lon = (pLon - pLonn.intValue() - Math.PI);
 		//System.out.println("Latidude: " + lat);
 		//System.out.println("dlon: " + dlon);
 		//System.out.println("lon: " + lon);
 
-		Float tmpNeueBreiteGrad = (float) (180 / Math.PI * lat);
+		Double tmpNeueBreiteGrad = 180 / Math.PI * lat;
 		breiteGrad = tmpNeueBreiteGrad.intValue();
 		breiteMinute = (tmpNeueBreiteGrad - breiteGrad) * 60;
 		//System.out.println("Neue Breite: " + breiteGrad + "° " + breiteMinute);
 
-		Float tmpNeueLaengeGrad = (float) (180.0f / Math.PI * lon);
+		Double tmpNeueLaengeGrad = 180.0f / Math.PI * lon;
 		//float tmpNeueLaengeGrad = decRichtung(lon);
 		laengeGrad = tmpNeueLaengeGrad.intValue();
 		laengeMinute = (tmpNeueLaengeGrad - laengeGrad) * 60;
@@ -209,12 +209,12 @@ public class CalcWGS84 {
 		return breiteGrad + "° " + breiteMinute;
 	}
 	public String getBreiteDezimalGrad(){
-		Float breiteMinuteFloat;
+		Double breiteMinuteFloat;
 		breiteMinuteFloat = breiteMinute/60.0f;
 		return breiteGrad + "," + breiteMinuteFloat.toString().substring(2);
 	}
 	public String getLaengeDezimalGrad(){
-		Float laengeMinuteFloat;
+		Double laengeMinuteFloat;
 		laengeMinuteFloat = laengeMinute/60.0f;
 		return laengeGrad + "," + laengeMinuteFloat.toString().substring(2);
 	}
