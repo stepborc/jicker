@@ -36,6 +36,12 @@ package org.jicker.geo;
  */
 public class CalcWGS84 {
 	
+	private static int sBreiteGrad;
+	private static Double sBreiteMinute;
+	private static int sLaengeGrad;
+	private static Double sLaengeMinute;
+	private static Double sEntfernung;
+	
 	/** The laenge minute. */
 	private static Double laengeMinute;
 	
@@ -85,11 +91,11 @@ public class CalcWGS84 {
 	public CalcWGS84(int sBreiteGrad, double sBreiteMinute, int sLaengeGrad,
 			double sLaengeMinute, double sEntfernung) {
 		//calcNewCoords(sBreiteGrad, sBreiteMinute, sLaengeGrad, sLaengeMinute, sEntfernung);
-		breiteGrad = sBreiteGrad;
-		breiteMinute = sBreiteMinute;
-		laengeGrad = sLaengeGrad;
-		laengeMinute = sLaengeMinute;
-		entfernung = sEntfernung;
+		CalcWGS84.sBreiteGrad = sBreiteGrad;
+		CalcWGS84.sBreiteMinute = sBreiteMinute;
+		CalcWGS84.sLaengeGrad = sLaengeGrad;
+		CalcWGS84.sLaengeMinute = sLaengeMinute;
+		CalcWGS84.sEntfernung = sEntfernung;
 	}
 
 	/**
@@ -140,7 +146,7 @@ public class CalcWGS84 {
 	 * @param sRichtung the s richtung
 	 */
 	public void calcNewCoords(double sRichtung){
-		calcNewCoords(breiteGrad, breiteMinute, laengeGrad, laengeMinute, sRichtung, entfernung);
+		calcNewCoords(sBreiteGrad, sBreiteMinute, sLaengeGrad, sLaengeMinute, sRichtung, sEntfernung);
 	}
 
 	/**
@@ -157,13 +163,13 @@ public class CalcWGS84 {
 			int sLaengeGrad, double sLaengeMinute, double sRichtung,
 			double sEntfernung) {
 
-		float lat = (float) Math.asin(Math.sin(decBreite(sBreiteGrad, sBreiteMinute))
+		Double lat = Math.asin(Math.sin(decBreite(sBreiteGrad, sBreiteMinute))
 				* Math.cos(decEntfernung(sEntfernung))
 				+ Math.cos(decBreite(sBreiteGrad, sBreiteMinute))
 				* Math.sin(decEntfernung(sEntfernung))
 				* Math.cos(decRichtung(sRichtung)));
 		// Gegenüber Excel sind x und y in der Methode atan2 vertauscht
-		float dlon = (float) (Math.atan2(
+		Double dlon = (Math.atan2(
 				Math.sin(decRichtung(sRichtung))
 						* Math.sin(decEntfernung(sEntfernung))
 						* Math.cos(decBreite(sBreiteGrad, sBreiteMinute)),

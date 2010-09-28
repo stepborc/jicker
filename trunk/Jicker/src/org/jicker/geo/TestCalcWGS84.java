@@ -72,7 +72,7 @@ public class TestCalcWGS84 {
 		
 		//coord2.add(new Coordinate(-122.364167,37.824787,50));
 		//coord2.add(new Coordinate(-122.363917,37.824423,50));
-		strCoord1 = c.getBreiteDezimalGrad().toString().replaceAll(",", ".") + "," + c.getLaengeDezimalGrad().toString().replaceAll(",", ".");
+		strCoord1 = c.getLaengeDezimalGrad().toString().replaceAll(",", ".") + "," + c.getBreiteDezimalGrad().toString().replaceAll(",", ".");
 		strCoord2 = c.getBreite() + "," + c.getLaenge();
 		csvFile.write(strCoord2);
 		csvFile.newLine();
