@@ -25,12 +25,15 @@ function smartPrint() {
 	// css = "* { font-size:10px; font-family:Arial,Helvetica; align=left;} h1 {
 	// color:red; font-size:48px; }";
 	css = "* { font-family:Courier New,Courier; align=left;} h3 { color:black; font-size:24px; margin-bottom:2px}";
-	var propTable = "<table border=1 cellspacing=0 nowrap>"
+	var propertyTable = "<table border=1 cellspacing=0 nowrap>"
 			+ "<tr><th>Koordinaten</th><th>Cachegroesse</th><th>Difficulty</th><th>Terrain</th><th>Owner</th><th>Gelegt</th><th>Cachetype</th></tr>"
-			+ "<tr><td>" + KOs + "</td><td>" + size + "</td><td>" + diff
-			+ "</td><td>" + terr + "</td><td>" + owner + "</td><td>"
-			+ dateHidden + "</td><td>" + imgType + "</td>" + "<tr></table>";
+			+ "<tr><td>" + KOs + "</td><td>" + "size" + "</td><td>" + "diff"
+			+ "</td><td>" + "terr" + "</td><td>" + "owner" + "</td><td>"
+			+ "dateHidden" + "</td><td>" + "imgType" + "</td>" + "<tr></table>";
 	var newPage = "<html><head>" + "<style type=\"text/css\">" + css
+	+ "</style>" + " </head><body><!--NOKOUTIL--><h3>"  + gccode + ": "+ gcname +  "</h3>" + propertyTable + waypoints + allnodes;
+
+	/*	var newPage = "<html><head>" + "<style type=\"text/css\">" + css
 			+ "</style>" + " </head><body><!--NOKOUTIL-->" + "<h3>" + gccode
 			+ ": " + name + "</h3>" + propTable;
 	newPage += shortDesc + "<br>";
@@ -51,12 +54,14 @@ function smartPrint() {
 	// if (log != "") {
 	// newPage += log + "<br>";
 	// }
+	*/
 	newPage += "</body></html>";
 	// stepborc:
 	popup = window.open("about:blank", "smartPrint");
 	popup.document.open();
 	popup.document.write(newPage);
 	popup.document.close();
+	
 }
 
 // Dekodiert den Hint
@@ -126,23 +131,36 @@ unsafeWindow.doSmartPrint = function() {
 };
 
 // Daten aus dem Cachelisting abgreifen
-
+/*
 // Icon
 imgType = getXEle("//a[@title='About Cache Types']/img/@alt").textContent
 		.substring(0, 5);
+*/
 // Name
-name = document.getElementById("ctl00_ContentBody_CacheName").textContent;
+var gcname = document.getElementById("ctl00_ContentBody_CacheName").textContent;
+
 // GC-Code
-gccode = document.getElementById("ctl00_cacheCodeWidget").textContent;
+var gccode = document.getElementById("ctl00_uxWaypointName").textContent;
 gccode = gccode.trim();
+
+// All
+var all = document.getElementById("yui-g");
+var allnodes = all.childNodes[1].childNodes[1].childNodes[0].childNodes[1].childNodes[3].innerHTML;
+//var allnodes = all.parentNode.innerHTML;
+//var allnodes = all.firstChild.nodeName;
+/*
 // Owner
 // auskommentiert am 03.06.2010
 // owner =
 // getXEle("//span[@id=\"ctl00_ContentBody_CacheOwner\"]/a").textContent;
+
 // Versteckdatum
 dateHidden = document.getElementById("ctl00_ContentBody_DateHidden").textContent;
+
 // Gr��e
-size = getXEle("//img[contains(@alt,\"Size:\")]/following-sibling::small").textContent;
+//size = getXEle("//img[contains(@alt,\"Size:\")]/following-sibling::small").textContent;
+//size = getXEle("//img[contains(@alt,\"Size:\")]/").textContent;
+
 // Diff
 diff = getXEle("//span[@id=\"ctl00_ContentBody_Difficulty\"]/img")
 		.getAttribute("alt");
@@ -151,18 +169,23 @@ diff = diff.substring(0, diff.indexOf(" "));
 terr = getXEle("//span[@id=\"ctl00_ContentBody_Terrain\"]/img").getAttribute(
 		"alt");
 terr = terr.substring(0, terr.indexOf(" "));
+*/
 // Koordinaten
-KOs = document.getElementById("ctl00_ContentBody_LatLon").childNodes[0].textContent;
+//KOs = document.getElementById("ctl00_ContentBody_LatLon").childNodes[0].textContent;
+KOs = document.getElementById("ctl00_ContentBody_LatLon").textContent;
+/*
 // Beschreibungstext
 shortDesc = document.getElementById("ctl00_ContentBody_ShortDescription");
 shortDesc = (null == shortDesc ? "" : shortDesc.innerHTML);
 shortDesc = shortDesc.replace(/align="center"/gi, "align=\"left\"")
+
 // Langbeschreibung
 longDesc = document.getElementById("ctl00_ContentBody_LongDescription").innerHTML;
 longDesc = longDesc.replace(/align="center"/gi, "align=\"left\"");
 longDesc = longDesc.replace(/<center>/gi, "<left>");
 longDesc = longDesc.replace(/<\/center>/gi, "<left>");
 longDesc = longDesc.replace(/width="100%"/gi, "");
+
 // Hints dekodieren
 // hints = document.getElementById("ctl00_ContentBody_Hints")
 // hints = (null == hints ? "" : hints.innerHTML);
@@ -178,8 +201,10 @@ if (hintstate.textContent == "Decrypt" || hintstate.textContent == "Encrypt") {
 }
 // hints = document.getElementById("div_hint");
 // alert(dht(hints));
-
+*/
 // Waypoints aufbereiten
+var waypoints = document.getElementById("ct100_ContentBody_Waypoints");
+/*
 wps = getXEle("//table[@class='Table']")
 waypoints = "";
 wpanzahl = 0;
@@ -259,6 +284,7 @@ if (null != imgspan) {
 	images = newImg.innerHTML;
 
 }
+
 // Log-�bersicht
 log = "";
 logs = getXEles("//table[@class='LogsTable Table']/tbody/tr/td");
@@ -302,7 +328,7 @@ if (null != attribs) {
 		}
 	}
 }
-
+*/
 // Smartprint-Knopf einblenden, wenn alles geklappt hat.
 
 var printIcon = document.getElementById("ctl00_ContentBody_lnkPrintFriendly");
