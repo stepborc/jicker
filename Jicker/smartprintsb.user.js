@@ -28,10 +28,10 @@ function smartPrint() {
 	var propertyTable = "<table border=1 cellspacing=0 nowrap>"
 			+ "<tr><th>Koordinaten</th><th>Cachegroesse</th><th>Difficulty</th><th>Terrain</th><th>Owner</th><th>Gelegt</th><th>Cachetype</th></tr>"
 			+ "<tr><td>" + KOs + "</td><td>" + "size" + "</td><td>" + "diff"
-			+ "</td><td>" + "terr" + "</td><td>" + "owner" + "</td><td>"
+			+ "</td><td>" + "terr" + "</td><td>" + owner + "</td><td>"
 			+ "dateHidden" + "</td><td>" + "imgType" + "</td>" + "<tr></table>";
 	var newPage = "<html><head>" + "<style type=\"text/css\">" + css
-	+ "</style>" + " </head><body><!--NOKOUTIL--><h3>"  + gccode + ": "+ gcname +  "</h3>" + propertyTable + waypoints + allnodes;
+	+ "</style>" + " </head><body><!--NOKOUTIL--><h3>"  + gccode + ": "+ gcname +  "</h3>" + propertyTable + allnodes;
 
 	/*	var newPage = "<html><head>" + "<style type=\"text/css\">" + css
 			+ "</style>" + " </head><body><!--NOKOUTIL-->" + "<h3>" + gccode
@@ -143,9 +143,12 @@ var gcname = document.getElementById("ctl00_ContentBody_CacheName").textContent;
 var gccode = document.getElementById("ctl00_uxWaypointName").textContent;
 gccode = gccode.trim();
 
-// All
+// Cachedetails
 var all = document.getElementById("yui-g");
-var allnodes = all.childNodes[1].childNodes[1].childNodes[0].childNodes[1].childNodes[3].innerHTML;
+// Owner
+var owner = all.childNodes[1].childNodes[1].childNodes[0].childNodes[1].childNodes[3].childNodes[1].childNodes[0].childNodes[1].childNodes[3].innerHTML;
+//
+var allnodes = all.childNodes[1].childNodes[1].childNodes[0].childNodes[1].childNodes[3].childNodes[1].childNodes[0].childNodes[3].textContent;
 //var allnodes = all.parentNode.innerHTML;
 //var allnodes = all.firstChild.nodeName;
 /*
