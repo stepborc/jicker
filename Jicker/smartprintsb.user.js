@@ -27,9 +27,9 @@ function smartPrint() {
 	css = "* { font-family:Courier New,Courier; align=left;} h3 { color:black; font-size:24px; margin-bottom:2px}";
 	var propertyTable = "<table border=1 cellspacing=0 nowrap>"
 			+ "<tr><th>Koordinaten</th><th>Cachegroesse</th><th>Difficulty</th><th>Terrain</th><th>Owner</th><th>Gelegt</th><th>Cachetype</th></tr>"
-			+ "<tr><td>" + KOs + "</td><td>" + "size" + "</td><td>" + "diff"
+			+ "<tr><td>" + KOs + "</td><td>" + size + "</td><td>" + diff
 			+ "</td><td>" + "terr" + "</td><td>" + owner + "</td><td>"
-			+ "dateHidden" + "</td><td>" + "imgType" + "</td>" + "<tr></table>";
+			+ dateHidden + "</td><td>" + "imgType" + "</td></tr></table>";
 	var newPage = "<html><head>" + "<style type=\"text/css\">" + css
 	+ "</style>" + " </head><body><!--NOKOUTIL--><h3>"  + gccode + ": "+ gcname +  "</h3>" + propertyTable + allnodes;
 
@@ -144,11 +144,22 @@ var gccode = document.getElementById("ctl00_uxWaypointName").textContent;
 gccode = gccode.trim();
 
 // Cachedetails
-var all = document.getElementById("yui-g");
-// Owner
-var owner = all.childNodes[1].childNodes[1].childNodes[0].childNodes[1].childNodes[3].childNodes[1].childNodes[0].childNodes[1].childNodes[3].innerHTML;
+// get element with most cache attributes
 //
-var allnodes = all.childNodes[1].childNodes[1].childNodes[0].childNodes[1].childNodes[3].childNodes[1].childNodes[0].childNodes[3].textContent;
+var all = document.getElementById("yui-g");
+// owner
+var owner = all.childNodes[1].childNodes[1].childNodes[0].childNodes[1].childNodes[3].childNodes[1].childNodes[0].childNodes[1].childNodes[3].innerHTML;
+// dateHidden
+var dateHidden = all.childNodes[1].childNodes[1].childNodes[0].childNodes[1].childNodes[3].childNodes[1].childNodes[0].childNodes[3].childNodes[2].textContent;
+//size
+    var size = all.childNodes[1].childNodes[1].childNodes[0].childNodes[1].childNodes[3].childNodes[1].childNodes[2].childNodes[1].childNodes[5].textContent;
+    size = size.substring(1, size.length - 1);
+//diff
+    var diff = all.childNodes[1].childNodes[1].childNodes[0].childNodes[1].childNodes[3].childNodes[1].childNodes[2].childNodes[3].innerHTML;
+    //diff = diff.getElementsByTagName("img");
+//
+var allnodes = all.childNodes[1].childNodes[1].childNodes[0].childNodes[1].childNodes[3].childNodes[1].childNodes[2].innerHTML;
+
 //var allnodes = all.parentNode.innerHTML;
 //var allnodes = all.firstChild.nodeName;
 /*
