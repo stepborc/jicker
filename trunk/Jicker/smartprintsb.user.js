@@ -155,7 +155,14 @@ var dateHidden = all.childNodes[1].childNodes[1].childNodes[0].childNodes[1].chi
     var size = all.childNodes[1].childNodes[1].childNodes[0].childNodes[1].childNodes[3].childNodes[1].childNodes[2].childNodes[1].childNodes[5].textContent;
     size = size.substring(1, size.length - 1);
 //diff
-    var diff = all.childNodes[1].childNodes[1].childNodes[0].childNodes[1].childNodes[3].childNodes[1].childNodes[2].childNodes[3].innerHTML;
+    var diff = all.childNodes[1].childNodes[1].childNodes[0].childNodes[1].childNodes[3].childNodes[1].childNodes[2].childNodes[3].getElementsByTagName("img");
+    diff = diff.length;
+    //diff = diff + " | " + all.childNodes[1].childNodes[1].childNodes[0].childNodes[1].childNodes[3].childNodes[1].childNodes[2].childNodes[3].nodeValue;
+    //diff = diff + " | " + all.childNodes[1].childNodes[1].childNodes[0].childNodes[1].childNodes[3].childNodes[1].childNodes[2].childNodes[3].innerHTML;
+    //diff = diff + " | " + all.childNodes[1].childNodes[1].childNodes[0].childNodes[1].childNodes[3].childNodes[1].childNodes[2].childNodes[3].textContent;
+    //diff = diff + " | " + all.childNodes[1].childNodes[1].childNodes[0].childNodes[1].childNodes[3].childNodes[1].childNodes[2].childNodes[3].childNodes.length;
+    
+    
     //diff = diff.getElementsByTagName("img");
 //
 var allnodes = all.childNodes[1].childNodes[1].childNodes[0].childNodes[1].childNodes[3].childNodes[1].childNodes[2].innerHTML;
