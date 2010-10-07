@@ -163,8 +163,14 @@ var dateHidden = all.childNodes[1].childNodes[1].childNodes[0].childNodes[1].chi
     }
 //terrain
     var terrain = document.images[3].alt;
+    if (terrain == 12){
+    	terrain = terrain.substring(0,3);
+    }else{
+    	terrain = terrain.substring(0,1);
+    }
 //cacheType
     var cacheType = document.images[0].alt;
+    cacheType = cacheType.substring(0, (cacheType.length - 6));
     //
 var allnodes = all.childNodes[1].childNodes[1].childNodes[0].childNodes[1].childNodes[3].childNodes[1].childNodes[2].innerHTML;
 
@@ -195,6 +201,8 @@ terr = terr.substring(0, terr.indexOf(" "));
 // Koordinaten
 //KOs = document.getElementById("ctl00_ContentBody_LatLon").childNodes[0].textContent;
 KOs = document.getElementById("ctl00_ContentBody_LatLon").textContent;
+KOs = "N" + KOs.substring(2,KOs.length);
+KOs = KOs.substring(0,11) + " E" + KOs.substring(14,KOs.length);
 /*
 // Beschreibungstext
 shortDesc = document.getElementById("ctl00_ContentBody_ShortDescription");
