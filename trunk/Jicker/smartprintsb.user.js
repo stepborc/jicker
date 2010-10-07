@@ -28,8 +28,8 @@ function smartPrint() {
 	var propertyTable = "<table border=1 cellspacing=0 nowrap>"
 			+ "<tr><th>Koordinaten</th><th>Cachegroesse</th><th>Difficulty</th><th>Terrain</th><th>Owner</th><th>Gelegt</th><th>Cachetype</th></tr>"
 			+ "<tr><td>" + KOs + "</td><td>" + size + "</td><td>" + diff
-			+ "</td><td>" + "terr" + "</td><td>" + owner + "</td><td>"
-			+ dateHidden + "</td><td>" + "imgType" + "</td></tr></table>";
+			+ "</td><td>" + terrain + "</td><td>" + owner + "</td><td>"
+			+ dateHidden + "</td><td>" + cacheType + "</td></tr></table>";
 	var newPage = "<html><head>" + "<style type=\"text/css\">" + css
 	+ "</style>" + " </head><body><!--NOKOUTIL--><h3>"  + gccode + ": "+ gcname +  "</h3>" + propertyTable + allnodes;
 
@@ -155,16 +155,17 @@ var dateHidden = all.childNodes[1].childNodes[1].childNodes[0].childNodes[1].chi
     var size = all.childNodes[1].childNodes[1].childNodes[0].childNodes[1].childNodes[3].childNodes[1].childNodes[2].childNodes[1].childNodes[5].textContent;
     size = size.substring(1, size.length - 1);
 //diff
-    var diff = all.childNodes[1].childNodes[1].childNodes[0].childNodes[1].childNodes[3].childNodes[1].childNodes[2].childNodes[3].getElementsByTagName("img");
-    diff = diff.length;
-    //diff = diff + " | " + all.childNodes[1].childNodes[1].childNodes[0].childNodes[1].childNodes[3].childNodes[1].childNodes[2].childNodes[3].nodeValue;
-    //diff = diff + " | " + all.childNodes[1].childNodes[1].childNodes[0].childNodes[1].childNodes[3].childNodes[1].childNodes[2].childNodes[3].innerHTML;
-    //diff = diff + " | " + all.childNodes[1].childNodes[1].childNodes[0].childNodes[1].childNodes[3].childNodes[1].childNodes[2].childNodes[3].textContent;
-    //diff = diff + " | " + all.childNodes[1].childNodes[1].childNodes[0].childNodes[1].childNodes[3].childNodes[1].childNodes[2].childNodes[3].childNodes.length;
-    
-    
-    //diff = diff.getElementsByTagName("img");
-//
+    var diff = document.images[2].alt;
+    if (diff.length == 12){
+    	diff = diff.substring(0,3);
+    } else {
+    	diff = diff.substring(0,1)
+    }
+//terrain
+    var terrain = document.images[3].alt;
+//cacheType
+    var cacheType = document.images[0].alt;
+    //
 var allnodes = all.childNodes[1].childNodes[1].childNodes[0].childNodes[1].childNodes[3].childNodes[1].childNodes[2].innerHTML;
 
 //var allnodes = all.parentNode.innerHTML;
