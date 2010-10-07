@@ -32,7 +32,7 @@ function smartPrint() {
 			+ dateHidden + "</td><td>" + cacheType + "</td></tr></table>";
 	var newPage = "<html><head>" + "<style type=\"text/css\">" + css
 	+ "</style>" + " </head><body><!--NOKOUTIL--><h3>"  + gccode + ": "+ gcname +  "</h3>" + propertyTable + allnodes;
-
+	newPage = newPage + longDesc;
 	/*	var newPage = "<html><head>" + "<style type=\"text/css\">" + css
 			+ "</style>" + " </head><body><!--NOKOUTIL-->" + "<h3>" + gccode
 			+ ": " + name + "</h3>" + propTable;
@@ -208,14 +208,14 @@ KOs = KOs.substring(0,11) + " E" + KOs.substring(14,KOs.length);
 shortDesc = document.getElementById("ctl00_ContentBody_ShortDescription");
 shortDesc = (null == shortDesc ? "" : shortDesc.innerHTML);
 shortDesc = shortDesc.replace(/align="center"/gi, "align=\"left\"")
-
+*/
 // Langbeschreibung
 longDesc = document.getElementById("ctl00_ContentBody_LongDescription").innerHTML;
 longDesc = longDesc.replace(/align="center"/gi, "align=\"left\"");
 longDesc = longDesc.replace(/<center>/gi, "<left>");
 longDesc = longDesc.replace(/<\/center>/gi, "<left>");
 longDesc = longDesc.replace(/width="100%"/gi, "");
-
+/*
 // Hints dekodieren
 // hints = document.getElementById("ctl00_ContentBody_Hints")
 // hints = (null == hints ? "" : hints.innerHTML);
