@@ -25,31 +25,36 @@ function smartPrint() {
 	// css = "* { font-size:10px; font-family:Arial,Helvetica; align=left;} h1 {
 	// color:red; font-size:48px; }";
 	css = "* { font-family:Courier New,Courier; align=left;} h3 { color:black; font-size:24px; margin-bottom:2px}";
+	var tstart = "<table border=1 cellspacing=0><tr><td>";
+	var tend = "</td></tr></table>";
+	var tsep = "</td><td>";
 	var propertyTable = "<table border=1 cellspacing=0 nowrap>"
 			+ "<tr><th>Koordinaten</th><th>Cachegroesse</th><th>Difficulty</th><th>Terrain</th><th>Owner</th><th>Gelegt</th><th>Cachetype</th></tr>"
 			+ "<tr><td>" + KOs + "</td><td>" + size + "</td><td>" + diff
 			+ "</td><td>" + terrain + "</td><td>" + owner + "</td><td>"
 			+ dateHidden + "</td><td>" + cacheType + "</td></tr></table>";
 	var newPage = "<html><head>" + "<style type=\"text/css\">" + css
-	+ "</style>" + " </head><body><!--NOKOUTIL--><h3>"  + gccode + ": "+ gcname +  "</h3>" + propertyTable + allnodes;
-	newPage = newPage + longDesc;
-	/*	var newPage = "<html><head>" + "<style type=\"text/css\">" + css
-			+ "</style>" + " </head><body><!--NOKOUTIL-->" + "<h3>" + gccode
-			+ ": " + name + "</h3>" + propTable;
-	newPage += shortDesc + "<br>";
+	+ "</style>" + " </head><body><!--NOKOUTIL--><h3>"  + gccode + ": "+ gcname +  "</h3>" + propertyTable;
+
+	//newPage += shortDesc + "<br>";
 	newPage += longDesc + "<br>";
-	if (hints != "") {
-		newPage += "<b>HINT:</b> " + hints + "<br>";
-	}
+	//if (hints != "") {
+		newPage +=  tstart +"<b>HINT:</b>" + tsep + hints + tend;
+	//}
+	
 	if (attrib != "") {
-		newPage += "<b>Attribute</b>: " + attrib + "<br>";
+		newPage += tstart + "<b>Attribute</b>: " + tsep + attrib + tend;
 	}
+	newPage += waypoints;
+	/*
 	if (waypoints != "") {
 		newPage += "<b>Waypoints" + waypoints + "</b><br>";
 	}
+	*/
 	if (images != "") {
 		newPage += images + "<br>";
 	}
+	/*
 	// stepborc: Logs ausblenden
 	// if (log != "") {
 	// newPage += log + "<br>";
@@ -172,7 +177,7 @@ var dateHidden = all.childNodes[1].childNodes[1].childNodes[0].childNodes[1].chi
     var cacheType = document.images[0].alt;
     cacheType = cacheType.substring(0, (cacheType.length - 6));
     //
-var allnodes = all.childNodes[1].childNodes[1].childNodes[0].childNodes[1].childNodes[3].childNodes[1].childNodes[2].innerHTML;
+
 
 //var allnodes = all.parentNode.innerHTML;
 //var allnodes = all.firstChild.nodeName;
@@ -215,7 +220,7 @@ longDesc = longDesc.replace(/align="center"/gi, "align=\"left\"");
 longDesc = longDesc.replace(/<center>/gi, "<left>");
 longDesc = longDesc.replace(/<\/center>/gi, "<left>");
 longDesc = longDesc.replace(/width="100%"/gi, "");
-/*
+
 // Hints dekodieren
 // hints = document.getElementById("ctl00_ContentBody_Hints")
 // hints = (null == hints ? "" : hints.innerHTML);
@@ -231,11 +236,12 @@ if (hintstate.textContent == "Decrypt" || hintstate.textContent == "Encrypt") {
 }
 // hints = document.getElementById("div_hint");
 // alert(dht(hints));
-*/
+
 // Waypoints aufbereiten
 var waypoints = document.getElementById("ct100_ContentBody_Waypoints");
+
+//wps = getXEle("//table[@class='Table']")
 /*
-wps = getXEle("//table[@class='Table']")
 waypoints = "";
 wpanzahl = 0;
 wplaenge = 0;
@@ -282,10 +288,11 @@ if (wps != null && wps.childNodes.length > 0) {
 	}
 	waypoints = waypoints + "</table>";
 }
-
+*/
 // Bilder sammeln
-imgspan = document.getElementById("ctl00_ContentBody_Images");
+var imgspan = document.getElementById("ctl00_ContentBody_Images");
 images = "";
+
 if (null != imgspan) {
 	newImg = document.createElement("span");
 	for (i = 0; i < imgspan.childNodes.length; i++) {
@@ -314,7 +321,7 @@ if (null != imgspan) {
 	images = newImg.innerHTML;
 
 }
-
+/*
 // Log-�bersicht
 log = "";
 logs = getXEles("//table[@class='LogsTable Table']/tbody/tr/td");
@@ -345,9 +352,9 @@ if (null != lfs) {
 		lf = lf + fndimg.nextSibling.nextSibling.textContent + " | ";
 	}
 }
-
+*/
 // Attributes
-attrib = "";
+var attrib = "";
 
 attribs = getXEles("//div[@class='CacheDetailNavigationWidget Spacing']/img");
 if (null != attribs) {
@@ -358,7 +365,7 @@ if (null != attribs) {
 		}
 	}
 }
-*/
+
 // Smartprint-Knopf einblenden, wenn alles geklappt hat.
 
 var printIcon = document.getElementById("ctl00_ContentBody_lnkPrintFriendly");
