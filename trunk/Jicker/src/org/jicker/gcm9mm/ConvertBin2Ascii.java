@@ -34,9 +34,11 @@ public class ConvertBin2Ascii {
     }
     System.out.println(hexText);
     while (i < hexText.length()){
-        System.out.print(hexText.substring(i, i+2));
-        Integer.valueOf(hexText.substring(i, i+2), 16);
-        i=i+2;
+    	hexText.substring(i, hexText.indexOf(" ", i));
+    	System.out.println(Integer.toString(Integer.valueOf(hexText.substring(i, hexText.indexOf(" ", i)), 16)));
+        //System.out.print(Integer.valueOf(hexText.substring(i, hexText.indexOf(" ", i)),16) + " ");
+        //Integer.valueOf(hexText.substring(i, i+2), 16);
+        i= i + (hexText.substring(i, hexText.indexOf(" ", i))).length() +1;
     }
     }
 
