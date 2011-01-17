@@ -60,7 +60,8 @@ public class TestDirBrowser {
 			}
 			// File dir = new File("e:/" + "Bilder/S45-Bilder");
 			File dir = new File(args[0] + args[1]);
-
+			//File dir = new File("C:\\Daten\\Bilder\\2008_02_25\\");
+			
 			// Erstelle Filter für sichtbare Verzeichnisse
 			IOFileFilter JickerDirFilter = FileFilterUtils.andFileFilter(
 					FileFilterUtils.directoryFileFilter(),
