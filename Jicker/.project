@@ -6,12 +6,30 @@
 	</projects>
 	<buildSpec>
 		<buildCommand>
+			<name>org.ebayopensource.vjet.eclipse.core.builder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
 			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>de.loskutov.FileSync.FSBuilder</name>
 			<arguments>
 			</arguments>
 		</buildCommand>
 	</buildSpec>
 	<natures>
+		<nature>org.ebayopensource.vjet.core.nature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>Texto.jpg</name>
+			<type>1</type>
+			<location>E:/Privat/GPS/Umgekehrtes_Fragezeichen/Texto.jpg</location>
+		</link>
+	</linkedResources>
 </projectDescription>
