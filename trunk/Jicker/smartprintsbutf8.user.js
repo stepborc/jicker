@@ -1,4 +1,4 @@
-// ==UserScript==
+﻿// ==UserScript==
 // @name           SmartPrintSB
 // @namespace      http://rflexor.cachezentrale.de
 // @include        http://www.geocaching.com/seek/*
@@ -6,13 +6,13 @@
 
 // TODO: TBs
 
-// Beschafft das erste auf den �bergebenen XPath passende Element
+// Beschafft das erste auf den ï¿½bergebenen XPath passende Element
 function getXEle(path) {
 	var result = document.evaluate(path, document, null,
 			XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
 	return result;
 }
-// Beschafft eine Liste der auf den �bergebenen XPath passenden Elemente
+// Beschafft eine Liste der auf den ï¿½bergebenen XPath passenden Elemente
 function getXEles(path) {
 	var result = document.evaluate(path, document, null,
 			XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
@@ -25,41 +25,36 @@ function smartPrint() {
 	// css = "* { font-size:10px; font-family:Arial,Helvetica; align=left;} h1 {
 	// color:red; font-size:48px; }";
 	css = "* { font-family:Courier New,Courier; align=left;} h3 { color:black; font-size:24px; margin-bottom:2px}";
-	var tstart = "<table border=1 cellspacing=0><tr><td>";
-	var tend = "</td></tr></table>";
-	var tsep = "</td><td>";
 	var propertyTable = "<table border=1 cellspacing=0 nowrap>"
 			+ "<tr><th>Koordinaten</th><th>Cachegroesse</th><th>Difficulty</th><th>Terrain</th><th>Owner</th><th>Gelegt</th><th>Cachetype</th></tr>"
 			+ "<tr><td>" + KOs + "</td><td>" + size + "</td><td>" + diff
 			+ "</td><td>" + terrain + "</td><td>" + owner + "</td><td>"
 			+ dateHidden + "</td><td>" + cacheType + "</td></tr></table>";
 	var newPage = "<html><head>" + "<style type=\"text/css\">" + css
-	+ "</style>" + " </head><body><!--NOKOUTIL--><h3>"  + gccode + ": "+ gcname +  "</h3>" + propertyTable;
-
-	//newPage += shortDesc + "<br>";
-	newPage += longDesc + "<br>";
-	//if (hints != "") {
-		newPage +=  tstart +"<b>HINT:</b>" + tsep + hints + tend;
-	//}
-	
-	if (attrib != "") {
-		newPage += tstart + "<b>Attribute</b>: " + tsep + attrib + tend;
-	}
-	newPage += waypoints;
-	/*
-	if (waypoints != "") {
-		newPage += "<b>Waypoints" + waypoints + "</b><br>";
-	}
-	*/
-	if (images != "") {
-		newPage += images + "<br>";
-	}
-	/*
-	// stepborc: Logs ausblenden
-	// if (log != "") {
-	// newPage += log + "<br>";
-	// }
-	*/
+	+ "</style>" + " </head><body><!--NOKOUTIL--><h3>"  + gccode + ": "+ gcname +  "</h3>" + propertyTable + "<br>" + allnodes;
+//	newPage = newPage + longDesc;
+//	/*	var newPage = "<html><head>" + "<style type=\"text/css\">" + css
+//			+ "</style>" + " </head><body><!--NOKOUTIL-->" + "<h3>" + gccode
+//			+ ": " + name + "</h3>" + propTable;
+//	newPage += shortDesc + "<br>";
+//	newPage += longDesc + "<br>";
+//	if (hints != "") {
+//		newPage += "<b>HINT:</b> " + hints + "<br>";
+//	}
+//	if (attrib != "") {
+//		newPage += "<b>Attribute</b>: " + attrib + "<br>";
+//	}
+//	if (waypoints != "") {
+//		newPage += "<b>Waypoints" + waypoints + "</b><br>";
+//	}
+//	if (images != "") {
+//		newPage += images + "<br>";
+//	}
+//	// stepborc: Logs ausblenden
+//	// if (log != "") {
+//	// newPage += log + "<br>";
+//	// }
+//	*/
 	newPage += "</body></html>";
 	// stepborc:
 	popup = window.open("about:blank", "smartPrint");
@@ -102,7 +97,7 @@ function rot_13(text) {
 				}
 				break;
 			case "&":
-				// Wenn ein &-Zeichen im Text auftaucht, das n�chste Semikolon
+				// Wenn ein &-Zeichen im Text auftaucht, das nächste Semikolon
 				// suchen
 				rot13 = rot13 + codechar;
 				var laenge = 1;
@@ -142,42 +137,50 @@ imgType = getXEle("//a[@title='About Cache Types']/img/@alt").textContent
 		.substring(0, 5);
 */
 // Name
-var gcname = document.getElementById("ctl00_ContentBody_CacheName").textContent;
-
+//var gcname = document.getElementById("ctl00_ContentBody_CacheName").textContent;
+var gcname = "GCname";
 // GC-Code
-var gccode = document.getElementById("ctl00_uxWaypointName").textContent;
-gccode = gccode.trim();
+//var gccode = document.getElementById("ctl00_uxWaypointName").textContent;
+//gccode = gccode.trim();
+var gccode = "GCcode";
 
 // Cachedetails
 // get element with most cache attributes
 //
 var all = document.getElementById("yui-g");
 // owner
-var owner = all.childNodes[1].childNodes[1].childNodes[0].childNodes[1].childNodes[3].childNodes[1].childNodes[0].childNodes[1].childNodes[3].innerHTML;
+//var owner = all.childNodes[1].childNodes[1].childNodes[0].childNodes[1].childNodes[3].childNodes[1].childNodes[0].childNodes[1].childNodes[3].innerHTML;
+var owner = "Owner";
 // dateHidden
-var dateHidden = all.childNodes[1].childNodes[1].childNodes[0].childNodes[1].childNodes[3].childNodes[1].childNodes[0].childNodes[3].childNodes[2].textContent;
+//var dateHidden = all.childNodes[1].childNodes[1].childNodes[0].childNodes[1].childNodes[3].childNodes[1].childNodes[0].childNodes[3].childNodes[2].textContent;
+var dateHidden = "DateHidden";
 //size
-    var size = all.childNodes[1].childNodes[1].childNodes[0].childNodes[1].childNodes[3].childNodes[1].childNodes[2].childNodes[1].childNodes[5].textContent;
-    size = size.substring(1, size.length - 1);
+    //var size = all.childNodes[1].childNodes[1].childNodes[0].childNodes[1].childNodes[3].childNodes[1].childNodes[2].childNodes[1].childNodes[5].textContent;
+    //size = size.substring(1, size.length - 1);
+    var size = "Size";
 //diff
-    var diff = document.images[2].alt;
-    if (diff.length == 12){
-    	diff = diff.substring(0,3);
-    } else {
-    	diff = diff.substring(0,1)
-    }
+//    var diff = document.images[2].alt;
+//    if (diff.length == 12){
+//    	diff = diff.substring(0,3);
+//    } else {
+//    	diff = diff.substring(0,1)
+//    }
+var diff = "Difficulty";
 //terrain
-    var terrain = document.images[3].alt;
-    if (terrain == 12){
-    	terrain = terrain.substring(0,3);
-    }else{
-    	terrain = terrain.substring(0,1);
-    }
+//    var terrain = document.images[3].alt;
+//    if (terrain == 12){
+//    	terrain = terrain.substring(0,3);
+//    }else{
+//    	terrain = terrain.substring(0,1);
+//    }
+var terrain = "Terrain";
 //cacheType
-    var cacheType = document.images[0].alt;
-    cacheType = cacheType.substring(0, (cacheType.length - 6));
+//    var cacheType = document.images[0].alt;
+//    cacheType = cacheType.substring(0, (cacheType.length - 6));
+var cacheType = "CacheType"
     //
-
+//var allnodes = all.childNodes[1].childNodes[1].childNodes[0].childNodes[1].childNodes[3].childNodes[1].childNodes[2].innerHTML;
+var allnode = "AllNodes";
 
 //var allnodes = all.parentNode.innerHTML;
 //var allnodes = all.firstChild.nodeName;
@@ -190,7 +193,7 @@ var dateHidden = all.childNodes[1].childNodes[1].childNodes[0].childNodes[1].chi
 // Versteckdatum
 dateHidden = document.getElementById("ctl00_ContentBody_DateHidden").textContent;
 
-// Gr��e
+// Grï¿½ï¿½e
 //size = getXEle("//img[contains(@alt,\"Size:\")]/following-sibling::small").textContent;
 //size = getXEle("//img[contains(@alt,\"Size:\")]/").textContent;
 
@@ -205,9 +208,10 @@ terr = terr.substring(0, terr.indexOf(" "));
 */
 // Koordinaten
 //KOs = document.getElementById("ctl00_ContentBody_LatLon").childNodes[0].textContent;
-KOs = document.getElementById("ctl00_ContentBody_LatLon").textContent;
-KOs = "N" + KOs.substring(2,KOs.length);
-KOs = KOs.substring(0,11) + " E" + KOs.substring(14,KOs.length);
+//KOs = document.getElementById("ctl00_ContentBody_LatLon").textContent;
+//KOs = "N" + KOs.substring(2,KOs.length);
+//KOs = KOs.substring(0,11) + " E" + KOs.substring(14,KOs.length);
+var KOs = "Kordinaten";
 /*
 // Beschreibungstext
 shortDesc = document.getElementById("ctl00_ContentBody_ShortDescription");
@@ -215,19 +219,20 @@ shortDesc = (null == shortDesc ? "" : shortDesc.innerHTML);
 shortDesc = shortDesc.replace(/align="center"/gi, "align=\"left\"")
 */
 // Langbeschreibung
-longDesc = document.getElementById("ctl00_ContentBody_LongDescription").innerHTML;
-longDesc = longDesc.replace(/align="center"/gi, "align=\"left\"");
-longDesc = longDesc.replace(/<center>/gi, "<left>");
-longDesc = longDesc.replace(/<\/center>/gi, "<left>");
-longDesc = longDesc.replace(/width="100%"/gi, "");
-
+//longDesc = document.getElementById("ctl00_ContentBody_LongDescription").innerHTML;
+//longDesc = longDesc.replace(/align="center"/gi, "align=\"left\"");
+//longDesc = longDesc.replace(/<center>/gi, "<left>");
+//longDesc = longDesc.replace(/<\/center>/gi, "<left>");
+//longDesc = longDesc.replace(/width="100%"/gi, "");
+var longDesc = "Lange Beschreibung";
+/*
 // Hints dekodieren
 // hints = document.getElementById("ctl00_ContentBody_Hints")
 // hints = (null == hints ? "" : hints.innerHTML);
 hintstate = document.getElementById("ctl00_ContentBody_lnkDH");
 if (hintstate.textContent == "Decrypt" || hintstate.textContent == "Encrypt") {
 	hints = document.getElementById("div_hint");
-	// Hier wird das Element mit innerHTML �beregeb, damit die HTML-Tags
+	// Hier wird das Element mit innerHTML überegeb, damit die HTML-Tags
 	// erhalten bleiben
 	// z.B. <BR>
 	hints = rot_13(hints.innerHTML);
@@ -236,12 +241,11 @@ if (hintstate.textContent == "Decrypt" || hintstate.textContent == "Encrypt") {
 }
 // hints = document.getElementById("div_hint");
 // alert(dht(hints));
-
+*/
 // Waypoints aufbereiten
 var waypoints = document.getElementById("ct100_ContentBody_Waypoints");
-
-//wps = getXEle("//table[@class='Table']")
 /*
+wps = getXEle("//table[@class='Table']")
 waypoints = "";
 wpanzahl = 0;
 wplaenge = 0;
@@ -288,11 +292,10 @@ if (wps != null && wps.childNodes.length > 0) {
 	}
 	waypoints = waypoints + "</table>";
 }
-*/
-// Bilder sammeln
-var imgspan = document.getElementById("ctl00_ContentBody_Images");
-images = "";
 
+// Bilder sammeln
+imgspan = document.getElementById("ctl00_ContentBody_Images");
+images = "";
 if (null != imgspan) {
 	newImg = document.createElement("span");
 	for (i = 0; i < imgspan.childNodes.length; i++) {
@@ -321,8 +324,8 @@ if (null != imgspan) {
 	images = newImg.innerHTML;
 
 }
-/*
-// Log-�bersicht
+
+// Log-ï¿½bersicht
 log = "";
 logs = getXEles("//table[@class='LogsTable Table']/tbody/tr/td");
 if (null != logs) {
@@ -352,9 +355,9 @@ if (null != lfs) {
 		lf = lf + fndimg.nextSibling.nextSibling.textContent + " | ";
 	}
 }
-*/
+
 // Attributes
-var attrib = "";
+attrib = "";
 
 attribs = getXEles("//div[@class='CacheDetailNavigationWidget Spacing']/img");
 if (null != attribs) {
@@ -365,14 +368,16 @@ if (null != attribs) {
 		}
 	}
 }
-
+*/
 // Smartprint-Knopf einblenden, wenn alles geklappt hat.
 
 var printIcon = document.getElementById("ctl00_ContentBody_lnkPrintFriendly");
-var printIconParent = printIcon.parentNode;
+//var printIcon = "PrintIcon";
+//var printIconParent = printIcon.parentNode;
+//var printIconParent = "printIconParent";
 
 var eleSP = document.createElement("a");
 eleSP.innerHTML = "<span style=\"font-size:10px;color:red;text-decoration:underline;cursor:pointer;\">SmartPrint</span>&nbsp;";
 eleSP.setAttribute("onClick", "javascript:doSmartPrint();");
 
-printIconParent.insertBefore(eleSP, printIcon);
+//printIconParent.insertBefore(eleSP, printIcon);
