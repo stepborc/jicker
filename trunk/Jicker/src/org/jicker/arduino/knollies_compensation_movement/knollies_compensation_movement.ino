@@ -29,6 +29,7 @@ int clockPin = 12;
 int dataPin = 11;
 
 uint8_t led[8];
+uint8_t ledBlank[0];
 uint8_t ledLeft1[8];
 uint8_t ledLeft2[8];
 uint8_t ledLeft3[8];
@@ -76,6 +77,8 @@ void setup()
   pinMode(latchPin, OUTPUT);
   pinMode(clockPin, OUTPUT);
   pinMode(dataPin, OUTPUT);
+
+  ledBlank[0] = B00000000;
 
   ledLeft1[0] = B00000000;
   ledLeft1[1] = B00000000;
@@ -193,7 +196,7 @@ void setup()
   ledDown1[5] = B00000000;
   ledDown1[6] = B00000000;
   ledDown1[7] = B00000000;
-  
+
   ledDown2[0] = B00000000;                
   ledDown2[1] = B00000000;
   ledDown2[2] = B00000000;
@@ -202,7 +205,7 @@ void setup()
   ledDown2[5] = B00111100;
   ledDown2[6] = B00000000;
   ledDown2[7] = B00000000;
-  
+
   ledDown3[0] = B00000000;                
   ledDown3[1] = B00000000;
   ledDown3[2] = B00000000;
@@ -211,7 +214,7 @@ void setup()
   ledDown3[5] = B00111100;
   ledDown3[6] = B01111110;
   ledDown3[7] = B00000000;
-  
+
   ledDown4[0] = B00000000;                
   ledDown4[1] = B00000000;
   ledDown4[2] = B00000000;
@@ -232,14 +235,20 @@ void loop()
 {
   //variable
   int acc_x_raw=0;
+  int acc_y_raw=0;
   double center_x=0;
+  double center_y=0;
   double acc_x=0.0;
+  double acc_y=0.0;
   double acc_x_array[50];
+  double acc_y_array[50];
   int i=0;
 
   //get the center x voltage
   center_x=(double)analogRead(ACC_X)*5.0/1024.0;
 
+  //get the center y voltage
+  center_y=(double)analogRead(ACC_Y)*5.0/1024.0;
 
   //get all center value
   while(1)
@@ -247,6 +256,8 @@ void loop()
     //Serial.println(center_x);
     //get acc_x raw data
     acc_x_raw=analogRead(ACC_X);
+    //get acc_y raw data
+    acc_y_raw=analogRead(ACC_Y);
 
     //increase i counter from value 0-49
     i+=1;          //increase i
@@ -255,72 +266,120 @@ void loop()
     //convert the raw data to acceleration in double and store in 
     // array at index i
     acc_x_array[i]=((double)acc_x_raw*5.0/1024.0-center_x)/0.3;
+    acc_y_array[i]=((double)acc_y_raw*5.0/1024.0-center_y)/0.3;
 
     //get the average value of all 50 acc value in array
     acc_x=0;                  //clear acc_x value
+    acc_y=0;
     for(int j=0;j<=49;j+=1)   //for loop to add all acc value in array 
     {                         // to acc_x
       acc_x+=acc_x_array[j];
+      acc_y+=acc_y_array[j];
     }
     acc_x=acc_x/50.0;         //divide the total value to 50
+    acc_y=acc_y/50.0;         //divide the total value to 50
 
 
-      //compare the acceleration value, output different LED for different 
+      for(int i = 0;i<8;i++){
+      led[i] = ledBlank[0];
+    }
+
+    //compare the acceleration value, output different LED for different 
     // range of acceleration
     if(acc_x>=0.75){
       write_led(0b10000000);      //0.75 < acc
-      Serial.println("<<<<-----");
       for (int i =0;i<8;i++){
         led[i] = ledLeft4[i];
       }
     }
     else if(acc_x>=0.5){
       write_led(0b01000000);      //0.5 < acc < 0.75
-      Serial.println("-<<<----");
       for (int i =0;i<8;i++){
         led[i] = ledLeft3[i];
       }
     }
     else if(acc_x>=0.25){
       write_led(0b00100000);     //0.25 < acc < 0.5
-      Serial.println("--<<----");
       for (int i =0;i<8;i++){
         led[i] = ledLeft2[i];
       }
     }
     else if(acc_x>=0.0){
       write_led(0b00010000);      //0.0 < acc < 0.25
-      Serial.println("---<----");
       for (int i =0;i<8;i++){
         led[i] = ledLeft1[i];
       }
     }
     else if(acc_x>=-0.25){
       write_led(0b00001000);    //-0.25 < acc < 0.0
-      Serial.println("---->---");
       for (int i =0;i<8;i++){
         led[i] = ledRight1[i];
       }
     }
     else if(acc_x>=-0.5){
       write_led(0b00000100);     //-0.5 < acc < -0.25
-      Serial.println("---->>--");
       for (int i =0;i<8;i++){
         led[i] = ledRight2[i];
       }
     }
     else if(acc_x>=-0.75){
       write_led(0b00000010);    //-0.75 < acc < -0.5
-      Serial.println("---->>>-");
       for (int i =0;i<8;i++){
         led[i] = ledRight3[i];
       }
     }
     else {
       write_led(0b00000001);                  //acc < -0.75
-      Serial.println("---->>>>");
       for (int i =0;i<8;i++){
         led[i] = ledRight4[i];
+      }
+    }
+    if(acc_y>=0.75){
+      write_led(0b10000000);      //0.75 < acc
+      for (int i =0;i<8;i++){
+        led[i] = led[i] | ledUp4[i];
+      }
+    }
+    else if(acc_y>=0.5){
+      write_led(0b01000000);      //0.5 < acc < 0.75
+      for (int i =0;i<8;i++){
+        led[i] = led[i] | ledUp3[i];
+      }
+    }
+    else if(acc_y>=0.25){
+      write_led(0b00100000);     //0.25 < acc < 0.5
+      for (int i =0;i<8;i++){
+        led[i] = led[i] | ledUp2[i];
+      }
+    }
+    else if(acc_y>=0.0){
+      write_led(0b00010000);      //0.0 < acc < 0.25
+      for (int i =0;i<8;i++){
+        led[i] = led[i] | ledUp1[i];
+      }
+    }
+    else if(acc_y>=-0.25){
+      write_led(0b00001000);    //-0.25 < acc < 0.0
+      for (int i =0;i<8;i++){
+        led[i] = led[i] | ledDown1[i];
+      }
+    }
+    else if(acc_y>=-0.5){
+      write_led(0b00000100);     //-0.5 < acc < -0.25
+      for (int i =0;i<8;i++){
+        led[i] = led[i] | ledDown2[i];
+      }
+    }
+    else if(acc_y>=-0.75){
+      write_led(0b00000010);    //-0.75 < acc < -0.5
+      for (int i =0;i<8;i++){
+        led[i] = led[i] | ledDown3[i];
+      }
+    }
+    else {
+      write_led(0b00000001);                  //acc < -0.75
+      for (int i =0;i<8;i++){
+        led[i] = led[i] | ledDown4[i];
       }
     }
   }
@@ -388,6 +447,7 @@ void shiftIt(byte dataOut) {
   //stop shifting
   digitalWrite(clockPin, LOW);
 }
+
 
 
 
