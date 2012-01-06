@@ -53,22 +53,22 @@ void loop() {
 
     //for (int i=0; i<8; i++) {
     //led[i]= ~led[i];
-  //}
+    //}
 
-  if (arrowDirection == "up"){
-    for (int i=0;i<8;i++){
-          led[i]= ledDown[i];
+    if (arrowDirection == "up"){
+      for (int i=0;i<8;i++){
+        led[i]= ledDown[i];
+      }
+      arrowDirection = "down";
     }
-    arrowDirection = "down";
-  }
-  else if (arrowDirection == "down"){
-    for (int i=0;i<8;i++){
-          led[i]= ledUp[i];
+    else if (arrowDirection == "down"){
+      for (int i=0;i<8;i++){
+        led[i]= ledUp[i];
+      }
+      arrowDirection = "up";
     }
-    arrowDirection = "up";
   }
 }
-
 
 void screenUpdate() {
   uint8_t row = B00000001;
@@ -118,6 +118,7 @@ void shiftIt(byte dataOut) {
   //stop shifting
   digitalWrite(clockPin, LOW);
 }
+
 
 
 
