@@ -1,8 +1,8 @@
-#Tue Oct 11 13:37:47 CEST 2011
+#Sun Jan 08 22:40:03 CET 2012
 WARNING=DO NOT MODIFY THIS FILE IF YOU DON'T UNDERSTAND
 defaultDestination=
 defaultVariables=
 eclipse.preferences.version=1
 includeTeamPrivateFiles=false
-map|0=/|C\:/Java/eclipse-reporting-helios-win32/workspace/Jicker|*.js;smartprintsbutf8.user.js|,|,
+map|0=/|C\:/Java/eclipse-reporting-helios-win32/workspace/Jicker|*.js;*.pde;smartprintsbutf8.user.js|,|,
 useCurrentDateForDestinationFiles=false
