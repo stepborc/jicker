@@ -1,4 +1,4 @@
-#include <TimerOne.h>
+5#include <TimerOne.h>
 
 //=======================================================================
 //  Reading Triple Axis Accelerometer MMA7260 using Arduino Duemilanove V2

@@ -55,14 +55,14 @@ void setup() {
   ledUp[5] = B00011100;
   ledUp[6] = B00011100;
   ledUp[7] = B00011100;
-  ledDown[7] = B00001000;
-  ledDown[6] = B00011100;
-  ledDown[5] = B00111110;
-  ledDown[4] = B00011100;
-  ledDown[3] = B00011100;
-  ledDown[2] = B00011100;
-  ledDown[1] = B00011100;
-  ledDown[0] = B00011100;
+  ledDown[7] = B00000100;
+  ledDown[6] = B00001110;
+  ledDown[5] = B00011111;
+  ledDown[4] = B00001110;
+  ledDown[3] = B00001110;
+  ledDown[2] = B00001110;
+  ledDown[1] = B00001110;
+  ledDown[0] = B00001110;
   Timer1.initialize(10000);
   Timer1.attachInterrupt(screenUpdate);
   //Start ADXL335 output to serial port
